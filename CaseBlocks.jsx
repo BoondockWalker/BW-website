@@ -62,62 +62,157 @@ function CaseHeroFullBleed({ d }) {
     { k: "Pillars",  v: (d.pillars || []).join(" · ") },
     { k: "Outcome",  v: d.outcome },
   ];
+  // Typographic cover plate. No photo. Ink ground, hatch overlay, editorial registration marks.
+  // The site header overlays this section transparently — that's why we leave room at top
+  // (~140px) and rely on the parent to absolutely-position the header above us.
   return (
-    <section style={{ background: BW.ink, color: BW.chalk50, fontFamily: BW.ffG, borderBottom: `1px solid ${BW.ink}` }}>
-      {/* Image stage */}
-      <div style={{ position: "relative", width: "100%", height: "min(86vh, 880px)", overflow: "hidden", background: h.imageBg || BW.ink }}>
-        <Parallax amount={40} style={{ position: "absolute", inset: 0 }}>
-          <img
-            src={h.image}
-            alt={h.imageAlt || d.client}
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: h.imageFit || "cover", objectPosition: h.imagePosition || "center", display: "block" }}
-          />
-        </Parallax>
+    <section style={{
+      position: "relative",
+      background: BW.ink,
+      color: BW.chalk50,
+      fontFamily: BW.ffG,
+      minHeight: "100vh",
+      overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
+      borderBottom: `1px solid ${BW.ink}`,
+    }}>
+      {/* Background image — full bleed, behind everything. Uses h.image if provided. */}
+      {h.image && (
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0, zIndex: 0,
+          backgroundImage: `url(${h.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: h.imagePosition || "center",
+          backgroundRepeat: "no-repeat",
+        }} />
+      )}
 
-        {/* Editorial scrim — bottom-up gradient + slight ink wash for legibility */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0.15) 0%, rgba(20,16,12,0.05) 35%, rgba(20,16,12,0.78) 100%)", pointerEvents: "none" }} />
-        {/* Hatch to match site rhythm */}
-        <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.10) 0 1.5px, transparent 1.5px 7px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
+      {/* Editorial scrim — left-weighted gradient + bottom + light top, keeps type legible against image */}
+      {h.image && (
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0, zIndex: 1,
+          background: "linear-gradient(95deg, rgba(20,16,12,0.62) 0%, rgba(20,16,12,0.42) 32%, rgba(20,16,12,0.22) 60%, rgba(20,16,12,0.30) 100%), linear-gradient(180deg, rgba(20,16,12,0.40) 0%, transparent 28%, transparent 70%, rgba(20,16,12,0.78) 100%)",
+          pointerEvents: "none",
+        }} />
+      )}
 
-        {/* Top register — eyebrow + folio */}
-        <div style={{ position: "absolute", top: 28, left: 56, right: 56, display: "flex", justifyContent: "space-between", alignItems: "center", color: BW.chalk50, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", fontWeight: 700, zIndex: 3 }}>
-          <Reveal kind="fadeIn" delay={0}>
-            <span style={{ color: BW.brass }}>{h.eyebrow || "Client Success Story"}</span>
-          </Reveal>
-          <Reveal kind="fadeIn" delay={120}>
-            <span style={{ color: "rgba(244,236,218,0.72)" }}>fig. 01 · cover plate</span>
-          </Reveal>
+      {/* Hatch overlay — matches site rhythm */}
+      <div aria-hidden="true" style={{
+        position: "absolute", inset: 0,
+        background: "repeating-linear-gradient(45deg, rgba(244,236,218,0.045) 0 1.5px, transparent 1.5px 7px)",
+        pointerEvents: "none", zIndex: 2,
+      }} />
+
+      {/* Subtle top-down chalk wash to soften the ink ground behind the header pill */}
+      <div aria-hidden="true" style={{
+        position: "absolute", inset: 0,
+        background: "linear-gradient(180deg, rgba(20,16,12,0.20) 0%, transparent 22%, transparent 78%, rgba(20,16,12,0.30) 100%)",
+        pointerEvents: "none", zIndex: 2,
+      }} />
+
+      {/* Vertical specimen number — left margin */}
+      <div aria-hidden="true" style={{
+        position: "absolute", left: 28, top: "50%", zIndex: 2,
+        transform: "translateY(-50%) rotate(-90deg)", transformOrigin: "left center",
+        fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.34em", textTransform: "uppercase",
+        color: "rgba(244,236,218,0.5)", fontWeight: 700, whiteSpace: "nowrap",
+      }}>
+        Specimen №{d.no} · {d.year}
+      </div>
+
+      {/* CONTENT — editorial grid, content begins below the floating header.
+          Static layout (no entry animation) — hero is always above-the-fold. */}
+      <div style={{
+        position: "relative", zIndex: 3,
+        flex: 1, display: "flex", flexDirection: "column",
+        padding: "200px 80px 0 80px",
+      }}>
+        {/* Eyebrow row — left-side specimen label only */}
+        <div style={{
+          fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.32em", textTransform: "uppercase",
+          color: BW.brass, fontWeight: 700, marginBottom: 56,
+        }}>
+          {h.eyebrow || "Client Success Story"}
         </div>
 
-        {/* Lower content — title left, standfirst right */}
-        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "0 56px 56px", display: "grid", gridTemplateColumns: "1.55fr 1fr", gap: 64, alignItems: "end", zIndex: 3 }}>
-          <Reveal kind="rise" delay={120}>
-            <h1 style={{ fontFamily: BW.ffD, fontSize: "clamp(64px, 9.2vw, 156px)", fontWeight: 400, letterSpacing: "-0.04em", lineHeight: 0.88, margin: 0, color: BW.chalk50, fontStyle: "italic", textShadow: "0 2px 30px rgba(0,0,0,0.35)" }}>
-              {h.title}
-            </h1>
-          </Reveal>
-          <Reveal kind="rise" delay={300}>
-            <div style={{ paddingBottom: 18 }}>
-              {h.clientLogo && (
-                <img src={h.clientLogo} alt={d.client} style={{ height: h.clientLogoHeight || 38, maxWidth: 220, objectFit: "contain", marginBottom: 22, filter: h.clientLogoInvert ? "brightness(0) invert(1)" : "none", opacity: 0.95 }} />
-              )}
-              <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.55, color: "rgba(244,236,218,0.92)", fontWeight: 400, margin: 0, maxWidth: 460 }}>
-                {h.standfirst}
-              </p>
-            </div>
-          </Reveal>
+        {/* Top spacer — pushes the headline down into the lower-third of the hero */}
+        <div style={{ flex: 1, minHeight: 80 }} />
+
+        {/* Display title — set huge, italic */}
+        <h1 style={{
+          fontFamily: BW.ffD,
+          fontSize: "clamp(72px, 11.5vw, 192px)",
+          fontWeight: 400,
+          letterSpacing: "-0.045em",
+          lineHeight: 0.86,
+          margin: "0 0 64px",
+          color: BW.chalk50,
+          fontStyle: "italic",
+          maxWidth: "16ch",
+        }}>
+          {h.title}
+        </h1>
+
+        {/* Lower row — logo + standfirst, two columns. Pinned above the ledger. */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1.1fr 1.4fr",
+          gap: 80,
+          alignItems: "end",
+          paddingBottom: 64,
+          borderBottom: `1px solid rgba(244,236,218,0.14)`,
+        }}>
+          <div>
+            <div style={{
+              fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase",
+              color: "rgba(244,236,218,0.5)", fontWeight: 700, marginBottom: 22,
+            }}>Client</div>
+            {h.clientLogo ? (
+              <img src={h.clientLogo} alt={d.client} style={{
+                height: h.clientLogoHeight || 56,
+                maxWidth: "100%", objectFit: "contain",
+                filter: h.clientLogoInvert ? "brightness(0) invert(1)" : "none",
+                opacity: 0.95, display: "block",
+              }} />
+            ) : (
+              <div style={{ fontFamily: BW.ffD, fontSize: 36, fontStyle: "italic", color: BW.chalk50 }}>{d.client}</div>
+            )}
+          </div>
+          <p style={{
+            fontFamily: BW.ffSerif,
+            fontSize: 19, lineHeight: 1.6,
+            color: "rgba(244,236,218,0.88)",
+            fontWeight: 400, margin: 0,
+            maxWidth: 560,
+            textWrap: "pretty",
+          }}>
+            {h.standfirst}
+          </p>
         </div>
       </div>
 
-      {/* Ledger rail under the image */}
-      <div style={{ display: "grid", gridTemplateColumns: `repeat(${ledger.length}, 1fr)`, borderTop: `1px solid rgba(244,236,218,0.18)` }}>
+      {/* Ledger rail at the very bottom of the cover plate */}
+      <div style={{
+        position: "relative", zIndex: 3,
+        display: "grid", gridTemplateColumns: `repeat(${ledger.length}, 1fr)`,
+        borderTop: `1px solid rgba(244,236,218,0.14)`,
+      }}>
         {ledger.map((row, i) => (
-          <Reveal key={row.k} kind="rise" delay={i * 80} style={{ display: "block" }}>
-            <div style={{ padding: "22px 24px", borderRight: i < ledger.length - 1 ? `1px solid rgba(244,236,218,0.18)` : "none" }}>
-              <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.26em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600, marginBottom: 6 }}>{row.k}</div>
-              <div style={{ fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, color: i === ledger.length - 1 ? BW.brass : BW.chalk50, letterSpacing: "-0.005em" }}>{row.v}</div>
-            </div>
-          </Reveal>
+          <div key={row.k} style={{
+            padding: "26px 28px",
+            borderRight: i < ledger.length - 1 ? `1px solid rgba(244,236,218,0.14)` : "none",
+          }}>
+            <div style={{
+              fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.28em", textTransform: "uppercase",
+              color: "rgba(244,236,218,0.5)", fontWeight: 700, marginBottom: 8,
+            }}>{row.k}</div>
+            <div style={{
+              fontFamily: BW.ffG, fontSize: 14, fontWeight: 700,
+              color: i === ledger.length - 1 ? BW.brass : BW.chalk50,
+              letterSpacing: "-0.005em",
+            }}>{row.v}</div>
+          </div>
         ))}
       </div>
     </section>
@@ -204,24 +299,30 @@ function ServicesBlock({ block }) {
 }
 
 /* =========================================================================
-   FULL-BLEED IMAGE — edge-to-edge with parallax + caption underneath.
+   FULL-BLEED IMAGE — section bg fills edge-to-edge, image is contained
+   within (no crop). Use surface to set the bg color (white, blue, ink, etc).
    ========================================================================= */
 function FullBleedImage({ block }) {
-  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, parallax = 60, fit = "cover", position = "center" } = block;
+  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "60px 56px" } = block;
+  const bg = surfaceGradient || surface;
   return (
-    <section style={{ background: surface, padding: "0 0 60px" }}>
+    <section style={{ background: bg, padding: "0 0 60px" }}>
       <Reveal kind="wipe" threshold={0.05}>
-        <div style={{ width: "100%", height, overflow: "hidden", position: "relative", background: "#0E1726" }}>
-          <Parallax amount={parallax} style={{ width: "100%", height: `calc(100% + ${parallax * 2}px)`, marginTop: -parallax }}>
-            <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: fit, objectPosition: position, display: "block" }} />
-          </Parallax>
+        <div style={{ width: "100%", height, overflow: "hidden", position: "relative", background: bg, padding: imagePadding, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          {parallax > 0 ? (
+            <Parallax amount={parallax} style={{ width: "100%", height: `calc(100% + ${parallax * 2}px)`, marginTop: -parallax }}>
+              <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: fit, objectPosition: position, display: "block" }} />
+            </Parallax>
+          ) : (
+            <img src={src} alt={alt} style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: fit, objectPosition: position, display: "block" }} />
+          )}
         </div>
       </Reveal>
       {caption && (
         <Reveal kind="rise" delay={200}>
           <div style={{ maxWidth: MAX_W, margin: "0 auto", padding: "18px 56px 0", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
             <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>{caption.label || "fig."}</span>
-            <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
+            <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
           </div>
         </Reveal>
       )}
@@ -262,8 +363,8 @@ function ImageTextBlock({ block }) {
     <section style={{ background: surface, color: BW.ink, padding: SECTION_PAD, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
         <Reveal kind={flip ? "slideR" : "slideL"} threshold={0.2} style={{ order: flip ? 2 : 1 }}>
-          <div style={{ background: imageBg || "transparent", padding: imageBg ? 32 : 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <img src={src} alt={alt} style={{ width: "100%", height: "auto", maxHeight: 520, objectFit: "contain", display: "block" }} />
+          <div style={{ background: imageBg || "#FFFFFF", padding: 48, display: "flex", alignItems: "center", justifyContent: "center", minHeight: 480 }}>
+            <img src={src} alt={alt} style={{ maxWidth: "100%", maxHeight: 520, width: "auto", height: "auto", objectFit: "contain", display: "block" }} />
           </div>
         </Reveal>
         <div style={{ order: flip ? 1 : 2 }}>
@@ -294,33 +395,41 @@ function ImageTextBlock({ block }) {
    TWO-UP / THREE-UP — image grids with captions, generous gaps.
    ========================================================================= */
 function MultiImageBlock({ block }) {
-  const { items = [], cols = items.length, surface = BW.chalk50, gap = 40, padding = SECTION_PAD, eyebrow, title } = block;
+  const { items = [], cols = items.length, surface = BW.chalk50, surfaceGradient, gap = 40, padding = SECTION_PAD, maxWidth = MAX_W, eyebrow, title, fg, eyebrowColor, captionColor } = block;
+  const bg = surfaceGradient || surface;
+  const titleColor = fg || BW.ink;
+  const ebColor = eyebrowColor || (fg ? "rgba(244,236,218,0.85)" : BW.clay);
+  const capColor = captionColor || (fg ? "rgba(244,236,218,0.78)" : BW.ink2);
   return (
-    <section style={{ background: surface, color: BW.ink, padding, fontFamily: BW.ffG }}>
-      <div style={{ maxWidth: MAX_W, margin: "0 auto" }}>
+    <section style={{ background: bg, color: titleColor, padding, fontFamily: BW.ffG }}>
+      <div style={{ maxWidth, margin: "0 auto" }}>
         {(eyebrow || title) && (
           <div style={{ marginBottom: 56 }}>
             {eyebrow && (
               <Reveal kind="rise">
-                <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 18 }}>{eyebrow}</div>
+                <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: ebColor, fontWeight: 700, marginBottom: 18 }}>{eyebrow}</div>
               </Reveal>
             )}
             {title && (
               <Reveal kind="rise" delay={120}>
-                <h2 style={{ fontFamily: BW.ffD, fontSize: 56, fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "20ch" }}>{title}</h2>
+                <h2 style={{ fontFamily: BW.ffD, fontSize: 56, fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: titleColor, maxWidth: "20ch" }}>{title}</h2>
               </Reveal>
             )}
           </div>
         )}
         <Reveal kind="cascade" stagger={120}>
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap }}>
+          <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, alignItems: "start" }}>
             {items.map((it, i) => (
               <figure key={i} style={{ margin: 0 }}>
-                <div style={{ width: "100%", overflow: "hidden", background: it.bg || BW.chalk }}>
-                  <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: it.height || "auto", objectFit: it.fit || "cover", display: "block" }} />
-                </div>
+                {it.bg ? (
+                  <div style={{ width: "100%", aspectRatio: it.aspect || "1 / 1", overflow: "hidden", background: it.bg, display: "flex", alignItems: "center", justifyContent: "center", padding: it.tilePadding || 0, boxSizing: "border-box", boxShadow: it.shadow ? "0 18px 40px -12px rgba(20,16,12,0.28), 0 4px 12px -4px rgba(20,16,12,0.18)" : "none" }}>
+                    <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "100%", objectFit: it.fit || "cover", objectPosition: it.position || "center", display: "block" }} />
+                  </div>
+                ) : (
+                  <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "auto", display: "block", boxShadow: it.shadow ? "0 18px 40px -12px rgba(20,16,12,0.28), 0 4px 12px -4px rgba(20,16,12,0.18)" : "none" }} />
+                )}
                 {it.caption && (
-                  <figcaption style={{ marginTop: 16, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>{it.caption}</figcaption>
+                  <figcaption style={{ marginTop: 16, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: capColor, fontWeight: 600 }}>{it.caption}</figcaption>
                 )}
               </figure>
             ))}
@@ -339,25 +448,37 @@ function SliderBlock({ block }) {
   const { items = [], eyebrow, title, surface = BW.chalk50, padding = SECTION_PAD, slideHeight = 620 } = block;
   const trackRef = React.useRef(null);
   const [idx, setIdx] = React.useState(0);
+  const isScrollingRef = React.useRef(false);
+  const scrollTimerRef = React.useRef(null);
+
   const scrollTo = (n) => {
     const el = trackRef.current;
     if (!el) return;
-    const slide = el.querySelector(`[data-slide="${n}"]`);
-    if (slide) el.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
+    const target = Math.max(0, Math.min(items.length - 1, n));
+    setIdx(target);
+    isScrollingRef.current = true;
+    const slide = el.querySelector(`[data-slide="${target}"]`);
+    if (slide) {
+      el.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
+    }
+    clearTimeout(scrollTimerRef.current);
+    scrollTimerRef.current = setTimeout(() => { isScrollingRef.current = false; }, 700);
   };
+
   const onScroll = () => {
+    if (isScrollingRef.current) return;
     const el = trackRef.current;
     if (!el) return;
     const slides = [...el.querySelectorAll("[data-slide]")];
-    const center = el.scrollLeft + el.clientWidth / 2;
+    const left = el.scrollLeft;
     let best = 0, bestD = Infinity;
     slides.forEach((s, i) => {
-      const c = s.offsetLeft + s.offsetWidth / 2;
-      const d = Math.abs(c - center);
+      const d = Math.abs(s.offsetLeft - left);
       if (d < bestD) { bestD = d; best = i; }
     });
     setIdx(best);
   };
+
   return (
     <section style={{ background: surface, color: BW.ink, padding, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: MAX_W, margin: "0 auto 40px", padding: "0 0", display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
@@ -378,49 +499,47 @@ function SliderBlock({ block }) {
             <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", color: "rgba(20,16,12,0.55)", fontWeight: 700, marginRight: 10 }}>
               {String(idx + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
             </span>
-            <button onClick={() => scrollTo(Math.max(0, idx - 1))} aria-label="Previous" style={sliderArrow(idx === 0)}>←</button>
-            <button onClick={() => scrollTo(Math.min(items.length - 1, idx + 1))} aria-label="Next" style={sliderArrow(idx === items.length - 1)}>→</button>
+            <button onClick={() => scrollTo(idx - 1)} aria-label="Previous" disabled={idx === 0} style={sliderArrow(idx === 0)}>←</button>
+            <button onClick={() => scrollTo(idx + 1)} aria-label="Next" disabled={idx === items.length - 1} style={sliderArrow(idx === items.length - 1)}>→</button>
           </div>
         </Reveal>
       </div>
-      <Reveal kind="wipeUp" threshold={0.1}>
-        <div
-          ref={trackRef}
-          onScroll={onScroll}
-          style={{
-            display: "flex",
-            gap: 28,
-            overflowX: "auto",
-            scrollSnapType: "x mandatory",
-            padding: "8px 56px 32px",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-        >
-          <style>{`section [data-slider-track]::-webkit-scrollbar{display:none}`}</style>
-          {items.map((it, i) => (
-            <figure
-              key={i}
-              data-slide={i}
-              style={{
-                margin: 0,
-                flex: `0 0 ${it.width || 480}px`,
-                scrollSnapAlign: "center",
-                transition: "transform .6s cubic-bezier(.22,.61,.36,1), opacity .6s",
-                opacity: i === idx ? 1 : 0.55,
-                transform: i === idx ? "scale(1)" : "scale(0.94)",
-              }}
-            >
-              <div style={{ width: "100%", height: slideHeight, overflow: "hidden", background: it.bg || "#E8EEF2" }}>
-                <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-              </div>
-              {it.caption && (
-                <figcaption style={{ marginTop: 16, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>{it.caption}</figcaption>
-              )}
-            </figure>
-          ))}
-        </div>
-      </Reveal>
+      <div
+        ref={trackRef}
+        onScroll={onScroll}
+        style={{
+          display: "flex",
+          gap: 28,
+          overflowX: "auto",
+          scrollSnapType: "x mandatory",
+          padding: "8px 56px 32px",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+      >
+        <style>{`section [data-slider-track]::-webkit-scrollbar{display:none}`}</style>
+        {items.map((it, i) => (
+          <figure
+            key={i}
+            data-slide={i}
+            style={{
+              margin: 0,
+              flex: `0 0 ${it.width || slideHeight}px`,
+              scrollSnapAlign: "start",
+              transition: "transform .6s cubic-bezier(.22,.61,.36,1), opacity .6s",
+              opacity: i === idx ? 1 : 0.82,
+              transform: i === idx ? "scale(1)" : "scale(0.97)",
+            }}
+          >
+            <div style={{ width: "100%", height: slideHeight, overflow: "hidden", background: it.bg || "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", padding: it.tilePadding || 0, boxSizing: "border-box" }}>
+              <img src={it.src} alt={it.alt || ""} style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: it.fit || "contain", display: "block" }} />
+            </div>
+            {it.caption && (
+              <figcaption style={{ marginTop: 16, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>{it.caption}</figcaption>
+            )}
+          </figure>
+        ))}
+      </div>
     </section>
   );
 }
@@ -516,12 +635,56 @@ function StatRowBlock({ block }) {
 
 /* =========================================================================
    PULLQUOTE — large italic on chalk with editorial rules above & below.
+   Optionally takes `image` for a side-by-side editorial portrait/scene.
    ========================================================================= */
 function PullquoteBlock({ block }) {
-  const { quote, by, role, surface = BW.chalk50, dark = false } = block;
+  const { quote, by, role, surface = BW.chalk50, dark = false, image, imageAlt, imageBg = "#0A1428" } = block;
   const fg = dark ? BW.chalk50 : BW.ink;
   const fgMuted = dark ? "rgba(251,247,238,0.7)" : BW.ink2;
   const ruleColor = dark ? BW.ruleD : BW.ruleL;
+
+  if (image) {
+    // Two-column editorial: image left, quote right
+    return (
+      <section style={{ background: surface, color: fg, padding: "120px 56px", fontFamily: BW.ffG, position: "relative" }}>
+        <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: "0.95fr 1.05fr", gap: 80, alignItems: "stretch" }}>
+          <Reveal kind="slideL" threshold={0.15}>
+            <div style={{ position: "relative", background: imageBg, height: "100%", minHeight: 560, overflow: "hidden" }}>
+              <img src={image} alt={imageAlt || ""} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.10) 0 1.5px, transparent 1.5px 7px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", left: 20, top: 20, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(244,236,218,0.7)", fontWeight: 700 }}>
+                fig. 08 · Testimony
+              </div>
+            </div>
+          </Reveal>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", paddingLeft: 8 }}>
+            <Reveal kind="rise">
+              <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 200, lineHeight: 0.5, color: BW.clay, fontWeight: 400, marginBottom: 8, opacity: 0.85 }}>"</div>
+            </Reveal>
+            <Reveal kind="wipeUp" delay={150} threshold={0.15}>
+              <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(28px, 3.4vw, 46px)", lineHeight: 1.22, fontWeight: 400, letterSpacing: "-0.02em", color: fg, margin: "0 0 48px", maxWidth: "30ch" }}>
+                {quote}
+              </p>
+            </Reveal>
+            <Reveal kind="rise" delay={300}>
+              <div style={{ display: "flex", alignItems: "center", gap: 16, paddingTop: 24, borderTop: `1px solid ${ruleColor}`, maxWidth: 520 }}>
+                {by && (
+                  <div style={{ width: 44, height: 44, borderRadius: "50%", background: BW.clay, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 13, fontWeight: 700, letterSpacing: "0.05em", flexShrink: 0 }}>
+                    {by.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                  </div>
+                )}
+                <div>
+                  {by && <div style={{ fontFamily: BW.ffG, fontSize: 15, fontWeight: 700, color: fg, letterSpacing: "-0.005em" }}>{by}</div>}
+                  {role && <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: fgMuted, fontWeight: 600, marginTop: 4 }}>{role}</div>}
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section style={{ background: surface, color: fg, padding: "140px 56px", fontFamily: BW.ffG, position: "relative" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
