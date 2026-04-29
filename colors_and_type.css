@@ -1,0 +1,395 @@
+/* =============================================================
+   Boondock Walker — Foundations v2
+   Direction: editorial agency × marketing-tech operator × AI lab.
+   Saturated, sophisticated, warm-but-architectural.
+   Palette: Clay · Plum · Brass · Forest · Chalk · Ink.
+   Type: Fraunces (display, italic-led) × Space Grotesk (wide grotesk).
+   Motifs: bold color blocks, annotated specimens, subtle motion.
+   ============================================================= */
+
+/* ---------- Webfonts (real licensed files) ---------- */
+@font-face {
+  font-family: "Copernicus";
+  src: url("fonts/Copernicus-Book.woff2") format("woff2"),
+       url("fonts/Copernicus-Book.woff") format("woff"),
+       url("fonts/Copernicus-Book.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Copernicus";
+  src: url("fonts/Copernicus-BookItalic.woff2") format("woff2"),
+       url("fonts/Copernicus-BookItalic.woff") format("woff"),
+       url("fonts/Copernicus-BookItalic.otf") format("opentype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Copernicus";
+  src: url("fonts/Copernicus-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Copernicus";
+  src: url("fonts/Copernicus-Semibold.otf") format("opentype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+
+/* Fraunces (display serif) + Space Grotesk (wide grotesk) + Inter (UI) + JetBrains Mono via Google */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,800;1,9..144,900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+:root {
+  /* ---------- Color: Ink (deep warm-black foundation) ---------- */
+  --bw-ink-900: #0C0907;        /* deepest */
+  --bw-ink-800: #14100C;        /* canvas */
+  --bw-ink-700: #221A14;
+  --bw-ink-600: #322618;
+  --bw-ink-500: #4D3A26;
+  --bw-ink-400: #75614A;
+  --bw-ink-300: #A08D75;
+
+  /* ---------- Color: Chalk (warm parchment, never pure white) ---------- */
+  --bw-chalk-50:  #FBF7EE;       /* lightest, page bg */
+  --bw-chalk-100: #F4ECDA;       /* primary chalk surface */
+  --bw-chalk-200: #ECE0C5;
+  --bw-chalk-300: #DDCDA8;       /* edge tone */
+  --bw-chalk-400: #C8B388;
+
+  /* ---------- Color: Clay (signature warm primary) ---------- */
+  /* Replaces "ember"; richer, slightly more red, more sophisticated */
+  --bw-clay-100: #F8D6C2;
+  --bw-clay-300: #E8896A;
+  --bw-clay-500: #C44A2A;        /* PRIMARY — clay/oxblood */
+  --bw-clay-600: #A23818;
+  --bw-clay-700: #7A2810;
+  --bw-clay-900: #3A1408;
+
+  /* ---------- Color: Plum (intellectual depth, secondary) ---------- */
+  --bw-plum-100: #E6D2D8;
+  --bw-plum-300: #9C6478;
+  --bw-plum-500: #5E2638;        /* PRIMARY — deep plum */
+  --bw-plum-700: #3E1827;
+  --bw-plum-900: #1F0C14;
+
+  /* ---------- Color: Forest (calm depth, "trail") ---------- */
+  --bw-forest-100: #D5DDC9;
+  --bw-forest-300: #6E8456;
+  --bw-forest-500: #2E4626;       /* PRIMARY — deep forest */
+  --bw-forest-700: #1A2A14;
+  --bw-forest-900: #0C160A;
+
+  /* ---------- Color: Brass (intelligence / signal / metal) ---------- */
+  --bw-brass-100: #F7E7BE;
+  --bw-brass-300: #E5C470;
+  --bw-brass-500: #C8962B;       /* PRIMARY — antique brass */
+  --bw-brass-700: #8E6515;
+  --bw-brass-900: #4A3308;
+
+  /* ---------- Color: Sky (rare cool counterpoint, "data") ---------- */
+  --bw-sky-100: #D6E3E6;
+  --bw-sky-300: #7FA0AA;
+  --bw-sky-500: #3F6976;
+  --bw-sky-700: #1F3A45;
+
+  /* ---------- Semantic foreground / background ---------- */
+  --bw-fg-1:    var(--bw-chalk-100);
+  --bw-fg-2:    rgba(244,236,218,0.78);
+  --bw-fg-3:    rgba(244,236,218,0.52);
+  --bw-fg-on-light-1: var(--bw-ink-800);
+  --bw-fg-on-light-2: rgba(20,16,12,0.72);
+  --bw-fg-on-light-3: rgba(20,16,12,0.50);
+  --bw-fg-on-clay:    var(--bw-chalk-50);
+  --bw-fg-on-plum:    var(--bw-chalk-50);
+  --bw-fg-on-forest:  var(--bw-chalk-50);
+  --bw-fg-on-brass:   var(--bw-ink-800);
+
+  --bw-bg-canvas:    var(--bw-ink-800);
+  --bw-bg-surface:   var(--bw-ink-700);
+  --bw-bg-chalk:     var(--bw-chalk-100);
+  --bw-bg-chalk-2:   var(--bw-chalk-200);
+  --bw-bg-cream:     var(--bw-chalk-50);
+
+  --bw-rule-dark:    rgba(244,236,218,0.16);
+  --bw-rule-light:   rgba(20,16,12,0.18);
+  --bw-rule-strong:  var(--bw-ink-800);
+
+  --bw-accent:       var(--bw-clay-500);
+  --bw-accent-2:     var(--bw-plum-500);
+  --bw-accent-3:     var(--bw-forest-500);
+  --bw-accent-4:     var(--bw-brass-500);
+  --bw-accent-hover: var(--bw-clay-300);
+  --bw-accent-press: var(--bw-clay-700);
+  --bw-on-accent:    var(--bw-chalk-50);
+
+  --bw-success:      var(--bw-forest-500);
+  --bw-warning:      var(--bw-brass-500);
+  --bw-danger:       var(--bw-clay-600);
+
+  /* ---------- Type families ---------- */
+  /* Display: Fraunces (serif). Italic + 800 is the signature voice.
+     Grotesk: Space Grotesk — wider, mechanical edge, pairs in tension w/ Fraunces.
+       (SUBSTITUTION FLAG: target is Söhne Breit / GT America Extended — commercial.)
+     UI sans: Inter for dense product surfaces.
+     Mono: JetBrains Mono for eyebrows + metadata + Lab.
+     Serif body: Copernicus (licensed) for editorial long-form. */
+  --bw-ff-display: "Fraunces", "Copernicus", "Times New Roman", serif;
+  --bw-ff-grotesk: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --bw-ff-serif:   "Copernicus", "Fraunces", Georgia, serif;
+  --bw-ff-sans:    "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, sans-serif;
+  --bw-ff-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---------- Type scale ---------- */
+  --bw-fs-xs:   11px;
+  --bw-fs-sm:   13px;
+  --bw-fs-base: 15.5px;
+  --bw-fs-md:   17px;
+  --bw-fs-lg:   clamp(19px, 1.5vw, 21px);
+  --bw-fs-xl:   clamp(23px, 2vw, 27px);
+  --bw-fs-2xl:  clamp(30px, 2.6vw, 36px);
+  --bw-fs-3xl:  clamp(40px, 3.8vw, 56px);
+  --bw-fs-4xl:  clamp(54px, 5.5vw, 84px);
+  --bw-fs-5xl:  clamp(72px, 8vw, 124px);
+  --bw-fs-display: clamp(96px, 13vw, 196px);
+
+  /* ---------- Spacing ---------- */
+  --bw-s-1: 4px;  --bw-s-2: 8px;  --bw-s-3: 12px;  --bw-s-4: 16px;
+  --bw-s-5: 20px; --bw-s-6: 24px; --bw-s-8: 32px;  --bw-s-10: 40px;
+  --bw-s-12: 48px; --bw-s-16: 64px; --bw-s-20: 80px; --bw-s-24: 96px; --bw-s-32: 128px;
+
+  /* ---------- Radii ---------- */
+  --bw-r-xs: 3px;
+  --bw-r-sm: 6px;
+  --bw-r-md: 12px;
+  --bw-r-lg: 20px;
+  --bw-r-xl: 32px;
+  --bw-r-pill: 999px;
+
+  /* ---------- Shadows / elevation ---------- */
+  --bw-shadow-sm:  0 1px 2px rgba(12,9,7,0.18);
+  --bw-shadow-md:  0 8px 20px -10px rgba(12,9,7,0.40);
+  --bw-shadow-lg:  0 28px 56px -20px rgba(12,9,7,0.55);
+  --bw-shadow-clay-glow: 0 0 0 6px rgba(196,74,42,0.20);
+  --bw-shadow-inner-paper: inset 0 0 0 1px var(--bw-chalk-300);
+
+  /* ---------- Motion ---------- */
+  --bw-ease:        cubic-bezier(.2,.7,.2,1);
+  --bw-ease-out:    cubic-bezier(.16,1,.3,1);
+  --bw-ease-in:     cubic-bezier(.7,0,.84,0);
+  --bw-dur-fast:    150ms;
+  --bw-dur-base:    240ms;
+  --bw-dur-slow:    480ms;
+  --bw-dur-marquee: 48s;
+
+  /* ---------- Layout ---------- */
+  --bw-container:   1280px;
+  --bw-pad:         clamp(20px, 4vw, 56px);
+
+  /* ---------- v1 aliases (compat) ---------- */
+  --ink: var(--bw-ink-800);
+  --paper: var(--bw-chalk-100);
+  --ember: var(--bw-clay-500);
+  --bw-paper-50: var(--bw-chalk-50);
+  --bw-paper-100: var(--bw-chalk-100);
+  --bw-paper-200: var(--bw-chalk-200);
+  --bw-ember-500: var(--bw-clay-500);
+  --bw-ember-300: var(--bw-clay-300);
+  --bw-ember-600: var(--bw-clay-600);
+}
+
+/* ============== Semantic element styles ============== */
+
+.bw-eyebrow {
+  font-family: var(--bw-ff-mono);
+  font-size: var(--bw-fs-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bw-accent);
+  font-weight: 500;
+}
+.bw-eyebrow--ink { color: var(--bw-ink-800); }
+.bw-eyebrow--chalk { color: var(--bw-chalk-100); }
+
+/* Display headlines: wide grotesk uppercase + clay italic Fraunces inline */
+.bw-h-display {
+  font-family: var(--bw-ff-grotesk);
+  font-weight: 700;
+  font-size: var(--bw-fs-display);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.bw-h-display em, .bw-h-display .it {
+  font-family: var(--bw-ff-display);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: lowercase;
+  color: var(--bw-clay-500);
+  letter-spacing: -0.02em;
+}
+
+.bw-h1 {
+  font-family: var(--bw-ff-grotesk);
+  font-weight: 700;
+  font-size: var(--bw-fs-5xl);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.bw-h1 em, .bw-h1 .it {
+  font-family: var(--bw-ff-display);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: -0.02em;
+  color: var(--bw-clay-500);
+}
+.bw-h2 {
+  font-family: var(--bw-ff-grotesk);
+  font-weight: 700;
+  font-size: var(--bw-fs-4xl);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.bw-h2 em, .bw-h2 .it {
+  font-family: var(--bw-ff-display);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: -0.02em;
+}
+.bw-h3 {
+  font-family: var(--bw-ff-grotesk);
+  font-weight: 600;
+  font-size: var(--bw-fs-2xl);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.bw-h4 {
+  font-family: var(--bw-ff-grotesk);
+  font-weight: 600;
+  font-size: var(--bw-fs-xl);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.bw-pull {
+  font-family: var(--bw-ff-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--bw-fs-3xl);
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+  color: var(--bw-ink-800);
+}
+
+.bw-p {
+  font-family: var(--bw-ff-sans);
+  font-size: var(--bw-fs-md);
+  line-height: 1.6;
+  margin: 0 0 1em 0;
+}
+.bw-lede {
+  font-family: var(--bw-ff-serif);
+  font-size: var(--bw-fs-lg);
+  line-height: 1.55;
+  font-weight: 400;
+}
+.bw-small {
+  font-family: var(--bw-ff-sans);
+  font-size: var(--bw-fs-sm);
+  line-height: 1.5;
+}
+.bw-caption {
+  font-family: var(--bw-ff-display);
+  font-style: italic;
+  font-size: var(--bw-fs-sm);
+  line-height: 1.4;
+  color: var(--bw-fg-on-light-2);
+}
+.bw-mono, .bw-code {
+  font-family: var(--bw-ff-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.bw-serif   { font-family: var(--bw-ff-serif); }
+.bw-grotesk { font-family: var(--bw-ff-grotesk); }
+.bw-sans    { font-family: var(--bw-ff-sans); }
+
+.bw-clay   { color: var(--bw-clay-500); }
+.bw-plum   { color: var(--bw-plum-500); }
+.bw-forest { color: var(--bw-forest-500); }
+.bw-brass  { color: var(--bw-brass-500); }
+
+/* ============== Atomic component classes ============== */
+
+.bw-btn {
+  font-family: var(--bw-ff-grotesk);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 14px 22px;
+  border-radius: var(--bw-r-pill);
+  display: inline-flex; align-items: center; gap: 10px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  text-decoration: none;
+  transition: transform var(--bw-dur-base) var(--bw-ease),
+              background var(--bw-dur-base) var(--bw-ease),
+              color var(--bw-dur-base) var(--bw-ease),
+              border-color var(--bw-dur-base) var(--bw-ease);
+}
+.bw-btn:hover { transform: translateY(-1px); }
+.bw-btn:active { transform: translateY(0); }
+
+.bw-btn--clay {
+  background: var(--bw-clay-500);
+  color: var(--bw-chalk-50);
+}
+.bw-btn--clay:hover { background: var(--bw-clay-600); }
+
+.bw-btn--ink {
+  background: var(--bw-ink-800);
+  color: var(--bw-chalk-50);
+}
+.bw-btn--ink:hover { background: var(--bw-ink-700); }
+
+.bw-btn--ghost-dark {
+  background: transparent;
+  color: var(--bw-chalk-100);
+  border-color: var(--bw-rule-dark);
+}
+.bw-btn--ghost-dark:hover { border-color: var(--bw-clay-500); color: var(--bw-clay-300); }
+
+.bw-btn--ghost-light {
+  background: transparent;
+  color: var(--bw-ink-800);
+  border-color: var(--bw-rule-light);
+}
+.bw-btn--ghost-light:hover { border-color: var(--bw-clay-500); color: var(--bw-clay-500); }
+
+.bw-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--bw-ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.bw-rule {
+  border: 0;
+  height: 1px;
+  background: var(--bw-rule-light);
+  margin: 0;
+}
+.bw-rule--dark { background: var(--bw-rule-dark); }
+.bw-rule--strong { background: var(--bw-ink-800); height: 1.5px; }
