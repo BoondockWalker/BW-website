@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boondock Walker — Work / Selected Receipts</title>
+<link rel="icon" href="assets/BW-crest.svg" type="image/svg+xml">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  html, body { margin: 0; background: #F4ECDA; }
+  body { font-family: 'Space Grotesk', system-ui, sans-serif; color: #14100C; }
+  a { cursor: pointer; }
+  a:hover { opacity: 0.92; }
+  select { font-family: inherit; }
+</style>
+</head>
+<body>
+<div id="root" data-screen-label="01 Work Index"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="V3Sections2.jsx"></script>
+<script type="text/babel" src="WorkData.jsx"></script>
+<script type="text/babel" src="SiteHeader.jsx"></script>
+<script type="text/babel" src="WorkArchive.jsx"></script>
+<script type="text/babel" src="WorkGrid.jsx"></script>
+<script type="text/babel">
+function WorkApp() {
+  const [pillar, setPillar] = React.useState("All");
+  const [industry, setIndustry] = React.useState("All industries");
+  const [outcome, setOutcome] = React.useState("All outcomes");
+  const [sort, setSort] = React.useState("Most recent");
+  const [view, setView] = React.useState("grid");
+
+  const all = window.BW_CASES;
+  const featured = all.find(c => c.featured) || all[0];
+  const rest = all.filter(c => c.slug !== featured.slug);
+
+  const filtered = rest.filter(c => {
+    if (pillar !== "All" && !(c.pillars || []).includes(pillar)) return false;
+    if (industry !== "All industries" && c.industry !== industry) return false;
+    if (outcome !== "All outcomes" && c.outcome !== outcome) return false;
+    return true;
+  });
+
+  const sorted = [...filtered].sort((a, b) => {
+    if (sort === "Oldest") return parseInt(a.year) - parseInt(b.year);
+    if (sort === "By pillar") return a.pillar.localeCompare(b.pillar);
+    if (sort === "By outcome") return a.outcome.localeCompare(b.outcome);
+    return parseInt(b.year) - parseInt(a.year);
+  });
+
+  return (
+    <div>
+      <SiteHeader current="Work" />
+      <WorkMasthead count={all.length} filterCount={sorted.length + 1} />
+      <FeaturedCase c={featured} />
+      <FilterRow {...{ pillar, setPillar, industry, setIndustry, outcome, setOutcome, sort, setSort, view, setView }} />
+      <ArchiveGrid cases={sorted} view={view} />
+      <WorkClosing />
+      <V3Footer />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<WorkApp />);
+</script>
+</body>
+</html>
