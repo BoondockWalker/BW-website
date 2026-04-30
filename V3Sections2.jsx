@@ -3,29 +3,30 @@
 
 /* §04 — Selected receipts (case studies) on chalk paper */
 function V3Cases() {
+  const isMobile = useMediaQuery("(max-width: 900px)");
   const cases = [
     { tag: "Brand · Demand", co: "Walker Bros.", pull: "A 70-year wholesale brand learns to close direct.", m1: "+148%", m1k: "SQL", m2: "$2.4M", m2k: "Pipeline", c: BW.clay },
     { tag: "Lab · Demand",   co: "Halberd Tools", pull: "A trained AI desk-rep that sounds like founder.", m1: "2,140", m1k: "SQL routed", m2: "$0.42", m2k: "Cost / lead", c: BW.forest },
     { tag: "Brand",          co: "North-by-Northeast", pull: "Repositioned mid-market, doubled enterprise close rate.", m1: "2.1×", m1k: "Close rate", m2: "37 days", m2k: "Sales cycle", c: BW.plum },
   ];
   return (
-    <section id="work" style={{ background: BW.chalk50, color: BW.ink, padding: "100px 64px", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
+    <section id="work" style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
+        <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "flex-end", gap: isMobile ? 24 : 0, marginBottom: 48 }}>
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24, flexWrap: "wrap" }}>
               <span>§04</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Selected Receipts</span>
             </div>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: 84, fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.94, margin: 0, color: BW.ink, maxWidth: 900 }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.94, margin: 0, color: BW.ink, maxWidth: 900 }}>
               Receipts, <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>not</em> case <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>studies.</em>
             </h2>
           </div>
           <a style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, paddingBottom: 3, borderBottom: `1.5px solid ${BW.ink}`, cursor: "pointer", whiteSpace: "nowrap" }}>All 47 specimens →</a>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", border: `1px solid ${BW.ink}` }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", border: `1px solid ${BW.ink}` }}>
           {cases.map((c, i) => (
-            <div key={c.co} style={{ borderRight: i < 2 ? `1px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column" }}>
+            <div key={c.co} style={{ borderRight: !isMobile && i < 2 ? `1px solid ${BW.ink}` : "none", borderBottom: isMobile && i < cases.length - 1 ? `1px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column" }}>
               <div style={{ aspectRatio: "16/11", background: c.c, position: "relative", overflow: "hidden", borderBottom: `1px solid ${BW.ink}` }}>
                 <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 8px)", mixBlendMode: "multiply" }} />
                 <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>SPECIMEN 0{i+1}</div>
@@ -52,23 +53,24 @@ function V3Cases() {
 
 /* §05 — The Lab. Plum surface with composer card on the right */
 function V3Lab() {
+  const isMobile = useMediaQuery("(max-width: 900px)");
   return (
-    <section id="the-lab" style={{ background: BW.plum, color: BW.chalk50, padding: "100px 64px", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
+    <section id="the-lab" style={{ background: BW.plum, color: BW.chalk50, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
       {/* faint grid */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk50} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk50} 1px, transparent 1px)`, backgroundSize: "60px 60px", opacity: 0.04 }} />
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 36 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
           <span>§05</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>The Lab · AI Engagement</span>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 64, alignItems: "center" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1fr", gap: isMobile ? 40 : 64, alignItems: "center" }}>
           <div>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: 88, fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 28px", color: BW.chalk50 }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 10vw, 88px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 28px", color: BW.chalk50 }}>
               AI <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>that sounds</em> like <em style={{ color: BW.chalk50, fontStyle: "italic", fontWeight: 400 }}>you.</em>
             </h2>
-            <p style={{ fontFamily: BW.ffSerif, fontSize: 19, lineHeight: 1.55, margin: "0 0 32px", color: "rgba(251,247,238,0.82)", maxWidth: 540 }}>
+            <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 19px)", lineHeight: 1.55, margin: "0 0 32px", color: "rgba(251,247,238,0.82)", maxWidth: 540 }}>
               We build custom desk-reps trained on your voice, your lifecycle, and your sales motion. They triage inbound, score intent, and write the first reply — so your team meets a warm pipeline, not a cold inbox.
             </p>
-            <div style={{ display: "flex", gap: 12 }}>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <a style={{ background: BW.brass, color: BW.ink, padding: "13px 22px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>View Lab specimens →</a>
               <a style={{ background: "transparent", color: BW.chalk50, padding: "13px 22px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", border: `1.5px solid rgba(244,236,218,0.4)` }}>Talk to engineering</a>
             </div>
@@ -110,19 +112,22 @@ function V3Lab() {
 
 /* §06 — Trust grid (clients) */
 function V3Trust() {
+  const isMobile = useMediaQuery("(max-width: 700px)");
+  const isTablet = useMediaQuery("(max-width: 1000px)");
   const operators = ["Walker Bros.", "Halberd", "N×NE", "Field & Co.", "Marrow", "Praxis", "Halyard", "Northbeam", "Bowline", "Atlas Mfg.", "Quarry", "Greylock"];
+  const cols = isMobile ? 2 : isTablet ? 3 : 6;
   return (
-    <section style={{ background: BW.chalk, color: BW.ink, padding: "80px 64px", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
+    <section style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 80px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 28 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>
+        <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "baseline", gap: isMobile ? 12 : 0, marginBottom: 28 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
             <span>§06</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Operators we've shipped for</span>
           </div>
           <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>since 2015 · 47 specimens</span>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
+        <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
           {operators.map(n => (
-            <div key={n} style={{ padding: "26px 14px", borderRight: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}`, fontFamily: BW.ffG, fontSize: 16, fontWeight: 700, letterSpacing: "-0.005em", textTransform: "uppercase", color: BW.ink, textAlign: "center" }}>{n}</div>
+            <div key={n} style={{ padding: "26px 14px", borderRight: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}`, fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, letterSpacing: "-0.005em", textTransform: "uppercase", color: BW.ink, textAlign: "center" }}>{n}</div>
           ))}
         </div>
       </div>
@@ -132,20 +137,21 @@ function V3Trust() {
 
 /* §07 — Closing CTA on clay (echoes hero) */
 function V3CTA() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <section id="contact" style={{ background: BW.clay, color: BW.chalk50, padding: "140px 64px", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
+    <section id="contact" style={{ background: BW.clay, color: BW.chalk50, padding: "clamp(72px, 12vw, 140px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 36 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
           <span>§07</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Start a project</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontSize: 124, fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.9, margin: "0 0 40px", color: BW.chalk50, maxWidth: 1200 }}>
+        <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(56px, 13vw, 124px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.9, margin: "0 0 40px", color: BW.chalk50, maxWidth: 1200 }}>
           If your story <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>isn't closing,</em> let's fix the story <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>and the close.</em>
         </h2>
-        <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
+        <div style={{ display: "flex", gap: 14, alignItems: isMobile ? "flex-start" : "center", flexWrap: "wrap", flexDirection: isMobile ? "column" : "row" }}>
           <a style={{ background: BW.ink, color: BW.chalk50, padding: "14px 24px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>Start a project →</a>
           <a style={{ background: "transparent", color: BW.chalk50, padding: "14px 24px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", border: `1.5px solid rgba(244,236,218,0.45)` }}>Book a 30-min</a>
-          <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,247,238,0.78)", marginLeft: 18 }}>· typically 2-3 day reply</span>
+          <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,247,238,0.78)", marginLeft: isMobile ? 0 : 18 }}>· typically 2-3 day reply</span>
         </div>
       </div>
     </section>
@@ -154,10 +160,11 @@ function V3CTA() {
 
 /* Footer — ink */
 function V3Footer() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <footer style={{ background: BW.ink, color: "rgba(244,236,218,0.78)", padding: "72px 64px 36px", fontFamily: BW.ffG }}>
+    <footer style={{ background: BW.ink, color: "rgba(244,236,218,0.78)", padding: "clamp(48px, 8vw, 72px) clamp(20px, 5vw, 64px) 36px", fontFamily: BW.ffG }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", gap: 48, paddingBottom: 40, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.6fr 1fr 1fr 1fr", gap: isMobile ? 32 : 48, paddingBottom: 40, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", marginBottom: 18 }}>
               <img src="assets/BW-lockup-color.svg?v=8" alt="Boondock Walker" style={{ height: 39 }} />
@@ -182,7 +189,7 @@ function V3Footer() {
             </div>
           ))}
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.55)", fontWeight: 600 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", paddingTop: 24, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.55)", fontWeight: 600, flexDirection: isMobile ? "column" : "row", gap: isMobile ? 12 : 0 }}>
           <span>BDW · Vol XII · Est. 2015</span>
           <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontSize: 13, color: "rgba(244,236,218,0.7)", fontWeight: 400 }}>Take the long way home.</span>
           <span>© Boondock Walker · All rights reserved</span>

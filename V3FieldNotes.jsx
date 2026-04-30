@@ -76,6 +76,8 @@ function NoteArt({ kind, color, caption, label }) {
 }
 
 function V3FieldNotes() {
+  const isMobile = useMediaQuery("(max-width: 900px)");
+  const isNarrow = useMediaQuery("(max-width: 560px)");
   const featured = {
     issue: "No 14",
     date: "Apr · 2026",
@@ -97,28 +99,28 @@ function V3FieldNotes() {
   ];
 
   return (
-    <section id="field-notes" style={{ background: BW.chalk, color: BW.ink, padding: "100px 64px", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative" }}>
+    <section id="field-notes" style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
         {/* Eyebrow + headline */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
+        <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "flex-end", gap: isMobile ? 24 : 0, marginBottom: 48 }}>
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24, flexWrap: "wrap" }}>
               <span>§07</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Field Notes · Bulletin from the bench</span>
             </div>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: 84, fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: 0, color: BW.ink }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: 0, color: BW.ink }}>
               Notes from the <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>field,</em> filed by the <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>walkers.</em>
             </h2>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "flex-start" : "flex-end", gap: 12 }}>
             <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>twice monthly · ~600 operators on the list</span>
             <a style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, paddingBottom: 3, borderBottom: `1.5px solid ${BW.ink}`, cursor: "pointer", whiteSpace: "nowrap" }}>Subscribe to Field Notes →</a>
           </div>
         </div>
 
         {/* Bulletin grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", border: `1.5px solid ${BW.ink}`, background: BW.chalk50 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", border: `1.5px solid ${BW.ink}`, background: BW.chalk50 }}>
           {/* FEATURED */}
-          <article style={{ borderRight: `1.5px solid ${BW.ink}`, display: "flex", flexDirection: "column" }}>
+          <article style={{ borderRight: !isMobile ? `1.5px solid ${BW.ink}` : "none", borderBottom: isMobile ? `1.5px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column" }}>
             {/* hero image */}
             <div style={{ aspectRatio: "16/8", borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
               <NoteArt kind={featured.art} color={featured.color} caption="fig. 07.0 · featured" label={`${featured.issue} · ${featured.date}`} />
@@ -127,7 +129,7 @@ function V3FieldNotes() {
             {/* body */}
             <div style={{ padding: "28px 32px 28px", flex: 1, display: "flex", flexDirection: "column", gap: 18 }}>
               <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: featured.color, fontWeight: 700 }}>{featured.kicker}</div>
-              <h3 style={{ fontFamily: BW.ffD, fontSize: 44, fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.04, margin: 0, color: BW.ink, fontStyle: "italic" }}>{featured.title}</h3>
+              <h3 style={{ fontFamily: BW.ffD, fontSize: "clamp(28px, 5.5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.04, margin: 0, color: BW.ink, fontStyle: "italic" }}>{featured.title}</h3>
               <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.55, margin: 0, color: BW.ink2 }}>{featured.dek}</p>
               <div style={{ marginTop: "auto", paddingTop: 20, borderTop: `1px solid ${BW.ruleM}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
@@ -142,8 +144,8 @@ function V3FieldNotes() {
           {/* NOTES LIST w/ thumbnails */}
           <div style={{ display: "flex", flexDirection: "column" }}>
             {notes.map((n, i) => (
-              <article key={n.issue} style={{ padding: "20px 24px", borderBottom: i < notes.length - 1 ? `1px solid ${BW.ruleM}` : "none", display: "grid", gridTemplateColumns: "120px 1fr auto", gap: 20, alignItems: "center" }}>
-                <div style={{ width: 120, aspectRatio: "5/4", border: `1px solid ${BW.ink}`, overflow: "hidden", flexShrink: 0 }}>
+              <article key={n.issue} style={{ padding: "20px clamp(16px, 4vw, 24px)", borderBottom: i < notes.length - 1 ? `1px solid ${BW.ruleM}` : "none", display: "grid", gridTemplateColumns: isNarrow ? "80px 1fr" : "120px 1fr auto", gap: isNarrow ? 14 : 20, alignItems: "center" }}>
+                <div style={{ width: isNarrow ? 80 : 120, aspectRatio: "5/4", border: `1px solid ${BW.ink}`, overflow: "hidden", flexShrink: 0 }}>
                   <NoteArt kind={n.art} color={n.color} caption={`fig. 07.${i+1}`} label={n.issue} />
                 </div>
                 <div>
@@ -155,14 +157,14 @@ function V3FieldNotes() {
                     {n.author} · {n.minutes} min walk
                   </div>
                 </div>
-                <span style={{ fontFamily: BW.ffG, fontSize: 18, color: BW.ink, alignSelf: "center" }}>→</span>
+                {!isNarrow && <span style={{ fontFamily: BW.ffG, fontSize: 18, color: BW.ink, alignSelf: "center" }}>→</span>}
               </article>
             ))}
           </div>
         </div>
 
         {/* Footer rail */}
-        <div style={{ marginTop: 22, display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
+        <div style={{ marginTop: 22, display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? 12 : 0, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
           <span>47 notes filed since 2015 · all free, no email gate</span>
           <a style={{ color: BW.ink, textDecoration: "none", borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3, fontWeight: 700, cursor: "pointer" }}>Browse the full archive →</a>
         </div>

@@ -7,7 +7,7 @@
      - prefers white space and floating imagery over filled boxes
    Composition is data-driven via window.BW_CASE_DETAIL.blocks (array of {kind, ...}). */
 
-const SECTION_PAD = "120px 56px";
+const SECTION_PAD = "clamp(64px, 9vw, 120px) clamp(20px, 5vw, 56px)";
 const MAX_W = 1280;
 
 /* =========================================================================
@@ -16,7 +16,7 @@ const MAX_W = 1280;
 function CaseHero({ d }) {
   if (d.hero && d.hero.variant === "fullbleed") return <CaseHeroFullBleed d={d} />;
   return (
-    <section style={{ background: BW.chalk50, color: BW.ink, padding: "90px 56px 110px", borderBottom: `1px solid ${BW.ruleL}`, fontFamily: BW.ffG }}>
+    <section style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(56px, 8vw, 90px) clamp(20px, 5vw, 56px) clamp(72px, 10vw, 110px)", borderBottom: `1px solid ${BW.ruleL}`, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", textAlign: "center" }}>
         <Reveal kind="rise" delay={0}>
           <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.32em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28 }}>
@@ -55,6 +55,8 @@ function CaseHero({ d }) {
    ========================================================================= */
 function CaseHeroFullBleed({ d }) {
   const h = d.hero;
+  const isMobile = useMediaQuery("(max-width: 900px)");
+  const isNarrow = useMediaQuery("(max-width: 560px)");
   const ledger = [
     { k: "Client",   v: d.client },
     { k: "Industry", v: d.industry },
@@ -126,7 +128,7 @@ function CaseHeroFullBleed({ d }) {
       <div style={{
         position: "relative", zIndex: 3,
         flex: 1, display: "flex", flexDirection: "column",
-        padding: "200px 80px 0 80px",
+        padding: isMobile ? "160px clamp(20px, 5vw, 48px) 0" : "200px clamp(40px, 6vw, 80px) 0",
       }}>
         {/* Eyebrow row — left-side specimen label only */}
         <div style={{
@@ -157,9 +159,9 @@ function CaseHeroFullBleed({ d }) {
         {/* Lower row — logo + standfirst, two columns. Pinned above the ledger. */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "1.1fr 1.4fr",
-          gap: 80,
-          alignItems: "end",
+          gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1.4fr",
+          gap: isMobile ? 32 : 80,
+          alignItems: isMobile ? "start" : "end",
           paddingBottom: 64,
           borderBottom: `1px solid rgba(244,236,218,0.14)`,
         }}>
@@ -195,13 +197,14 @@ function CaseHeroFullBleed({ d }) {
       {/* Ledger rail at the very bottom of the cover plate */}
       <div style={{
         position: "relative", zIndex: 3,
-        display: "grid", gridTemplateColumns: `repeat(${ledger.length}, 1fr)`,
+        display: "grid", gridTemplateColumns: isNarrow ? "repeat(2, 1fr)" : isMobile ? "repeat(3, 1fr)" : `repeat(${ledger.length}, 1fr)`,
         borderTop: `1px solid rgba(244,236,218,0.14)`,
       }}>
         {ledger.map((row, i) => (
           <div key={row.k} style={{
-            padding: "26px 28px",
+            padding: "20px clamp(16px, 4vw, 28px)",
             borderRight: i < ledger.length - 1 ? `1px solid rgba(244,236,218,0.14)` : "none",
+            borderBottom: isMobile ? `1px solid rgba(244,236,218,0.14)` : "none",
           }}>
             <div style={{
               fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.28em", textTransform: "uppercase",
@@ -268,10 +271,11 @@ function ProseBlock({ block }) {
    ========================================================================= */
 function ServicesBlock({ block }) {
   const { eyebrow = "Our Services", services = [], note } = block;
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <section style={{ background: BW.chalk50, color: BW.ink, padding: "60px 56px 120px", fontFamily: BW.ffG }}>
+    <section style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(40px, 6vw, 60px) clamp(20px, 5vw, 56px) clamp(72px, 10vw, 120px)", fontFamily: BW.ffG }}>
       <div style={{ maxWidth: MAX_W, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: 80, alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "260px 1fr", gap: isMobile ? 32 : 80, alignItems: "start" }}>
           <Reveal kind="rise">
             <div>
               <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 16, paddingBottom: 14, borderBottom: `1px solid ${BW.ruleL}` }}>
@@ -283,7 +287,7 @@ function ServicesBlock({ block }) {
             </div>
           </Reveal>
           <Reveal kind="cascade" stagger={50} delay={120}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "0 56px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "0 56px" }}>
               {services.map((s, i) => (
                 <div key={s} style={{ padding: "18px 0", borderTop: i < 2 ? `1px solid ${BW.ruleL}` : "none", borderBottom: `1px solid ${BW.ruleL}`, fontFamily: BW.ffG, fontSize: 17, fontWeight: 500, color: BW.ink, letterSpacing: "-0.005em", display: "flex", alignItems: "center", gap: 14 }}>
                   <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.2em", color: "rgba(20,16,12,0.4)", fontWeight: 700, minWidth: 22 }}>{String(i + 1).padStart(2, "0")}</span>
@@ -303,7 +307,7 @@ function ServicesBlock({ block }) {
    within (no crop). Use surface to set the bg color (white, blue, ink, etc).
    ========================================================================= */
 function FullBleedImage({ block }) {
-  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "60px 56px" } = block;
+  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)" } = block;
   const bg = surfaceGradient || surface;
   return (
     <section style={{ background: bg, padding: "0 0 60px" }}>
@@ -320,7 +324,7 @@ function FullBleedImage({ block }) {
       </Reveal>
       {caption && (
         <Reveal kind="rise" delay={200}>
-          <div style={{ maxWidth: MAX_W, margin: "0 auto", padding: "18px 56px 0", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+          <div style={{ maxWidth: MAX_W, margin: "0 auto", padding: "18px clamp(20px, 5vw, 56px) 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
             <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>{caption.label || "fig."}</span>
             <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
           </div>
@@ -334,7 +338,7 @@ function FullBleedImage({ block }) {
    FLOATING IMAGE — single image centered on chalk, generous margin.
    ========================================================================= */
 function FloatingImage({ block }) {
-  const { src, alt, caption, maxHeight = 580, maxWidth = 1100, surface = BW.chalk50, padding = "100px 56px" } = block;
+  const { src, alt, caption, maxHeight = 580, maxWidth = 1100, surface = BW.chalk50, padding = "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)" } = block;
   return (
     <section style={{ background: surface, padding, fontFamily: BW.ffG }}>
       <div style={{ maxWidth, margin: "0 auto", textAlign: "center" }}>
@@ -359,15 +363,16 @@ function FloatingImage({ block }) {
 function ImageTextBlock({ block }) {
   const { side = "left", src, alt, eyebrow, title, body = [], surface = BW.chalk50, imageBg } = block;
   const flip = side === "right";
+  const isMobile = useMediaQuery("(max-width: 900px)");
   return (
     <section style={{ background: surface, color: BW.ink, padding: SECTION_PAD, fontFamily: BW.ffG }}>
-      <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-        <Reveal kind={flip ? "slideR" : "slideL"} threshold={0.2} style={{ order: flip ? 2 : 1 }}>
-          <div style={{ background: imageBg || "#FFFFFF", padding: 48, display: "flex", alignItems: "center", justifyContent: "center", minHeight: 480 }}>
-            <img src={src} alt={alt} style={{ maxWidth: "100%", maxHeight: 520, width: "auto", height: "auto", objectFit: "contain", display: "block" }} />
+      <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 40 : 80, alignItems: "center" }}>
+        <Reveal kind={flip && !isMobile ? "slideR" : "slideL"} threshold={0.2} style={{ order: !isMobile && flip ? 2 : 1 }}>
+          <div style={{ background: imageBg || "#FFFFFF", padding: "clamp(20px, 5vw, 48px)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: isMobile ? 280 : 480 }}>
+            <img src={src} alt={alt} style={{ maxWidth: "100%", maxHeight: isMobile ? 360 : 520, width: "auto", height: "auto", objectFit: "contain", display: "block" }} />
           </div>
         </Reveal>
-        <div style={{ order: flip ? 1 : 2 }}>
+        <div style={{ order: !isMobile && flip ? 1 : 2 }}>
           {eyebrow && (
             <Reveal kind="rise">
               <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 22 }}>{eyebrow}</div>
@@ -375,7 +380,7 @@ function ImageTextBlock({ block }) {
           )}
           {title && (
             <Reveal kind="rise" delay={120}>
-              <h2 style={{ fontFamily: BW.ffD, fontSize: 48, fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.08, margin: "0 0 32px", color: BW.ink, maxWidth: "16ch" }}>
+              <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.08, margin: "0 0 32px", color: BW.ink, maxWidth: "16ch" }}>
                 {title}
               </h2>
             </Reveal>
@@ -396,6 +401,9 @@ function ImageTextBlock({ block }) {
    ========================================================================= */
 function MultiImageBlock({ block }) {
   const { items = [], cols = items.length, surface = BW.chalk50, surfaceGradient, gap = 40, padding = SECTION_PAD, maxWidth = MAX_W, eyebrow, title, fg, eyebrowColor, captionColor } = block;
+  const isMobile = useMediaQuery("(max-width: 700px)");
+  const isTablet = useMediaQuery("(max-width: 1000px)");
+  const responsiveCols = isMobile ? 1 : (isTablet && cols > 2 ? 2 : cols);
   const bg = surfaceGradient || surface;
   const titleColor = fg || BW.ink;
   const ebColor = eyebrowColor || (fg ? "rgba(244,236,218,0.85)" : BW.clay);
@@ -412,13 +420,13 @@ function MultiImageBlock({ block }) {
             )}
             {title && (
               <Reveal kind="rise" delay={120}>
-                <h2 style={{ fontFamily: BW.ffD, fontSize: 56, fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: titleColor, maxWidth: "20ch" }}>{title}</h2>
+                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: titleColor, maxWidth: "20ch" }}>{title}</h2>
               </Reveal>
             )}
           </div>
         )}
         <Reveal kind="cascade" stagger={120}>
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: `repeat(${responsiveCols}, 1fr)`, gap: isMobile ? Math.min(gap, 24) : gap, alignItems: "start" }}>
             {items.map((it, i) => (
               <figure key={i} style={{ margin: 0 }}>
                 {it.bg ? (
@@ -445,7 +453,9 @@ function MultiImageBlock({ block }) {
    Uses scroll-snap; arrow buttons for desktop.
    ========================================================================= */
 function SliderBlock({ block }) {
-  const { items = [], eyebrow, title, surface = BW.chalk50, padding = SECTION_PAD, slideHeight = 620 } = block;
+  const { items = [], eyebrow, title, surface = BW.chalk50, padding = SECTION_PAD, slideHeight: rawSlideHeight = 620 } = block;
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const slideHeight = isMobile ? Math.min(rawSlideHeight, 420) : rawSlideHeight;
   const trackRef = React.useRef(null);
   const [idx, setIdx] = React.useState(0);
   const isScrollingRef = React.useRef(false);
@@ -481,7 +491,7 @@ function SliderBlock({ block }) {
 
   return (
     <section style={{ background: surface, color: BW.ink, padding, fontFamily: BW.ffG }}>
-      <div style={{ maxWidth: MAX_W, margin: "0 auto 40px", padding: "0 0", display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+      <div style={{ maxWidth: MAX_W, margin: "0 auto 40px", padding: "0 0", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "flex-end", gap: isMobile ? 24 : 0 }}>
         <div>
           {eyebrow && (
             <Reveal kind="rise">
@@ -490,7 +500,7 @@ function SliderBlock({ block }) {
           )}
           {title && (
             <Reveal kind="rise" delay={120}>
-              <h2 style={{ fontFamily: BW.ffD, fontSize: 56, fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
+              <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
             </Reveal>
           )}
         </div>
@@ -512,7 +522,7 @@ function SliderBlock({ block }) {
           gap: 28,
           overflowX: "auto",
           scrollSnapType: "x mandatory",
-          padding: "8px 56px 32px",
+          padding: "8px clamp(20px, 5vw, 56px) 32px",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}
@@ -524,7 +534,7 @@ function SliderBlock({ block }) {
             data-slide={i}
             style={{
               margin: 0,
-              flex: `0 0 ${it.width || slideHeight}px`,
+              flex: `0 0 ${Math.min(it.width || slideHeight, isMobile ? 320 : (it.width || slideHeight))}px`,
               scrollSnapAlign: "start",
               transition: "transform .6s cubic-bezier(.22,.61,.36,1), opacity .6s",
               opacity: i === idx ? 1 : 0.82,
@@ -559,9 +569,10 @@ function sliderArrow(disabled) {
    ========================================================================= */
 function StatCalloutBlock({ block }) {
   const { eyebrow, value, prefix = "", suffix = "", numeric, label, body, surface = BW.chalk50, accent = BW.clay } = block;
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
     <section style={{ background: surface, color: BW.ink, padding: SECTION_PAD, fontFamily: BW.ffG }}>
-      <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 80, alignItems: "center" }}>
+      <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "center" }}>
         <Reveal kind="rise">
           <div>
             {eyebrow && (
@@ -596,6 +607,9 @@ function StatCalloutBlock({ block }) {
    ========================================================================= */
 function StatRowBlock({ block }) {
   const { eyebrow, title, items = [], surface = BW.chalk50, accent = BW.clay } = block;
+  const isMobile = useMediaQuery("(max-width: 700px)");
+  const isTablet = useMediaQuery("(max-width: 1000px)");
+  const cols = isMobile ? Math.min(2, items.length) : isTablet && items.length > 3 ? 3 : items.length;
   return (
     <section style={{ background: surface, color: BW.ink, padding: SECTION_PAD, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: MAX_W, margin: "0 auto" }}>
@@ -608,15 +622,15 @@ function StatRowBlock({ block }) {
             )}
             {title && (
               <Reveal kind="rise" delay={120}>
-                <h2 style={{ fontFamily: BW.ffD, fontSize: 56, fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
+                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
               </Reveal>
             )}
           </div>
         )}
         <Reveal kind="cascade" stagger={120}>
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(${items.length}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}` }}>
+          <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}` }}>
             {items.map((s, i, arr) => (
-              <div key={i} style={{ padding: "32px 24px", borderRight: i < arr.length - 1 ? `1px solid ${BW.ruleL}` : "none", display: "flex", flexDirection: "column", gap: 12, minHeight: 200 }}>
+              <div key={i} style={{ padding: "28px clamp(16px, 4vw, 24px)", borderRight: (i + 1) % cols !== 0 && i < arr.length - 1 ? `1px solid ${BW.ruleL}` : "none", borderBottom: i + cols < arr.length ? `1px solid ${BW.ruleL}` : "none", display: "flex", flexDirection: "column", gap: 12, minHeight: 200 }}>
                 <div style={{ fontFamily: BW.ffG, fontWeight: 700, fontSize: s.placeholder ? 36 : 48, letterSpacing: "-0.025em", color: s.placeholder ? "rgba(20,16,12,0.32)" : (s.color || accent), lineHeight: 0.95, fontStyle: s.placeholder ? "italic" : "normal", fontFamily: s.placeholder ? BW.ffD : BW.ffG }}>
                   {s.placeholder ? "—" : (s.numeric != null ? <CountUp to={s.numeric} prefix={s.prefix || ""} suffix={s.suffix || ""} duration={1400} /> : s.v)}
                 </div>
@@ -643,11 +657,12 @@ function PullquoteBlock({ block }) {
   const fgMuted = dark ? "rgba(251,247,238,0.7)" : BW.ink2;
   const ruleColor = dark ? BW.ruleD : BW.ruleL;
 
+  const isMobile = useMediaQuery("(max-width: 900px)");
   if (image) {
     // Two-column editorial: image left, quote right
     return (
-      <section style={{ background: surface, color: fg, padding: "120px 56px", fontFamily: BW.ffG, position: "relative" }}>
-        <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: "0.95fr 1.05fr", gap: 80, alignItems: "stretch" }}>
+      <section style={{ background: surface, color: fg, padding: SECTION_PAD, fontFamily: BW.ffG, position: "relative" }}>
+        <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.95fr 1.05fr", gap: isMobile ? 40 : 80, alignItems: "stretch" }}>
           <Reveal kind="slideL" threshold={0.15}>
             <div style={{ position: "relative", background: imageBg, height: "100%", minHeight: 560, overflow: "hidden" }}>
               <img src={image} alt={imageAlt || ""} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
@@ -686,7 +701,7 @@ function PullquoteBlock({ block }) {
   }
 
   return (
-    <section style={{ background: surface, color: fg, padding: "140px 56px", fontFamily: BW.ffG, position: "relative" }}>
+    <section style={{ background: surface, color: fg, padding: "clamp(72px, 11vw, 140px) clamp(20px, 5vw, 56px)", fontFamily: BW.ffG, position: "relative" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <Reveal kind="fadeIn">
           <div style={{ height: 1, background: ruleColor, marginBottom: 56 }} />
@@ -721,11 +736,12 @@ function PullquoteBlock({ block }) {
    ADJACENT — prev / next case tiles + back-to-archive
    ========================================================================= */
 function CaseAdjacent({ prev, next }) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const Tile = ({ c, label, side }) => {
     if (!c) return <div />;
     return (
-      <Reveal kind={side === "left" ? "slideL" : "slideR"} threshold={0.2}>
-        <a href={`case.html?id=${c.slug}`} style={{ position: "relative", padding: "60px 48px", background: c.tone, color: BW.chalk50, textDecoration: "none", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 320, overflow: "hidden", borderRight: side === "left" ? `1px solid rgba(244,236,218,0.18)` : "none" }}>
+      <Reveal kind={side === "left" || isMobile ? "slideL" : "slideR"} threshold={0.2}>
+        <a href={`case.html?id=${c.slug}`} style={{ position: "relative", padding: "clamp(36px, 6vw, 60px) clamp(24px, 5vw, 48px)", background: c.tone, color: BW.chalk50, textDecoration: "none", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 280, overflow: "hidden", borderRight: !isMobile && side === "left" ? `1px solid rgba(244,236,218,0.18)` : "none", borderBottom: isMobile && side === "left" ? `1px solid rgba(244,236,218,0.18)` : "none" }}>
           <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 9px)", mixBlendMode: "multiply" }} />
           <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700 }}>
             <span>{label}</span>
@@ -744,20 +760,20 @@ function CaseAdjacent({ prev, next }) {
   };
   return (
     <section style={{ background: BW.ink, color: BW.chalk50, fontFamily: BW.ffG, borderTop: `1px solid ${BW.ruleL}` }}>
-      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "44px 56px 0" }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(32px, 5vw, 44px) clamp(20px, 5vw, 56px) 0" }}>
         <Reveal kind="rise">
-          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, flexWrap: "wrap" }}>
             <span>Adjacent specimens</span>
             <span style={{ width: 28, height: 1, background: BW.brass }} />
             <span>Keep walking</span>
           </div>
         </Reveal>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", marginTop: 44, borderTop: `1px solid rgba(244,236,218,0.18)` }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", marginTop: 44, borderTop: `1px solid rgba(244,236,218,0.18)` }}>
         <Tile c={prev} label="Previous" side="left" />
         <Tile c={next} label="Next up" side="right" />
       </div>
-      <div style={{ background: BW.ink, padding: "32px 56px", textAlign: "center", borderTop: `1px solid rgba(244,236,218,0.18)` }}>
+      <div style={{ background: BW.ink, padding: "32px clamp(20px, 5vw, 56px)", textAlign: "center", borderTop: `1px solid rgba(244,236,218,0.18)` }}>
         <a href="work.html" style={{ display: "inline-flex", alignItems: "center", gap: 12, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700, textDecoration: "none", padding: "12px 22px", border: `1.5px solid rgba(244,236,218,0.45)`, borderRadius: 999 }}>
           ← Back to the archive
         </a>

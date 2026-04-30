@@ -3,6 +3,8 @@
    Left: chalk symptom checklist. Right: ink chart, fills as symptoms get checked. */
 
 function V3Triage() {
+  const isMobile = useMediaQuery("(max-width: 900px)");
+  const isNarrow = useMediaQuery("(max-width: 640px)");
   const symptoms = [
     { id: "BR-01", text: "Can't articulate what we actually do", axis: "Positioning",     verdict: "REBUILD" },
     { id: "BR-02", text: "Name or identity is holding us back", axis: "Identity",         verdict: "TREAT"   },
@@ -39,7 +41,7 @@ function V3Triage() {
   );
 
   return (
-    <section id="triage" style={{ background: BW.chalk50, color: BW.ink, padding: "100px 64px", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
+    <section id="triage" style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.04) 0 1px, transparent 1px 5px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
 
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
@@ -49,8 +51,8 @@ function V3Triage() {
         </div>
 
         {/* Headline + intro side-by-side */}
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64, alignItems: "start", marginBottom: 44 }}>
-          <h2 style={{ fontFamily: BW.ffD, fontSize: 84, fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: 0, color: BW.ink, fontStyle: "italic" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 64, alignItems: "start", marginBottom: 44 }}>
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: 0, color: BW.ink, fontStyle: "italic" }}>
             What's actually <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>wrong</em> with the brand?
           </h2>
           <div>
@@ -64,9 +66,9 @@ function V3Triage() {
         </div>
 
         {/* Tool */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: `1.5px solid ${BW.ink}`, boxShadow: "0 30px 60px -28px rgba(20,16,12,0.25)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", border: `1.5px solid ${BW.ink}`, boxShadow: "0 30px 60px -28px rgba(20,16,12,0.25)" }}>
           {/* LEFT — checklist */}
-          <div style={{ background: BW.chalk50, borderRight: `1.5px solid ${BW.ink}`, display: "flex", flexDirection: "column" }}>
+          <div style={{ background: BW.chalk50, borderRight: !isMobile ? `1.5px solid ${BW.ink}` : "none", borderBottom: isMobile ? `1.5px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column" }}>
             <div style={{ padding: "12px 22px", borderBottom: `1px solid ${BW.ruleM}`, display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700 }}>
               <span>§ Symptom checklist</span>
               <span>{String(selected.size).padStart(2, "0")} / 10 selected</span>
@@ -76,13 +78,13 @@ function V3Triage() {
               {symptoms.map((s) => {
                 const on = selected.has(s.id);
                 return (
-                  <button key={s.id} onClick={() => toggle(s.id)} style={{ width: "100%", display: "grid", gridTemplateColumns: "auto 56px 1fr auto", gap: 16, alignItems: "center", padding: "14px 22px", borderBottom: `1px solid ${BW.ruleM}`, background: on ? "rgba(196,74,42,0.08)" : "transparent", border: "none", borderBottomWidth: 1, borderBottomStyle: "solid", borderBottomColor: BW.ruleM, cursor: "pointer", textAlign: "left", fontFamily: "inherit" }}>
+                  <button key={s.id} onClick={() => toggle(s.id)} style={{ width: "100%", display: "grid", gridTemplateColumns: isNarrow ? "auto 1fr" : "auto 56px 1fr auto", gap: isNarrow ? 12 : 16, alignItems: "center", padding: "14px clamp(16px, 4vw, 22px)", borderBottom: `1px solid ${BW.ruleM}`, background: on ? "rgba(196,74,42,0.08)" : "transparent", border: "none", borderBottomWidth: 1, borderBottomStyle: "solid", borderBottomColor: BW.ruleM, cursor: "pointer", textAlign: "left", fontFamily: "inherit" }}>
                     <span style={{ width: 16, height: 16, border: `1.5px solid ${BW.ink}`, borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center", background: on ? BW.ink : "transparent", flexShrink: 0 }}>
                       {on && <span style={{ color: BW.chalk50, fontSize: 11, lineHeight: 1, fontWeight: 700 }}>✓</span>}
                     </span>
-                    <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.18em", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>{s.id}</span>
+                    {!isNarrow && <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.18em", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>{s.id}</span>}
                     <span style={{ fontFamily: BW.ffSerif, fontSize: 16, color: BW.ink, lineHeight: 1.35 }}>{s.text}</span>
-                    <span style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>{s.axis}</span>
+                    {!isNarrow && <span style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>{s.axis}</span>}
                   </button>
                 );
               })}
@@ -94,7 +96,7 @@ function V3Triage() {
           </div>
 
           {/* RIGHT — preliminary chart on ink */}
-          <div style={{ background: BW.ink, color: BW.chalk, display: "flex", flexDirection: "column", position: "relative", minHeight: 580 }}>
+          <div style={{ background: BW.ink, color: BW.chalk, display: "flex", flexDirection: "column", position: "relative", minHeight: isMobile ? 360 : 580 }}>
             {/* faint grid */}
             <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk} 1px, transparent 1px)`, backgroundSize: "40px 40px", opacity: 0.04, pointerEvents: "none" }} />
 
@@ -165,7 +167,7 @@ function V3Triage() {
         </div>
 
         {/* Footer CTA bar — clay accent left rule */}
-        <div style={{ marginTop: 22, display: "grid", gridTemplateColumns: "6px 1fr auto auto", alignItems: "center", border: `1px solid ${BW.ink}`, background: BW.chalk50 }}>
+        <div style={{ marginTop: 22, display: "grid", gridTemplateColumns: isMobile ? "6px 1fr" : "6px 1fr auto auto", alignItems: "center", border: `1px solid ${BW.ink}`, background: BW.chalk50 }}>
           <div style={{ background: BW.clay, alignSelf: "stretch" }} />
           <div style={{ padding: "20px 22px" }}>
             <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 6 }}>Want the full chart?</div>
