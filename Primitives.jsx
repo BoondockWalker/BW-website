@@ -74,4 +74,20 @@ function Italic({ children, color }) {
   return <em style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase", color: color || BW.clay, letterSpacing: "-0.02em" }}>{children}</em>;
 }
 
-Object.assign(window, { BW, Eyebrow, Btn, Tag, Italic });
+function useMediaQuery(query) {
+  const get = () => typeof window !== "undefined" && window.matchMedia(query).matches;
+  const [match, setMatch] = React.useState(get);
+  React.useEffect(() => {
+    const mq = window.matchMedia(query);
+    const onChange = () => setMatch(mq.matches);
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else mq.addListener(onChange);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
+      else mq.removeListener(onChange);
+    };
+  }, [query]);
+  return match;
+}
+
+Object.assign(window, { BW, Eyebrow, Btn, Tag, Italic, useMediaQuery });
