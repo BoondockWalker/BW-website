@@ -25,6 +25,7 @@ window.BW_CASES = [
     team: ["Strategy", "Brand", "Lifecycle", "Lab"],
     imagery: "photo",
     heroImage: "assets/cases/oneil/hero.jpg",
+    featuredBg: "linear-gradient(90deg, #061528 0%, #0A1428 55%, #001F3D 100%)",
     href: "case-oneil.html",
     featured: true,
   },

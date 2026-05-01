@@ -86,7 +86,7 @@ function FilterRow({ pillar, setPillar, industry, setIndustry, outcome, setOutco
 function FeaturedCase({ c }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
   return (
-    <section style={{ background: BW.ink, color: BW.chalk50, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, overflow: "hidden", position: "relative" }}>
+    <section style={{ background: c.featuredBg || BW.ink, color: BW.chalk50, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, overflow: "hidden", position: "relative" }}>
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(244,236,218,0.04) 0 1.5px, transparent 1.5px 8px)", pointerEvents: "none" }} />
       <div style={{ maxWidth: 1440, margin: "0 auto", padding: "28px clamp(20px, 5vw, 64px) 0", position: "relative" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, flexWrap: "wrap" }}>
