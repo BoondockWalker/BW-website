@@ -28,7 +28,7 @@ window.BW_CASES = [
     featuredBg: "linear-gradient(90deg, #061528 0%, #0A1428 55%, #001F3D 100%)",
     clientLogo: "assets/cases/oneil/logo.webp",
     clientLogoInvert: true,
-    clientLogoHeight: 36,
+    clientLogoHeight: 72,
     href: "case-oneil.html",
     featured: true,
   },
