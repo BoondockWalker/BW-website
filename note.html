@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The year you stop calling it heritage. — Field Notes No 18</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #F4ECDA; color: #14100C; }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: inherit; }
+  body { font-family: 'Space Grotesk', system-ui, sans-serif; }
+  ::selection { background: #C8962B; color: #14100C; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="SiteHeader.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="FieldNotesData.jsx"></script>
+<script type="text/babel" src="FieldNotesA.jsx"></script>
+<script type="text/babel" src="FieldNotesB.jsx"></script>
+<script type="text/babel" src="NoteDetail.jsx"></script>
+
+<script type="text/babel" data-presets="env,react">
+const NOTE_TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "themedTags": true,
+  "marginNotes": true,
+  "dropCap": true,
+  "recirc": true
+}/*EDITMODE-END*/;
+
+function App() {
+  const [tweaks, setTweak] = useTweaks(NOTE_TWEAK_DEFAULTS);
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("slug") || "stop-calling-it-heritage";
+  const note = FN_NOTES.find(n => n.slug === slug) || FN_NOTES[0];
+  const related = FN_NOTES.filter(n => n.slug !== note.slug && n.tag === note.tag).slice(0, 2);
+  // Pad with adjacent notes if we don't have 2 same-tag siblings
+  const padded = related.length >= 2 ? related : [...related, ...FN_NOTES.filter(n => n.slug !== note.slug && !related.includes(n))].slice(0, 2);
+
+  return (
+    <>
+      <NoteDetailPage
+        note={note}
+        themed={tweaks.themedTags}
+        marginNotes={tweaks.marginNotes}
+        drop={tweaks.dropCap}
+        recirc={tweaks.recirc}
+        related={padded}
+      />
+      <TweaksPanel title="Tweaks · Note">
+        <TweakSection label="Article body">
+          <TweakToggle label="Drop cap on lede" value={tweaks.dropCap} onChange={(v) => setTweak("dropCap", v)} />
+          <TweakToggle label="Margin notes (right rail)" value={tweaks.marginNotes} onChange={(v) => setTweak("marginNotes", v)} />
+        </TweakSection>
+        <TweakSection label="End of post">
+          <TweakToggle label="Author recirc (related notes)" value={tweaks.recirc} onChange={(v) => setTweak("recirc", v)} />
+          <TweakToggle label="Themed tag colors" value={tweaks.themedTags} onChange={(v) => setTweak("themedTags", v)} />
+        </TweakSection>
+      </TweaksPanel>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

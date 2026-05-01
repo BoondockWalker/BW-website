@@ -15,10 +15,10 @@
 
 const SITE_NAV_ITEMS = [
   { label: "Work",        href: "work.html" },
-  { label: "Capabilities", href: "index.html#capabilities" },
+  { label: "Capabilities", href: "capabilities.html" },
   { label: "The Lab",      href: "index.html#the-lab" },
-  { label: "Field Notes",  href: "index.html#field-notes" },
-  { label: "About",        href: "index.html#about" },
+  { label: "Field Notes",  href: "field-notes.html" },
+  { label: "About",        href: "about.html" },
 ];
 
 function SiteHeader({ current, breadcrumb, tone = "light", compact = false }) {
@@ -32,7 +32,38 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const isNarrow = useMediaQuery("(max-width: 560px)");
   const [navOpen, setNavOpen] = React.useState(false);
+  const navRef = React.useRef(null);
+
+  // Close on Esc or outside-click
+  React.useEffect(() => {
+    if (!navOpen) return;
+    const onKey = (e) => { if (e.key === "Escape") setNavOpen(false); };
+    const onClick = (e) => { if (navRef.current && !navRef.current.contains(e.target)) setNavOpen(false); };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("touchstart", onClick, { passive: true });
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("touchstart", onClick);
+    };
+  }, [navOpen]);
+
   return (
+    <>
+    <style>{`
+      .bdw-nav-link:focus-visible,
+      .bdw-nav-toggle:focus-visible,
+      .bdw-nav-cta:focus-visible {
+        outline: 2px solid ${BW.brass};
+        outline-offset: 3px;
+      }
+      @keyframes bdwNavDrop {
+        from { opacity: 0; transform: translateY(-6px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .bdw-nav-drop { animation: bdwNavDrop 160ms ease-out both; }
+    `}</style>
     <header style={{ position: "relative", background: "transparent", color: bodyText, fontFamily: BW.ffG, overflow: "visible" }}>
       {/* hatch overlay — multiplies against whatever section/page bg shows through */}
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none", zIndex: 1 }} />
@@ -49,7 +80,7 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false }) {
       )}
 
       {/* Floating dark pill nav */}
-      <div style={{ position: "relative", padding: "22px clamp(16px, 4vw, 28px) 0", zIndex: 6 }}>
+      <div ref={navRef} style={{ position: "relative", padding: "22px clamp(16px, 4vw, 28px) 0", zIndex: 6 }}>
         <div style={{ padding: "10px 14px 10px 18px", borderRadius: 999, background: "rgba(20,16,12,0.78)", backdropFilter: "saturate(140%) blur(14px)", border: `1px solid rgba(244,236,218,0.18)`, display: "flex", alignItems: "center", justifyContent: "space-between", boxShadow: "0 14px 32px -16px rgba(0,0,0,0.55)", gap: 12 }}>
           <a href="index.html" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0 }}>
             <img src="assets/BW-lockup-color.svg?v=8" alt="Boondock Walker" style={{ height: isNarrow ? 30 : 39 }} />
@@ -62,28 +93,35 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false }) {
                   <a
                     key={item.label}
                     href={item.href}
-                    style={{ color: active ? BW.brass : BW.chalk50, textDecoration: "none", cursor: "pointer" }}
+                    className="bdw-nav-link"
+                    style={{ color: active ? BW.brass : BW.chalk50, textDecoration: "none", cursor: "pointer", borderRadius: 4 }}
                   >{item.label}</a>
                 );
               })}
             </div>
           )}
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-            {!isNarrow && <a href="index.html#contact" style={{ background: BW.brass, color: BW.ink, padding: "9px 16px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>Start →</a>}
+            {!isNarrow && <a href="index.html#contact" className="bdw-nav-cta" style={{ background: BW.brass, color: BW.ink, padding: "9px 16px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>Start →</a>}
             {isMobile && (
-              <button onClick={() => setNavOpen(o => !o)} aria-label="Toggle navigation" aria-expanded={navOpen} style={{ background: "transparent", border: `1px solid rgba(244,236,218,0.35)`, color: BW.chalk50, padding: "8px 12px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, cursor: "pointer" }}>{navOpen ? "Close" : "Menu"}</button>
+              <button onClick={() => setNavOpen(o => !o)} aria-label="Toggle navigation" aria-expanded={navOpen} className="bdw-nav-toggle" style={{ background: "transparent", border: `1px solid rgba(244,236,218,0.35)`, color: BW.chalk50, padding: "10px 16px", minHeight: 44, minWidth: 64, borderRadius: 999, fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, cursor: "pointer" }}>{navOpen ? "Close" : "Menu"}</button>
             )}
           </div>
         </div>
         {isMobile && navOpen && (
-          <div style={{ marginTop: 12, padding: "16px 20px", borderRadius: 16, background: "rgba(20,16,12,0.92)", backdropFilter: "saturate(140%) blur(14px)", border: `1px solid rgba(244,236,218,0.18)`, display: "flex", flexDirection: "column", gap: 14, fontFamily: BW.ffG, fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700 }}>
-            {SITE_NAV_ITEMS.map((item) => {
+          <div className="bdw-nav-drop" style={{ marginTop: 12, padding: "6px 18px 14px", borderRadius: 16, background: "rgba(20,16,12,0.94)", backdropFilter: "saturate(140%) blur(14px)", border: `1px solid rgba(244,236,218,0.18)`, display: "flex", flexDirection: "column", fontFamily: BW.ffG, fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700 }}>
+            {SITE_NAV_ITEMS.map((item, i) => {
               const active = current === item.label;
               return (
-                <a key={item.label} href={item.href} style={{ color: active ? BW.brass : BW.chalk50, textDecoration: "none", cursor: "pointer" }}>{item.label}</a>
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="bdw-nav-link"
+                  onClick={() => setNavOpen(false)}
+                  style={{ color: active ? BW.brass : BW.chalk50, textDecoration: "none", cursor: "pointer", padding: "14px 4px", borderTop: i === 0 ? "none" : `1px solid rgba(244,236,218,0.10)`, minHeight: 44, display: "flex", alignItems: "center", borderRadius: 4 }}
+                >{item.label}</a>
               );
             })}
-            <a href="index.html#contact" style={{ marginTop: 4, background: BW.brass, color: BW.ink, padding: "10px 16px", borderRadius: 999, fontSize: 11, fontWeight: 700, textDecoration: "none", cursor: "pointer", textAlign: "center" }}>Start a project →</a>
+            <a href="index.html#contact" className="bdw-nav-cta" onClick={() => setNavOpen(false)} style={{ marginTop: 12, background: BW.brass, color: BW.ink, padding: "14px 16px", borderRadius: 999, fontSize: 12, fontWeight: 700, textDecoration: "none", cursor: "pointer", textAlign: "center", letterSpacing: "0.18em", textTransform: "uppercase" }}>Start a project →</a>
           </div>
         )}
       </div>
@@ -108,6 +146,7 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false }) {
         </div>
       )}
     </header>
+    </>
   );
 }
 
