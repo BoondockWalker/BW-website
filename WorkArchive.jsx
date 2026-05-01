@@ -142,8 +142,12 @@ function FeaturedCase({ c }) {
             <div style={{ position: "absolute", left: 28, top: 28, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>
               Specimen №{c.no} · fig. {c.no}.0
             </div>
-            {/* big year mark */}
-            <div style={{ position: "absolute", right: 32, top: 32, fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 96px)", color: "rgba(251,247,238,0.85)", letterSpacing: "-0.04em", lineHeight: 0.85 }}>{c.year}</div>
+            {/* upper-right: client logo if provided, else big year mark */}
+            {c.clientLogo ? (
+              <img src={c.clientLogo} alt={c.client} style={{ position: "absolute", right: 32, top: 32, height: c.clientLogoHeight || 36, maxWidth: "55%", objectFit: "contain", filter: c.clientLogoInvert ? "brightness(0) invert(1)" : "none", opacity: 0.95 }} />
+            ) : (
+              <div style={{ position: "absolute", right: 32, top: 32, fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 96px)", color: "rgba(251,247,238,0.85)", letterSpacing: "-0.04em", lineHeight: 0.85 }}>{c.year}</div>
+            )}
             {/* big stat */}
             <div style={{ position: "absolute", left: 28, bottom: 28, color: BW.chalk50 }}>
               <div style={{ fontFamily: BW.ffG, fontSize: "clamp(96px, 22vw, 168px)", fontWeight: 700, lineHeight: 0.85, letterSpacing: "-0.05em", color: BW.chalk50 }}>{c.bigStat.v}</div>
