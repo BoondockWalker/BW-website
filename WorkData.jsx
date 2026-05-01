@@ -24,6 +24,7 @@ window.BW_CASES = [
     duration: "Decade-long partnership",
     team: ["Strategy", "Brand", "Lifecycle", "Lab"],
     imagery: "photo",
+    heroImage: "assets/cases/oneil/hero.jpg",
     href: "case-oneil.html",
     featured: true,
   },
