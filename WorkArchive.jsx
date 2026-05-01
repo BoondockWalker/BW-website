@@ -98,6 +98,11 @@ function FeaturedCase({ c }) {
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.05fr 1fr", maxWidth: 1440, margin: "0 auto", padding: "32px clamp(20px, 5vw, 64px) clamp(48px, 7vw, 64px)", gap: isMobile ? 40 : 64, alignItems: "center", position: "relative" }}>
         {/* left — copy */}
         <div>
+          {c.clientLogo && (
+            <div style={{ marginBottom: 24, display: "flex", alignItems: "center" }}>
+              <img src={c.clientLogo} alt={c.client} style={{ height: c.clientLogoHeight || 30, maxWidth: "60%", objectFit: "contain", filter: c.clientLogoInvert ? "brightness(0) invert(1)" : "none", opacity: 0.95, display: "block" }} />
+            </div>
+          )}
           <div style={{ display: "flex", gap: 8, marginBottom: 22, flexWrap: "wrap" }}>
             {c.tags.map(t => (
               <span key={t} style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", padding: "5px 10px", border: `1px solid ${BW.brass}`, color: BW.brass, borderRadius: 3, fontWeight: 600 }}>{t}</span>
