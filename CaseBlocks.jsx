@@ -741,7 +741,7 @@ function CaseAdjacent({ prev, next }) {
     if (!c) return <div />;
     return (
       <Reveal kind={side === "left" || isMobile ? "slideL" : "slideR"} threshold={0.2}>
-        <a href={`case.html?id=${c.slug}`} style={{ position: "relative", padding: "clamp(36px, 6vw, 60px) clamp(24px, 5vw, 48px)", background: c.tone, color: BW.chalk50, textDecoration: "none", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 280, overflow: "hidden", borderRight: !isMobile && side === "left" ? `1px solid rgba(244,236,218,0.18)` : "none", borderBottom: isMobile && side === "left" ? `1px solid rgba(244,236,218,0.18)` : "none" }}>
+        <a href={c.href || `case.html?id=${c.slug}`} style={{ position: "relative", padding: "clamp(36px, 6vw, 60px) clamp(24px, 5vw, 48px)", background: c.tone, color: BW.chalk50, textDecoration: "none", display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 280, overflow: "hidden", borderRight: !isMobile && side === "left" ? `1px solid rgba(244,236,218,0.18)` : "none", borderBottom: isMobile && side === "left" ? `1px solid rgba(244,236,218,0.18)` : "none" }}>
           <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 9px)", mixBlendMode: "multiply" }} />
           <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700 }}>
             <span>{label}</span>
