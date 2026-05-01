@@ -110,11 +110,13 @@ function CaseListRow({ c }) {
 }
 
 function ArchiveGrid({ cases, view }) {
-  if (view === "list") {
+  const isMobile = useMediaQuery("(max-width: 900px)");
+  const isNarrow = useMediaQuery("(max-width: 600px)");
+  if (view === "list" && !isMobile) {
     return (
-      <section style={{ background: BW.chalk50, color: BW.ink, padding: "72px 64px", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
+      <section style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(56px, 8vw, 72px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
         <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
             <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The Archive · Ledger View</span>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 1fr 80px", gap: 18, paddingBottom: 12, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 700 }}>
@@ -125,16 +127,17 @@ function ArchiveGrid({ cases, view }) {
       </section>
     );
   }
+  // On mobile, list view falls back to grid
   return (
-    <section style={{ background: BW.chalk50, color: BW.ink, padding: "72px 64px", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
+    <section style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(56px, 8vw, 72px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>
+        <div style={{ display: "flex", flexDirection: isNarrow ? "column" : "row", justifyContent: "space-between", alignItems: isNarrow ? "flex-start" : "baseline", gap: isNarrow ? 12 : 0, marginBottom: 36 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
             <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The Archive · Specimen Grid</span>
           </div>
           <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>{cases.length} of 47 specimens shown</span>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 28 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr" : isMobile ? "repeat(2, 1fr)" : "repeat(2, 1fr)", gap: isNarrow ? 20 : 28 }}>
           {cases.map(c => <CaseCard key={c.slug} c={c} />)}
         </div>
         {cases.length === 0 && (
@@ -149,15 +152,16 @@ function ArchiveGrid({ cases, view }) {
 
 /* §04 — Closing CTA + footer-style booking */
 function WorkClosing() {
+  const isMobile = useMediaQuery("(max-width: 900px)");
   return (
-    <section style={{ background: BW.clay, color: BW.chalk50, padding: "120px 64px", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
+    <section style={{ background: BW.clay, color: BW.chalk50, padding: "clamp(72px, 12vw, 120px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
-      <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative", display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64, alignItems: "end" }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 40 : 64, alignItems: "end" }}>
         <div>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 28 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
             <span>§04</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Add a specimen</span>
           </div>
-          <h2 style={{ fontFamily: BW.ffD, fontSize: 96, fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 32px", color: BW.chalk50 }}>
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 10vw, 96px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 32px", color: BW.chalk50 }}>
             Want your <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>name</em> in this archive?
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 19, lineHeight: 1.55, margin: 0, color: "rgba(251,247,238,0.85)", maxWidth: "44ch" }}>

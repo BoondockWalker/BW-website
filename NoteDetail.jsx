@@ -1,0 +1,266 @@
+/* global React, BW, FN_NOTES, FN_AUTHORS, FN_TAGS, FNArt, fnTagColor, FNCard, FNNewsletterRail */
+
+/* The year you stop calling it heritage — body content, structured.
+   Each block becomes a typeset element below. */
+const NOTE_BODY = [
+  { kind: "lede", text: "Last week I sat in a conference room in Cleveland and watched a CEO apologize for the year on his door. He runs a $40m wholesale outfit founded in 1953. Three generations. The kind of business operators dream of acquiring. And he led with: \"I know we're old, but —\"" },
+  { kind: "p", text: "Stop. The receipts of having survived are an asset. Not a thing to apologize for. The minute you frame longevity as a liability, you've handed the conversation to the kid in the patagonia vest who launched eighteen months ago and wants to talk about his AI-native ops." },
+  { kind: "h2", text: "What \"heritage\" actually signals." },
+  { kind: "p", text: "When I hear the word heritage on a brand call, I hear three things, in order: first, that the business is older than its current category. Second, that nobody on the leadership team is sure what to say about that. Third, that the marketing team has been quietly resenting the founders for fifteen years." },
+  { kind: "p", text: "It's never the word that's the problem. It's the apology underneath it." },
+  { kind: "pullquote", text: "Heritage as positioning is a coward's move. Heritage as proof is the entire game.", attr: "Field Notes No 18" },
+  { kind: "h2", text: "The reframe — three sentences." },
+  { kind: "p", text: "Replace \"we've been around for 70 years\" with \"we've shipped 14,000 of these.\" Replace \"third generation\" with \"the third operator who decided not to break it.\" Replace \"family-owned\" with \"the only person you'd talk to has signed every PO since 2008.\"" },
+  { kind: "p", text: "These aren't taglines. They're the sentences your team should be saying on Zoom when the buyer asks the inevitable why-you question. Run them past your sales team this week. Watch what happens to the second-call rate." },
+  { kind: "ol", items: [
+    "Stop using \"heritage\" as a noun. It's a frame, not a feature.",
+    "Inventory the quantitative receipts — units shipped, customers held, decades on the bench.",
+    "Translate every soft claim (\"long-standing\") into a hard one (\"19 years with the same Tier-1 buyer\").",
+    "Train your sales team to lead with the receipt, not the date.",
+    "Audit your homepage for any sentence that opens with \"founded in.\" Cut or invert.",
+  ]},
+  { kind: "h2", text: "Why this matters now." },
+  { kind: "p", text: "The cohort buying B2B services in 2026 is, on average, eight years younger than the cohort that bought in 2019. They have been told a story about old companies — slow, change-averse, locked into legacy stacks — and they walk into every conversation looking for confirmation. Your job is to interrupt that story in the first three sentences." },
+  { kind: "p", text: "The receipts are how you do it. Not the year on the door." },
+  { kind: "endnote", text: "B. Walker is the principal at Boondock Walker. He has, on three separate occasions, talked clients out of hiding their founding date. Two of them sent thank-you notes." },
+];
+
+const NOTE_MARGINALIA = [
+  { after: 1, text: "Note to self: track how many times \"heritage\" appears on the sites of the companies that pitch us this quarter. I bet it's >40%." },
+  { after: 4, text: "We dropped \"heritage\" from a client deck in Q4. Pipeline up 22% next quarter. Anecdote, not science." },
+  { after: 7, text: "If you can't fill the receipts inventory, that's the actual problem. Heritage was hiding it." },
+];
+
+function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
+  const isMobile = useMediaQuery("(max-width: 900px)");
+  const a = FN_AUTHORS[note.author] || {};
+  const c = themed ? fnTagColor(note.tag, true) : BW.ink;
+  const idx = FN_NOTES.findIndex(n => n.slug === note.slug);
+  const prev = FN_NOTES[idx + 1]; // older
+  const next = idx > 0 ? FN_NOTES[idx - 1] : null; // newer
+
+  // Footer
+  const Foot = () => (
+    <footer style={{ background: BW.ink, color: BW.chalk50, fontFamily: BW.ffG, padding: "44px clamp(20px, 5vw, 64px)" }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 32, alignItems: "start" }}>
+        <div>
+          <img src="assets/BW-lockup-color.svg?v=8" alt="Boondock Walker" style={{ height: 39, display: "block" }} />
+          <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, marginTop: 14 }}>The bureau · est. 2015 · Cleveland</div>
+        </div>
+        <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.chalk2, lineHeight: 2 }}>
+          <a href="work.html" style={{ display: "block", color: BW.chalk2, textDecoration: "none" }}>Work</a>
+          <a href="capabilities.html" style={{ display: "block", color: BW.chalk2, textDecoration: "none" }}>Capabilities</a>
+          <a href="field-notes.html" style={{ display: "block", color: BW.brass, textDecoration: "none" }}>Field Notes</a>
+        </div>
+        <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, lineHeight: 1.8 }}>© 2026 BDW Bureau<br/>RSS · Atom · Plain text</div>
+      </div>
+    </footer>
+  );
+
+  return (
+    <div style={{ background: BW.chalk, minHeight: "100vh" }}>
+      {/* Masthead */}
+      <section style={{ background: BW.chalk, color: BW.ink, fontFamily: BW.ffG, borderBottom: `0.75px solid ${BW.ink}` }}>
+        <SiteHeader current="Field Notes" tone="light" breadcrumb={{ parent: { href: "field-notes.html", label: "Field Notes" }, label: note.issue, badge: note.tag.toUpperCase() }} />
+      </section>
+
+      {/* Hero — kicker, title, dek, meta */}
+      <section style={{ background: BW.chalk, borderBottom: `0.75px solid ${BW.ink}` }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "clamp(36px, 5vw, 72px) clamp(20px, 5vw, 56px) clamp(32px, 4vw, 48px)" }}>
+          {/* kicker rail */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 14, borderBottom: `0.75px solid ${BW.ink}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700, flexWrap: "wrap", gap: 10 }}>
+            <span style={{ color: c }}>{note.tag} · {note.kicker}</span>
+            <span>{note.issue} · {note.date}</span>
+            <span>{note.minutes} min walk</span>
+          </div>
+          {/* Title */}
+          <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(42px, 7vw, 96px)", lineHeight: 0.96, letterSpacing: "-0.035em", margin: "clamp(28px, 4vw, 48px) 0 clamp(20px, 3vw, 28px)", color: BW.ink, maxWidth: "18ch" }}>
+            {note.title}
+          </h1>
+          {/* dek */}
+          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(18px, 2vw, 24px)", lineHeight: 1.45, margin: 0, color: BW.ink2, maxWidth: "44ch" }}>{note.dek}</p>
+          {/* byline */}
+          <div style={{ marginTop: 32, paddingTop: 18, borderTop: `0.75px solid ${BW.ruleL}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <span style={{ width: 36, height: 36, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 12, fontWeight: 700 }}>{a.initials || "BW"}</span>
+              <div>
+                <div style={{ fontFamily: BW.ffG, fontSize: 14, fontWeight: 600, color: BW.ink }}>By {note.author}</div>
+                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, marginTop: 2 }}>{a.role || "Bureau"}</div>
+              </div>
+            </div>
+            <div style={{ display: "flex", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, flexWrap: "wrap" }}>
+              <span>Filed in {note.tag.toLowerCase()}</span>
+              <span>·</span>
+              <a href="#" style={{ color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>Plain text</a>
+              <a href="#" style={{ color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>Print</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Lead figure */}
+      <section style={{ background: BW.chalk50, borderBottom: `0.75px solid ${BW.ink}` }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 5vw, 56px)" }}>
+          <figure style={{ margin: 0, borderLeft: `0.75px solid ${BW.ink}`, borderRight: `0.75px solid ${BW.ink}` }}>
+            <div style={{ aspectRatio: "16/7", position: "relative", overflow: "hidden", borderBottom: `0.75px solid ${BW.ink}` }}>
+              <FNArt kind={note.art} color={c} caption={`fig. 01 · ${note.kicker.toLowerCase()}`} label={`${note.issue} · ${note.date}`} />
+            </div>
+            <figcaption style={{ padding: "12px 18px", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+              <span>fig. 01 · Lead illustration</span>
+              <span>BDW Lab · 2026</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* Body */}
+      <section style={{ background: BW.chalk, padding: "clamp(48px, 6vw, 96px) clamp(20px, 5vw, 56px) clamp(48px, 5vw, 72px)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1fr) 240px", gap: "clamp(28px, 4vw, 64px)" }}>
+          {/* Article column */}
+          <article style={{ maxWidth: 660 }}>
+            {NOTE_BODY.map((b, i) => <NoteBlock key={i} block={b} idx={i} drop={drop} />)}
+            {/* End ornament */}
+            <div style={{ marginTop: 28, display: "flex", alignItems: "center", gap: 14 }}>
+              <span style={{ width: 14, height: 14, background: c, transform: "rotate(45deg)", display: "inline-block" }} />
+              <span style={{ flex: 1, height: 0.75, background: BW.ink }} />
+              <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>— Filed</span>
+            </div>
+          </article>
+
+          {/* Side rail — marginalia + share */}
+          {!isMobile && (
+            <aside style={{ display: "flex", flexDirection: "column", gap: 32, position: "sticky", top: 32, alignSelf: "start" }}>
+              {marginNotes && (
+                <div style={{ borderLeft: `2px solid ${c}`, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 22 }}>
+                  <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>Margin notes</div>
+                  {NOTE_MARGINALIA.map((m, i) => (
+                    <div key={i} style={{ fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 14, lineHeight: 1.55, color: BW.ink2 }}>
+                      <span style={{ fontFamily: BW.ffM, fontStyle: "normal", fontSize: 9.5, letterSpacing: "0.22em", color: c, fontWeight: 700, textTransform: "uppercase", display: "block", marginBottom: 6 }}>¶ {m.after}</span>
+                      {m.text}
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div style={{ borderTop: `0.75px solid ${BW.ruleL}`, paddingTop: 20, display: "flex", flexDirection: "column", gap: 12 }}>
+                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>Tip the editor</div>
+                <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.5, margin: 0, color: BW.ink2 }}>Replied to a sentence and want to argue with it? <a href="mailto:bureau@boondockwalker.com" style={{ color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>bureau@boondockwalker.com</a></p>
+              </div>
+            </aside>
+          )}
+        </div>
+      </section>
+
+      {/* Pull quote, full bleed */}
+      <section style={{ background: BW.ink, color: BW.chalk50, padding: "clamp(48px, 6vw, 96px) clamp(20px, 5vw, 56px)", borderTop: `0.75px solid ${BW.ink}`, borderBottom: `0.75px solid ${BW.ink}` }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
+          <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 24 }}>★ The take</div>
+          <blockquote style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, color: BW.chalk50 }}>
+            "The receipts of having survived are an asset operators buy — but only if you stop apologizing for the year on the door."
+          </blockquote>
+          <div style={{ marginTop: 28, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>— {note.author} · {note.issue}</div>
+        </div>
+      </section>
+
+      {/* Author byline + author's other notes */}
+      <section style={{ background: BW.chalk, borderBottom: `0.75px solid ${BW.ink}` }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "clamp(40px, 5vw, 64px) clamp(20px, 5vw, 56px)", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr", gap: "clamp(28px, 4vw, 56px)", alignItems: "start" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>About the writer</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <span style={{ width: 64, height: 64, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 22, fontWeight: 700 }}>{a.initials || "BW"}</span>
+              <div>
+                <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 28, color: BW.ink }}>{note.author}</div>
+                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, marginTop: 2 }}>{a.role || "Bureau"}</div>
+              </div>
+            </div>
+            <p style={{ fontFamily: BW.ffSerif, fontSize: 15, lineHeight: 1.55, margin: 0, color: BW.ink2, maxWidth: "40ch" }}>Principal of the bureau since 2015. Writes about positioning, demand, and what wholesale operators forget to say about themselves on the homepage.</p>
+            <a href="#" style={{ marginTop: 4, fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}`, paddingBottom: 3, alignSelf: "flex-start" }}>All notes by {note.author.split(" ").slice(-1)[0]} →</a>
+          </div>
+
+          {recirc && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>Filed under {note.tag.toLowerCase()}</div>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 18 }}>
+                {related.map(n => <FNCard key={n.slug} note={n} size="M" themed={themed} />)}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Prev / next */}
+      <section style={{ background: BW.chalk50, borderBottom: `0.75px solid ${BW.ink}` }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "clamp(28px, 3vw, 40px) clamp(20px, 5vw, 56px)", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 0 }}>
+          {prev ? (
+            <a href={`note.html?slug=${prev.slug}`} style={{ padding: "20px 24px", borderRight: !isMobile ? `0.75px solid ${BW.ink}` : 0, borderBottom: isMobile ? `0.75px solid ${BW.ink}` : 0, color: BW.ink, textDecoration: "none", display: "flex", flexDirection: "column", gap: 6 }}>
+              <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700 }}>← Older · {prev.issue}</span>
+              <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, lineHeight: 1.1, color: BW.ink }}>{prev.title}</span>
+            </a>
+          ) : <div />}
+          {next ? (
+            <a href={`note.html?slug=${next.slug}`} style={{ padding: "20px 24px", color: BW.ink, textDecoration: "none", display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-end", textAlign: "right" }}>
+              <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700 }}>Newer · {next.issue} →</span>
+              <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, lineHeight: 1.1, color: BW.ink }}>{next.title}</span>
+            </a>
+          ) : (
+            <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-end", textAlign: "right" }}>
+              <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700 }}>This is the latest issue</span>
+              <a href="field-notes.html" style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, lineHeight: 1.1, color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>Back to the archive →</a>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section style={{ background: BW.chalk, padding: "clamp(40px, 5vw, 72px) clamp(20px, 5vw, 56px)", borderBottom: `0.75px solid ${BW.ink}` }}>
+        <div style={{ maxWidth: 700, margin: "0 auto" }}>
+          <FNNewsletterRail />
+        </div>
+      </section>
+
+      <Foot />
+    </div>
+  );
+}
+
+function NoteBlock({ block, idx, drop }) {
+  const styleCommon = { fontFamily: BW.ffSerif, fontSize: 19, lineHeight: 1.6, color: BW.ink, margin: "0 0 22px" };
+  if (block.kind === "lede") {
+    return (
+      <p style={styleCommon}>
+        {drop && (
+          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "5.4em", lineHeight: 0.85, float: "left", marginRight: 12, marginTop: 6, marginBottom: -6, color: BW.clay, letterSpacing: "-0.04em" }}>
+            {block.text.charAt(0)}
+          </span>
+        )}
+        {drop ? block.text.slice(1) : block.text}
+      </p>
+    );
+  }
+  if (block.kind === "p") return <p style={styleCommon}>{block.text}</p>;
+  if (block.kind === "h2") return (
+    <h2 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3vw, 36px)", lineHeight: 1.05, letterSpacing: "-0.02em", margin: "44px 0 18px", color: BW.ink }}>{block.text}</h2>
+  );
+  if (block.kind === "pullquote") return (
+    <aside style={{ borderTop: `1.5px solid ${BW.ink}`, borderBottom: `1.5px solid ${BW.ink}`, padding: "28px 0", margin: "32px 0", display: "flex", flexDirection: "column", gap: 12 }}>
+      <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(22px, 2.6vw, 30px)", lineHeight: 1.18, letterSpacing: "-0.015em", color: BW.ink }}>"{block.text}"</div>
+      <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700 }}>— {block.attr}</div>
+    </aside>
+  );
+  if (block.kind === "ol") return (
+    <ol style={{ fontFamily: BW.ffSerif, fontSize: 18, lineHeight: 1.55, color: BW.ink, margin: "0 0 28px", paddingLeft: 0, listStyle: "none", counterReset: "li" }}>
+      {block.items.map((it, i) => (
+        <li key={i} style={{ display: "grid", gridTemplateColumns: "44px 1fr", gap: 12, padding: "14px 0", borderBottom: `0.75px dotted ${BW.ruleL}` }}>
+          <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", color: BW.clay, fontWeight: 700, paddingTop: 4 }}>{String(i + 1).padStart(2, "0")}</span>
+          <span>{it}</span>
+        </li>
+      ))}
+    </ol>
+  );
+  if (block.kind === "endnote") return (
+    <p style={{ fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 14.5, lineHeight: 1.55, color: BW.ink2, margin: "32px 0 0", paddingTop: 18, borderTop: `0.75px solid ${BW.ruleL}` }}>{block.text}</p>
+  );
+  return null;
+}
+
+window.NoteDetailPage = NoteDetailPage;

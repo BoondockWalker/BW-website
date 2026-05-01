@@ -5,26 +5,27 @@
 
 /* ───── §01 Work · Title masthead (chalk paper) ───── */
 function WorkMasthead({ count, filterCount }) {
+  const isMobile = useMediaQuery("(max-width: 900px)");
   return (
     <section style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative" }}>
-      <div style={{ padding: "72px 64px 56px", maxWidth: 1440, margin: "0 auto" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 32 }}>
+      <div style={{ padding: "clamp(48px, 7vw, 72px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 56px)", maxWidth: 1440, margin: "0 auto" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 32, flexWrap: "wrap" }}>
           <span>§01</span>
           <span style={{ width: 28, height: 1, background: BW.clay }} />
           <span>The Archive · Selected Receipts, 2015–2026</span>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 80, alignItems: "end" }}>
-          <h1 style={{ fontFamily: BW.ffD, fontSize: 168, fontWeight: 400, letterSpacing: "-0.04em", lineHeight: 0.86, margin: 0, color: BW.ink }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end" }}>
+          <h1 style={{ fontFamily: BW.ffD, fontSize: "clamp(80px, 18vw, 168px)", fontWeight: 400, letterSpacing: "-0.04em", lineHeight: 0.86, margin: 0, color: BW.ink }}>
             The<br/><em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>receipts.</em>
           </h1>
-          <div style={{ paddingBottom: 24 }}>
-            <p style={{ fontFamily: BW.ffSerif, fontSize: 19, lineHeight: 1.55, margin: "0 0 28px", color: BW.ink2, maxWidth: "44ch" }}>
+          <div style={{ paddingBottom: isMobile ? 0 : 24 }}>
+            <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2vw, 19px)", lineHeight: 1.55, margin: "0 0 28px", color: BW.ink2, maxWidth: "44ch" }}>
               Forty-seven specimens, twelve here in long form. Each one is a story we walked an operator through — from the day the brief showed up on a napkin to the quarter the pipeline finally cleared the forecast.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: "rgba(20,16,12,0.55)" }}>
-              <div><div style={{ fontFamily: BW.ffG, fontSize: 32, fontWeight: 700, color: BW.ink, letterSpacing: "-0.02em", marginBottom: 4 }}>{count}</div><div>Featured</div></div>
-              <div><div style={{ fontFamily: BW.ffG, fontSize: 32, fontWeight: 700, color: BW.ink, letterSpacing: "-0.02em", marginBottom: 4 }}>47</div><div>All-time</div></div>
-              <div><div style={{ fontFamily: BW.ffG, fontSize: 32, fontWeight: 700, color: BW.clay, letterSpacing: "-0.02em", marginBottom: 4 }}>{filterCount}</div><div>Showing</div></div>
+              <div><div style={{ fontFamily: BW.ffG, fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 700, color: BW.ink, letterSpacing: "-0.02em", marginBottom: 4 }}>{count}</div><div>Featured</div></div>
+              <div><div style={{ fontFamily: BW.ffG, fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 700, color: BW.ink, letterSpacing: "-0.02em", marginBottom: 4 }}>47</div><div>All-time</div></div>
+              <div><div style={{ fontFamily: BW.ffG, fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 700, color: BW.clay, letterSpacing: "-0.02em", marginBottom: 4 }}>{filterCount}</div><div>Showing</div></div>
             </div>
           </div>
         </div>
@@ -59,7 +60,7 @@ function FilterRow({ pillar, setPillar, industry, setIndustry, outcome, setOutco
   );
   return (
     <section style={{ background: BW.chalk, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "sticky", top: 0, zIndex: 10 }}>
-      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "16px 64px", display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "14px clamp(20px, 5vw, 64px)", display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
         <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>Filter ▽</div>
         <div style={{ display: "flex", gap: 8 }}>
           {PILLARS.map(p => <Chip key={p} active={pillar === p} onClick={() => setPillar(p)}>{p}</Chip>)}
@@ -83,20 +84,21 @@ function FilterRow({ pillar, setPillar, industry, setIndustry, outcome, setOutco
 
 /* ───── Featured case (full-bleed editorial row) ───── */
 function FeaturedCase({ c }) {
+  const isMobile = useMediaQuery("(max-width: 900px)");
   return (
     <section style={{ background: BW.ink, color: BW.chalk50, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, overflow: "hidden", position: "relative" }}>
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(244,236,218,0.04) 0 1.5px, transparent 1.5px 8px)", pointerEvents: "none" }} />
-      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "28px 64px 0", position: "relative" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "28px clamp(20px, 5vw, 64px) 0", position: "relative" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, flexWrap: "wrap" }}>
           <span>§02</span>
           <span style={{ width: 28, height: 1, background: BW.brass }} />
           <span>Featured Specimen · The longest walk of 2026</span>
         </div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1.05fr 1fr", maxWidth: 1440, margin: "0 auto", padding: "32px 64px 64px", gap: 64, alignItems: "center", position: "relative" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.05fr 1fr", maxWidth: 1440, margin: "0 auto", padding: "32px clamp(20px, 5vw, 64px) clamp(48px, 7vw, 64px)", gap: isMobile ? 40 : 64, alignItems: "center", position: "relative" }}>
         {/* left — copy */}
         <div>
-          <div style={{ display: "flex", gap: 8, marginBottom: 22 }}>
+          <div style={{ display: "flex", gap: 8, marginBottom: 22, flexWrap: "wrap" }}>
             {c.tags.map(t => (
               <span key={t} style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", padding: "5px 10px", border: `1px solid ${BW.brass}`, color: BW.brass, borderRadius: 3, fontWeight: 600 }}>{t}</span>
             ))}
@@ -104,13 +106,13 @@ function FeaturedCase({ c }) {
           <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.55)", fontWeight: 600, marginBottom: 16 }}>
             Specimen №01 · {c.year} · {c.industry}
           </div>
-          <h2 style={{ fontFamily: BW.ffG, fontSize: 56, fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 14px", color: BW.chalk50, textTransform: "uppercase" }}>
+          <h2 style={{ fontFamily: BW.ffG, fontSize: "clamp(40px, 8vw, 56px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 14px", color: BW.chalk50, textTransform: "uppercase" }}>
             {c.client}
           </h2>
-          <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 36, lineHeight: 1.12, margin: "0 0 32px", color: BW.brass, letterSpacing: "-0.02em", fontWeight: 400 }}>
+          <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(24px, 5vw, 36px)", lineHeight: 1.12, margin: "0 0 32px", color: BW.brass, letterSpacing: "-0.02em", fontWeight: 400 }}>
             "{c.pull}"
           </p>
-          <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.55, margin: "0 0 36px", color: "rgba(244,236,218,0.78)", maxWidth: "44ch" }}>
+          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(15px, 1.8vw, 17px)", lineHeight: 1.55, margin: "0 0 36px", color: "rgba(244,236,218,0.78)", maxWidth: "44ch" }}>
             {c.lede}
           </p>
           {/* receipts strip */}
@@ -135,10 +137,10 @@ function FeaturedCase({ c }) {
               Specimen №01 · fig. 01.0
             </div>
             {/* big year mark */}
-            <div style={{ position: "absolute", right: 32, top: 32, fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: 96, color: "rgba(251,247,238,0.85)", letterSpacing: "-0.04em", lineHeight: 0.85 }}>{c.year}</div>
+            <div style={{ position: "absolute", right: 32, top: 32, fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 96px)", color: "rgba(251,247,238,0.85)", letterSpacing: "-0.04em", lineHeight: 0.85 }}>{c.year}</div>
             {/* big stat */}
             <div style={{ position: "absolute", left: 28, bottom: 28, color: BW.chalk50 }}>
-              <div style={{ fontFamily: BW.ffG, fontSize: 168, fontWeight: 700, lineHeight: 0.85, letterSpacing: "-0.05em", color: BW.chalk50 }}>{c.bigStat.v}</div>
+              <div style={{ fontFamily: BW.ffG, fontSize: "clamp(96px, 22vw, 168px)", fontWeight: 700, lineHeight: 0.85, letterSpacing: "-0.05em", color: BW.chalk50 }}>{c.bigStat.v}</div>
               <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600, marginTop: 8 }}>{c.bigStat.k}</div>
             </div>
             {/* corner ticks */}

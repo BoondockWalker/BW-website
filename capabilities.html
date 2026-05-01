@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boondock Walker — Capabilities / Brand · Demand · Lab</title>
+<link rel="icon" href="assets/BW-crest.svg" type="image/svg+xml">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  html, body { margin: 0; background: #14100C; }
+  body { font-family: 'Space Grotesk', system-ui, sans-serif; color: #14100C; }
+  a { cursor: pointer; }
+  a:hover { opacity: 0.92; }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+<div id="root" data-screen-label="01 Capabilities"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="SiteHeader.jsx"></script>
+<script type="text/babel" src="V3Sections2.jsx"></script>
+<script type="text/babel" src="CapabilitiesData.jsx"></script>
+<script type="text/babel" src="CapabilitiesA.jsx"></script>
+<script type="text/babel" src="CapabilitiesB.jsx"></script>
+<script type="text/babel">
+const CAP_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "pillarOrder": "Brand · Demand · Lab",
+  "showCatalog": true,
+  "showEvidence": true,
+  "showProcess": true,
+  "density": "Editorial"
+}/*EDITMODE-END*/;
+
+function CapabilitiesApp() {
+  const [tweaks, setTweak] = useTweaks(CAP_DEFAULTS);
+
+  // Reorder pillars based on tweak
+  const orderMap = {
+    "Brand · Demand · Lab": ["Brand", "Demand", "Lab"],
+    "Lab · Brand · Demand": ["Lab", "Brand", "Demand"],
+    "Demand · Brand · Lab": ["Demand", "Brand", "Lab"],
+  };
+  const order = orderMap[tweaks.pillarOrder] || orderMap["Brand · Demand · Lab"];
+
+  // Render pillars in chosen order using the existing CapPillarSection component
+  const pillarsByKey = Object.fromEntries(window.BW_CAPABILITIES.pillars.map(p => [p.key, p]));
+  const orderedPillars = order.map(k => pillarsByKey[k]).filter(Boolean);
+
+  return (
+    <div>
+      <CapHero />
+      {orderedPillars.map((p, i) => <CapPillarSection key={p.key} pillar={p} idx={i} />)}
+      {tweaks.showCatalog && <CapCatalog />}
+      {tweaks.showEvidence && <CapEvidence />}
+      {tweaks.showProcess && <CapProcess />}
+      <CapCTA />
+      <V3Footer />
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Pillar order">
+          <TweakSelect
+            label="Sequence"
+            value={tweaks.pillarOrder}
+            onChange={v => setTweak("pillarOrder", v)}
+            options={["Brand · Demand · Lab", "Lab · Brand · Demand", "Demand · Brand · Lab"]}
+          />
+        </TweakSection>
+        <TweakSection label="Sections">
+          <TweakToggle label="Service catalog" value={tweaks.showCatalog} onChange={v => setTweak("showCatalog", v)} />
+          <TweakToggle label="Evidence (stats + quote)" value={tweaks.showEvidence} onChange={v => setTweak("showEvidence", v)} />
+          <TweakToggle label="Process (4 steps)" value={tweaks.showProcess} onChange={v => setTweak("showProcess", v)} />
+        </TweakSection>
+      </TweaksPanel>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<CapabilitiesApp />);
+</script>
+</body>
+</html>

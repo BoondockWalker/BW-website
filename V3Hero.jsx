@@ -26,26 +26,41 @@ function V3Hero() {
       </div>
 
       {/* BOTTOM LEDGER */}
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "1.6fr 1fr 1fr 1fr 220px", borderTop: `1px solid rgba(244,236,218,0.35)`, background: "rgba(20,16,12,0.18)", backdropFilter: "blur(6px)", position: "relative", zIndex: 5 }}>
-        <div style={{ padding: "18px clamp(18px, 4vw, 28px)", borderRight: `1px solid rgba(244,236,218,0.25)`, gridColumn: isMobile ? "1 / -1" : "auto", borderBottom: isMobile ? `1px solid rgba(244,236,218,0.25)` : "none" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.6fr 1fr 1fr 1fr 220px", borderTop: `1px solid rgba(244,236,218,0.35)`, background: "rgba(20,16,12,0.18)", backdropFilter: "blur(6px)", position: "relative", zIndex: 5 }}>
+        <div style={{ padding: "18px clamp(18px, 4vw, 28px)", borderRight: isMobile ? "none" : `1px solid rgba(244,236,218,0.25)`, borderBottom: isMobile ? `1px solid rgba(244,236,218,0.25)` : "none" }}>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.45, margin: 0, color: BW.chalk50, maxWidth: 380 }}>
             We don't run sprints. We walk operators across the long territory between a story you're proud of and a pipeline you can predict.
           </p>
         </div>
-        {[
-          { k: "Discipline", v: "Brand · Demand · Lab", c: BW.chalk50 },
-          { k: "Bureau", v: "Cleveland / Remote", c: BW.chalk50 },
-          { k: "Practice", v: "Since 2015", c: BW.brass },
-        ].map((s) => (
-          <div key={s.k} style={{ padding: "18px clamp(16px, 3.5vw, 22px)", borderRight: `1px solid rgba(244,236,218,0.25)` }}>
-            <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600, marginBottom: 5 }}>{s.k}</div>
-            <div style={{ fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, color: s.c, letterSpacing: "-0.005em" }}>{s.v}</div>
+        {isMobile ? (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderBottom: "none" }}>
+            {[
+              { k: "Discipline", v: "Brand · Demand · Lab", c: BW.chalk50 },
+              { k: "Bureau", v: "Cleveland", c: BW.chalk50 },
+              { k: "Practice", v: "Since 2015", c: BW.brass },
+            ].map((s, i) => (
+              <div key={s.k} style={{ padding: "16px 12px", borderRight: i < 2 ? `1px solid rgba(244,236,218,0.25)` : "none" }}>
+                <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600, marginBottom: 5 }}>{s.k}</div>
+                <div style={{ fontFamily: BW.ffG, fontSize: 12, fontWeight: 700, color: s.c, letterSpacing: "-0.005em", lineHeight: 1.25 }}>{s.v}</div>
+              </div>
+            ))}
           </div>
-        ))}
-        {!isMobile && (
-          <div style={{ padding: "18px 22px", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>
-            ↓ §02 Thesis
-          </div>
+        ) : (
+          <>
+            {[
+              { k: "Discipline", v: "Brand · Demand · Lab", c: BW.chalk50 },
+              { k: "Bureau", v: "Cleveland / Remote", c: BW.chalk50 },
+              { k: "Practice", v: "Since 2015", c: BW.brass },
+            ].map((s) => (
+              <div key={s.k} style={{ padding: "18px clamp(16px, 3.5vw, 22px)", borderRight: `1px solid rgba(244,236,218,0.25)` }}>
+                <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600, marginBottom: 5 }}>{s.k}</div>
+                <div style={{ fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, color: s.c, letterSpacing: "-0.005em" }}>{s.v}</div>
+              </div>
+            ))}
+            <div style={{ padding: "18px 22px", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>
+              ↓ §02 Thesis
+            </div>
+          </>
         )}
       </div>
     </section>
