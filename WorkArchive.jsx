@@ -128,9 +128,15 @@ function FeaturedCase({ c }) {
             Read the full file →
           </a>
         </div>
-        {/* right — abstract editorial swatch */}
+        {/* right — editorial swatch (hero image if provided, else colored gradient) */}
         <div style={{ position: "relative", aspectRatio: "4/5" }}>
           <div style={{ position: "absolute", inset: 0, background: c.tone, border: `1px solid rgba(244,236,218,0.2)`, overflow: "hidden" }}>
+            {c.heroImage && (
+              <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: `url(${c.heroImage})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} />
+            )}
+            {c.heroImage && (
+              <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0.45) 0%, rgba(20,16,12,0.10) 32%, rgba(20,16,12,0.18) 60%, rgba(20,16,12,0.78) 100%)", pointerEvents: "none" }} />
+            )}
             <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.18) 0 2px, transparent 2px 9px)", mixBlendMode: "multiply" }} />
             {/* big folio */}
             <div style={{ position: "absolute", left: 28, top: 28, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>
