@@ -104,7 +104,7 @@ function FeaturedCase({ c }) {
             ))}
           </div>
           <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.55)", fontWeight: 600, marginBottom: 16 }}>
-            Specimen №01 · {c.year} · {c.industry}
+            Specimen №{c.no} · {c.year} · {c.industry}
           </div>
           <h2 style={{ fontFamily: BW.ffG, fontSize: "clamp(40px, 8vw, 56px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 14px", color: BW.chalk50, textTransform: "uppercase" }}>
             {c.client}
@@ -124,7 +124,7 @@ function FeaturedCase({ c }) {
               </div>
             ))}
           </div>
-          <a href={`case.html?id=${c.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 12, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.ink, background: BW.brass, padding: "13px 22px", borderRadius: 999, fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>
+          <a href={c.href || `case.html?id=${c.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 12, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.ink, background: BW.brass, padding: "13px 22px", borderRadius: 999, fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>
             Read the full file →
           </a>
         </div>
@@ -134,7 +134,7 @@ function FeaturedCase({ c }) {
             <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.18) 0 2px, transparent 2px 9px)", mixBlendMode: "multiply" }} />
             {/* big folio */}
             <div style={{ position: "absolute", left: 28, top: 28, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>
-              Specimen №01 · fig. 01.0
+              Specimen №{c.no} · fig. {c.no}.0
             </div>
             {/* big year mark */}
             <div style={{ position: "absolute", right: 32, top: 32, fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 96px)", color: "rgba(251,247,238,0.85)", letterSpacing: "-0.04em", lineHeight: 0.85 }}>{c.year}</div>

@@ -62,7 +62,7 @@ function CaseThumb({ c, kind }) {
 
 function CaseCard({ c }) {
   return (
-    <a href={`case.html?id=${c.slug}`} style={{ display: "flex", flexDirection: "column", textDecoration: "none", color: BW.ink, border: `1px solid ${BW.ink}`, background: BW.chalk50, transition: "transform 0.24s ease", cursor: "pointer" }}>
+    <a href={c.href || `case.html?id=${c.slug}`} style={{ display: "flex", flexDirection: "column", textDecoration: "none", color: BW.ink, border: `1px solid ${BW.ink}`, background: BW.chalk50, transition: "transform 0.24s ease", cursor: "pointer" }}>
       <CaseThumb c={c} />
       <div style={{ padding: "22px 24px 24px", flex: 1, display: "flex", flexDirection: "column", gap: 16 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>
@@ -91,7 +91,7 @@ function CaseCard({ c }) {
 
 function CaseListRow({ c }) {
   return (
-    <a href={`case.html?id=${c.slug}`} style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 1fr 80px", borderTop: `1px solid ${BW.ruleL}`, padding: "22px 0", textDecoration: "none", color: BW.ink, alignItems: "center", gap: 18, cursor: "pointer" }}>
+    <a href={c.href || `case.html?id=${c.slug}`} style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 1fr 80px", borderTop: `1px solid ${BW.ruleL}`, padding: "22px 0", textDecoration: "none", color: BW.ink, alignItems: "center", gap: 18, cursor: "pointer" }}>
       <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", color: BW.clay, fontWeight: 700 }}>№{c.no}</span>
       <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>{c.year}</span>
       <div>
