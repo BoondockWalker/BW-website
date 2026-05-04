@@ -370,15 +370,16 @@ function FloatingImage({ block }) {
    IMAGE + TEXT — split: floating image one side, prose other side.
    ========================================================================= */
 function ImageTextBlock({ block }) {
-  const { side = "left", src, alt, eyebrow, title, body = [], surface = BW.chalk50, imageBg } = block;
+  const { side = "left", src, alt, eyebrow, title, body = [], surface = BW.chalk50, imageBg, imageRatio = 1.15, imageMaxHeight = 640 } = block;
   const flip = side === "right";
   const isMobile = useMediaQuery("(max-width: 900px)");
+  const imgCol = `${imageRatio}fr`;
   return (
     <section style={{ background: surface, color: BW.ink, padding: SECTION_PAD, fontFamily: BW.ffG }}>
-      <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 40 : 80, alignItems: "center" }}>
+      <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : `${imgCol} 1fr`, gap: isMobile ? 40 : 64, alignItems: "center" }}>
         <Reveal kind={flip && !isMobile ? "slideR" : "slideL"} threshold={0.2} style={{ order: !isMobile && flip ? 2 : 1 }}>
-          <div style={{ background: imageBg || "#FFFFFF", padding: "clamp(20px, 5vw, 48px)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: isMobile ? 280 : 480 }}>
-            <img src={src} alt={alt} style={{ maxWidth: "100%", maxHeight: isMobile ? 360 : 520, width: "auto", height: "auto", objectFit: "contain", display: "block" }} />
+          <div style={{ background: imageBg || "#FFFFFF", padding: "clamp(12px, 3vw, 28px)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: isMobile ? 320 : 560 }}>
+            <img src={src} alt={alt} style={{ maxWidth: "100%", maxHeight: isMobile ? 420 : imageMaxHeight, width: "auto", height: "auto", objectFit: "contain", display: "block" }} />
           </div>
         </Reveal>
         <div style={{ order: !isMobile && flip ? 1 : 2 }}>

@@ -72,43 +72,47 @@ window.BW_CASE_DETAIL = {
       accent: "#e95d15",
     },
 
-    /* -- Stationery system — full-bleed on slate ----------------- */
+    /* -- Stationery system — full-bleed (transparent PNG, floats) - */
     {
       kind: "fullbleed",
-      src: `${BASE}/stationery.webp`,
+      src: `${BASE}/stationery.png`,
       alt: "Calyx stationery system — letterhead, business card, envelope",
-      caption: { label: "fig. 02 · System in Print", title: "Stationery system — letterhead, card, envelope", fg: "#FBF7EE" },
-      surface: "#1a1f25",
-      height: "min(82vh, 760px)",
+      caption: { label: "fig. 03 · System in Print", title: "Stationery — letterhead, card, envelope" },
+      surface: "#FBF7EE",
+      height: "min(86vh, 820px)",
       fit: "contain",
-      imagePadding: "60px 28px",
+      imagePadding: "32px 28px",
     },
 
-    /* -- Logo construction — image + text split ------------------ */
-    {
-      kind: "imagetext",
-      side: "right",
-      src: `${BASE}/logo-construction.webp`,
-      alt: "Calyx logo — golden ratio construction grid",
-      imageBg: "#FBF7EE",
-      eyebrow: "§04 · Mark",
-      title: "A lotus, drawn on the golden ratio.",
-      body: [
-        "The Calyx mark is a stylized lotus — gray outer petals, orange inner petals — built on a golden-ratio construction grid. The mark scales cleanly from a 16px favicon to a building-sized billboard without losing its proportions.",
-        "Orange is the brand's load-bearing color. We held the rest of the system to neutral slate, royal blue, powder, and chalk — so the orange always reads as a deliberate choice, never as decoration.",
-      ],
-    },
-
-    /* -- Logo color system — full bleed grid --------------------- */
+    /* -- Brand Guidelines — full-bleed of the published book ----- */
     {
       kind: "fullbleed",
-      src: `${BASE}/logo-grid.webp`,
-      alt: "Calyx logo — color system across orange, slate, royal, powder",
-      caption: { label: "fig. 05 · Color System", title: "Four ground colors. One mark. Always recognizable.", fg: "#FBF7EE" },
-      surface: "#3a4754",
+      src: `${BASE}/brand-guidelines.png`,
+      alt: "Calyx brand guidelines — published book covers and interior spread",
+      caption: { label: "fig. 04 · Brand Guidelines", title: "\"Create a better way.\" — the published doctrine" },
+      surface: "#FBF7EE",
       height: "min(82vh, 760px)",
       fit: "contain",
-      imagePadding: "60px 28px",
+      imagePadding: "32px 28px",
+    },
+
+    /* -- The System — five elements, used together --------------- */
+    {
+      kind: "multi",
+      eyebrow: "§05 · The System",
+      title: "Mark, construction, color, pattern, palette.",
+      cols: 5,
+      gap: 20,
+      maxWidth: 1500,
+      surface: "#FBF7EE",
+      padding: "80px 40px 120px",
+      items: [
+        { src: `${BASE}/element-1-logo.png`,         alt: "Calyx full logo — wordmark + lotus on slate",   caption: "01 · Logo lockup",        bg: "#3a4754", aspect: "1 / 1", fit: "contain", tilePadding: "8px" },
+        { src: `${BASE}/element-2-construction.png`, alt: "Logo construction — golden-ratio grid",          caption: "02 · Construction",       bg: "#FBF7EE", aspect: "1 / 1", fit: "contain", tilePadding: "8px" },
+        { src: `${BASE}/element-3-mark-grid.png`,    alt: "Mark variations — orange and slate squares + wordmark", caption: "03 · Mark variations", bg: "#FBF7EE", aspect: "1 / 1", fit: "contain", tilePadding: "0" },
+        { src: `${BASE}/element-4-pattern.png`,      alt: "Lotus pattern repeat",                          caption: "04 · Pattern",            bg: "#3a4754", aspect: "1 / 1", fit: "cover",  tilePadding: "0" },
+        { src: `${BASE}/element-5-color.jpg`,        alt: "Color palette — primary and secondary",          caption: "05 · Palette",            bg: "#FBF7EE", aspect: "1 / 1", fit: "contain", tilePadding: "32px" },
+      ],
     },
 
     /* -- Sub-brand architecture — three-up ----------------------- */
@@ -136,7 +140,7 @@ window.BW_CASE_DETAIL = {
       surface: "#FBF7EE",
       height: "min(86vh, 820px)",
       fit: "contain",
-      imagePadding: "40px 28px",
+      imagePadding: "32px 28px",
     },
 
     /* -- Big stat callout — placeholder pending client release ---- */
@@ -162,25 +166,27 @@ window.BW_CASE_DETAIL = {
       ],
     },
 
-    /* -- Website — full bleed ------------------------------------ */
+    /* -- Website — full bleed (transparent PNG, floats on cream) - */
     {
       kind: "fullbleed",
-      src: `${BASE}/site.jpg`,
+      src: `${BASE}/site.png`,
       alt: "CalyxIT.com — responsive site, dual-screen mockup",
       caption: { label: "fig. 09 · Corporate Website", title: "CalyxIT.com — \"We create a better way to do business.\"" },
       surface: "#FBF7EE",
       height: "min(80vh, 760px)",
       fit: "contain",
-      imagePadding: "40px 28px",
+      imagePadding: "20px 28px",
     },
 
-    /* -- Rocket Sauce newsletter — image+text split -------------- */
+    /* -- Rocket Sauce newsletter — image+text split (image larger) */
     {
       kind: "imagetext",
       side: "left",
       src: `${BASE}/rocket-sauce.webp`,
       alt: "Rocket Sauce — Calyx monthly newsletter and event series",
       imageBg: "#FBF7EE",
+      imageRatio: 1.35,
+      imageMaxHeight: 700,
       eyebrow: "§10 · Owned Channel",
       title: "Rocket Sauce — the newsletter that earned the inbox.",
       body: [
