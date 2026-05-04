@@ -39,7 +39,7 @@
 /* ---------- Responsive baseline ---------- */
 html { box-sizing: border-box; -webkit-text-size-adjust: 100%; }
 *, *::before, *::after { box-sizing: inherit; }
-html, body { max-width: 100%; overflow-x: hidden; }
+html, body { max-width: 100%; overflow-x: clip; }
 img, svg, video { max-width: 100%; height: auto; }
 
 :root {
