@@ -1,7 +1,12 @@
 /* global window */
 /* Archdiocese of Detroit — case study composition.
    Content sourced from boondockwalker.com/work/archdiocese-of-detroit
-   Assets in assets/cases/archdiocese-detroit/ pulled from same. */
+   Assets in assets/cases/archdiocese-detroit/ pulled from same.
+
+   AOD palette (lifted from the official wordmark SVG):
+     Navy   #0c3b60    Red    #a93439
+     Gold   #ca982f    Stone  #6299af
+*/
 
 const BASE = "assets/cases/archdiocese-detroit";
 
@@ -22,9 +27,9 @@ window.BW_CASE_DETAIL = {
     eyebrow: "Client Success Story · Specimen №02",
     title: "Unleash the Gospel.",
     image: `${BASE}/hero.jpg`,
-    imageAlt: "Archdiocese of Detroit — Unleash the Gospel cover",
+    imageAlt: "Archdiocese of Detroit — brand book cover, red and gold",
     imagePosition: "center center",
-    imageBg: "#3A0E14",
+    imageBg: "#a93439",
     clientLogo: `${BASE}/logo.svg`,
     clientLogoHeight: 96,
     clientLogoInvert: true,
@@ -43,12 +48,8 @@ window.BW_CASE_DETAIL = {
         "Brand Guidelines",
         "Typography + Color System",
         "Editorial + Publication Design",
-        "Pastoral Letter Design",
-        "Sales + Sacramental Collateral",
-        "Website Design + Development",
-        "Campaign + Wayfinding",
       ],
-      note: "Ten capabilities engaged across a multi-year engagement.",
+      note: "Six core capabilities engaged across a multi-year engagement.",
     },
 
     /* -- The Brief -- prose --------------------------------------- */
@@ -59,7 +60,7 @@ window.BW_CASE_DETAIL = {
       body: [
         "In June 2017, Archbishop Allen Vigneron published Unleash the Gospel — a pastoral letter calling on the people of the Archdiocese of Detroit to embrace a new identity as joyful missionary disciples of Christ. The letter laid out a generational shift in how the local Church would speak, gather, and serve.",
         "The Archdiocese asked Boondock Walker to translate that spiritual mission into a visible one — a brand foundation and identity system that could carry the call across 200+ parishes, dozens of schools, and every printed page that left the chancery. The work needed to honor 190 years of heritage while opening the door to a missionary century ahead.",
-        "We began with strategy: language, voice, hierarchy, and the doctrine of how a 200-year-old institution introduces itself in 2017. From there, identity — heraldic mark, color system, typography, and the printed and digital surfaces that hold them.",
+        "We began with strategy: language, voice, hierarchy, and the doctrine of how a 200-year-old institution introduces itself in 2017. From there, identity — heraldic mark, color system, typography, and the printed surfaces that hold them.",
       ],
       dropCap: true,
       maxWidth: 820,
@@ -71,141 +72,100 @@ window.BW_CASE_DETAIL = {
       eyebrow: "Reach · Six-county region",
       numeric: 1.3,
       suffix: "M+",
-      label: "Catholics across southeast Michigan reached through a unified identity system, from parish bulletin to chancery website.",
+      label: "Catholics across southeast Michigan reached through a unified identity system, from parish bulletin to chancery letterhead.",
+      accent: "#a93439",
     },
 
-    /* -- Coat of Arms / Heraldic Mark — full bleed --------------- */
+    /* -- Coat of Arms — full bleed on navy ----------------------- */
     {
       kind: "fullbleed",
-      src: `${BASE}/coat-of-arms.png`,
-      alt: "Archdiocese of Detroit coat of arms — heraldic mark",
-      caption: { label: "fig. 02 · Heraldic Mark", title: "Coat of arms — refined for print, screen, and embroidery" },
-      surface: "#FBF7EE",
-      height: "min(90vh, 875px)",
+      src: `${BASE}/coat-of-arms.webp`,
+      alt: "Archbishop Vigneron's coat of arms — full ecclesiastical heraldry",
+      caption: { label: "fig. 02 · Heraldic Mark", title: "Aspicientes in Jesum — the archbishop's coat of arms", fg: "#FBF7EE" },
+      surface: "#0c3b60",
+      height: "min(92vh, 920px)",
       fit: "contain",
-      imagePadding: "20px 28px",
+      imagePadding: "60px 28px",
     },
 
-    /* -- Brand Foundation: guidelines covers + spread ------------ */
+    /* -- Marks system — three-up: logo, emblem, archdiocese seal - */
     {
       kind: "multi",
-      eyebrow: "§03 · Brand Foundation",
+      eyebrow: "§03 · Marks System",
+      title: "Three marks, one voice.",
+      cols: 3,
+      gap: 32,
+      surface: "#FBF7EE",
+      padding: "120px 56px",
+      items: [
+        { src: `${BASE}/logo-fullcolor.webp`, alt: "Archdiocese of Detroit primary logo — mitred shield", caption: "Primary Logo · Mitred Shield", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "32px" },
+        { src: `${BASE}/emblem.webp`,         alt: "Unleash the Gospel emblem — circular badge", caption: "Emblem · Unleash the Gospel", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "32px" },
+        { src: `${BASE}/coat-of-arms.webp`,   alt: "Coat of Arms — Aspicientes in Jesum", caption: "Heraldic Mark · Coat of Arms", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "32px" },
+      ],
+    },
+
+    /* -- Brand Foundation: covers + interior spread -------------- */
+    {
+      kind: "multi",
+      eyebrow: "§04 · Brand Foundation",
       title: "Doctrine, identity, and the documents that hold them.",
       cols: 2,
       gap: 48,
-      surfaceGradient: "linear-gradient(135deg, #5E1A1F 0%, #3A0E14 50%, #5E1A1F 100%)",
+      surfaceGradient: "linear-gradient(135deg, #0c3b60 0%, #082841 50%, #0c3b60 100%)",
       fg: "#FBF7EE",
       padding: "120px 56px",
       items: [
-        { src: `${BASE}/brand-guidelines-covers.png`, alt: "Brand Foundation + Brand Identity guidelines covers", caption: "Brand Foundation · Brand Identity — published guidelines" },
-        { src: `${BASE}/brand-guidelines-spread.png`, alt: "Brand Foundation interior spread — voice and values", caption: "Brand Foundation · interior spread — Mission / Voice / Values" },
+        { src: `${BASE}/brand-guidelines-covers.png`, alt: "Brand Foundation — published guidelines, opening spread", caption: "Brand Foundation · Opening spread" },
+        { src: `${BASE}/brand-guidelines-spread.png`, alt: "Visual Elements — Saint Anne, interior spread", caption: "Visual Elements · Saint Anne" },
       ],
     },
 
-    /* -- Pastoral Letter — image + text split -------------------- */
-    {
-      kind: "imagetext",
-      side: "left",
-      src: `${BASE}/pastoral-letter.png`,
-      alt: "Unleash the Gospel pastoral letter — printed edition",
-      imageBg: "#FBF7EE",
-      eyebrow: "§04 · Pastoral Letter",
-      title: "Designing a 200-year document.",
-      body: [
-        "Boondock Walker designed and produced the printed edition of Unleash the Gospel — the pastoral letter that anchored the entire movement. Typography, paper, color, and binding were chosen as if the document would still be on a shelf in 2117.",
-        "We worked alongside the Archdiocese's in-plant printing team, testing the recommended palette across uncoated and coated stocks until the burgundy reproduced the same in a parish bulletin as it did on the cover of the letter itself. The result is a document that reads as both contemporary and consequential.",
-      ],
-    },
-
-    /* -- Editorial / Magazine — Unleash the Gospel quarterly ----- */
+    /* -- Brand system pages: emblem doctrine + color palette ----- */
     {
       kind: "multi",
-      eyebrow: "§05 · Editorial",
-      title: "Unleash the Gospel — the quarterly that carried the movement.",
-      cols: 4,
-      gap: 28,
-      items: [
-        { src: `${BASE}/magazine-cover-1.jpg`, alt: "Unleash the Gospel magazine cover — Issue 01", caption: "Issue 01 · Launch", shadow: true },
-        { src: `${BASE}/magazine-cover-2.jpg`, alt: "Unleash the Gospel magazine cover — Issue 02", caption: "Issue 02 · The Synod", shadow: true },
-        { src: `${BASE}/magazine-cover-3.jpg`, alt: "Unleash the Gospel magazine cover — Issue 03", caption: "Issue 03 · Families on Mission", shadow: true },
-        { src: `${BASE}/magazine-cover-4.jpg`, alt: "Unleash the Gospel magazine cover — Issue 04", caption: "Issue 04 · The Eucharist", shadow: true },
-      ],
-    },
-
-    /* -- Website — responsive build ------------------------------ */
-    {
-      kind: "multi",
-      eyebrow: "§06 · Digital Platform",
-      title: "AOD.org and UnleashTheGospel.org — responsive build.",
+      eyebrow: "§05 · Identity System",
+      title: "Marks, color, and the rules that keep them honest.",
       cols: 2,
-      gap: 16,
-      maxWidth: 1480,
-      padding: "120px 16px",
-      items: [
-        { src: `${BASE}/site-laptop-1.png`, alt: "Archdiocese of Detroit website — homepage", caption: "AOD.org · Homepage" },
-        { src: `${BASE}/site-laptop-2.png`, alt: "Unleash the Gospel platform — landing", caption: "UnleashTheGospel.org · Movement landing" },
-      ],
-    },
-
-    /* -- Sacramental + Collateral — full bleed ------------------- */
-    {
-      kind: "fullbleed",
-      src: `${BASE}/collateral-suite.png`,
-      alt: "Archdiocese collateral suite — sacramental certificates, parish bulletins, signage",
-      caption: { label: "fig. 06 · Collateral", title: "Sacramental certificates, parish bulletins, and chancery stationery" },
+      gap: 48,
       surface: "#FBF7EE",
-      height: "min(90vh, 875px)",
-      fit: "contain",
-      imagePadding: "20px 28px",
-    },
-
-    /* -- Campaign — synod and missionary movement ---------------- */
-    {
-      kind: "slider",
-      eyebrow: "§07 · Campaign",
-      title: "\"Joyful Missionary Disciples\" — the call, made visible.",
-      slideHeight: 560,
+      padding: "120px 56px",
       items: [
-        { src: `${BASE}/campaign-synod.jpg`, alt: "Campaign — Synod 16", caption: "Synod 16 · Convocation" },
-        { src: `${BASE}/campaign-families.jpg`, alt: "Campaign — Families on Mission", caption: "Families on Mission" },
-        { src: `${BASE}/campaign-youth.jpg`, alt: "Campaign — Youth & Young Adult", caption: "Youth · Young adult ministry" },
-        { src: `${BASE}/campaign-eucharist.jpg`, alt: "Campaign — Eucharistic revival", caption: "Eucharistic Revival" },
-        { src: `${BASE}/campaign-parish.jpg`, alt: "Campaign — Families of Parishes", caption: "Families of Parishes" },
+        { src: `${BASE}/brand-guidelines-emblem.png`, alt: "The Emblem — usage and reversed treatment", caption: "Brand Identity · The Emblem", shadow: true },
+        { src: `${BASE}/brand-guidelines-color.png`,  alt: "Secondary Marks and Color Palette", caption: "Brand Identity · Marks + Color", shadow: true },
       ],
     },
 
     /* -- Outcomes prose ------------------------------------------- */
     {
       kind: "prose",
-      eyebrow: "§08 · Outcomes",
+      eyebrow: "§06 · Outcomes",
       title: "A movement the faithful could carry.",
       body: [
         "The Unleash the Gospel identity has carried the Archdiocese through a province-wide synod, a parish-restructuring initiative, a Eucharistic revival, and the day-to-day work of 1.3 million Catholics living out their faith. The mark, the color, the voice — they show up consistently from the chancery to the smallest mission church.",
       ],
       align: "left",
       maxWidth: 760,
+      accent: "#a93439",
     },
 
     /* -- Receipts grid ------------------------------------------- */
     {
       kind: "statrow",
-      eyebrow: "§09 · Receipts",
+      eyebrow: "§07 · Receipts",
       title: "What we can show. What we will.",
+      accent: "#a93439",
       items: [
-        { v: "1.3M", k: "Catholics reached, six-county region", color: "#5E1A1F" },
-        { v: "200+", k: "Parishes adopting the identity system", color: "#C8962B" },
-        { v: "10",   k: "Boondock Walker capabilities engaged", color: "#2E4626" },
+        { v: "1.3M", k: "Catholics reached, six-county region", color: "#a93439" },
+        { v: "200+", k: "Parishes adopting the identity system", color: "#0c3b60" },
+        { v: "6",    k: "Boondock Walker capabilities engaged", color: "#ca982f" },
         { placeholder: true, k: "Mass attendance lift (awaiting client release)" },
         { placeholder: true, k: "Digital engagement metric (awaiting client release)" },
       ],
     },
 
-    /* -- Pullquote ------------------------------------------------- */
+    /* -- Pullquote — text-only, no image yet --------------------- */
     {
       kind: "pullquote",
-      image: `${BASE}/quote-image.jpg`,
-      imageAlt: "Unleash the Gospel — printed pastoral letter, detail",
-      imageBg: "#3A0E14",
       quote: "A 200-year-old institution introduced itself again, and the people it serves recognized it on the first read.",
       by: "The Archdiocese engagement",
       role: "Boondock Walker × Archdiocese of Detroit · 2017 — present",
