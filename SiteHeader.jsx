@@ -13,16 +13,12 @@
                    Affects the top rail rule and text only — the dark pill stays dark on both.
      compact     — slim variant w/o the top "vol XII" rail. Default false.
      sticky      — when true, header uses position:sticky;top:0 so the nav rides the
-                   viewport as the page scrolls. Forces the header to paint a solid
-                   bg (defaults to chalk) so hash + content under it doesn't bleed
-                   through awkwardly during scroll. Default false. Case-detail pages
-                   should NOT set this — they already absolute-position the header
-                   over their hero.
-     heroBg      — color of the next section. When set, the header paints a band of
-                   that color across its bottom 30px so the dark pill nav visually
-                   bisects the hash background and the hero color: top half of pill
-                   sits on hash, bottom half sits on hero. Pass the masthead bg color
-                   from each landing page that wants the bisect effect. */
+                   viewport as the page scrolls. Paints chalk + hash across the top
+                   portion only — down to the pill's vertical midline — and leaves
+                   the bottom half transparent so the pill appears to float over
+                   whatever content is scrolling beneath it. Default false. Case-
+                   detail pages should NOT set this — they already absolute-position
+                   the header over their hero. */
 
 const SITE_NAV_ITEMS = [
   { label: "Work",        href: "work.html" },
@@ -32,7 +28,7 @@ const SITE_NAV_ITEMS = [
   { label: "About",        href: "about.html" },
 ];
 
-function SiteHeader({ current, breadcrumb, tone = "light", compact = false, sticky = false, heroBg }) {
+function SiteHeader({ current, breadcrumb, tone = "light", compact = false, sticky = false }) {
   // tone === "light" → text on light/clay surfaces (chalk text on hero, dark text on chalk).
   // tone === "dark"  → text on dark/ink surfaces (chalk text).
   // The header is transparent and inherits the underlying section/page background,
@@ -82,25 +78,37 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
       position: sticky ? "sticky" : "relative",
       top: sticky ? 0 : undefined,
       zIndex: sticky ? 50 : undefined,
-      background: sticky ? BW.chalk : "transparent",
+      background: "transparent",
       color: bodyText,
       fontFamily: BW.ffG,
       overflow: "visible",
     }}>
-      {/* hatch overlay — multiplies against whatever section/page bg shows through */}
-      <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none", zIndex: 1 }} />
-
-      {/* hero color band — paints the next section's color across the bottom of the header
-          so the dark pill nav visually bisects: top half on hash, bottom half on hero. */}
-      {heroBg && (
+      {/* When sticky: paint a chalk fill across the TOP of the header, ending at the
+          pill's vertical midline. Below that midline the header stays transparent —
+          so as the page scrolls, the pill nav floats over whatever's underneath. */}
+      {sticky && (
         <div aria-hidden="true" style={{
-          position: "absolute", bottom: 0, left: 0, right: 0,
-          height: heroBandHeight,
-          background: heroBg,
-          zIndex: 2,
+          position: "absolute",
+          top: 0, left: 0, right: 0,
+          bottom: heroBandHeight,
+          background: BW.chalk,
+          zIndex: 0,
           pointerEvents: "none",
         }} />
       )}
+
+      {/* hatch overlay — multiplies against the page/scroll bg behind. When sticky,
+          we end the hatch at the bisect line so it doesn't render against
+          arbitrary scrolling content below the pill. */}
+      <div style={{
+        position: "absolute",
+        top: 0, left: 0, right: 0,
+        bottom: sticky ? heroBandHeight : 0,
+        background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)",
+        mixBlendMode: "multiply",
+        pointerEvents: "none",
+        zIndex: 1,
+      }} />
 
       {/* Top rail — vol / booking */}
       {!compact && (
@@ -115,7 +123,7 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
 
       {/* Floating dark pill nav */}
       <div ref={navRef} style={{ position: "relative", padding: "22px clamp(16px, 4vw, 28px) 0", zIndex: 6 }}>
-        <div style={{ padding: "10px 14px 10px 18px", borderRadius: 999, background: "rgba(20,16,12,0.78)", backdropFilter: "saturate(140%) blur(14px)", border: `1px solid rgba(244,236,218,0.18)`, display: "flex", alignItems: "center", justifyContent: "space-between", boxShadow: "0 14px 32px -16px rgba(0,0,0,0.55)", gap: 12 }}>
+        <div style={{ padding: "10px 14px 10px 18px", borderRadius: 999, background: "rgba(20,16,12,0.78)", backdropFilter: "saturate(140%) blur(14px)", display: "flex", alignItems: "center", justifyContent: "space-between", boxShadow: "0 14px 32px -16px rgba(0,0,0,0.55)", gap: 12 }}>
           <a href="index.html" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0 }}>
             <img src="assets/BW-lockup-color.svg?v=8" alt="Boondock Walker" style={{ height: isNarrow ? 30 : 39 }} />
           </a>
