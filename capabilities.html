@@ -52,6 +52,7 @@ function CapabilitiesApp() {
 
   return (
     <div>
+      <SiteHeader current="Capabilities" sticky={true} />
       <CapHero />
       {orderedPillars.map((p, i) => <CapPillarSection key={p.key} pillar={p} idx={i} />)}
       {tweaks.showCatalog && <CapCatalog />}

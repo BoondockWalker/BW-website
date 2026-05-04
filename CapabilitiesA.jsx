@@ -15,8 +15,6 @@ function CapHero() {
         ))}
       </div>
 
-      <SiteHeader current="Capabilities" tone="dark" />
-
       {/* HERO BODY */}
       <div style={{ position: "relative", padding: "clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px) clamp(56px, 8vw, 96px)", maxWidth: 1440, margin: "0 auto", zIndex: 3 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>

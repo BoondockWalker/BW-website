@@ -11,14 +11,17 @@
                    e.g. { label: "O'Neil Digital Solutions", parent: {href:"work.html", label:"Work"}, badge: "Specimen №01" }
      tone        — "light" (default) for clay/chalk surfaces, "dark" for ink surfaces.
                    Affects the top rail rule and text only — the dark pill stays dark on both.
-     compact     — slim variant w/o the top "vol XII" rail. Default false.
+     compact     — slim variant w/o the top "vol XII" rail. Default false. Compact
+                   mode is for editorial/overlay heros (case detail pages) where the
+                   header sits transparently on top of a full-bleed image.
      sticky      — when true, header uses position:sticky;top:0 so the nav rides the
-                   viewport as the page scrolls. Paints chalk + hash across the top
-                   portion only — down to the pill's vertical midline — and leaves
-                   the bottom half transparent so the pill appears to float over
-                   whatever content is scrolling beneath it. Default false. Case-
-                   detail pages should NOT set this — they already absolute-position
-                   the header over their hero. */
+                   viewport as the page scrolls. Default false.
+                   When sticky AND not compact (landing pages), the header paints
+                   chalk + hash across the TOP portion only — down to the pill's
+                   vertical midline — leaving the bottom half transparent so the
+                   pill appears to float over scrolling content.
+                   When sticky AND compact (case detail pages), the header stays
+                   fully transparent so the editorial hero shows through. */
 
 const SITE_NAV_ITEMS = [
   { label: "Work",        href: "work.html" },
@@ -41,6 +44,10 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
   const isMobile = useMediaQuery("(max-width: 900px)");
   const isNarrow = useMediaQuery("(max-width: 560px)");
   const heroBandHeight = isNarrow ? 25 : 30;  // half pill height — keeps the bisect aligned at the pill's vertical midline
+  // Bisect treatment (chalk fill above pill midline) only applies to non-compact
+  // sticky headers. Compact + sticky stays fully transparent so the editorial
+  // hero on case-detail pages reads as designed.
+  const bisect = sticky && !compact;
   const [navOpen, setNavOpen] = React.useState(false);
   const navRef = React.useRef(null);
 
@@ -83,10 +90,12 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
       fontFamily: BW.ffG,
       overflow: "visible",
     }}>
-      {/* When sticky: paint a chalk fill across the TOP of the header, ending at the
-          pill's vertical midline. Below that midline the header stays transparent —
-          so as the page scrolls, the pill nav floats over whatever's underneath. */}
-      {sticky && (
+      {/* When the bisect treatment is on (sticky + not compact): paint a chalk
+          fill across the TOP of the header, ending at the pill's vertical midline.
+          Below that midline the header stays transparent — so as the page scrolls,
+          the pill nav floats over whatever's underneath. Compact case-detail
+          headers stay fully transparent. */}
+      {bisect && (
         <div aria-hidden="true" style={{
           position: "absolute",
           top: 0, left: 0, right: 0,
@@ -97,13 +106,13 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
         }} />
       )}
 
-      {/* hatch overlay — multiplies against the page/scroll bg behind. When sticky,
-          we end the hatch at the bisect line so it doesn't render against
+      {/* hatch overlay — multiplies against the page/scroll bg behind. When
+          bisecting, end the hatch at the bisect line so it doesn't render against
           arbitrary scrolling content below the pill. */}
       <div style={{
         position: "absolute",
         top: 0, left: 0, right: 0,
-        bottom: sticky ? heroBandHeight : 0,
+        bottom: bisect ? heroBandHeight : 0,
         background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)",
         mixBlendMode: "multiply",
         pointerEvents: "none",

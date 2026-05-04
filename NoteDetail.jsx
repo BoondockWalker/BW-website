@@ -59,11 +59,6 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
 
   return (
     <div style={{ background: BW.chalk, minHeight: "100vh" }}>
-      {/* Masthead */}
-      <section style={{ background: BW.chalk, color: BW.ink, fontFamily: BW.ffG, borderBottom: `0.75px solid ${BW.ink}` }}>
-        <SiteHeader current="Field Notes" tone="light" breadcrumb={{ parent: { href: "field-notes.html", label: "Field Notes" }, label: note.issue, badge: note.tag.toUpperCase() }} />
-      </section>
-
       {/* Hero — kicker, title, dek, meta */}
       <section style={{ background: BW.chalk, borderBottom: `0.75px solid ${BW.ink}` }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "clamp(36px, 5vw, 72px) clamp(20px, 5vw, 56px) clamp(32px, 4vw, 48px)" }}>
