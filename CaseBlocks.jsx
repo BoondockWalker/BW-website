@@ -90,11 +90,17 @@ function CaseHeroFullBleed({ d }) {
         }} />
       )}
 
-      {/* Editorial scrim — left-weighted gradient + bottom + light top, keeps type legible against image */}
+      {/* Editorial scrim — keeps type legible against the image.
+          Default: full editorial wash (left-weighted + bottom + light top).
+          h.scrim === "bottomOnly": single bottom-up gradient that stays clear of the
+          top half of the image. Useful when the image is too rich/light for the
+          full wash. */}
       {h.image && (
         <div aria-hidden="true" style={{
           position: "absolute", inset: 0, zIndex: 1,
-          background: "linear-gradient(95deg, rgba(20,16,12,0.62) 0%, rgba(20,16,12,0.42) 32%, rgba(20,16,12,0.22) 60%, rgba(20,16,12,0.30) 100%), linear-gradient(180deg, rgba(20,16,12,0.40) 0%, transparent 28%, transparent 70%, rgba(20,16,12,0.78) 100%)",
+          background: h.scrim === "bottomOnly"
+            ? "linear-gradient(180deg, transparent 0%, transparent 50%, rgba(20,16,12,0.55) 80%, rgba(20,16,12,0.78) 100%)"
+            : "linear-gradient(95deg, rgba(20,16,12,0.62) 0%, rgba(20,16,12,0.42) 32%, rgba(20,16,12,0.22) 60%, rgba(20,16,12,0.30) 100%), linear-gradient(180deg, rgba(20,16,12,0.40) 0%, transparent 28%, transparent 70%, rgba(20,16,12,0.78) 100%)",
           pointerEvents: "none",
         }} />
       )}
@@ -106,12 +112,15 @@ function CaseHeroFullBleed({ d }) {
         pointerEvents: "none", zIndex: 2,
       }} />
 
-      {/* Subtle top-down chalk wash to soften the ink ground behind the header pill */}
-      <div aria-hidden="true" style={{
-        position: "absolute", inset: 0,
-        background: "linear-gradient(180deg, rgba(20,16,12,0.20) 0%, transparent 22%, transparent 78%, rgba(20,16,12,0.30) 100%)",
-        pointerEvents: "none", zIndex: 2,
-      }} />
+      {/* Subtle top-down chalk wash to soften the ink ground behind the header pill.
+          Skipped when h.scrim === "bottomOnly" so the top of the image stays pristine. */}
+      {h.scrim !== "bottomOnly" && (
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(180deg, rgba(20,16,12,0.20) 0%, transparent 22%, transparent 78%, rgba(20,16,12,0.30) 100%)",
+          pointerEvents: "none", zIndex: 2,
+        }} />
+      )}
 
       {/* Vertical specimen number — left margin */}
       <div aria-hidden="true" style={{

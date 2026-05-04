@@ -30,9 +30,10 @@ window.BW_CASE_DETAIL = {
     imageAlt: "Archdiocese of Detroit — brand book cover, red and gold",
     imagePosition: "center center",
     imageBg: "#a93439",
-    clientLogo: `${BASE}/logo.svg`,
-    clientLogoHeight: 96,
-    clientLogoInvert: true,
+    scrim: "bottomOnly",
+    /* No clientLogo overlay — the brand book cover in the hero photo already
+       carries the full-color AOD wordmark; rendering a second copy on top
+       (inverted to white) was hiding the printed one. */
     standfirst: "The Archdiocese of Detroit is the spiritual home for nearly 1.3 million Catholics across six counties in southeast Michigan — a 190-year-old institution that, in 2017, was called to reimagine itself as a missionary movement.",
   },
 
