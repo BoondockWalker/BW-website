@@ -4,7 +4,7 @@
 function V3Hero() {
   const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <section style={{ position: "relative", background: BW.clay, color: BW.chalk50, minHeight: isMobile ? 640 : 920, fontFamily: BW.ffG, overflow: "hidden", borderBottom: `1.5px solid ${BW.ink}` }}>
+    <section style={{ position: "relative", background: BW.clay, color: BW.chalk50, minHeight: isMobile ? 640 : 920, fontFamily: BW.ffG, overflow: "hidden", borderBottom: `1.5px solid ${BW.ink}`, display: "flex", flexDirection: "column" }}>
       {/* paper texture — section hatch covers the area below the header */}
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
 
@@ -23,8 +23,8 @@ function V3Hero() {
         </h1>
       </div>
 
-      {/* BOTTOM LEDGER */}
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.6fr 1fr 1fr 1fr 220px", borderTop: `1px solid rgba(244,236,218,0.35)`, background: "rgba(20,16,12,0.18)", backdropFilter: "blur(6px)", position: "relative", zIndex: 5 }}>
+      {/* BOTTOM LEDGER — pinned to section bottom via margin-top: auto in the flex column */}
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.6fr 1fr 1fr 1fr 220px", borderTop: `1px solid rgba(244,236,218,0.35)`, background: "rgba(20,16,12,0.18)", backdropFilter: "blur(6px)", position: "relative", zIndex: 5, marginTop: "auto" }}>
         <div style={{ padding: "18px clamp(18px, 4vw, 28px)", borderRight: isMobile ? "none" : `1px solid rgba(244,236,218,0.25)`, borderBottom: isMobile ? `1px solid rgba(244,236,218,0.25)` : "none" }}>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.45, margin: 0, color: BW.chalk50, maxWidth: 380 }}>
             We don't run sprints. We walk operators across the long territory between a story you're proud of and a pipeline you can predict.
