@@ -99,9 +99,9 @@ window.BW_CASE_DETAIL = {
       surface: "#FBF7EE",
       padding: "120px 56px",
       items: [
-        { src: `${BASE}/logo-fullcolor.webp`, alt: "Archdiocese of Detroit primary logo — mitred shield", caption: "Primary Logo · Mitred Shield", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "32px" },
-        { src: `${BASE}/emblem.webp`,         alt: "Unleash the Gospel emblem — circular badge", caption: "Emblem · Unleash the Gospel", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "32px" },
-        { src: `${BASE}/coat-of-arms.webp`,   alt: "Coat of Arms — Aspicientes in Jesum", caption: "Heraldic Mark · Coat of Arms", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "32px" },
+        { src: `${BASE}/logo-fullcolor.webp`, alt: "Archdiocese of Detroit primary logo — mitred shield", caption: "Primary Logo · Mitred Shield", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "32px", fit: "contain" },
+        { src: `${BASE}/emblem.webp`,         alt: "Unleash the Gospel emblem — circular badge", caption: "Emblem · Unleash the Gospel", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "32px", fit: "contain" },
+        { src: `${BASE}/coat-of-arms.webp`,   alt: "Coat of Arms — Aspicientes in Jesum", caption: "Heraldic Mark · Coat of Arms", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "32px", fit: "contain" },
       ],
     },
 
@@ -111,7 +111,8 @@ window.BW_CASE_DETAIL = {
       eyebrow: "§04 · Brand Foundation",
       title: "Doctrine, identity, and the documents that hold them.",
       cols: 2,
-      gap: 48,
+      gap: 32,
+      maxWidth: 1500,
       surfaceGradient: "linear-gradient(135deg, #0c3b60 0%, #082841 50%, #0c3b60 100%)",
       fg: "#FBF7EE",
       padding: "120px 56px",
