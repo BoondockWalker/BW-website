@@ -169,7 +169,6 @@ function FeaturedCase({ c }) {
   );
 }
 
-window.WorkHeader = WorkHeader;
 window.WorkMasthead = WorkMasthead;
 window.FilterRow = FilterRow;
 window.FeaturedCase = FeaturedCase;
