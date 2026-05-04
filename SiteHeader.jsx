@@ -56,6 +56,21 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
   const bisect = bisectProp !== undefined ? bisectProp : (sticky && !compact);
   const [navOpen, setNavOpen] = React.useState(false);
   const navRef = React.useRef(null);
+  // When sticky + non-compact, we want the top rail to scroll naturally off the
+  // top of the viewport before the pill pins. We measure the top rail height and
+  // set the sticky offset to its negative — so the header rides up exactly that
+  // far before sticking.
+  const topRailRef = React.useRef(null);
+  const [topRailH, setTopRailH] = React.useState(0);
+  React.useEffect(() => {
+    if (!sticky || compact) { setTopRailH(0); return; }
+    const measure = () => {
+      if (topRailRef.current) setTopRailH(topRailRef.current.offsetHeight);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [sticky, compact]);
 
   // Close on Esc or outside-click
   React.useEffect(() => {
@@ -89,7 +104,7 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
     `}</style>
     <header style={{
       position: sticky ? "sticky" : "relative",
-      top: sticky ? 0 : undefined,
+      top: sticky ? -topRailH : undefined,
       zIndex: sticky ? 50 : undefined,
       background: "transparent",
       color: bodyText,
@@ -127,7 +142,7 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
 
       {/* Top rail — vol / booking */}
       {!compact && (
-        <div style={{ position: "relative", display: "flex", justifyContent: "space-between", padding: "10px clamp(16px, 4vw, 28px)", fontFamily: BW.ffM, fontSize: isNarrow ? 9 : 10, letterSpacing: "0.22em", textTransform: "uppercase", color: subText, fontWeight: 600, borderBottom: `1px solid ${ruleCol}`, zIndex: 6, gap: 12, flexWrap: "wrap" }}>
+        <div ref={topRailRef} style={{ position: "relative", display: "flex", justifyContent: "space-between", padding: "10px clamp(16px, 4vw, 28px)", fontFamily: BW.ffM, fontSize: isNarrow ? 9 : 10, letterSpacing: "0.22em", textTransform: "uppercase", color: subText, fontWeight: 600, borderBottom: `1px solid ${ruleCol}`, zIndex: 6, gap: 12, flexWrap: "wrap" }}>
           <span>BDW · Vol XII · No 04</span>
           <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ width: 7, height: 7, background: BW.brass, borderRadius: "50%", boxShadow: "0 0 0 4px rgba(200,150,43,0.25)" }} />
