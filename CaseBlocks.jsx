@@ -70,7 +70,7 @@ function CaseHeroFullBleed({ d }) {
   return (
     <section style={{
       position: "relative",
-      background: BW.ink,
+      background: h.bg || BW.ink,
       color: BW.chalk50,
       fontFamily: BW.ffG,
       minHeight: "100vh",
