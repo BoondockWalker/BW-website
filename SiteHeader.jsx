@@ -21,7 +21,12 @@
                    vertical midline — leaving the bottom half transparent so the
                    pill appears to float over scrolling content.
                    When sticky AND compact (case detail pages), the header stays
-                   fully transparent so the editorial hero shows through. */
+                   fully transparent so the editorial hero shows through.
+     bisect      — explicit override for the chalk-fill-above-pill-midline treatment.
+                   Defaults to (sticky && !compact). Set bisect=false on landing
+                   pages whose hero uses a strong color (homepage clay, etc.) — the
+                   header stays fully transparent across its full height so the hero
+                   color reads continuously without a chalk seam at the pill midline. */
 
 const SITE_NAV_ITEMS = [
   { label: "Work",        href: "work.html" },
@@ -31,7 +36,7 @@ const SITE_NAV_ITEMS = [
   { label: "About",        href: "about.html" },
 ];
 
-function SiteHeader({ current, breadcrumb, tone = "light", compact = false, sticky = false }) {
+function SiteHeader({ current, breadcrumb, tone = "light", compact = false, sticky = false, bisect: bisectProp }) {
   // tone === "light" → text on light/clay surfaces (chalk text on hero, dark text on chalk).
   // tone === "dark"  → text on dark/ink surfaces (chalk text).
   // The header is transparent and inherits the underlying section/page background,
@@ -44,10 +49,11 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
   const isMobile = useMediaQuery("(max-width: 900px)");
   const isNarrow = useMediaQuery("(max-width: 560px)");
   const heroBandHeight = isNarrow ? 25 : 30;  // half pill height — keeps the bisect aligned at the pill's vertical midline
-  // Bisect treatment (chalk fill above pill midline) only applies to non-compact
-  // sticky headers. Compact + sticky stays fully transparent so the editorial
-  // hero on case-detail pages reads as designed.
-  const bisect = sticky && !compact;
+  // Bisect treatment (chalk fill above pill midline) defaults to non-compact
+  // sticky headers. Pages with a strong-colored hero (homepage clay, etc.) can
+  // pass bisect=false so the header stays fully transparent and the hero color
+  // reads continuously through the full header height.
+  const bisect = bisectProp !== undefined ? bisectProp : (sticky && !compact);
   const [navOpen, setNavOpen] = React.useState(false);
   const navRef = React.useRef(null);
 
