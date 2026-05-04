@@ -32,6 +32,9 @@ window.BW_CASE_DETAIL = {
     imagePosition: "center center",
     imageBg: "#0a1428",
     scrim: "bottomOnly",
+    clientLogo: `${BASE}/logo.svg`,
+    clientLogoHeight: 60,
+    clientLogoInvert: true,
     standfirst: "Calyx is a managed services provider deploying enterprise-grade IT for the small and mid-market businesses who can't afford to think small. Boondock Walker built the brand foundation, identity system, sub-brand architecture, and demand campaigns that match the size of their ambition.",
   },
 
