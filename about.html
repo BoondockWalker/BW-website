@@ -59,6 +59,7 @@ function AboutPage() {
 
   return (
     <div style={{ background: BW.chalk, minHeight: "100vh" }}>
+      <SiteHeader current="About" sticky={true} heroBg="#F4ECDA" />
       <AboutHero showDiagram={tweaks.showDiagram} />
       <AboutCodes codes={AB_CODES} />
       {tweaks.showBuild && <AboutBuild panels={AB_BUILD} />}

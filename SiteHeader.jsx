@@ -11,7 +11,18 @@
                    e.g. { label: "O'Neil Digital Solutions", parent: {href:"work.html", label:"Work"}, badge: "Specimen №01" }
      tone        — "light" (default) for clay/chalk surfaces, "dark" for ink surfaces.
                    Affects the top rail rule and text only — the dark pill stays dark on both.
-     compact     — slim variant w/o the top "vol XII" rail. Default false. */
+     compact     — slim variant w/o the top "vol XII" rail. Default false.
+     sticky      — when true, header uses position:sticky;top:0 so the nav rides the
+                   viewport as the page scrolls. Forces the header to paint a solid
+                   bg (defaults to chalk) so hash + content under it doesn't bleed
+                   through awkwardly during scroll. Default false. Case-detail pages
+                   should NOT set this — they already absolute-position the header
+                   over their hero.
+     heroBg      — color of the next section. When set, the header paints a band of
+                   that color across its bottom 30px so the dark pill nav visually
+                   bisects the hash background and the hero color: top half of pill
+                   sits on hash, bottom half sits on hero. Pass the masthead bg color
+                   from each landing page that wants the bisect effect. */
 
 const SITE_NAV_ITEMS = [
   { label: "Work",        href: "work.html" },
@@ -21,16 +32,19 @@ const SITE_NAV_ITEMS = [
   { label: "About",        href: "about.html" },
 ];
 
-function SiteHeader({ current, breadcrumb, tone = "light", compact = false }) {
+function SiteHeader({ current, breadcrumb, tone = "light", compact = false, sticky = false, heroBg }) {
   // tone === "light" → text on light/clay surfaces (chalk text on hero, dark text on chalk).
   // tone === "dark"  → text on dark/ink surfaces (chalk text).
-  // The header is transparent and inherits the underlying section/page background.
+  // The header is transparent and inherits the underlying section/page background,
+  // unless `sticky` is set, in which case it paints a solid chalk bg so it can
+  // ride the viewport without scrolling content showing through.
   const isDark = tone === "dark";
   const bodyText = isDark ? BW.chalk50 : BW.ink;
   const subText  = isDark ? BW.chalk2 : "rgba(20,16,12,0.6)";
   const ruleCol  = isDark ? "rgba(244,236,218,0.18)" : "rgba(20,16,12,0.12)";
   const isMobile = useMediaQuery("(max-width: 900px)");
   const isNarrow = useMediaQuery("(max-width: 560px)");
+  const heroBandHeight = isNarrow ? 25 : 30;  // half pill height — keeps the bisect aligned at the pill's vertical midline
   const [navOpen, setNavOpen] = React.useState(false);
   const navRef = React.useRef(null);
 
@@ -64,9 +78,29 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false }) {
       }
       .bdw-nav-drop { animation: bdwNavDrop 160ms ease-out both; }
     `}</style>
-    <header style={{ position: "relative", background: "transparent", color: bodyText, fontFamily: BW.ffG, overflow: "visible" }}>
+    <header style={{
+      position: sticky ? "sticky" : "relative",
+      top: sticky ? 0 : undefined,
+      zIndex: sticky ? 50 : undefined,
+      background: sticky ? BW.chalk : "transparent",
+      color: bodyText,
+      fontFamily: BW.ffG,
+      overflow: "visible",
+    }}>
       {/* hatch overlay — multiplies against whatever section/page bg shows through */}
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none", zIndex: 1 }} />
+
+      {/* hero color band — paints the next section's color across the bottom of the header
+          so the dark pill nav visually bisects: top half on hash, bottom half on hero. */}
+      {heroBg && (
+        <div aria-hidden="true" style={{
+          position: "absolute", bottom: 0, left: 0, right: 0,
+          height: heroBandHeight,
+          background: heroBg,
+          zIndex: 2,
+          pointerEvents: "none",
+        }} />
+      )}
 
       {/* Top rail — vol / booking */}
       {!compact && (

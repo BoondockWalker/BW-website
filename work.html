@@ -53,7 +53,7 @@ function WorkApp() {
 
   return (
     <div>
-      <SiteHeader current="Work" />
+      <SiteHeader current="Work" sticky={true} heroBg="#FBF7EE" />
       <WorkMasthead count={all.length} filterCount={sorted.length + 1} />
       <FeaturedCase c={featured} />
       <FilterRow {...{ pillar, setPillar, industry, setIndustry, outcome, setOutcome, sort, setSort, view, setView }} />

@@ -74,6 +74,7 @@ function FieldNotesPage() {
 
   return (
     <div style={{ background: BW.chalk, minHeight: "100vh" }}>
+      <SiteHeader current="Field Notes" sticky={true} heroBg="#F4ECDA" />
       <FNMasthead filterCount={filtered.length} totalCount={FN_NOTES.length} />
       <div style={{ position: "sticky", top: 0, zIndex: 20 }}><FNFilterRail activeTag={activeTag} setActiveTag={setActiveTag} themed={tweaks.themedTags} /></div>
 
