@@ -132,8 +132,8 @@ window.BW_CASE_DETAIL = {
       surface: "#FBF7EE",
       padding: "120px 56px",
       items: [
-        { src: `${BASE}/brand-guidelines-emblem.png`, alt: "The Emblem — usage and reversed treatment", caption: "Brand Identity · The Emblem", shadow: true },
-        { src: `${BASE}/brand-guidelines-color.png`,  alt: "Secondary Marks and Color Palette", caption: "Brand Identity · Marks + Color", shadow: true },
+        { src: `${BASE}/brand-guidelines-emblem.png`, alt: "The Emblem — usage and reversed treatment", caption: "Brand Identity · The Emblem" },
+        { src: `${BASE}/brand-guidelines-color.png`,  alt: "Secondary Marks and Color Palette", caption: "Brand Identity · Marks + Color" },
       ],
     },
 
