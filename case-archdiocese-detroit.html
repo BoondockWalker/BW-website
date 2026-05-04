@@ -35,10 +35,7 @@ function CaseApp() {
   const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : (all.length ? all[0] : null);
   return (
     <div>
-      {/* Header overlays the hero — absolute over the cover plate so it starts at top:0 */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 50 }}>
-        <SiteHeader tone="dark" current="Work" compact={true} />
-      </div>
+      <SiteHeader current="Work" sticky={true} compact={true} />
       <CaseHero d={d} />
       <CaseBlocks blocks={d.blocks} />
       <CaseAdjacent prev={prev} next={next} />

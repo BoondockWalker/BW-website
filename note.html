@@ -50,6 +50,7 @@ function App() {
 
   return (
     <>
+      <SiteHeader current="Field Notes" sticky={true} breadcrumb={{ parent: { href: "field-notes.html", label: "Field Notes" }, label: note.issue, badge: note.tag.toUpperCase() }} />
       <NoteDetailPage
         note={note}
         themed={tweaks.themedTags}
