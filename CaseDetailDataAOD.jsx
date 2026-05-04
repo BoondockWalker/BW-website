@@ -25,7 +25,7 @@ window.BW_CASE_DETAIL = {
     imageAlt: "Archdiocese of Detroit — Unleash the Gospel cover",
     imagePosition: "center center",
     imageBg: "#3A0E14",
-    clientLogo: `${BASE}/logo.png`,
+    clientLogo: `${BASE}/logo.svg`,
     clientLogoHeight: 96,
     clientLogoInvert: true,
     standfirst: "The Archdiocese of Detroit is the spiritual home for nearly 1.3 million Catholics across six counties in southeast Michigan — a 190-year-old institution that, in 2017, was called to reimagine itself as a missionary movement.",

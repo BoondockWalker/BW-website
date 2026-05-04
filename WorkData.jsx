@@ -56,7 +56,7 @@ window.BW_CASES = [
     imagery: "photo",
     heroImage: "assets/cases/archdiocese-detroit/hero.jpg",
     featuredBg: "linear-gradient(90deg, #2A0810 0%, #3A0E14 55%, #5E1A1F 100%)",
-    clientLogo: "assets/cases/archdiocese-detroit/logo.png",
+    clientLogo: "assets/cases/archdiocese-detroit/logo.svg",
     clientLogoInvert: true,
     clientLogoHeight: 72,
     href: "case-archdiocese-detroit.html",
