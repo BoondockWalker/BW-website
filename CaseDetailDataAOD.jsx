@@ -30,6 +30,7 @@ window.BW_CASE_DETAIL = {
     imageAlt: "Archdiocese of Detroit — brand book cover, red and gold",
     imagePosition: "center center",
     imageBg: "#a93439",
+    scrim: "bottomOnly",
     clientLogo: `${BASE}/logo.svg`,
     clientLogoHeight: 96,
     clientLogoInvert: true,
