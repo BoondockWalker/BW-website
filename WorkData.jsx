@@ -83,7 +83,7 @@ window.BW_CASES = [
     duration: "Multi-year engagement",
     team: ["Strategy", "Brand", "Demand"],
     imagery: "photo",
-    heroImage: "assets/cases/calyx/stationery.webp",
+    heroImage: "assets/cases/calyx/hero.jpg",
     featuredBg: "linear-gradient(90deg, #2a323b 0%, #3a4754 55%, #e95d15 100%)",
     clientLogo: "assets/cases/calyx/logo.svg",
     clientLogoInvert: true,

@@ -27,10 +27,10 @@ window.BW_CASE_DETAIL = {
     variant: "fullbleed",
     eyebrow: "Client Success Story · Specimen №03",
     title: "A better way to do business.",
-    image: `${BASE}/stationery.webp`,
-    imageAlt: "Calyx — stationery system, orange and white on slate",
+    image: `${BASE}/hero.jpg`,
+    imageAlt: "Calyx — campfire under the Milky Way at dusk",
     imagePosition: "center center",
-    imageBg: "#3a4754",
+    imageBg: "#0a1428",
     scrim: "bottomOnly",
     standfirst: "Calyx is a managed services provider deploying enterprise-grade IT for the small and mid-market businesses who can't afford to think small. Boondock Walker built the brand foundation, identity system, sub-brand architecture, and demand campaigns that match the size of their ambition.",
   },
@@ -69,6 +69,18 @@ window.BW_CASE_DETAIL = {
       accent: "#e95d15",
     },
 
+    /* -- Stationery system — full-bleed on slate ----------------- */
+    {
+      kind: "fullbleed",
+      src: `${BASE}/stationery.webp`,
+      alt: "Calyx stationery system — letterhead, business card, envelope",
+      caption: { label: "fig. 02 · System in Print", title: "Stationery system — letterhead, card, envelope", fg: "#FBF7EE" },
+      surface: "#1a1f25",
+      height: "min(82vh, 760px)",
+      fit: "contain",
+      imagePadding: "60px 28px",
+    },
+
     /* -- Logo construction — image + text split ------------------ */
     {
       kind: "imagetext",
@@ -76,7 +88,7 @@ window.BW_CASE_DETAIL = {
       src: `${BASE}/logo-construction.webp`,
       alt: "Calyx logo — golden ratio construction grid",
       imageBg: "#FBF7EE",
-      eyebrow: "§03 · Mark",
+      eyebrow: "§04 · Mark",
       title: "A lotus, drawn on the golden ratio.",
       body: [
         "The Calyx mark is a stylized lotus — gray outer petals, orange inner petals — built on a golden-ratio construction grid. The mark scales cleanly from a 16px favicon to a building-sized billboard without losing its proportions.",
@@ -89,7 +101,7 @@ window.BW_CASE_DETAIL = {
       kind: "fullbleed",
       src: `${BASE}/logo-grid.webp`,
       alt: "Calyx logo — color system across orange, slate, royal, powder",
-      caption: { label: "fig. 03 · Color System", title: "Four ground colors. One mark. Always recognizable.", fg: "#FBF7EE" },
+      caption: { label: "fig. 05 · Color System", title: "Four ground colors. One mark. Always recognizable.", fg: "#FBF7EE" },
       surface: "#3a4754",
       height: "min(82vh, 760px)",
       fit: "contain",
@@ -99,7 +111,7 @@ window.BW_CASE_DETAIL = {
     /* -- Sub-brand architecture — three-up ----------------------- */
     {
       kind: "multi",
-      eyebrow: "§04 · Sub-brand Architecture",
+      eyebrow: "§06 · Sub-brand Architecture",
       title: "One parent. Three product lines, each pulling its weight.",
       cols: 3,
       gap: 32,
@@ -110,6 +122,18 @@ window.BW_CASE_DETAIL = {
         { src: `${BASE}/sub-groundwork.webp`,  alt: "calyx groundwork — sub-brand wordmark",  caption: "Groundwork · Foundational managed IT", bg: "#FBF7EE", aspect: "16 / 9", tilePadding: "48px", fit: "contain" },
         { src: `${BASE}/sub-intelliwork.webp`, alt: "calyx intelliwork — sub-brand wordmark", caption: "Intelliwork · Intelligence + insight", bg: "#FBF7EE", aspect: "16 / 9", tilePadding: "48px", fit: "contain" },
       ],
+    },
+
+    /* -- Sales sheets — full-bleed ------------------------------- */
+    {
+      kind: "fullbleed",
+      src: `${BASE}/sales-sheets.png`,
+      alt: "Calyx sales sheets — calyxframework, calyxgroundwork, calyxnetwork",
+      caption: { label: "fig. 07 · Sales Collateral", title: "Vertical sheets — Framework · Groundwork · Network" },
+      surface: "#FBF7EE",
+      height: "min(86vh, 820px)",
+      fit: "contain",
+      imagePadding: "40px 28px",
     },
 
     /* -- Big stat callout — placeholder pending client release ---- */
@@ -124,7 +148,7 @@ window.BW_CASE_DETAIL = {
     /* -- LinkedIn campaign — slider ------------------------------ */
     {
       kind: "slider",
-      eyebrow: "§05 · Demand Campaign",
+      eyebrow: "§08 · Demand Campaign",
       title: "Naming the problem in a single image.",
       slideHeight: 520,
       items: [
@@ -140,7 +164,7 @@ window.BW_CASE_DETAIL = {
       kind: "fullbleed",
       src: `${BASE}/site.jpg`,
       alt: "CalyxIT.com — responsive site, dual-screen mockup",
-      caption: { label: "fig. 06 · Corporate Website", title: "CalyxIT.com — \"We create a better way to do business.\"" },
+      caption: { label: "fig. 09 · Corporate Website", title: "CalyxIT.com — \"We create a better way to do business.\"" },
       surface: "#FBF7EE",
       height: "min(80vh, 760px)",
       fit: "contain",
@@ -154,7 +178,7 @@ window.BW_CASE_DETAIL = {
       src: `${BASE}/rocket-sauce.webp`,
       alt: "Rocket Sauce — Calyx monthly newsletter and event series",
       imageBg: "#FBF7EE",
-      eyebrow: "§07 · Owned Channel",
+      eyebrow: "§10 · Owned Channel",
       title: "Rocket Sauce — the newsletter that earned the inbox.",
       body: [
         "Rocket Sauce is Calyx's monthly newsletter — insights, inspiration, and occasional unicorn-sighting reports for the people running IT at small and mid-market companies.",
@@ -165,7 +189,7 @@ window.BW_CASE_DETAIL = {
     /* -- Outcomes prose ------------------------------------------- */
     {
       kind: "prose",
-      eyebrow: "§08 · Outcomes",
+      eyebrow: "§11 · Outcomes",
       title: "Brand presence, sales motion, growth.",
       body: [
         "Through the partnership, Calyx established a recognizable brand presence in a category dominated by interchangeable competitors, aligned the marketing motion to the sales motion, and drove measurable growth against an ambitious plan. The lotus shows up on every door — and the people behind those doors recognize it.",
@@ -178,7 +202,7 @@ window.BW_CASE_DETAIL = {
     /* -- Receipts grid ------------------------------------------- */
     {
       kind: "statrow",
-      eyebrow: "§09 · Receipts",
+      eyebrow: "§12 · Receipts",
       title: "What we can show. What we will.",
       accent: "#e95d15",
       items: [
