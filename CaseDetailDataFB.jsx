@@ -106,9 +106,9 @@ window.BW_CASE_DETAIL = {
     {
       kind: "imagetext",
       side: "left",
-      src: `${BASE}/onesuite-ecosystem.webp`,
+      src: `${BASE}/onesuite-ecosystem.png`,
       alt: "ONEsuite Product Ecosystem Model — interlocking ring diagram",
-      imageBg: "#FFFFFF",
+      imageBg: "#FBF7EE",
       eyebrow: "§04 · Product Ecosystem Model",
       title: "Simplifying a complex product offering.",
       body: [
