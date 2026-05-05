@@ -26,6 +26,33 @@
 <script type="text/babel" src="WorkArchive.jsx"></script>
 <script type="text/babel" src="WorkGrid.jsx"></script>
 <script type="text/babel">
+// Rotates the featured specimen on a per-session basis using two cookies:
+//   bw_featured_idx     — long-lived, stores the last shown index
+//   bw_featured_session — session-only marker; presence means "same session,
+//                         keep showing the same featured specimen"
+// On a new session (cookie missing), advance to the next index and persist.
+// Refreshes within a session show the same specimen (the session marker
+// suppresses rotation until the browser/tab session ends).
+function pickRotatedFeatured(all) {
+  if (typeof document === "undefined" || !all.length) return all[0];
+  const cookies = Object.fromEntries(
+    document.cookie.split(";").map(c => {
+      const eq = c.indexOf("=");
+      return eq < 0 ? [c.trim(), ""] : [c.slice(0, eq).trim(), c.slice(eq + 1).trim()];
+    }).filter(([k]) => k)
+  );
+  const persisted = parseInt(cookies["bw_featured_idx"], 10);
+  let idx;
+  if (cookies["bw_featured_session"]) {
+    idx = isNaN(persisted) ? 0 : persisted;
+  } else {
+    idx = isNaN(persisted) ? 0 : (persisted + 1) % all.length;
+    document.cookie = `bw_featured_idx=${idx}; max-age=${60 * 60 * 24 * 365}; path=/`;
+    document.cookie = `bw_featured_session=1; path=/`;
+  }
+  return all[idx] || all[0];
+}
+
 function WorkApp() {
   const [pillar, setPillar] = React.useState("All");
   const [industry, setIndustry] = React.useState("All industries");
@@ -34,7 +61,7 @@ function WorkApp() {
   const [view, setView] = React.useState("grid");
 
   const all = window.BW_CASES;
-  const featured = all.find(c => c.featured) || all[0];
+  const featured = React.useMemo(() => pickRotatedFeatured(all), [all]);
   const rest = all.filter(c => c.slug !== featured.slug);
 
   const filtered = rest.filter(c => {
