@@ -21,14 +21,14 @@ window.BW_CASE_DETAIL = {
     variant: "fullbleed",
     eyebrow: "Client Success Story · Specimen №04",
     title: "Measuring Boundaries in Infinities.",
-    /* Typographic-only hero — no image. The campaign assets all carry their own typography
-       which would compete with the headline; the work itself is about the position and tagline,
-       so the cover plate leans typographic and the campaign system gets its own dedicated 4-up below. */
-    bg: "linear-gradient(165deg, #1A4F7A 0%, #0F3D66 45%, #082240 100%)",
+    image: `${TT_BASE}/hero.jpg`,
+    imageAlt: "TT Electronics IMS — kid astronaut profile with rocket launch double-exposure, framed by a coastal launchpad",
+    imagePosition: "center center",
     imageBg: "#0F2A44",
+    scrim: "bottomOnly",
     clientLogo: `${TT_BASE}/TT-logo-mono.svg`,
-    clientLogoHeight: 56,
-    clientLogoInvert: true,
+    clientLogoHeight: 72,
+    clientLogoInvert: false,
     standfirst: "TT Electronics IMS specializes in low-volume, high-mix electronics for aerospace & defense, medical, industrial, and rail. Globally distributed, locally embedded — but lost inside the parent company's shadow. We built the brand foundation that gave IMS its own voice, its own tagline, and its own pipeline.",
   },
 
