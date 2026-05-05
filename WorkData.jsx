@@ -25,7 +25,7 @@ window.BW_CASES = [
     team: ["Strategy", "Brand", "Lifecycle", "Lab"],
     imagery: "photo",
     heroImage: "assets/cases/oneil/hero.jpg",
-    featuredBg: "linear-gradient(45deg, #0E2E50 0%, #1A4978 50%, #2C7A8C 100%)",
+    featuredBg: "linear-gradient(45deg, #0A223C 0%, #1A4978 50%, #2C7A8C 100%)",
     clientLogo: "assets/cases/oneil/logo.webp",
     clientLogoInvert: true,
     clientLogoHeight: 72,
