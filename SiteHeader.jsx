@@ -103,8 +103,15 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
       .bdw-nav-drop { animation: bdwNavDrop 160ms ease-out both; }
     `}</style>
     <header style={{
-      position: sticky ? "sticky" : "relative",
-      top: sticky ? -topRailH : undefined,
+      // Compact + sticky uses position:fixed so it goes out of flow and overlays
+      // the editorial cover-plate hero (case-detail pages have padding-top baked
+      // into the hero specifically to clear the header). Non-compact sticky uses
+      // position:sticky with -topRailH offset so the top rail can scroll off
+      // before the pill pins (scroll-shrink behavior on landing pages).
+      position: sticky ? (compact ? "fixed" : "sticky") : "relative",
+      top: sticky ? (compact ? 0 : -topRailH) : undefined,
+      left: sticky && compact ? 0 : undefined,
+      right: sticky && compact ? 0 : undefined,
       zIndex: sticky ? 50 : undefined,
       background: "transparent",
       color: bodyText,
