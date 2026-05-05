@@ -6,8 +6,16 @@
 /* ───── §01 Work · Title masthead (chalk paper) ───── */
 function WorkMasthead({ count, filterCount }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
+  const isNarrow = useMediaQuery("(max-width: 560px)");
+  // Pull the masthead up by half-pill-height so its chalk50 bg paints behind
+  // the pill's lower transparent half — the pill visually bisects the
+  // chalk2 (body) → chalk50 (masthead) seam at its vertical midline. On
+  // scroll, the masthead scrolls past the pill and the lower half becomes
+  // truly transparent over whatever's beneath. Matches heroBandHeight in
+  // SiteHeader.
+  const heroOverlap = isNarrow ? 25 : 30;
   return (
-    <section style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative" }}>
+    <section style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", marginTop: -heroOverlap }}>
       <div style={{ padding: "clamp(48px, 7vw, 72px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 56px)", maxWidth: 1440, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 32, flexWrap: "wrap" }}>
           <span>§01</span>
