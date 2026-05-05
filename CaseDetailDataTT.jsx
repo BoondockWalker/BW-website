@@ -21,6 +21,7 @@ window.BW_CASE_DETAIL = {
     variant: "fullbleed",
     eyebrow: "Client Success Story · Specimen №04",
     title: "Measuring Boundaries in Infinities.",
+    titleColor: "#082240",
     image: `${TT_BASE}/hero.jpg`,
     imageAlt: "TT Electronics IMS — kid astronaut profile with rocket launch double-exposure, framed by a coastal launchpad",
     imagePosition: "center center",
