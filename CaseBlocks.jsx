@@ -158,7 +158,7 @@ function CaseHeroFullBleed({ d }) {
           letterSpacing: "-0.045em",
           lineHeight: 0.86,
           margin: "0 0 64px",
-          color: BW.chalk50,
+          color: h.titleColor || BW.chalk50,
           fontStyle: "italic",
           maxWidth: "16ch",
         }}>
