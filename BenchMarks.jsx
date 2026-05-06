@@ -42,7 +42,7 @@ function BMTag({ children, light }) {
 }
 
 /* ───── Masthead — §01 ───── */
-function BMMasthead({ overrideMode }) {
+function BMMasthead() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const today = new Date();
   const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
@@ -53,11 +53,12 @@ function BMMasthead({ overrideMode }) {
   return (
     <section style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", marginTop: -heroOverlap }}>
       <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(56px, 8vw, 96px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 64px)" }}>
-        {/* Masthead top rail */}
+        {/* Masthead top rail — note: archive-vs-today state lives on the §02
+            eyebrow, not here, so this rail always reads "Refreshed daily". */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 14, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700, flexWrap: "wrap", gap: 12 }}>
           <span>From the desk · Vol. XII</span>
           <span>{months[today.getMonth()]} {today.getDate()} · {today.getFullYear()}</span>
-          <span>{overrideMode ? "Pulled from the archive" : "Refreshed daily"}</span>
+          <span>Refreshed daily</span>
         </div>
 
         {/* Wordmark */}
@@ -136,7 +137,7 @@ function BMCuratorStrip({ curator }) {
 }
 
 /* ───── §02 Today — square specimen on the left, commentary stack on the right ───── */
-function BMToday({ specimen, overrideMode }) {
+function BMToday({ specimen, isArchive, onPrev, onNext }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
 
   if (!specimen) {
@@ -159,7 +160,7 @@ function BMToday({ specimen, overrideMode }) {
 
   // Format the date as "TUE 05 MAY 2026" for the eyebrow.
   const eyebrowDate = formatBenchDate(specimen.publishedAt);
-  const eyebrowLabel = overrideMode ? "Pulled from the archive" : "Today";
+  const eyebrowLabel = isArchive ? "Pulled from the archive" : "Today";
 
   return (
     <section style={{ background: BW.chalk, borderBottom: `1.5px solid ${BW.ink}` }}>
@@ -168,7 +169,7 @@ function BMToday({ specimen, overrideMode }) {
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: "clamp(24px, 3vw, 36px)", flexWrap: "wrap" }}>
           <span>§02</span>
           <span style={{ width: 28, height: 1, background: BW.clay }} />
-          <span>{overrideMode ? "Pulled from the archive" : "Today, on the bench"}</span>
+          <span>Today, on the bench</span>
           <span style={{ flex: 1, height: 1, background: BW.ruleL, minWidth: 32 }} />
           <span style={{ color: BW.ink2 }}>{specimen.publishedAt}</span>
         </div>
@@ -177,13 +178,69 @@ function BMToday({ specimen, overrideMode }) {
             On desktop: left = specimen square, right = full content stack.
             On mobile: collapses to a single column and the image is rendered
             in source order between the section rail and the hook (we replicate
-            the square inline below for mobile only). */}
+            the square inline below for mobile only).
+            The relative positioning is the anchor for the desktop prev/next
+            nav arrows that sit in the gutters outside the specimen frame. */}
         <div style={{
+          position: "relative",
           display: "grid",
           gridTemplateColumns: isMobile ? "1fr" : "clamp(380px, 36vw, 560px) minmax(0, 1fr)",
           gap: isMobile ? 24 : "clamp(40px, 4.5vw, 72px)",
           alignItems: "start",
         }}>
+          {/* Desktop-only nav arrows — live in the page gutters, vertically
+              centered against the specimen square. Hidden on mobile because
+              the actions row carries the prev/next there. */}
+          {!isMobile && (
+            <>
+              <button
+                type="button"
+                onClick={onPrev}
+                aria-label="Previous specimen"
+                className="bm-nav"
+                style={{
+                  position: "absolute",
+                  top: "min(50%, 280px)",
+                  left: "calc(-1 * clamp(20px, 5vw, 64px) + 8px)",
+                  transform: "translateY(-50%)",
+                  width: 44, height: 44,
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  background: BW.chalk, color: BW.ink,
+                  border: `1px solid ${BW.brass}`, borderRadius: 999,
+                  cursor: "pointer", padding: 0,
+                  transition: "background 180ms, color 180ms, transform 180ms",
+                  zIndex: 2,
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={onNext}
+                aria-label="Next specimen"
+                className="bm-nav"
+                style={{
+                  position: "absolute",
+                  top: "min(50%, 280px)",
+                  right: "calc(-1 * clamp(20px, 5vw, 64px) + 8px)",
+                  transform: "translateY(-50%)",
+                  width: 44, height: 44,
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  background: BW.chalk, color: BW.ink,
+                  border: `1px solid ${BW.brass}`, borderRadius: 999,
+                  cursor: "pointer", padding: 0,
+                  transition: "background 180ms, color 180ms, transform 180ms",
+                  zIndex: 2,
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </>
+          )}
           {/* LEFT — square specimen frame. Hidden on mobile; the inline copy
               below handles the mobile order. */}
           {!isMobile && (
@@ -330,10 +387,10 @@ function BMToday({ specimen, overrideMode }) {
               </div>
             )}
 
-            {/* 8. Action row — permalink + share buttons */}
+            {/* 8. Action row — permalink + share buttons (and mobile prev/next) */}
             <div style={{ marginTop: "clamp(28px, 3vw, 40px)", paddingTop: 22, borderTop: `1px solid ${BW.ruleL}` }}>
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 12 }}>Share / save</div>
-              <BMActions specimenId={specimen.id} layout="row" />
+              <BMActions specimenId={specimen.id} layout="row" mobilePrev={onPrev} mobileNext={onNext} mobile={isMobile} />
             </div>
           </div>
         </div>
@@ -502,7 +559,7 @@ function BMHeroAudio({ s }) {
 }
 
 /* ───── §02 Actions row — Permalink (live), IG / LinkedIn (coming soon) ───── */
-function BMActions({ specimenId, layout }) {
+function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
   const [copied, setCopied] = React.useState(false);
   const isMobile = useMediaQuery("(max-width: 560px)");
   // Row on desktop (when called with layout="row"); column on narrow viewports.
@@ -547,6 +604,31 @@ function BMActions({ specimenId, layout }) {
     </button>
   );
 
+  // Mobile-only prev/next icon buttons — render only when the parent passes
+  // handlers AND we are actually on mobile. Square 40px buttons that match
+  // the desktop nav arrow visual but live in the actions row.
+  const showMobileNav = mobile && mobilePrev && mobileNext;
+  const NavIconBtn = ({ label, onClick, dir }) => (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className="bm-action bm-nav"
+      style={{
+        width: 44, height: 44, padding: 0,
+        display: "inline-flex", alignItems: "center", justifyContent: "center",
+        background: BW.chalk, color: BW.ink,
+        border: `1.5px solid ${BW.ink}`, borderRadius: 999,
+        cursor: "pointer", flexShrink: 0,
+        transition: "background 180ms, color 180ms",
+      }}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {dir === "prev" ? <polyline points="15 18 9 12 15 6" /> : <polyline points="9 18 15 12 9 6" />}
+      </svg>
+    </button>
+  );
+
   return (
     <div style={{
       display: "flex",
@@ -555,6 +637,9 @@ function BMActions({ specimenId, layout }) {
       gap: 10,
       alignItems: stack ? "stretch" : "center",
     }}>
+      {showMobileNav && (
+        <NavIconBtn label="Previous specimen" onClick={mobilePrev} dir="prev" />
+      )}
       <a
         href="#"
         onClick={onCopy}
@@ -567,12 +652,16 @@ function BMActions({ specimenId, layout }) {
           border: `1.5px solid ${BW.ink}`, background: copied ? BW.ink : "transparent",
           color: copied ? BW.brass : BW.ink, textDecoration: "none",
           cursor: "pointer", transition: "all 200ms",
+          flex: stack ? "0 0 auto" : "1 1 auto",
         }}
       >
         {copied ? "Permalink copied" : "Copy permalink"}
       </a>
       <SoonBtn label="Share to IG" />
       <SoonBtn label="Share to LinkedIn" />
+      {showMobileNav && (
+        <NavIconBtn label="Next specimen" onClick={mobileNext} dir="next" />
+      )}
     </div>
   );
 }
@@ -827,16 +916,90 @@ function BMFooter() {
 /* ───── Page composition ───── */
 function BenchMarksPage() {
   const data = (typeof window !== "undefined" && window.BW_BENCHMARKS) || { specimens: [], desk: [], edits: [], curator: null, pinnedSpecimenId: null };
-  const overrideId = React.useMemo(() => getOverrideId(), []);
-  const todaySpecimen = React.useMemo(() => {
-    if (overrideId) {
-      const found = (data.specimens || []).find(s => s.id === overrideId);
-      if (found) return found;
-    }
-    return pickToday(data.specimens, data.pinnedSpecimenId);
-  }, [data.specimens, data.pinnedSpecimenId, overrideId]);
 
-  const overrideMode = !!(overrideId && todaySpecimen && todaySpecimen.id === overrideId);
+  // currentId tracks the specimen the page is showing right now. It seeds
+  // from the URL and updates when the prev/next nav fires. We listen to
+  // popstate so the back/forward buttons re-sync the view.
+  const [currentId, setCurrentId] = React.useState(() => getOverrideId());
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onPop = () => setCurrentId(getOverrideId());
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  // Today's deterministic pick — independent of the URL override. We need
+  // this separately so we can decide whether the showing specimen is "today"
+  // or "from the archive" (which is true only when the URL id resolves to a
+  // specimen *other than* today's pick).
+  const todayPick = React.useMemo(
+    () => pickToday(data.specimens, data.pinnedSpecimenId),
+    [data.specimens, data.pinnedSpecimenId]
+  );
+
+  const requested = React.useMemo(() => {
+    if (!currentId) return null;
+    return (data.specimens || []).find(s => s.id === currentId) || null;
+  }, [data.specimens, currentId]);
+
+  const todaySpecimen = requested || todayPick;
+  const isArchive = !!requested && (!todayPick || requested.id !== todayPick.id);
+
+  // Sorted specimens (publishedAt desc) — that's the order BenchMarksData
+  // already provides, but we sort defensively. Index 0 is the newest, last
+  // index is the oldest. "Next" = newer = -1; "Prev" = older = +1. Both wrap.
+  const sortedSpecimens = React.useMemo(
+    () => [...(data.specimens || [])].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1)),
+    [data.specimens]
+  );
+
+  const goTo = React.useCallback((id) => {
+    if (typeof window === "undefined" || !id) return;
+    const params = new URLSearchParams(window.location.search);
+    params.set("id", id);
+    const newUrl = `${window.location.pathname}?${params.toString()}${window.location.hash || ""}`;
+    // pushState — not replaceState — so the browser back button steps
+    // through the specimens the user actually visited.
+    window.history.pushState({ specimenId: id }, "", newUrl);
+    setCurrentId(id);
+  }, []);
+
+  const navigate = React.useCallback((dir) => {
+    if (sortedSpecimens.length === 0) return;
+    const showingId = (todaySpecimen && todaySpecimen.id) || sortedSpecimens[0].id;
+    let idx = sortedSpecimens.findIndex(s => s.id === showingId);
+    if (idx === -1) idx = 0;
+    // dir = "next" → newer specimen → smaller index (with wrap to last).
+    // dir = "prev" → older specimen → larger index (with wrap to first).
+    const len = sortedSpecimens.length;
+    const nextIdx = dir === "next"
+      ? (idx - 1 + len) % len
+      : (idx + 1) % len;
+    goTo(sortedSpecimens[nextIdx].id);
+  }, [sortedSpecimens, todaySpecimen, goTo]);
+
+  const onPrev = React.useCallback(() => navigate("prev"), [navigate]);
+  const onNext = React.useCallback(() => navigate("next"), [navigate]);
+
+  // Keyboard ← / → navigation. Bail when an editable element holds focus so
+  // we don't intercept caret movement inside inputs, textareas, selects, or
+  // contentEditable regions. Also skip when modifier keys are held.
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onKey = (e) => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+      const t = e.target;
+      const tag = t && t.tagName ? t.tagName.toUpperCase() : "";
+      const editable = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (t && t.isContentEditable);
+      if (editable) return;
+      if (e.key === "ArrowLeft") { e.preventDefault(); onPrev(); }
+      else if (e.key === "ArrowRight") { e.preventDefault(); onNext(); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onPrev, onNext]);
 
   return (
     <div style={{ background: BW.chalk, minHeight: "100vh" }}>
@@ -844,18 +1007,21 @@ function BenchMarksPage() {
         .bm-card:hover { transform: translateY(-2px); }
         .bm-card:focus-visible { outline: 2px solid ${BW.brass}; outline-offset: 3px; }
         .bm-action:focus-visible { outline: 2px solid ${BW.brass}; outline-offset: 3px; }
+        .bm-nav { transition: background 180ms, color 180ms, transform 180ms; }
+        .bm-nav:hover { background: ${BW.brass} !important; color: ${BW.ink} !important; }
+        .bm-nav:focus-visible { outline: 2px solid ${BW.brass}; outline-offset: 3px; }
         @media (prefers-reduced-motion: reduce) {
-          .bm-card { transition: none !important; }
+          .bm-card, .bm-nav { transition: none !important; }
           .bm-card:hover { transform: none !important; }
         }
       `}</style>
       <SiteHeader current="BenchMarks" sticky={true} />
-      <BMMasthead overrideMode={overrideMode} />
+      <BMMasthead />
       <BMCuratorStrip curator={data.curator} />
-      <BMToday specimen={todaySpecimen} overrideMode={overrideMode} />
+      <BMToday specimen={todaySpecimen} isArchive={isArchive} onPrev={onPrev} onNext={onNext} />
+      <BMRecent specimens={data.specimens || []} todayId={todayPick ? todayPick.id : null} />
       <BMDesk desk={data.desk} />
       <BMEdits edits={data.edits} />
-      <BMRecent specimens={data.specimens || []} todayId={todaySpecimen ? todaySpecimen.id : null} />
       <BMFooter />
     </div>
   );
