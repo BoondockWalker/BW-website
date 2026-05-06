@@ -27,7 +27,12 @@ const BW_BENCHMARKS = {
       title: "NoBull — color palette.",
       commentary: {
         hook: "Five swatches. The discipline reads.",
-        body: [],
+        body: [
+          "Restraint is the easy thing to admire and the hard thing to do. Most brand systems balloon to fourteen colors because no one in the room had the authority to delete six.",
+          "What works here: every swatch earns the slot. Pull any of them and the system gets weaker. That's the test for whether a palette is a system or a wishlist.",
+          "I'm keeping this one taped above the desk for the next pitch where someone proposes adding a tertiary accent.",
+        ],
+        signoff: "— MN",
       },
       tags: ["brand", "craft"],
       relatedSlug: null,
@@ -124,7 +129,10 @@ const BW_BENCHMARKS = {
       title: "Tom Haugomat.",
       commentary: {
         hook: "Three colors and a horizon. That's the whole image.",
-        body: [],
+        body: [
+          "Haugomat doesn't draw light — he draws what light removes. The shadow is the subject; the figure is the negative space around it.",
+          "I keep this one pinned because it answers the question every campaign answers wrong: how much do you actually have to put on the page before the reader gets it. Less than you think.",
+        ],
       },
       tags: ["sketches", "craft"],
       relatedSlug: null,
@@ -237,7 +245,11 @@ const BW_BENCHMARKS = {
       title: "Three fours.",
       commentary: {
         hook: "Three quarters shown. The fourth is what you don't say.",
-        body: [],
+        body: [
+          "Negative space isn't decoration. It's the part of the message you trust the reader to finish.",
+          "Three out of four works because the reader becomes a participant. Show all four and you've taken the work away from them.",
+        ],
+        signoff: "— MN",
       },
       tags: ["voice", "craft"],
       relatedSlug: null,
