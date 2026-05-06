@@ -50,7 +50,7 @@ function V3Thesis() {
           <p style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 8vw, 64px)", lineHeight: 1.02, fontStyle: "italic", margin: 0, color: BW.chalk, letterSpacing: "-0.03em", fontWeight: 400 }}>
             Pipeline, <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>not applause.</em>
           </p>
-          <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.45)", fontWeight: 600, textAlign: isMobile ? "left" : "right", lineHeight: 1.5 }}>
+          <div style={{ fontFamily: BW.ffH, fontSize: 18, letterSpacing: "0.01em", color: "rgba(244,236,218,0.62)", fontWeight: 400, textAlign: isMobile ? "left" : "right", lineHeight: 1.3 }}>
             fig. 02.ii<br/>BDW · 2026
           </div>
         </div>

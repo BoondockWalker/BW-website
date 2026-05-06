@@ -22,6 +22,7 @@ const BW = {
   ffD:     "'Fraunces', Georgia, serif",
   ffS:     "'Inter', system-ui, sans-serif",
   ffM:     "'JetBrains Mono', ui-monospace, monospace",
+  ffH:     "'Mynerve', 'Caveat', cursive",
   ffSerif: "'Copernicus', Georgia, serif",
 };
 

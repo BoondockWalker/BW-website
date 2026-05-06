@@ -31,7 +31,7 @@ function V3Cases() {
                 <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 8px)", mixBlendMode: "multiply" }} />
                 <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>SPECIMEN 0{i+1}</div>
                 <div style={{ position: "absolute", left: 22, bottom: 22, fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.03em", lineHeight: 0.9, fontSize: "clamp(28px, 6vw, 40px)", textTransform: "uppercase", maxWidth: "calc(100% - 44px)" }}>{c.co}</div>
-                <div style={{ position: "absolute", right: 22, bottom: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: "rgba(251,247,238,0.75)", fontWeight: 400 }}>fig. {i+1}.0</div>
+                <div style={{ position: "absolute", right: 22, bottom: 22, fontFamily: BW.ffH, fontSize: 22, color: "rgba(251,247,238,0.85)", fontWeight: 400 }}>fig. {i+1}.0</div>
               </div>
               <div style={{ padding: "26px 26px 28px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 24 }}>
                 <div>

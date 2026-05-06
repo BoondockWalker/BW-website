@@ -146,8 +146,8 @@ function FeaturedCase({ c }) {
               <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0.45) 0%, rgba(20,16,12,0.10) 32%, rgba(20,16,12,0.18) 60%, rgba(20,16,12,0.78) 100%)", pointerEvents: "none" }} />
             )}
             <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.18) 0 2px, transparent 2px 9px)", mixBlendMode: "multiply" }} />
-            {/* big folio */}
-            <div style={{ position: "absolute", left: 28, top: 28, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>
+            {/* big folio — handwritten annotation */}
+            <div style={{ position: "absolute", left: 28, top: 28, fontFamily: BW.ffH, fontSize: 22, color: BW.chalk50, fontWeight: 400, letterSpacing: "0.01em" }}>
               Specimen №{c.no} · fig. {c.no}.0
             </div>
             {/* upper-right: client logo if provided, else big year mark */}
