@@ -23,6 +23,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-06-great-awakening",
       mediaType: "video",
       src: SPEC + "2026-05-06-Great-awakening.mp4",
+      poster: SPEC + "2026-05-06-Great-awakening.png",
       alt: "Animated clip from Brave & Boundless — The Great Awakening.",
       title: "The Great Awakening",
       commentary: {
