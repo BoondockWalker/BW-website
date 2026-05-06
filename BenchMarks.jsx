@@ -81,8 +81,62 @@ function BMMasthead({ overrideMode }) {
   );
 }
 
-/* ───── §02 Today — specimen hero (varies by mediaType) + commentary + actions ───── */
-function BMToday({ specimen, overrideMode, curator }) {
+/* ───── Curator strip — sits between §01 and §02 ───── */
+function BMCuratorStrip({ curator }) {
+  if (!curator) return null;
+  const isMobile = useMediaQuery("(max-width: 900px)");
+  const initials = curator.name ? curator.name.split(" ").map(n => n[0]).join("").slice(0, 2) : "BW";
+  const photoSize = isMobile ? 40 : 46;
+  return (
+    <section style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}` }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(14px, 1.6vw, 18px) clamp(20px, 5vw, 64px)" }}>
+        <div style={{
+          display: "flex", alignItems: "center", gap: isMobile ? 12 : 16,
+          flexWrap: "wrap",
+        }}>
+          <span aria-hidden="true" style={{
+            width: photoSize, height: photoSize, borderRadius: "50%",
+            border: `1.5px solid ${BW.ink}`, background: BW.ink, color: BW.chalk50,
+            display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
+            fontFamily: BW.ffG, fontSize: 13, fontWeight: 700, flexShrink: 0,
+            boxShadow: `0 0 0 3px ${BW.chalk50}, 0 0 0 4px ${BW.brass}`,
+          }}>
+            {curator.photo ? (
+              <img
+                src={curator.photo}
+                alt=""
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                onError={(e) => { e.currentTarget.style.display = "none"; }}
+              />
+            ) : initials}
+          </span>
+          <span style={{
+            fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase",
+            color: BW.ink2, fontWeight: 700,
+          }}>
+            From the desk of{" "}
+            <span style={{ color: BW.brass }}>{curator.name}</span>
+            {curator.role && (
+              <span style={{ color: BW.ink3, marginLeft: 10, paddingLeft: 10, borderLeft: `1px solid ${BW.ruleL}` }}>
+                {curator.role}
+              </span>
+            )}
+          </span>
+          <span style={{ flex: 1, minWidth: 24, height: 1, background: BW.ruleL }} />
+          <span style={{
+            fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase",
+            color: BW.ink3, fontWeight: 700,
+          }}>
+            One specimen / day
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───── §02 Today — square specimen on the left, commentary stack on the right ───── */
+function BMToday({ specimen, overrideMode }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
 
   if (!specimen) {
@@ -103,11 +157,15 @@ function BMToday({ specimen, overrideMode, curator }) {
     );
   }
 
+  // Format the date as "TUE 05 MAY 2026" for the eyebrow.
+  const eyebrowDate = formatBenchDate(specimen.publishedAt);
+  const eyebrowLabel = overrideMode ? "Pulled from the archive" : "Today";
+
   return (
     <section style={{ background: BW.chalk, borderBottom: `1.5px solid ${BW.ink}` }}>
-      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(40px, 6vw, 72px) clamp(20px, 5vw, 64px) clamp(56px, 7vw, 88px)" }}>
-        {/* Section eyebrow */}
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(36px, 5vw, 64px) clamp(20px, 5vw, 64px) clamp(56px, 7vw, 88px)" }}>
+        {/* Section rail */}
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: "clamp(24px, 3vw, 36px)", flexWrap: "wrap" }}>
           <span>§02</span>
           <span style={{ width: 28, height: 1, background: BW.clay }} />
           <span>{overrideMode ? "Pulled from the archive" : "Today, on the bench"}</span>
@@ -115,88 +173,184 @@ function BMToday({ specimen, overrideMode, curator }) {
           <span style={{ color: BW.ink2 }}>{specimen.publishedAt}</span>
         </div>
 
-        {/* Hero — varies by mediaType */}
-        <BMHero specimen={specimen} />
+        {/* Two-column layout: square specimen | content stack.
+            On desktop: left = specimen square, right = full content stack.
+            On mobile: collapses to a single column and the image is rendered
+            in source order between the section rail and the hook (we replicate
+            the square inline below for mobile only). */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: isMobile ? "1fr" : "clamp(380px, 36vw, 560px) minmax(0, 1fr)",
+          gap: isMobile ? 24 : "clamp(40px, 4.5vw, 72px)",
+          alignItems: "start",
+        }}>
+          {/* LEFT — square specimen frame. Hidden on mobile; the inline copy
+              below handles the mobile order. */}
+          {!isMobile && (
+          <div style={{
+            width: "100%",
+            position: "sticky",
+            top: 96,
+          }}>
+            <div style={{
+              position: "relative",
+              aspectRatio: "1 / 1",
+              border: `1.5px solid ${BW.ink}`,
+              background: BW.ink,
+              overflow: "hidden",
+              boxShadow: "0 18px 48px -28px rgba(20,16,12,0.45)",
+            }}>
+              <BMHero specimen={specimen} />
+            </div>
+            {/* Tiny meta-line under the square — IG card aesthetic */}
+            <div style={{
+              marginTop: 12,
+              display: "flex", justifyContent: "space-between", alignItems: "center",
+              fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase",
+              color: BW.ink3, fontWeight: 700,
+            }}>
+              <span>Specimen · {(specimen.mediaType || "").toUpperCase()}</span>
+              <span>1080 × 1080</span>
+            </div>
+          </div>
+          )}
 
-        {/* Commentary panel — sits below hero on a chalk50 surface */}
-        <div style={{ marginTop: 0, background: BW.chalk50, borderLeft: `1.5px solid ${BW.ink}`, borderRight: `1.5px solid ${BW.ink}`, borderBottom: `1.5px solid ${BW.ink}`, padding: "clamp(28px,4vw,48px) clamp(24px,4vw,56px)" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1.4fr) minmax(220px, 1fr)", gap: isMobile ? 24 : 56, alignItems: "start" }}>
-            <div>
-              {/* Tags row */}
-              {specimen.tags && specimen.tags.length > 0 && (
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 18 }}>
-                  {specimen.tags.map(t => <BMTag key={t}>{t}</BMTag>)}
-                </div>
-              )}
-
-              {/* Source label / link */}
-              {specimen.sourceLabel && (
-                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600, marginBottom: 22 }}>
-                  Source ·{" "}
-                  {specimen.sourceUrl ? (
-                    <a href={specimen.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: BW.ink, textDecoration: "none", borderBottom: `1px solid ${BW.ruleL}` }}>{specimen.sourceLabel}</a>
-                  ) : (
-                    <span style={{ color: BW.ink }}>{specimen.sourceLabel}</span>
-                  )}
-                </div>
-              )}
-
-              {/* Hook — display scale, Fraunces italic */}
-              {specimen.commentary && specimen.commentary.hook && (
-                <h2 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(40px, 6vw, 72px)", lineHeight: 1.02, letterSpacing: "-0.02em", margin: "0 0 24px", color: BW.ink, maxWidth: "20ch" }}>
-                  {specimen.commentary.hook}
-                </h2>
-              )}
-
-              {/* Body paragraphs — Copernicus serif */}
-              {specimen.commentary && specimen.commentary.body && specimen.commentary.body.map((p, i) => (
-                <p key={i} style={{ fontFamily: BW.ffSerif, fontSize: 18, lineHeight: 1.6, margin: i === 0 ? "0 0 18px" : "0 0 18px", color: BW.ink, maxWidth: "60ch" }}>{p}</p>
-              ))}
-
-              {/* Sign-off */}
-              {specimen.commentary && specimen.commentary.signoff && (
-                <div style={{ marginTop: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>
-                  {specimen.commentary.signoff}
-                </div>
-              )}
-
-              {/* Related field note link */}
-              {specimen.relatedSlug && (
-                <div style={{ marginTop: 28, paddingTop: 22, borderTop: `1px solid ${BW.ruleL}` }}>
-                  <a href={`note.html?slug=${specimen.relatedSlug.replace(/^field-notes\//, "")}`} style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: BW.ink, textDecoration: "none", borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3 }}>
-                    Related field note →
-                  </a>
-                </div>
+          {/* RIGHT — content stack */}
+          <div style={{ display: "flex", flexDirection: "column", minWidth: 0 }}>
+            {/* 1. Eyebrow — TODAY · {weekday DD MMM YYYY}  (or PULLED FROM THE ARCHIVE) */}
+            <div style={{
+              fontFamily: BW.ffM, fontSize: 10.5, letterSpacing: "0.3em", textTransform: "uppercase",
+              color: BW.brass, fontWeight: 700, marginBottom: 16,
+              display: "inline-flex", alignItems: "center", gap: 10, flexWrap: "wrap",
+            }}>
+              <span>{eyebrowLabel}</span>
+              {eyebrowDate && (
+                <>
+                  <span aria-hidden="true" style={{ color: BW.ink3 }}>·</span>
+                  <span style={{ color: BW.ink2 }}>{eyebrowDate}</span>
+                </>
               )}
             </div>
 
-            {/* Curator + actions rail */}
-            <aside style={{ display: "flex", flexDirection: "column", gap: 22, alignSelf: "start", paddingLeft: isMobile ? 0 : 0, paddingTop: isMobile ? 4 : 6, borderTop: isMobile ? `1px solid ${BW.ruleL}` : "none", borderLeft: isMobile ? "none" : `1px solid ${BW.ruleL}`, marginTop: isMobile ? 8 : 0 }}>
-              <div style={{ paddingLeft: isMobile ? 0 : 24, paddingTop: isMobile ? 18 : 0 }}>
-                {curator && (
-                  <div style={{ marginBottom: 22 }}>
-                    <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 10 }}>Curator</div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                      <span style={{ width: 36, height: 36, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 12, fontWeight: 700, flexShrink: 0 }}>
-                        {curator.name ? curator.name.split(" ").map(n => n[0]).join("").slice(0,2) : "BW"}
-                      </span>
-                      <div style={{ minWidth: 0 }}>
-                        <div style={{ fontFamily: BW.ffG, fontSize: 13, fontWeight: 700, color: BW.ink, letterSpacing: "-0.005em" }}>{curator.name}</div>
-                        <div style={{ fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, marginTop: 2 }}>{curator.role}</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 12 }}>Share / save</div>
-                <BMActions specimenId={specimen.id} />
+            {/* 2. Tag chips */}
+            {specimen.tags && specimen.tags.length > 0 && (
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 18 }}>
+                {specimen.tags.map(t => <BMTag key={t}>{t}</BMTag>)}
               </div>
-            </aside>
+            )}
+
+            {/* 3. Specimen title — section-display scale */}
+            {specimen.title && (
+              <h3 style={{
+                fontFamily: BW.ffG, fontWeight: 700, fontSize: "clamp(15px, 1.4vw, 18px)",
+                letterSpacing: "0.04em", textTransform: "uppercase",
+                margin: "0 0 14px", color: BW.ink2,
+              }}>
+                {specimen.title}
+              </h3>
+            )}
+
+            {/* Mobile-only inline specimen square — sits between title and hook
+                so the read goes: eyebrow → tags → title → image → hook → body. */}
+            {isMobile && (
+              <div style={{ width: "100%", maxWidth: 520, marginInline: "auto", margin: "0 auto 22px" }}>
+                <div style={{
+                  position: "relative", aspectRatio: "1 / 1",
+                  border: `1.5px solid ${BW.ink}`, background: BW.ink,
+                  overflow: "hidden", boxShadow: "0 12px 32px -22px rgba(20,16,12,0.45)",
+                }}>
+                  <BMHero specimen={specimen} />
+                </div>
+                <div style={{
+                  marginTop: 10, display: "flex", justifyContent: "space-between", alignItems: "center",
+                  fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase",
+                  color: BW.ink3, fontWeight: 700,
+                }}>
+                  <span>Specimen · {(specimen.mediaType || "").toUpperCase()}</span>
+                  <span>1080 × 1080</span>
+                </div>
+              </div>
+            )}
+
+            {/* 4. Hook — Fraunces italic, display scale */}
+            {specimen.commentary && specimen.commentary.hook && (
+              <h2 style={{
+                fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400,
+                fontSize: "clamp(36px, 4.5vw, 64px)", lineHeight: 1.04,
+                letterSpacing: "-0.02em", margin: "0 0 24px", color: BW.ink,
+                maxWidth: "22ch",
+              }}>
+                {specimen.commentary.hook}
+              </h2>
+            )}
+
+            {/* 5. Body paragraphs — Copernicus */}
+            {specimen.commentary && specimen.commentary.body && specimen.commentary.body.map((p, i) => (
+              <p key={i} style={{
+                fontFamily: BW.ffSerif, fontSize: 17.5, lineHeight: 1.62,
+                margin: "0 0 16px", color: BW.ink, maxWidth: "60ch",
+              }}>{p}</p>
+            ))}
+
+            {/* 6. Signoff — small monospace italic */}
+            {specimen.commentary && specimen.commentary.signoff && (
+              <div style={{
+                marginTop: 8, fontFamily: BW.ffM, fontStyle: "italic",
+                fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase",
+                color: BW.ink2, fontWeight: 600,
+              }}>
+                {specimen.commentary.signoff}
+              </div>
+            )}
+
+            {/* 7. Source line — small caps, links to sourceUrl */}
+            {specimen.sourceLabel && (
+              <div style={{
+                marginTop: 22, paddingTop: 18, borderTop: `1px solid ${BW.ruleL}`,
+                fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.28em",
+                textTransform: "uppercase", color: BW.ink3, fontWeight: 700,
+              }}>
+                Source ·{" "}
+                {specimen.sourceUrl ? (
+                  <a href={specimen.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: BW.ink, textDecoration: "none", borderBottom: `1px solid ${BW.ruleL}`, paddingBottom: 1 }}>
+                    {specimen.sourceLabel}
+                  </a>
+                ) : (
+                  <span style={{ color: BW.ink2 }}>{specimen.sourceLabel}</span>
+                )}
+              </div>
+            )}
+
+            {/* Related field note link — keep, useful surface */}
+            {specimen.relatedSlug && (
+              <div style={{ marginTop: 18 }}>
+                <a href={`note.html?slug=${specimen.relatedSlug.replace(/^field-notes\//, "")}`} style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: BW.ink, textDecoration: "none", borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3 }}>
+                  Related field note →
+                </a>
+              </div>
+            )}
+
+            {/* 8. Action row — permalink + share buttons */}
+            <div style={{ marginTop: "clamp(28px, 3vw, 40px)", paddingTop: 22, borderTop: `1px solid ${BW.ruleL}` }}>
+              <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 12 }}>Share / save</div>
+              <BMActions specimenId={specimen.id} layout="row" />
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
+}
+
+/* ───── Format published-at into "TUE 05 MAY 2026" ───── */
+function formatBenchDate(iso) {
+  if (!iso) return null;
+  const d = new Date(iso + "T00:00:00");
+  if (Number.isNaN(d.getTime())) return null;
+  const days = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+  const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${days[d.getDay()]} ${dd} ${months[d.getMonth()]} ${d.getFullYear()}`;
 }
 
 /* ───── Specimen hero — different visual treatment per mediaType ───── */
@@ -210,45 +364,45 @@ function BMHero({ specimen }) {
 }
 
 function BMHeroImage({ s }) {
+  // Clean square fill — the parent already provides the 1:1 frame, border, and shadow.
+  // No scrim or caption — the right-column content carries the title and metadata.
   return (
-    <figure style={{ margin: 0, position: "relative", border: `1.5px solid ${BW.ink}`, borderBottom: 0, background: BW.ink, color: BW.chalk50, overflow: "hidden", aspectRatio: "16/9", minHeight: 320 }}>
+    <figure style={{ margin: 0, position: "absolute", inset: 0, background: BW.ink }}>
       {s.src ? (
-        <img src={s.src} alt={s.alt || s.title || "Specimen"} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        <img
+          src={s.src}
+          alt={s.alt || s.title || "Specimen"}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
       ) : (
-        <div style={{ position: "absolute", inset: 0, background: `repeating-linear-gradient(45deg, ${BW.ink} 0 8px, ${BW.ink2} 8px 16px)` }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `repeating-linear-gradient(45deg, ${BW.ink} 0 8px, ${BW.ink2} 8px 16px)` }} />
       )}
-      {/* Lower-third scrim for legibility */}
-      <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0) 35%, rgba(20,16,12,0.78) 100%)", pointerEvents: "none" }} />
-      {/* Caption strip */}
-      <figcaption style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "20px clamp(20px,3vw,32px)", display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
-        {s.title && (
-          <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(20px, 2.4vw, 28px)", lineHeight: 1.1, letterSpacing: "-0.01em", color: BW.chalk50, maxWidth: "32ch" }}>
-            {s.title}
-          </div>
-        )}
-        <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>Image · specimen</span>
-      </figcaption>
     </figure>
   );
 }
 
 function BMHeroQuote({ s }) {
+  // 1:1 quote card — Ink ground, brass open-quote, centered Fraunces italic,
+  // attribution in JetBrains Mono caps. Fills the parent square frame.
   return (
-    <blockquote style={{ margin: 0, position: "relative", border: `1.5px solid ${BW.ink}`, borderBottom: 0, background: BW.ink, color: BW.chalk50, padding: "clamp(48px,7vw,96px) clamp(28px,5vw,80px)", overflow: "hidden" }}>
-      {/* Hatch overlay — subtle paper grain */}
+    <blockquote style={{
+      margin: 0, position: "absolute", inset: 0, background: BW.ink, color: BW.chalk50,
+      padding: "clamp(28px,5%,56px)", overflow: "hidden",
+      display: "flex", flexDirection: "column", justifyContent: "center",
+    }}>
       <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(244,236,218,0.04) 0 1.5px, transparent 1.5px 8px)", pointerEvents: "none" }} />
-      <div style={{ position: "relative", maxWidth: "26ch" }}>
-        <span aria-hidden="true" style={{ position: "absolute", top: -20, left: -8, fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(96px, 14vw, 200px)", lineHeight: 0.7, color: BW.brass, opacity: 0.45 }}>“</span>
-        <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(36px, 5.5vw, 72px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, color: BW.chalk50, position: "relative", zIndex: 1 }}>
+      <div style={{ position: "relative", maxWidth: "20ch" }}>
+        <span aria-hidden="true" style={{ position: "absolute", top: "-0.42em", left: "-0.08em", fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(72px, 16%, 168px)", lineHeight: 0.7, color: BW.brass, opacity: 0.42 }}>“</span>
+        <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(22px, 5.6%, 44px)", lineHeight: 1.12, letterSpacing: "-0.02em", margin: 0, color: BW.chalk50, position: "relative", zIndex: 1 }}>
           {s.quote}
         </p>
         {s.attribution && (
-          <footer style={{ marginTop: 36, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>
+          <footer style={{ marginTop: "clamp(18px,4%,28px)", fontFamily: BW.ffM, fontSize: 10.5, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>
             — {s.attribution}
           </footer>
         )}
       </div>
-      <div style={{ position: "absolute", right: "clamp(20px,3vw,32px)", bottom: 18, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>
+      <div style={{ position: "absolute", right: "clamp(16px,3%,24px)", bottom: "clamp(14px,2.8%,20px)", fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>
         Quote · specimen
       </div>
     </blockquote>
@@ -258,72 +412,86 @@ function BMHeroQuote({ s }) {
 function BMHeroLink({ s }) {
   const initials = (s.linkHost || "?").slice(0, 2).toUpperCase();
   return (
-    <div style={{ position: "relative", border: `1.5px solid ${BW.ink}`, borderBottom: 0, background: BW.chalk50, padding: "clamp(36px,5vw,64px) clamp(28px,4vw,56px)", overflow: "hidden" }}>
-      {/* Section caption strip */}
-      <div style={{ position: "absolute", top: 16, right: "clamp(20px,3vw,32px)", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700 }}>
-        Link · specimen
-      </div>
-      {/* Link card */}
-      <a href={s.linkUrl} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", gap: 18, textDecoration: "none", color: BW.ink, maxWidth: 720 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>
-          <span style={{ width: 28, height: 28, borderRadius: 4, background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 11, fontWeight: 700, letterSpacing: 0 }}>
+    <div style={{
+      position: "absolute", inset: 0, background: BW.chalk50, color: BW.ink,
+      padding: "clamp(24px,5%,44px)", overflow: "hidden",
+      display: "flex", flexDirection: "column", justifyContent: "space-between",
+    }}>
+      {/* Top row — favicon + host */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700, minWidth: 0 }}>
+          <span style={{ width: 28, height: 28, borderRadius: 4, background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 11, fontWeight: 700, letterSpacing: 0, flexShrink: 0 }}>
             {s.linkFavicon ? <img src={s.linkFavicon} alt="" style={{ width: 18, height: 18, display: "block" }} /> : initials}
           </span>
-          <span>{s.linkHost || "external link"}</span>
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.linkHost || "external link"}</span>
         </div>
-        <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(36px, 5.5vw, 64px)", lineHeight: 1.04, letterSpacing: "-0.02em", margin: 0, color: BW.ink, maxWidth: "22ch" }}>
+        <span style={{ fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, flexShrink: 0 }}>
+          Link · specimen
+        </span>
+      </div>
+
+      {/* Middle — link title */}
+      <a href={s.linkUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: BW.ink, display: "block" }}>
+        <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(24px, 6%, 52px)", lineHeight: 1.06, letterSpacing: "-0.02em", margin: 0, color: BW.ink, maxWidth: "18ch" }}>
           {s.linkTitle}
         </h3>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: BW.clay }}>
-          <span style={{ borderBottom: `1.5px solid ${BW.clay}`, paddingBottom: 3 }}>Open in new tab →</span>
-          <span style={{ fontFamily: BW.ffM, fontSize: 10, color: BW.ink3, letterSpacing: "0.18em" }}>{s.linkUrl}</span>
-        </div>
       </a>
+
+      {/* Bottom — open + URL */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: BW.clay, minWidth: 0 }}>
+        <span style={{ borderBottom: `1.5px solid ${BW.clay}`, paddingBottom: 3, alignSelf: "flex-start" }}>Open in new tab →</span>
+        <span style={{ fontFamily: BW.ffM, fontSize: 10, color: BW.ink3, letterSpacing: "0.16em", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.linkUrl}</span>
+      </div>
     </div>
   );
 }
 
 function BMHeroAudio({ s }) {
-  // Stylized waveform — ink background with brass bars. No real audio rendering.
+  // Stylized waveform — ink ground, brass + chalk bars. Sized to fit a 1:1 frame.
   const bars = React.useMemo(() => {
-    // Pseudo-random but stable per-id heights (use id char codes as a seed)
     const seed = (s.id || "x").split("").reduce((a, c) => a + c.charCodeAt(0), 0);
-    return Array.from({ length: 96 }, (_, i) => {
+    return Array.from({ length: 56 }, (_, i) => {
       const v = Math.sin(seed * 0.13 + i * 0.41) * Math.cos(seed * 0.07 + i * 0.23);
       return 22 + Math.abs(v) * 78;
     });
   }, [s.id]);
   return (
-    <div style={{ position: "relative", border: `1.5px solid ${BW.ink}`, borderBottom: 0, background: BW.ink, color: BW.chalk50, padding: "clamp(36px,5vw,64px) clamp(28px,4vw,56px)", overflow: "hidden" }}>
+    <div style={{
+      position: "absolute", inset: 0, background: BW.ink, color: BW.chalk50,
+      padding: "clamp(24px,5%,44px)", overflow: "hidden",
+      display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "clamp(16px,3%,28px)",
+    }}>
       <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(244,236,218,0.04) 0 1.5px, transparent 1.5px 8px)", pointerEvents: "none" }} />
-      <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 28 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: BW.brass, boxShadow: "0 0 0 4px rgba(200,150,43,0.25)" }} />
-            <span>Now playing in the studio</span>
+
+      {/* Top — now-playing chip + corner label */}
+      <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>
+          <span style={{ width: 8, height: 8, borderRadius: "50%", background: BW.brass, boxShadow: "0 0 0 4px rgba(200,150,43,0.25)" }} />
+          <span>Now playing</span>
+        </div>
+        <span style={{ fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>Audio · specimen</span>
+      </div>
+
+      {/* Middle — title + by */}
+      <div style={{ position: "relative" }}>
+        <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(26px, 6.4%, 56px)", lineHeight: 1.04, letterSpacing: "-0.02em", margin: 0, color: BW.chalk50, maxWidth: "16ch" }}>
+          {s.audioTitle || s.title}
+        </h3>
+        {s.audioBy && (
+          <div style={{ marginTop: 10, fontFamily: BW.ffM, fontSize: 10.5, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600 }}>
+            {s.audioBy}
           </div>
-          <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>Audio · specimen</span>
-        </div>
+        )}
+      </div>
 
-        <div>
-          <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(40px, 6vw, 72px)", lineHeight: 1.02, letterSpacing: "-0.02em", margin: 0, color: BW.chalk50 }}>
-            {s.audioTitle || s.title}
-          </h3>
-          {s.audioBy && (
-            <div style={{ marginTop: 12, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600 }}>
-              {s.audioBy}
-            </div>
-          )}
-        </div>
-
-        {/* Stylized waveform — visual only */}
-        <div aria-hidden="true" style={{ display: "flex", alignItems: "center", gap: 2, height: 88, padding: "8px 0", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
+      {/* Waveform + transport */}
+      <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 12 }}>
+        <div aria-hidden="true" style={{ display: "flex", alignItems: "center", gap: 2, height: "clamp(48px, 14%, 96px)", padding: "8px 0", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
           {bars.map((h, i) => (
-            <span key={i} style={{ flex: 1, height: `${h}%`, minHeight: 2, background: i % 9 === 0 ? BW.brass : BW.chalk2, opacity: i % 9 === 0 ? 0.95 : 0.55, borderRadius: 1 }} />
+            <span key={i} style={{ flex: 1, height: `${h}%`, minHeight: 2, background: i % 7 === 0 ? BW.brass : BW.chalk2, opacity: i % 7 === 0 ? 0.95 : 0.55, borderRadius: 1 }} />
           ))}
         </div>
-
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700, flexWrap: "wrap" }}>
           <span>00:00</span>
           {s.audioDuration && <span style={{ color: BW.brass }}>Runtime · {s.audioDuration}</span>}
           <span>{s.audioDuration || "—"}</span>
@@ -334,8 +502,11 @@ function BMHeroAudio({ s }) {
 }
 
 /* ───── §02 Actions row — Permalink (live), IG / LinkedIn (coming soon) ───── */
-function BMActions({ specimenId }) {
+function BMActions({ specimenId, layout }) {
   const [copied, setCopied] = React.useState(false);
+  const isMobile = useMediaQuery("(max-width: 560px)");
+  // Row on desktop (when called with layout="row"); column on narrow viewports.
+  const stack = layout !== "row" || isMobile;
   const onCopy = (e) => {
     e.preventDefault();
     if (typeof window === "undefined") return;
@@ -377,7 +548,13 @@ function BMActions({ specimenId }) {
   );
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+    <div style={{
+      display: "flex",
+      flexDirection: stack ? "column" : "row",
+      flexWrap: stack ? "nowrap" : "wrap",
+      gap: 10,
+      alignItems: stack ? "stretch" : "center",
+    }}>
       <a
         href="#"
         onClick={onCopy}
@@ -392,7 +569,7 @@ function BMActions({ specimenId }) {
           cursor: "pointer", transition: "all 200ms",
         }}
       >
-        {copied ? "✓ Permalink copied" : "Copy permalink"}
+        {copied ? "Permalink copied" : "Copy permalink"}
       </a>
       <SoonBtn label="Share to IG" />
       <SoonBtn label="Share to LinkedIn" />
@@ -674,7 +851,8 @@ function BenchMarksPage() {
       `}</style>
       <SiteHeader current="BenchMarks" sticky={true} />
       <BMMasthead overrideMode={overrideMode} />
-      <BMToday specimen={todaySpecimen} overrideMode={overrideMode} curator={data.curator} />
+      <BMCuratorStrip curator={data.curator} />
+      <BMToday specimen={todaySpecimen} overrideMode={overrideMode} />
       <BMDesk desk={data.desk} />
       <BMEdits edits={data.edits} />
       <BMRecent specimens={data.specimens || []} todayId={todaySpecimen ? todaySpecimen.id : null} />
