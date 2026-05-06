@@ -1,280 +1,247 @@
 /* global window */
-/* Boondock Walker — BenchMarksData. Daily ledger. */
+/* Boondock Walker — BenchMarksData. Daily ledger.
+   Specimens are placeholder commentary on Mark's uploaded images.
+   Replace the `commentary` blocks below with the real notes. */
 
 const SPEC = "/assets/benchmarks/specimens/";
-const IMG_BRAIN   = "/assets/brain.png";
-const IMG_NAPKIN  = "/assets/coffee-napkin-burg.png";
-const IMG_JOURNAL = "/assets/field-journal.png";
-const IMG_BOOTS   = "/assets/hiking-boots.png";
 
 const BW_BENCHMARKS = {
   curator: {
     name: "Mark Nead",
     role: "Curator",
-    photo: "/assets/benchmarks/curator/mark-nead-headshot.jpg",
+    photo: "/assets/benchmarks/curator/Mark-Nead-headshot.jpg",
     bio: "I keep the bench. One specimen a day, three things on the desk, and a running log of edits to my own thinking. If something here lands, it earned the spot.",
   },
 
   // Optional override for today's specimen. When null, the page picks by date.
   pinnedSpecimenId: null,
 
+  // 14 specimens, newest first. Each points at a real uploaded image.
+  // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
-      id: "2026-05-stripe-pricing-page",
-      mediaType: "link",
-      linkUrl: "https://stripe.com/pricing",
-      linkTitle: "Stripe — Pricing",
-      linkHost: "stripe.com",
-      title: "The pricing page that doesn't apologize.",
-      sourceLabel: "stripe.com/pricing",
-      sourceUrl: "https://stripe.com/pricing",
+      id: "2026-05-05-nobull-color-palette",
+      mediaType: "image",
+      src: SPEC + "2026-05-05-Nobull-color-palette.png",
+      alt: "NoBull brand color palette specimen.",
+      title: "NoBull — color palette.",
       commentary: {
-        hook: "One number, no hedge, the math shown out loud.",
-        body: [
-          "2.9% + 30¢. That's the line. Everything else on the page is footnote. Most B2B pricing pages are eighty percent caveat — Stripe inverted the ratio and the caveats stopped mattering.",
-        ],
-        signoff: "— MN",
+        hook: "Five swatches. The discipline reads.",
+        body: [],
       },
-      tags: ["pricing", "voice", "b2b"],
+      tags: ["brand", "craft"],
       relatedSlug: null,
       publishedAt: "2026-05-05",
       social: { igCaption: null, igCardSrc: null },
     },
 
     {
-      id: "2026-05-ogilvy-on-leads",
-      mediaType: "quote",
-      quote: "When I write an advertisement, I don't want you to tell me that you find it 'creative.' I want you to find it so interesting that you buy the product.",
-      attribution: "David Ogilvy",
-      title: "The only metric that matters.",
+      id: "2026-05-04-stanley",
+      mediaType: "image",
+      src: SPEC + "2026-05-04-Stanley.png",
+      alt: "Stanley product specimen.",
+      title: "Stanley.",
       commentary: {
-        hook: "Tape this above the desk of every creative director.",
-        body: [
-          "The applause-line test is a bad test. The buy-the-product test is the only test. We forget this every six weeks and have to be reminded.",
-        ],
+        hook: "An object that became a noun. Worth studying.",
+        body: [],
       },
-      tags: ["advertising", "voice", "craft"],
+      tags: ["brand", "naming"],
+      relatedSlug: null,
+      publishedAt: "2026-05-04",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
+      id: "2026-05-03-claude-notion",
+      mediaType: "image",
+      src: SPEC + "2026-05-03-Claude-Notion.png",
+      alt: "Specimen — Claude and Notion integration.",
+      title: "Claude × Notion.",
+      commentary: {
+        hook: "Two tools that finally got out of each other's way.",
+        body: [],
+      },
+      tags: ["craft", "voice"],
+      relatedSlug: null,
+      publishedAt: "2026-05-03",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
+      id: "2026-05-02-b-unchained",
+      mediaType: "image",
+      src: SPEC + "2026-05-02-B-Unchained.png",
+      alt: "Specimen — B-Unchained.",
+      title: "B-Unchained.",
+      commentary: {
+        hook: "Constraint as the canvas, not the cage.",
+        body: [],
+      },
+      tags: ["craft", "voice"],
       relatedSlug: null,
       publishedAt: "2026-05-02",
       social: { igCaption: null, igCardSrc: null },
     },
 
     {
-      id: "2026-04-field-journal-margin",
+      id: "2026-05-01-mark-watercolor",
       mediaType: "image",
-      src: IMG_JOURNAL,
-      alt: "A worn field journal open to a page of marginalia and a folded receipt.",
-      title: "Marginalia from a Tuesday.",
+      src: SPEC + "2026-05-01-Mark-watercolor.png",
+      alt: "Watercolor study by Mark Nead.",
+      title: "Watercolor — Tuesday.",
       commentary: {
-        hook: "The best line in the journal is the one in the margin.",
-        body: [
-          "Spine-text gets revised. Margin-text is the unedited thought. When I go back through old notebooks, the margins are the only part still useful.",
-        ],
+        hook: "Started Tuesday. Still wet on the edges.",
+        body: [],
         signoff: "— MN",
       },
-      tags: ["sketches", "voice", "craft"],
+      tags: ["sketches", "craft"],
+      relatedSlug: null,
+      publishedAt: "2026-05-01",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
+      id: "2026-04-30-evernote",
+      mediaType: "image",
+      src: SPEC + "2026-04-30-Evernote.png",
+      alt: "Evernote brand specimen.",
+      title: "Evernote.",
+      commentary: {
+        hook: "Saved everything. Found nothing. The lesson stuck.",
+        body: [],
+      },
+      tags: ["brand", "voice"],
+      relatedSlug: null,
+      publishedAt: "2026-04-30",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
+      id: "2026-04-29-tom-haugomat",
+      mediaType: "image",
+      src: SPEC + "2026-04-29-Tom-Haugomat.png",
+      alt: "Illustration by Tom Haugomat.",
+      title: "Tom Haugomat.",
+      commentary: {
+        hook: "Three colors and a horizon. That's the whole image.",
+        body: [],
+      },
+      tags: ["sketches", "craft"],
+      relatedSlug: null,
+      publishedAt: "2026-04-29",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
+      id: "2026-04-28-truth-in-me",
+      mediaType: "image",
+      src: SPEC + "2026-04-28-Truth-in-Me.png",
+      alt: "Specimen — Truth in Me.",
+      title: "Truth in Me.",
+      commentary: {
+        hook: "The phrase you keep avoiding is the brief.",
+        body: [],
+      },
+      tags: ["voice", "brand"],
       relatedSlug: null,
       publishedAt: "2026-04-28",
       social: { igCaption: null, igCardSrc: null },
     },
 
     {
-      id: "2026-04-saas-founder-naming",
-      mediaType: "quote",
-      quote: "We spent four months on the name and three weeks on the product. The name closed the first eight customers.",
-      attribution: "Founder, B2B SaaS (Series A)",
-      title: "The name closed the room.",
+      id: "2026-04-27-hubspot",
+      mediaType: "image",
+      src: SPEC + "2026-04-27-HubSpot.png",
+      alt: "HubSpot brand specimen.",
+      title: "HubSpot.",
       commentary: {
-        hook: "Naming isn't the last 5% of brand. It's the first 5% of sales.",
+        hook: "Not the platform — the discipline they don't write about.",
+        body: [],
       },
-      tags: ["naming", "brand", "pipeline"],
+      tags: ["demand", "b2b"],
+      relatedSlug: null,
+      publishedAt: "2026-04-27",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
+      id: "2026-04-26-optimize-the-machine",
+      mediaType: "image",
+      src: SPEC + "2026-04-26-Optimize-the-Machine.png",
+      alt: "Specimen — Optimize the Machine.",
+      title: "Optimize the machine.",
+      commentary: {
+        hook: "Optimize last. Most of what's broken is the brief.",
+        body: [],
+      },
+      tags: ["voice", "demand"],
+      relatedSlug: null,
+      publishedAt: "2026-04-26",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
+      id: "2026-04-25-bb-fire",
+      mediaType: "image",
+      src: SPEC + "2026-04-25-BB-fire.png",
+      alt: "Specimen — BB fire imagery.",
+      title: "BB — fire.",
+      commentary: {
+        hook: "Heat without smoke. Rare.",
+        body: [],
+      },
+      tags: ["craft", "voice"],
+      relatedSlug: null,
+      publishedAt: "2026-04-25",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
+      id: "2026-04-24-boundlessness",
+      mediaType: "image",
+      src: SPEC + "2026-04-24-Boundlessness.png",
+      alt: "Specimen — Boundlessness.",
+      title: "Boundlessness.",
+      commentary: {
+        hook: "Open ends that still feel finished.",
+        body: [],
+      },
+      tags: ["craft", "voice"],
       relatedSlug: null,
       publishedAt: "2026-04-24",
       social: { igCaption: null, igCardSrc: null },
     },
 
     {
-      id: "2026-04-coffee-napkin-burg",
+      id: "2026-04-23-humble-and-kind",
       mediaType: "image",
-      src: IMG_NAPKIN,
-      alt: "A diner napkin with a hand-drawn pricing matrix in ballpoint pen.",
-      title: "Napkin economics.",
+      src: SPEC + "2026-04-23-Humble-and-Kind.png",
+      alt: "Specimen — Humble and Kind.",
+      title: "Humble and Kind.",
       commentary: {
-        hook: "Three boxes and an arrow beat a 14-tab spreadsheet.",
-        body: [
-          "Drew this with a client across a diner table in 2019. The deck that came out of it was sixty slides. The napkin was the deck.",
-        ],
-      },
-      tags: ["sketches", "pricing", "b2b"],
-      relatedSlug: null,
-      publishedAt: "2026-04-19",
-      social: { igCaption: null, igCardSrc: null },
-    },
-
-    {
-      id: "2026-04-letterform-archive",
-      mediaType: "link",
-      linkUrl: "https://lettermode.com/inventory/specimens",
-      linkTitle: "Lettermode — Type Specimen Archive",
-      linkHost: "lettermode.com",
-      title: "Type specimens, century deep.",
-      sourceLabel: "lettermode.com",
-      sourceUrl: "https://lettermode.com",
-      commentary: {
-        hook: "Pull a specimen book before you brief a typeface.",
-        body: [
-          "If your reference is a Pinterest board, your typography will look like a Pinterest board. The specimen books are eighty years of operators showing their work — and the work still holds.",
-        ],
+        hook: "Refrigerator-pinned for fifteen years. Still the brief.",
+        body: [],
         signoff: "— MN",
       },
-      tags: ["typography", "craft", "reading"],
+      tags: ["voice", "reading"],
       relatedSlug: null,
-      publishedAt: "2026-04-15",
+      publishedAt: "2026-04-23",
       social: { igCaption: null, igCardSrc: null },
     },
 
     {
-      id: "2026-04-paul-rand-design",
-      mediaType: "quote",
-      quote: "Design is the silent ambassador of your brand.",
-      attribution: "Paul Rand",
-      title: "Silent ambassador.",
-      commentary: {
-        hook: "Read it twice. The word is silent.",
-        body: [
-          "If your design is shouting, it's not the ambassador — it's the lobbyist. There's a difference, and buyers can hear it.",
-        ],
-      },
-      tags: ["brand", "craft", "voice"],
-      relatedSlug: null,
-      publishedAt: "2026-04-10",
-      social: { igCaption: null, igCardSrc: null },
-    },
-
-    {
-      id: "2026-04-hiking-boots-rebrand",
+      id: "2026-04-22-three-fours",
       mediaType: "image",
-      src: IMG_BOOTS,
-      alt: "A pair of mud-caked leather hiking boots on a wooden porch.",
-      title: "Wear before you redesign.",
+      src: SPEC + "2026-04-22-ThreeFours.png",
+      alt: "Specimen — Three Fours.",
+      title: "Three fours.",
       commentary: {
-        hook: "If you can't walk a mile in the buyer's day, don't touch the homepage.",
-        body: [
-          "Spent two days last week shadowing a regional sales rep. Watched four demos. The thing the homepage was missing wasn't a hero animation — it was the answer to the second question every prospect asked.",
-        ],
-        signoff: "— MN",
+        hook: "Three quarters shown. The fourth is what you don't say.",
+        body: [],
       },
-      tags: ["rebrand", "demand", "b2b"],
+      tags: ["voice", "craft"],
       relatedSlug: null,
-      publishedAt: "2026-04-05",
-      social: { igCaption: null, igCardSrc: null },
-    },
-
-    {
-      id: "2026-03-podcast-voice-clip",
-      mediaType: "audio",
-      audioSrc: SPEC + "voice-and-the-room.mp3",
-      audioDuration: "1:42",
-      audioTitle: "Voice and the room — clip",
-      audioBy: "The Operator's Bench (podcast)",
-      title: "On voice and the room.",
-      commentary: {
-        hook: "Ninety seconds on why voice is a room, not a sentence.",
-        body: [
-          "The host loses the thread halfway through and the guest pulls it back with one analogy. The pull-back is the whole clip.",
-        ],
-      },
-      tags: ["voice", "audio", "brand"],
-      relatedSlug: null,
-      publishedAt: "2026-03-30",
-      social: { igCaption: null, igCardSrc: null },
-    },
-
-    {
-      id: "2026-03-brain-diagram",
-      mediaType: "image",
-      src: IMG_BRAIN,
-      alt: "A schematic illustration of a brain divided into labeled regions.",
-      title: "Where the brand actually lives.",
-      commentary: {
-        hook: "Buyers don't store your brand in the logo. They store it in a feeling and a shortcut.",
-      },
-      tags: ["brand", "voice"],
-      relatedSlug: null,
-      publishedAt: "2026-03-25",
-      social: { igCaption: null, igCardSrc: null },
-    },
-
-    {
-      id: "2026-03-strunk-omit-words",
-      mediaType: "quote",
-      quote: "Vigorous writing is concise. A sentence should contain no unnecessary words, a paragraph no unnecessary sentences.",
-      attribution: "William Strunk Jr., The Elements of Style",
-      title: "Omit needless words.",
-      commentary: {
-        hook: "The whole field manual in two sentences. The rest is footnote.",
-        body: [
-          "Pinned above the desk for fifteen years. Still the most violated rule in B2B copy. Half my edits are deletions.",
-        ],
-        signoff: "— MN",
-      },
-      tags: ["voice", "reading", "craft"],
-      relatedSlug: null,
-      publishedAt: "2026-03-20",
-      social: { igCaption: null, igCardSrc: null },
-    },
-
-    {
-      id: "2026-03-field-journal-redux",
-      mediaType: "image",
-      src: IMG_JOURNAL,
-      alt: "A second view of the field journal with a corner folded down.",
-      title: "Folded-corner index.",
-      commentary: {
-        hook: "Folded corners are honest. Bookmarks lie.",
-        body: [
-          "A folded corner means I came back. Bookmarks just mean I started. When I audit a notebook, I count corners — that's the real table of contents.",
-        ],
-      },
-      tags: ["sketches", "reading", "craft"],
-      relatedSlug: null,
-      publishedAt: "2026-03-15",
-      social: { igCaption: null, igCardSrc: null },
-    },
-
-    {
-      id: "2026-03-podcast-pricing-clip",
-      mediaType: "audio",
-      audioSrc: SPEC + "pricing-as-positioning.mp3",
-      audioDuration: "32:16",
-      audioTitle: "Pricing is positioning — full episode",
-      audioBy: "Demand Bench (podcast)",
-      title: "Pricing as positioning.",
-      commentary: {
-        hook: "Skip to 11:40. The reframe at minute twelve is worth the whole episode.",
-      },
-      tags: ["pricing", "audio", "demand"],
-      relatedSlug: null,
-      publishedAt: "2026-03-10",
-      social: { igCaption: null, igCardSrc: null },
-    },
-
-    {
-      id: "2026-03-wayfinding-diner-sign",
-      mediaType: "image",
-      src: IMG_NAPKIN,
-      alt: "A diner napkin sketch repurposed as a wayfinding study — three words, an arrow, a circle.",
-      title: "Wayfinding lessons from a diner.",
-      commentary: {
-        hook: "Three words on a sign, painted by hand, doing what a billboard can't.",
-        body: [
-          "Walked past it Saturday and turned around at the corner. That's the test — does the sign make you turn around. Most B2B nav doesn't even make you scroll.",
-        ],
-        signoff: "— MN",
-      },
-      tags: ["wayfinding", "signage", "layout"],
-      relatedSlug: null,
-      publishedAt: "2026-03-04",
+      publishedAt: "2026-04-22",
       social: { igCaption: null, igCardSrc: null },
     },
   ],
