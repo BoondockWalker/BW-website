@@ -607,7 +607,7 @@ function BMHeroAudio({ s }) {
   );
 }
 
-/* ───── §02 Actions row — Permalink (live), IG / LinkedIn (coming soon) ───── */
+/* ───── §02 Actions row — Permalink (live), IG (coming soon) ───── */
 function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
   const [copied, setCopied] = React.useState(false);
   const isMobile = useMediaQuery("(max-width: 560px)");
@@ -631,7 +631,7 @@ function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
     }
   };
 
-  // Disabled "coming soon" button — share-to-IG / LinkedIn.
+  // Disabled "coming soon" button — share-to-IG.
   const SoonBtn = ({ label }) => (
     <button
       type="button"
@@ -707,7 +707,6 @@ function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
         {copied ? "Permalink copied" : "Copy permalink"}
       </a>
       <SoonBtn label="Share to IG" />
-      <SoonBtn label="Share to LinkedIn" />
       {showMobileNav && (
         <NavIconBtn label="Next specimen" onClick={mobileNext} dir="next" />
       )}
