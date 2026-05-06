@@ -260,7 +260,8 @@ const BW_BENCHMARKS = {
     {
       id: "2026-04-25-bb-fire",
       mediaType: "image",
-      src: SPEC + "2026-04-25-BB-fire.png",
+      src: SPEC + "2026-04-25-BB-fire.gif",
+      poster: SPEC + "2026-04-25-BB-fire.png",
       alt: "Specimen — BB fire imagery.",
       title: "When the Map Is Burning",
       commentary: {

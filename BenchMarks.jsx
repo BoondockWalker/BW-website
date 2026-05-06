@@ -459,11 +459,16 @@ function BMHero({ specimen }) {
 function BMHeroImage({ s }) {
   // Clean square fill — the parent already provides the 1:1 frame, border, and shadow.
   // No scrim or caption — the right-column content carries the title and metadata.
+  // If the src is animated (GIF) and a poster is supplied, swap to the poster
+  // when prefers-reduced-motion is set so we don't push motion at users who've
+  // opted out. There's no native pause for animated GIFs, so the swap is the fix.
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const stillSrc = (reducedMotion && s.poster) ? s.poster : s.src;
   return (
     <figure style={{ margin: 0, position: "absolute", inset: 0, background: BW.ink }}>
-      {s.src ? (
+      {stillSrc ? (
         <img
-          src={s.src}
+          src={stillSrc}
           alt={s.alt || s.title || "Specimen"}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
@@ -869,9 +874,12 @@ function BMCard({ specimen }) {
     return null;
   };
 
-  // Image-type and video-type specimens both render a still in the card; video uses its poster.
-  const thumbSrc = specimen.mediaType === "image" ? specimen.src
-                 : specimen.mediaType === "video" ? specimen.poster
+  // Card thumb: prefer the still poster when one is supplied (animated GIFs
+  // and videos both keep their card thumb static). Otherwise fall back to the
+  // image src for image-type specimens.
+  const thumbSrc = specimen.poster
+                 ? specimen.poster
+                 : specimen.mediaType === "image" ? specimen.src
                  : null;
 
   return (
