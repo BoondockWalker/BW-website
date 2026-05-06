@@ -70,7 +70,7 @@ function NoteArt({ kind, color, caption, label }) {
       {grain}
       {glyph}
       <text x="14" y="22" fontFamily={BW.ffM} fontSize="9" letterSpacing="2" fill={BW.chalk50} fontWeight="700" opacity="0.82">{label}</text>
-      <text x="306" y="190" textAnchor="end" fontFamily={BW.ffH} fontWeight="700" fontSize="20" fill={BW.chalk50} opacity="0.92">{caption}</text>
+      <text x="306" y="190" textAnchor="end" fontFamily={BW.ffD} fontStyle="italic" fontSize="11" fill={BW.chalk50} opacity="0.7">{caption}</text>
     </svg>
   );
 }
