@@ -9,15 +9,28 @@
    §06 Footer     — matches field-notes.html
 */
 
-/* ───── Selection logic — deterministic by date so the bench changes once a day. ───── */
-function pickToday(specimens, pinnedId) {
-  if (!specimens || specimens.length === 0) return null;
+/* ───── Today as a YYYY-MM-DD string in the browser's local time zone.
+   Lexicographic <= comparison against specimen.publishedAt is the publish gate. ───── */
+function getTodayISO() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+/* ───── Selection logic — deterministic by date so the bench changes once a day.
+   `publishedPool` drives the deterministic day-of pick (so today's specimen can
+   never be unpublished). `fullPool` is consulted only for the pin override, so
+   Mark can pin an unpublished specimen to preview it before its launch day. ───── */
+function pickToday(publishedPool, fullPool, pinnedId) {
   if (pinnedId) {
-    const pinned = specimens.find(s => s.id === pinnedId);
+    const pinned = (fullPool || []).find(s => s.id === pinnedId);
     if (pinned) return pinned;
   }
+  if (!publishedPool || publishedPool.length === 0) return null;
   const day = Math.floor(Date.now() / 86400000);
-  return specimens[day % specimens.length];
+  return publishedPool[day % publishedPool.length];
 }
 
 /* ───── Read URL ?id= override on first paint ───── */
@@ -929,15 +942,30 @@ function BenchMarksPage() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  // Today's deterministic pick — independent of the URL override. We need
-  // this separately so we can decide whether the showing specimen is "today"
-  // or "from the archive" (which is true only when the URL id resolves to a
-  // specimen *other than* today's pick).
+  // Publish gate — anything with a publishedAt strictly in the future stays
+  // invisible to visitors. Browser-local date is fine; the spec is inclusive
+  // (publishedAt === today is published). Recompute only when the source
+  // specimens array changes.
+  const publishedSpecimens = React.useMemo(() => {
+    const today = getTodayISO();
+    return (data.specimens || []).filter(s => s.publishedAt && s.publishedAt <= today);
+  }, [data.specimens]);
+
+  // Today's deterministic pick — independent of the URL override. Drawn from
+  // the published pool so an unpublished specimen can never be the day-of
+  // pick. We need this separately so we can decide whether the showing
+  // specimen is "today" or "from the archive" (which is true only when the
+  // URL id resolves to a specimen *other than* today's pick).
+  // The pin lookup inside pickToday consults the *full* specimens array —
+  // that's the override path that lets Mark preview an unpublished pin.
   const todayPick = React.useMemo(
-    () => pickToday(data.specimens, data.pinnedSpecimenId),
-    [data.specimens, data.pinnedSpecimenId]
+    () => pickToday(publishedSpecimens, data.specimens, data.pinnedSpecimenId),
+    [publishedSpecimens, data.specimens, data.pinnedSpecimenId]
   );
 
+  // ?id= override path — bypasses the publish gate by looking up against the
+  // *full* specimens array. That's intentional: Mark shares a deep link to
+  // preview an unpublished specimen before its launch day.
   const requested = React.useMemo(() => {
     if (!currentId) return null;
     return (data.specimens || []).find(s => s.id === currentId) || null;
@@ -946,12 +974,16 @@ function BenchMarksPage() {
   const todaySpecimen = requested || todayPick;
   const isArchive = !!requested && (!todayPick || requested.id !== todayPick.id);
 
-  // Sorted specimens (publishedAt desc) — that's the order BenchMarksData
-  // already provides, but we sort defensively. Index 0 is the newest, last
-  // index is the oldest. "Next" = newer = -1; "Prev" = older = +1. Both wrap.
+  // Sorted specimens (publishedAt desc) — drawn from the published pool only,
+  // so prev/next nav (chevrons + arrow keys) skips unpublished specimens.
+  // Index 0 is the newest, last index is the oldest. "Next" = newer = -1;
+  // "Prev" = older = +1. Both wrap.
+  // Note: a deep-linked unpublished specimen isn't in this list, so clicking
+  // next/prev jumps the visitor back into the published rotation. Correct
+  // behavior — an out-of-band preview shouldn't graft itself into the cycle.
   const sortedSpecimens = React.useMemo(
-    () => [...(data.specimens || [])].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1)),
-    [data.specimens]
+    () => [...publishedSpecimens].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1)),
+    [publishedSpecimens]
   );
 
   const goTo = React.useCallback((id) => {
@@ -1019,7 +1051,7 @@ function BenchMarksPage() {
       <BMMasthead />
       <BMCuratorStrip curator={data.curator} />
       <BMToday specimen={todaySpecimen} isArchive={isArchive} onPrev={onPrev} onNext={onNext} />
-      <BMRecent specimens={data.specimens || []} todayId={todayPick ? todayPick.id : null} />
+      <BMRecent specimens={publishedSpecimens} todayId={todayPick ? todayPick.id : null} />
       <BMDesk desk={data.desk} />
       <BMEdits edits={data.edits} />
       <BMFooter />

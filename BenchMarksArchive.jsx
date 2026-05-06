@@ -13,6 +13,16 @@
 
 const PAGE_SIZE = 24;
 
+/* ───── Today as a YYYY-MM-DD string in the browser's local time zone.
+   Lexicographic <= comparison against specimen.publishedAt is the publish gate. ───── */
+function getTodayISO() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
 const TYPE_OPTIONS = [
   { key: "image", label: "Image" },
   { key: "quote", label: "Quote" },
@@ -330,8 +340,17 @@ function BenchMarksArchivePage() {
     writeFiltersToUrl(next);
   }, []);
 
-  const facets = React.useMemo(() => buildFacets(data.specimens), [data.specimens]);
-  const filtered = React.useMemo(() => applyFilters(data.specimens, filters), [data.specimens, filters]);
+  // Publish gate — applied once at the top of the page so every downstream
+  // consumer (filter rail facets, year/month dropdowns, tag chips, results
+  // grid, total stat) sees only published specimens. Browser-local date,
+  // inclusive comparison. Recompute only when the source specimens change.
+  const publishedSpecimens = React.useMemo(() => {
+    const today = getTodayISO();
+    return (data.specimens || []).filter(s => s.publishedAt && s.publishedAt <= today);
+  }, [data.specimens]);
+
+  const facets = React.useMemo(() => buildFacets(publishedSpecimens), [publishedSpecimens]);
+  const filtered = React.useMemo(() => applyFilters(publishedSpecimens, filters), [publishedSpecimens, filters]);
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const pageClamped = Math.min(filters.page, totalPages);
   const visibleEnd = pageClamped * PAGE_SIZE;
@@ -352,7 +371,7 @@ function BenchMarksArchivePage() {
         }
       `}</style>
       <SiteHeader current="BenchMarks" sticky={true} />
-      <BMArchiveMasthead totalCount={(data.specimens || []).length} filteredCount={filtered.length} />
+      <BMArchiveMasthead totalCount={publishedSpecimens.length} filteredCount={filtered.length} />
 
       <section style={{ background: BW.chalk, borderBottom: `1.5px solid ${BW.ink}` }}>
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(28px, 4vw, 48px) clamp(20px, 5vw, 64px) clamp(56px, 6vw, 80px)" }}>
