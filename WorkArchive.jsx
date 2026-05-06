@@ -147,7 +147,7 @@ function FeaturedCase({ c }) {
             )}
             <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.18) 0 2px, transparent 2px 9px)", mixBlendMode: "multiply" }} />
             {/* big folio — handwritten annotation */}
-            <div style={{ position: "absolute", left: 28, top: 28, fontFamily: BW.ffH, fontSize: 22, color: BW.chalk50, fontWeight: 400, letterSpacing: "0.01em" }}>
+            <div style={{ position: "absolute", left: 28, top: 28, fontFamily: BW.ffH, fontSize: 26, color: BW.chalk50, fontWeight: 700, letterSpacing: "0.01em" }}>
               Specimen №{c.no} · fig. {c.no}.0
             </div>
             {/* upper-right: client logo if provided, else big year mark */}
