@@ -102,7 +102,7 @@ const BW_BENCHMARKS = {
         ],
         signoff: "— MN",
       },
-      tags: ["productivity", "ai", "claude", "workflow"],
+      tags: ["productivity", "ai", "claude", "workflow", "systems"],
       relatedSlug: null,
       publishedAt: "2026-05-03",
       social: { igCaption: null, igCardSrc: null },
