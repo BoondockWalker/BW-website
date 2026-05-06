@@ -427,6 +427,7 @@ function formatBenchDate(iso) {
 function BMHero({ specimen }) {
   const m = specimen.mediaType;
   if (m === "image") return <BMHeroImage s={specimen} />;
+  if (m === "video") return <BMHeroVideo s={specimen} />;
   if (m === "quote") return <BMHeroQuote s={specimen} />;
   if (m === "link")  return <BMHeroLink s={specimen} />;
   if (m === "audio") return <BMHeroAudio s={specimen} />;
@@ -444,6 +445,41 @@ function BMHeroImage({ s }) {
           alt={s.alt || s.title || "Specimen"}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
+      ) : (
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `repeating-linear-gradient(45deg, ${BW.ink} 0 8px, ${BW.ink2} 8px 16px)` }} />
+      )}
+    </figure>
+  );
+}
+
+function BMHeroVideo({ s }) {
+  // Autoplay-loop muted video — Instagram-ambient register. Falls back to the
+  // poster image when prefers-reduced-motion is set so we don't shove motion
+  // at users who've opted out.
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const showStillFrame = reducedMotion && !!s.poster;
+  return (
+    <figure style={{ margin: 0, position: "absolute", inset: 0, background: BW.ink }}>
+      {s.src ? (
+        showStillFrame ? (
+          <img
+            src={s.poster}
+            alt={s.alt || s.title || "Specimen"}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        ) : (
+          <video
+            src={s.src}
+            poster={s.poster || undefined}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={s.alt || s.title || "Specimen video"}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        )
       ) : (
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `repeating-linear-gradient(45deg, ${BW.ink} 0 8px, ${BW.ink2} 8px 16px)` }} />
       )}
@@ -805,19 +841,25 @@ function BMCard({ specimen }) {
   const TypeIcon = () => {
     const m = specimen.mediaType;
     if (m === "image") return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>IMG</span>;
+    if (m === "video") return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>▶</span>;
     if (m === "quote") return <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18 }}>“ ”</span>;
     if (m === "link")  return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>↗</span>;
     if (m === "audio") return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>♪</span>;
     return null;
   };
 
+  // Image-type and video-type specimens both render a still in the card; video uses its poster.
+  const thumbSrc = specimen.mediaType === "image" ? specimen.src
+                 : specimen.mediaType === "video" ? specimen.poster
+                 : null;
+
   return (
     <a href={`benchmarks.html?id=${encodeURIComponent(specimen.id)}`} className="bm-card"
        style={{ display: "flex", flexDirection: "column", border: `0.75px solid ${BW.ink}`, background: BW.chalk50, color: BW.ink, textDecoration: "none", minHeight: 280, transition: "transform 200ms cubic-bezier(.2,.7,.2,1)" }}>
       {/* Thumb / type plate */}
       <div style={{ position: "relative", aspectRatio: "16/10", borderBottom: `0.75px solid ${BW.ink}`, overflow: "hidden", background: specimen.mediaType === "quote" || specimen.mediaType === "audio" ? BW.ink : BW.chalk }}>
-        {specimen.mediaType === "image" && specimen.src ? (
-          <img src={specimen.src} alt={specimen.alt || ""} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        {thumbSrc ? (
+          <img src={thumbSrc} alt={specimen.alt || ""} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
         ) : (
           <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
                 color: specimen.mediaType === "quote" || specimen.mediaType === "audio" ? BW.brass : BW.ink2,

@@ -174,8 +174,9 @@ const BW_BENCHMARKS = {
 
     {
       id: "2026-04-26-optimize-the-machine",
-      mediaType: "image",
-      src: SPEC + "2026-04-26-Optimize-the-Machine.png",
+      mediaType: "video",
+      src: SPEC + "2026-04-26-Optimize-the-Machine.mp4",
+      poster: SPEC + "2026-04-26-Optimize-the-Machine.png",
       alt: "Specimen — Optimize the Machine.",
       title: "Optimize the machine.",
       commentary: {
