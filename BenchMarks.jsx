@@ -40,6 +40,21 @@ function getOverrideId() {
   return p.get("id");
 }
 
+/* ───── Inline italic — renders *like this* as <em>like this</em>.
+   Lightweight alternative to a markdown parser; the asterisk is the
+   only inline marker the bench supports. Body text is curator-authored
+   in BenchMarksData.jsx, so no XSS surface. ───── */
+function renderInlineItalic(text) {
+  if (typeof text !== "string") return text;
+  const parts = text.split(/(\*[^*\n]+\*)/g);
+  return parts.map((part, i) => {
+    if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
+      return <em key={i} style={{ fontStyle: "italic" }}>{part.slice(1, -1)}</em>;
+    }
+    return part;
+  });
+}
+
 /* ───── Tag chip — bench reads in JetBrains Mono caps ───── */
 function BMTag({ children, light }) {
   const c = light ? BW.chalk2 : BW.ink2;
@@ -359,7 +374,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
               <p key={i} style={{
                 fontFamily: BW.ffSerif, fontSize: 17.5, lineHeight: 1.62,
                 margin: "0 0 16px", color: BW.ink, maxWidth: "60ch",
-              }}>{p}</p>
+              }}>{renderInlineItalic(p)}</p>
             ))}
 
             {/* 6. Signoff — small monospace italic */}
