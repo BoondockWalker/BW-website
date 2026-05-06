@@ -20,6 +20,27 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-06-great-awakening",
+      mediaType: "video",
+      src: SPEC + "2026-05-06-Great-awakening.mp4",
+      alt: "Animated clip from Brave & Boundless — The Great Awakening.",
+      title: "The Great Awakening",
+      commentary: {
+        hook: "A clip from *Brave & Boundless*. Something is shifting in the generation coming up.",
+        body: [
+          "They're looking at the patterns they inherited — career scripts, relationship templates, money habits, faith defaults — and asking the question their parents didn't always feel free to ask.",
+          "*Does this still need to be true for me?*",
+          "Some cycles deserve reverence. Others deserve a torch. The Fire stage of the book is about telling yourself the truth long enough to know which is which.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["brave-and-boundless", "cycles", "generational"],
+      relatedSlug: null,
+      publishedAt: "2026-05-06",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-05-nobull-color-palette",
       mediaType: "image",
       src: SPEC + "2026-05-05-Nobull-color-palette.png",
@@ -270,9 +291,10 @@ const BW_BENCHMARKS = {
 
     {
       id: "2026-04-22-three-fours",
-      mediaType: "image",
-      src: SPEC + "2026-04-22-ThreeFours.png",
-      alt: "Specimen — Three Fours.",
+      mediaType: "video",
+      src: SPEC + "2026-04-22-ThreeFours.mp4",
+      poster: SPEC + "2026-04-22-ThreeFours.png",
+      alt: "Specimen — Three Fours animation.",
       title: "Three fours.",
       commentary: {
         hook: "Three quarters shown. The fourth is what you don't say.",

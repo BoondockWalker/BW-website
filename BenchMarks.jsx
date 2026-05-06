@@ -43,13 +43,20 @@ function getOverrideId() {
 /* ───── Inline italic — renders *like this* as <em>like this</em>.
    Lightweight alternative to a markdown parser; the asterisk is the
    only inline marker the bench supports. Body text is curator-authored
-   in BenchMarksData.jsx, so no XSS surface. ───── */
-function renderInlineItalic(text) {
+   in BenchMarksData.jsx, so no XSS surface.
+
+   In a roman-text context (body): emphasized phrase renders italic.
+   In an italic-text context (hook): pass { reverse: true } so the
+   emphasized phrase renders roman against the surrounding italic —
+   the typographic convention for italics-in-italic-set text. ───── */
+function renderInlineItalic(text, opts) {
   if (typeof text !== "string") return text;
+  const reverse = !!(opts && opts.reverse);
+  const emStyle = reverse ? { fontStyle: "normal" } : { fontStyle: "italic" };
   const parts = text.split(/(\*[^*\n]+\*)/g);
   return parts.map((part, i) => {
     if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
-      return <em key={i} style={{ fontStyle: "italic" }}>{part.slice(1, -1)}</em>;
+      return <em key={i} style={emStyle}>{part.slice(1, -1)}</em>;
     }
     return part;
   });
@@ -365,7 +372,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
                 letterSpacing: "-0.02em", margin: "0 0 24px", color: BW.ink,
                 maxWidth: "22ch",
               }}>
-                {specimen.commentary.hook}
+                {renderInlineItalic(specimen.commentary.hook, { reverse: true })}
               </h2>
             )}
 
