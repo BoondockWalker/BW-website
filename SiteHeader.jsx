@@ -33,6 +33,7 @@ const SITE_NAV_ITEMS = [
   { label: "Capabilities", href: "capabilities.html" },
   { label: "The Lab",      href: "index.html#the-lab" },
   { label: "Field Notes",  href: "field-notes.html" },
+  { label: "BenchMarks",   href: "benchmarks.html" },
   { label: "About",        href: "about.html" },
 ];
 
