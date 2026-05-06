@@ -40,6 +40,28 @@ function getOverrideId() {
   return p.get("id");
 }
 
+/* ───── Inline italic — renders *like this* as <em>like this</em>.
+   Lightweight alternative to a markdown parser; the asterisk is the
+   only inline marker the bench supports. Body text is curator-authored
+   in BenchMarksData.jsx, so no XSS surface.
+
+   In a roman-text context (body): emphasized phrase renders italic.
+   In an italic-text context (hook): pass { reverse: true } so the
+   emphasized phrase renders roman against the surrounding italic —
+   the typographic convention for italics-in-italic-set text. ───── */
+function renderInlineItalic(text, opts) {
+  if (typeof text !== "string") return text;
+  const reverse = !!(opts && opts.reverse);
+  const emStyle = reverse ? { fontStyle: "normal" } : { fontStyle: "italic" };
+  const parts = text.split(/(\*[^*\n]+\*)/g);
+  return parts.map((part, i) => {
+    if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
+      return <em key={i} style={emStyle}>{part.slice(1, -1)}</em>;
+    }
+    return part;
+  });
+}
+
 /* ───── Tag chip — bench reads in JetBrains Mono caps ───── */
 function BMTag({ children, light }) {
   const c = light ? BW.chalk2 : BW.ink2;
@@ -350,7 +372,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
                 letterSpacing: "-0.02em", margin: "0 0 24px", color: BW.ink,
                 maxWidth: "22ch",
               }}>
-                {specimen.commentary.hook}
+                {renderInlineItalic(specimen.commentary.hook, { reverse: true })}
               </h2>
             )}
 
@@ -359,7 +381,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
               <p key={i} style={{
                 fontFamily: BW.ffSerif, fontSize: 17.5, lineHeight: 1.62,
                 margin: "0 0 16px", color: BW.ink, maxWidth: "60ch",
-              }}>{p}</p>
+              }}>{renderInlineItalic(p)}</p>
             ))}
 
             {/* 6. Signoff — small monospace italic */}
@@ -427,6 +449,7 @@ function formatBenchDate(iso) {
 function BMHero({ specimen }) {
   const m = specimen.mediaType;
   if (m === "image") return <BMHeroImage s={specimen} />;
+  if (m === "video") return <BMHeroVideo s={specimen} />;
   if (m === "quote") return <BMHeroQuote s={specimen} />;
   if (m === "link")  return <BMHeroLink s={specimen} />;
   if (m === "audio") return <BMHeroAudio s={specimen} />;
@@ -436,14 +459,54 @@ function BMHero({ specimen }) {
 function BMHeroImage({ s }) {
   // Clean square fill — the parent already provides the 1:1 frame, border, and shadow.
   // No scrim or caption — the right-column content carries the title and metadata.
+  // If the src is animated (GIF) and a poster is supplied, swap to the poster
+  // when prefers-reduced-motion is set so we don't push motion at users who've
+  // opted out. There's no native pause for animated GIFs, so the swap is the fix.
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const stillSrc = (reducedMotion && s.poster) ? s.poster : s.src;
   return (
     <figure style={{ margin: 0, position: "absolute", inset: 0, background: BW.ink }}>
-      {s.src ? (
+      {stillSrc ? (
         <img
-          src={s.src}
+          src={stillSrc}
           alt={s.alt || s.title || "Specimen"}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
+      ) : (
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `repeating-linear-gradient(45deg, ${BW.ink} 0 8px, ${BW.ink2} 8px 16px)` }} />
+      )}
+    </figure>
+  );
+}
+
+function BMHeroVideo({ s }) {
+  // Autoplay-loop muted video — Instagram-ambient register. Falls back to the
+  // poster image when prefers-reduced-motion is set so we don't shove motion
+  // at users who've opted out.
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const showStillFrame = reducedMotion && !!s.poster;
+  return (
+    <figure style={{ margin: 0, position: "absolute", inset: 0, background: BW.ink }}>
+      {s.src ? (
+        showStillFrame ? (
+          <img
+            src={s.poster}
+            alt={s.alt || s.title || "Specimen"}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        ) : (
+          <video
+            src={s.src}
+            poster={s.poster || undefined}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={s.alt || s.title || "Specimen video"}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        )
       ) : (
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `repeating-linear-gradient(45deg, ${BW.ink} 0 8px, ${BW.ink2} 8px 16px)` }} />
       )}
@@ -571,7 +634,7 @@ function BMHeroAudio({ s }) {
   );
 }
 
-/* ───── §02 Actions row — Permalink (live), IG / LinkedIn (coming soon) ───── */
+/* ───── §02 Actions row — Permalink (live), IG (coming soon) ───── */
 function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
   const [copied, setCopied] = React.useState(false);
   const isMobile = useMediaQuery("(max-width: 560px)");
@@ -595,7 +658,7 @@ function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
     }
   };
 
-  // Disabled "coming soon" button — share-to-IG / LinkedIn.
+  // Disabled "coming soon" button — share-to-IG.
   const SoonBtn = ({ label }) => (
     <button
       type="button"
@@ -671,7 +734,6 @@ function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
         {copied ? "Permalink copied" : "Copy permalink"}
       </a>
       <SoonBtn label="Share to IG" />
-      <SoonBtn label="Share to LinkedIn" />
       {showMobileNav && (
         <NavIconBtn label="Next specimen" onClick={mobileNext} dir="next" />
       )}
@@ -805,19 +867,28 @@ function BMCard({ specimen }) {
   const TypeIcon = () => {
     const m = specimen.mediaType;
     if (m === "image") return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>IMG</span>;
+    if (m === "video") return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>▶</span>;
     if (m === "quote") return <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18 }}>“ ”</span>;
     if (m === "link")  return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>↗</span>;
     if (m === "audio") return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>♪</span>;
     return null;
   };
 
+  // Card thumb: prefer the still poster when one is supplied (animated GIFs
+  // and videos both keep their card thumb static). Otherwise fall back to the
+  // image src for image-type specimens.
+  const thumbSrc = specimen.poster
+                 ? specimen.poster
+                 : specimen.mediaType === "image" ? specimen.src
+                 : null;
+
   return (
     <a href={`benchmarks.html?id=${encodeURIComponent(specimen.id)}`} className="bm-card"
        style={{ display: "flex", flexDirection: "column", border: `0.75px solid ${BW.ink}`, background: BW.chalk50, color: BW.ink, textDecoration: "none", minHeight: 280, transition: "transform 200ms cubic-bezier(.2,.7,.2,1)" }}>
       {/* Thumb / type plate */}
       <div style={{ position: "relative", aspectRatio: "16/10", borderBottom: `0.75px solid ${BW.ink}`, overflow: "hidden", background: specimen.mediaType === "quote" || specimen.mediaType === "audio" ? BW.ink : BW.chalk }}>
-        {specimen.mediaType === "image" && specimen.src ? (
-          <img src={specimen.src} alt={specimen.alt || ""} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        {thumbSrc ? (
+          <img src={thumbSrc} alt={specimen.alt || ""} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
         ) : (
           <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
                 color: specimen.mediaType === "quote" || specimen.mediaType === "audio" ? BW.brass : BW.ink2,

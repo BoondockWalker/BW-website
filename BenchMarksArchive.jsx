@@ -3,7 +3,7 @@
    Filter rail (left, sticky) + results grid (right). Filter state mirrored to URL.
 
    URL params:
-     type   — image | quote | link | audio (repeatable, comma-joined or repeated)
+     type   — image | video | quote | link | audio (repeatable, comma-joined or repeated)
      year   — 4-digit
      month  — 2-digit (01..12)
      tag    — repeatable (comma-joined)
@@ -25,6 +25,7 @@ function getTodayISO() {
 
 const TYPE_OPTIONS = [
   { key: "image", label: "Image" },
+  { key: "video", label: "Video" },
   { key: "quote", label: "Quote" },
   { key: "link",  label: "Link" },
   { key: "audio", label: "Audio" },
@@ -61,7 +62,7 @@ function writeFiltersToUrl(filters) {
 
 /* ───── Derive filter facets from data ───── */
 function buildFacets(specimens) {
-  const typeCounts = { image: 0, quote: 0, link: 0, audio: 0 };
+  const typeCounts = { image: 0, video: 0, quote: 0, link: 0, audio: 0 };
   const tagCounts = {};
   const yearMonthMap = {}; // year -> Set<month>
 
