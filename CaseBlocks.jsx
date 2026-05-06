@@ -334,8 +334,8 @@ function FullBleedImage({ block }) {
       {caption && (
         <Reveal kind="rise" delay={200}>
           <div style={{ maxWidth: MAX_W, margin: "0 auto", padding: "18px clamp(20px, 5vw, 56px) 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
-            <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>{caption.label || "fig."}</span>
-            <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
+            <span style={{ fontFamily: BW.ffH, fontSize: 26, color: BW.clay, fontWeight: 700, letterSpacing: "0.01em" }}>{caption.label || "fig."}</span>
+            <span style={{ fontFamily: BW.ffH, fontSize: 26, color: caption.fg || BW.ink, fontWeight: 600, letterSpacing: "0.01em" }}>{caption.title || caption}</span>
           </div>
         </Reveal>
       )}
@@ -677,7 +677,7 @@ function PullquoteBlock({ block }) {
             <div style={{ position: "relative", background: imageBg, height: "100%", minHeight: 560, overflow: "hidden" }}>
               <img src={image} alt={imageAlt || ""} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.10) 0 1.5px, transparent 1.5px 7px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
-              <div style={{ position: "absolute", left: 20, top: 20, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(244,236,218,0.7)", fontWeight: 700 }}>
+              <div style={{ position: "absolute", left: 20, top: 20, fontFamily: BW.ffH, fontSize: 26, color: "rgba(244,236,218,0.92)", fontWeight: 700, letterSpacing: "0.01em" }}>
                 fig. 08 · Testimony
               </div>
             </div>
