@@ -20,6 +20,26 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-08-betty",
+      mediaType: "image",
+      src: SPEC + "2026-05-08-Betty.png",
+      alt: "Watercolor portrait of Betty.",
+      title: "Betty",
+      commentary: {
+        hook: "Advantages of a remote office.",
+        body: [
+          "She doesn't schedule meetings. She doesn't lobby for promotions. Demands one walk, an occasional salmon treat, and a window view.",
+          "Highest-performing teammate, two years running.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["remote-work", "dogs", "watercolor"],
+      relatedSlug: null,
+      publishedAt: "2026-05-08",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-07-locked-in",
       mediaType: "image",
       src: SPEC + "2026-05-07-Locked-In.png",
