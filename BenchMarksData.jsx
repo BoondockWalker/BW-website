@@ -33,7 +33,7 @@ const BW_BENCHMARKS = {
         ],
         signoff: "— MN",
       },
-      tags: ["remote-work", "dogs", "watercolor"],
+      tags: ["dogs"],
       relatedSlug: null,
       publishedAt: "2026-05-08",
       social: { igCaption: null, igCardSrc: null },
