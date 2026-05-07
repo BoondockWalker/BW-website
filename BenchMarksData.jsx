@@ -20,6 +20,27 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-07-locked-in",
+      mediaType: "image",
+      src: SPEC + "2026-05-07-Locked-In.png",
+      alt: "Specimen — Locked In.",
+      title: "Locked In",
+      commentary: {
+        hook: "Seven months. Five days a week.",
+        body: [
+          "Total body recomposition. Cleaner energy. Better sleep. The kind of feel-good that doesn't come from a supplement or a hack.",
+          "I thought I'd find a code. Turns out the code is that there isn't one.",
+          "Discipline. Just start. One day at a time.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["health", "discipline", "midlife"],
+      relatedSlug: null,
+      publishedAt: "2026-05-07",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-06-great-awakening",
       mediaType: "video",
       src: SPEC + "2026-05-06-Great-awakening.mp4",
