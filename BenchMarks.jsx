@@ -86,8 +86,8 @@ function BMMasthead() {
   const isNarrow = useMediaQuery("(max-width: 560px)");
   const heroOverlap = isNarrow ? 25 : 30;
   return (
-    <section style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", marginTop: -heroOverlap }}>
-      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(56px, 8vw, 96px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 64px)" }}>
+    <section style={{ background: BW.chalk50, color: BW.ink, fontFamily: BW.ffG, position: "relative", marginTop: -heroOverlap }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(24px, 4vw, 40px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 64px)" }}>
         {/* Masthead top rail — note: archive-vs-today state lives on the §02
             eyebrow, not here, so this rail always reads "Refreshed daily". */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 14, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700, flexWrap: "wrap", gap: 12 }}>
@@ -124,7 +124,7 @@ function BMCuratorStrip({ curator }) {
   const initials = curator.name ? curator.name.split(" ").map(n => n[0]).join("").slice(0, 2) : "BW";
   const photoSize = isMobile ? 40 : 46;
   return (
-    <section style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}` }}>
+    <section style={{ background: `linear-gradient(rgba(20,16,12,0.05), rgba(20,16,12,0.05)), ${BW.chalk}`, color: BW.ink }}>
       <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(14px, 1.6vw, 18px) clamp(20px, 5vw, 64px)" }}>
         <div style={{
           display: "flex", alignItems: "center", gap: isMobile ? 12 : 16,
