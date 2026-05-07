@@ -81,12 +81,8 @@ function BMMasthead() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const today = new Date();
   const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-  // Pull the masthead up by half-pill-height so its surface paints under the
-  // sticky pill — matches the WorkMasthead/case mast pattern.
-  const isNarrow = useMediaQuery("(max-width: 560px)");
-  const heroOverlap = isNarrow ? 25 : 30;
   return (
-    <section style={{ background: BW.chalk50, color: BW.ink, fontFamily: BW.ffG, position: "relative", marginTop: -heroOverlap }}>
+    <section style={{ background: BW.chalk50, color: BW.ink, fontFamily: BW.ffG, position: "relative" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(24px, 4vw, 40px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 64px)" }}>
         {/* Masthead top rail — note: archive-vs-today state lives on the §02
             eyebrow, not here, so this rail always reads "Refreshed daily". */}
