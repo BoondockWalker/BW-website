@@ -3,13 +3,13 @@
    Specimens are placeholder commentary on Mark's uploaded images.
    Replace the `commentary` blocks below with the real notes. */
 
-const SPEC = "/assets/benchmarks/specimens/";
+const SPEC = "assets/benchmarks/specimens/";
 
 const BW_BENCHMARKS = {
   curator: {
     name: "Mark Nead",
     role: "Curator",
-    photo: "/assets/benchmarks/curator/Mark-Nead-headshot.jpg",
+    photo: "assets/benchmarks/curator/Mark-Nead-headshot.jpg",
     bio: "I keep the bench. One specimen a day, three things on the desk, and a running log of edits to my own thinking. If something here lands, it earned the spot.",
   },
 
