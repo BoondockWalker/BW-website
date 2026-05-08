@@ -125,8 +125,9 @@ function FNFeatured({ note, themed }) {
 function FNNewsletterRail() {
   const [email, setEmail] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
+  const isMobile = useMediaQuery("(max-width: 900px)");
   return (
-    <aside style={{ position: "sticky", top: 80, alignSelf: "start", border: `1.5px solid ${BW.ink}`, background: BW.ink, color: BW.chalk50, padding: "28px 26px", display: "flex", flexDirection: "column", gap: 18 }}>
+    <aside style={{ position: isMobile ? "static" : "sticky", top: isMobile ? "auto" : 80, alignSelf: "start", border: `1.5px solid ${BW.ink}`, background: BW.ink, color: BW.chalk50, padding: "28px 26px", display: "flex", flexDirection: "column", gap: 18 }}>
       <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>★ Subscribe</div>
       <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: 28, lineHeight: 1.05, letterSpacing: "-0.02em", margin: 0, color: BW.chalk50 }}>The bulletin, in your inbox.</h3>
       <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.55, margin: 0, color: BW.chalk2 }}>Twice a month. The two best notes, plus one operator's-diary scrap from the bench. No email gate on the archive — this is just the easier way to read it.</p>
