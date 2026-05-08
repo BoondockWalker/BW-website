@@ -348,6 +348,48 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
                   overflow: "hidden", boxShadow: "0 12px 32px -22px rgba(20,16,12,0.45)",
                 }}>
                   <BMHero specimen={specimen} />
+                  {/* Mobile overlay nav arrows — pinned to image edges, vertically
+                      centered, so it's obvious you can swipe between specimens. */}
+                  <button
+                    type="button"
+                    onClick={onPrev}
+                    aria-label="Previous specimen"
+                    style={{
+                      position: "absolute", top: "50%", left: 12,
+                      transform: "translateY(-50%)",
+                      width: 40, height: 40,
+                      display: "inline-flex", alignItems: "center", justifyContent: "center",
+                      background: "rgba(20,16,12,0.62)", color: BW.chalk,
+                      border: `1px solid rgba(244,236,218,0.35)`, borderRadius: 999,
+                      backdropFilter: "blur(4px)",
+                      WebkitBackdropFilter: "blur(4px)",
+                      cursor: "pointer", padding: 0, zIndex: 2,
+                    }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onNext}
+                    aria-label="Next specimen"
+                    style={{
+                      position: "absolute", top: "50%", right: 12,
+                      transform: "translateY(-50%)",
+                      width: 40, height: 40,
+                      display: "inline-flex", alignItems: "center", justifyContent: "center",
+                      background: "rgba(20,16,12,0.62)", color: BW.chalk,
+                      border: `1px solid rgba(244,236,218,0.35)`, borderRadius: 999,
+                      backdropFilter: "blur(4px)",
+                      WebkitBackdropFilter: "blur(4px)",
+                      cursor: "pointer", padding: 0, zIndex: 2,
+                    }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </button>
                 </div>
                 <div style={{
                   marginTop: 10, display: "flex", justifyContent: "space-between", alignItems: "center",
