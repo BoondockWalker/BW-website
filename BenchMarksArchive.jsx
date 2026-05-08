@@ -371,7 +371,8 @@ function BenchMarksArchivePage() {
           .bm-card:hover { transform: none !important; }
         }
       `}</style>
-      <SiteHeader current="BenchMarks" sticky={true} />
+      <SiteHeader current="Field Notes" sticky={true} />
+      <NotesNav current="BenchMarks" />
       <BMArchiveMasthead totalCount={publishedSpecimens.length} filteredCount={filtered.length} />
 
       <section style={{ background: BW.chalk, borderBottom: `1.5px solid ${BW.ink}` }}>
