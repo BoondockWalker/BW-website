@@ -24,6 +24,7 @@
 
 <script type="text/babel" src="Primitives.jsx"></script>
 <script type="text/babel" src="SiteHeader.jsx"></script>
+<script type="text/babel" src="NotesNav.jsx"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="FieldNotesData.jsx"></script>
 <script type="text/babel" src="FieldNotesA.jsx"></script>
@@ -76,6 +77,7 @@ function FieldNotesPage() {
   return (
     <div style={{ background: BW.chalk, minHeight: "100vh" }}>
       <SiteHeader current="Field Notes" sticky={true} />
+      <NotesNav current="Blog" />
       <FNMasthead filterCount={filtered.length} totalCount={FN_NOTES.length} />
       <div style={{ position: "sticky", top: 0, zIndex: 20 }}><FNFilterRail activeTag={activeTag} setActiveTag={setActiveTag} themed={tweaks.themedTags} /></div>
 

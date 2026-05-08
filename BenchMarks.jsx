@@ -1156,7 +1156,8 @@ function BenchMarksPage() {
           .bm-card:hover { transform: none !important; }
         }
       `}</style>
-      <SiteHeader current="BenchMarks" sticky={true} />
+      <SiteHeader current="Field Notes" sticky={true} />
+      <NotesNav current="BenchMarks" />
       <BMMasthead />
       <BMCuratorStrip curator={data.curator} />
       <BMToday specimen={todaySpecimen} isArchive={isArchive} onPrev={onPrev} onNext={onNext} />
