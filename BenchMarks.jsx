@@ -463,7 +463,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
             {/* 8. Action row — permalink + share buttons (and mobile prev/next) */}
             <div style={{ marginTop: "clamp(28px, 3vw, 40px)", paddingTop: 22, borderTop: `1px solid ${BW.ruleL}` }}>
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 12 }}>Share / save</div>
-              <BMActions specimenId={specimen.id} layout="row" mobilePrev={onPrev} mobileNext={onNext} mobile={isMobile} />
+              <BMActions specimenId={specimen.id} layout="row" mobile={isMobile} />
             </div>
           </div>
         </div>
