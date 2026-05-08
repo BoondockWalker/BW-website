@@ -41,6 +41,7 @@ const FN_TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 
 function FieldNotesPage() {
   const [tweaks, setTweak] = useTweaks(FN_TWEAK_DEFAULTS);
+  const isMobile = useMediaQuery("(max-width: 900px)");
   const [activeTag, setActiveTag] = useState("All");
 
   const filtered = useMemo(() => {
@@ -83,7 +84,7 @@ function FieldNotesPage() {
       {/* Body — bulletin grid + side rails */}
       <section style={{ background: BW.chalk, borderBottom: `1.5px solid ${BW.ink}` }}>
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(40px, 5vw, 64px) clamp(20px, 5vw, 64px)" }}>
-          <div style={{ display: "grid", gridTemplateColumns: (tweaks.diaryRail || tweaks.indexRail) ? "minmax(0, 2.4fr) minmax(260px, 1fr)" : "1fr", gap: "clamp(28px, 3vw, 48px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: (tweaks.diaryRail || tweaks.indexRail) && !isMobile ? "minmax(0, 2.4fr) minmax(260px, 1fr)" : "1fr", gap: "clamp(28px, 3vw, 48px)" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", paddingBottom: 14, borderBottom: `1.5px solid ${BW.ink}` }}>
                 <h2 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.4vw, 40px)", lineHeight: 1, letterSpacing: "-0.02em", margin: 0 }}>The bulletin.</h2>
@@ -94,7 +95,7 @@ function FieldNotesPage() {
             </div>
 
             {(tweaks.diaryRail || tweaks.indexRail) && (
-              <div style={{ display: "flex", flexDirection: "column", gap: 20, position: "sticky", top: 80, alignSelf: "start" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 20, position: isMobile ? "static" : "sticky", top: isMobile ? "auto" : 80, alignSelf: "start" }}>
                 <FNNewsletterRail />
                 {tweaks.diaryRail && <FNDiary />}
                 {tweaks.indexRail && <FNIndex notes={FN_NOTES} />}
