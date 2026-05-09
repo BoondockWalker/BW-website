@@ -1,35 +1,67 @@
 /* global React, BW, FN_NOTES, FN_AUTHORS, FN_TAGS, FNArt, fnTagColor, FNCard, FNNewsletterRail */
 
-/* The year you stop calling it heritage — body content, structured.
-   Each block becomes a typeset element below. */
-const NOTE_BODY = [
-  { kind: "lede", text: "Last week I sat in a conference room in Cleveland and watched a CEO apologize for the year on his door. He runs a $40m wholesale outfit founded in 1953. Three generations. The kind of business operators dream of acquiring. And he led with: \"I know we're old, but —\"" },
-  { kind: "p", text: "Stop. The receipts of having survived are an asset. Not a thing to apologize for. The minute you frame longevity as a liability, you've handed the conversation to the kid in the patagonia vest who launched eighteen months ago and wants to talk about his AI-native ops." },
-  { kind: "h2", text: "What \"heritage\" actually signals." },
-  { kind: "p", text: "When I hear the word heritage on a brand call, I hear three things, in order: first, that the business is older than its current category. Second, that nobody on the leadership team is sure what to say about that. Third, that the marketing team has been quietly resenting the founders for fifteen years." },
-  { kind: "p", text: "It's never the word that's the problem. It's the apology underneath it." },
-  { kind: "pullquote", text: "Heritage as positioning is a coward's move. Heritage as proof is the entire game.", attr: "Field Notes No 18" },
-  { kind: "h2", text: "The reframe — three sentences." },
-  { kind: "p", text: "Replace \"we've been around for 70 years\" with \"we've shipped 14,000 of these.\" Replace \"third generation\" with \"the third operator who decided not to break it.\" Replace \"family-owned\" with \"the only person you'd talk to has signed every PO since 2008.\"" },
-  { kind: "p", text: "These aren't taglines. They're the sentences your team should be saying on Zoom when the buyer asks the inevitable why-you question. Run them past your sales team this week. Watch what happens to the second-call rate." },
-  { kind: "ol", items: [
-    "Stop using \"heritage\" as a noun. It's a frame, not a feature.",
-    "Inventory the quantitative receipts — units shipped, customers held, decades on the bench.",
-    "Translate every soft claim (\"long-standing\") into a hard one (\"19 years with the same Tier-1 buyer\").",
-    "Train your sales team to lead with the receipt, not the date.",
-    "Audit your homepage for any sentence that opens with \"founded in.\" Cut or invert.",
-  ]},
-  { kind: "h2", text: "Why this matters now." },
-  { kind: "p", text: "The cohort buying B2B services in 2026 is, on average, eight years younger than the cohort that bought in 2019. They have been told a story about old companies — slow, change-averse, locked into legacy stacks — and they walk into every conversation looking for confirmation. Your job is to interrupt that story in the first three sentences." },
-  { kind: "p", text: "The receipts are how you do it. Not the year on the door." },
-  { kind: "endnote", text: "B. Walker is the principal at Boondock Walker. He has, on three separate occasions, talked clients out of hiding their founding date. Two of them sent thank-you notes." },
-];
+/* Long-form note bodies — keyed by slug. Each note's body is an array of
+   block descriptors (lede / p / h2 / pullquote / ol / ul / endnote) that
+   <NoteBlock> renders. Margin notes live in the parallel marginalia map.
+   To add a new post: register both maps under the same slug. */
+const NOTE_BODIES = {
+  "seven-years-unagency": [
+    { kind: "lede", text: "Seven years ago, I sat at the kitchen table and decided Boondock Walker wasn't going to be an agency anymore." },
+    { kind: "p", text: "We weren't going to scale into a holding company. We weren't going to staff up the floor with B and C teams. We weren't going to become the place that promised the senior strategist in the pitch and delivered the junior on the work. We were going to be something else — a shape the industry didn't have a word for yet, so we made one up." },
+    { kind: "p", text: "We called it unagency. The name was half a punchline and half a position. The position was real." },
+    { kind: "h2", text: "The shape we picked." },
+    { kind: "p", text: "The model, in one paragraph: the client and their brand at the center. A cross-functional team built specifically for that client — strategy, brand, story, demand — pulled from a pool of operators who had already shipped, already won, already failed at the work they were now being asked to do. No silos. No farm leagues. No layer of account management between the work and the people doing it. We were entrepreneurs first, agency second, and we structured the bureau accordingly: lean, flat, fluid." },
+    { kind: "p", text: "That's the part that read well in the deck. The part that read well in practice took longer to settle." },
+    { kind: "h2", text: "What worked." },
+    { kind: "p", text: "What worked was the math. Lower overhead meant lower fees relative to the senior talent the client got. Senior talent meant fewer revisions. Fewer revisions meant faster cycles. Faster cycles meant we could actually take on the strategic question — not just produce the deliverable. Compounding, the way good systems compound." },
+    { kind: "pullquote", text: "We never had a pitch team. The people in the meeting were the people doing the work.", attr: "Field Notes No 19" },
+    { kind: "p", text: "Clients who came to us through traditional agencies had usually been through three or four engagements that ended in some version of we got along great with the pitch team and never saw them again. We never had a pitch team. The people in the meeting were the people doing the work. That's not a process win, it's a relationship one — but the relationship is what closes the next quarter." },
+    { kind: "h2", text: "What it cost us." },
+    { kind: "p", text: "What we underestimated: how much of an agency exists to absorb friction so the work can happen. Without that layer, friction lands on the operators. We learned to design our intake, contracting, scoping, and invoicing as if those things were product, not overhead. We're still refining it." },
+    { kind: "p", text: "What we got wrong: we thought \"no silos\" meant no specialists. It doesn't. The fluid-team idea works because the people in the team are deep in their lane — brand strategists who've shipped twenty systems, lifecycle operators who've built attribution they'd defend in a board meeting. Generalists couldn't do this. We learned to hire for depth, not flexibility." },
+    { kind: "p", text: "What we didn't see coming: AI. Seven years ago \"Lab\" wasn't a pillar. Now it is — and it changes the math on what an unagency can do for a client without scaling staff. The same five people can run more, deeper, faster. We've been quietly rebuilding around that for the last eighteen months." },
+    { kind: "h2", text: "What's next." },
+    { kind: "p", text: "The unagency model worked for the decade we built it for. The decade ahead asks a different question. The work has shifted from \"how do we deliver senior thinking without an agency's overhead\" to \"how do we run an entire revenue motion — brand, demand, lab — with the kind of operational depth a client used to need an in-house team for, and an AI substrate they didn't have the option to use until now.\"" },
+    { kind: "p", text: "We've been working on the answer. It's not unagency anymore. It's something further down the trail." },
+    { kind: "p", text: "More on that, soon." },
+    { kind: "endnote", text: "Mark is the principal at Boondock Walker. He's been writing the next pivot's working name on the back of a notebook for eight months. He'll tell you when it's ready." },
+  ],
+  "stop-calling-it-heritage": [
+    { kind: "lede", text: "Last week I sat in a conference room in Cleveland and watched a CEO apologize for the year on his door. He runs a $40m wholesale outfit founded in 1953. Three generations. The kind of business operators dream of acquiring. And he led with: \"I know we're old, but —\"" },
+    { kind: "p", text: "Stop. The receipts of having survived are an asset. Not a thing to apologize for. The minute you frame longevity as a liability, you've handed the conversation to the kid in the patagonia vest who launched eighteen months ago and wants to talk about his AI-native ops." },
+    { kind: "h2", text: "What \"heritage\" actually signals." },
+    { kind: "p", text: "When I hear the word heritage on a brand call, I hear three things, in order: first, that the business is older than its current category. Second, that nobody on the leadership team is sure what to say about that. Third, that the marketing team has been quietly resenting the founders for fifteen years." },
+    { kind: "p", text: "It's never the word that's the problem. It's the apology underneath it." },
+    { kind: "pullquote", text: "Heritage as positioning is a coward's move. Heritage as proof is the entire game.", attr: "Field Notes No 18" },
+    { kind: "h2", text: "The reframe — three sentences." },
+    { kind: "p", text: "Replace \"we've been around for 70 years\" with \"we've shipped 14,000 of these.\" Replace \"third generation\" with \"the third operator who decided not to break it.\" Replace \"family-owned\" with \"the only person you'd talk to has signed every PO since 2008.\"" },
+    { kind: "p", text: "These aren't taglines. They're the sentences your team should be saying on Zoom when the buyer asks the inevitable why-you question. Run them past your sales team this week. Watch what happens to the second-call rate." },
+    { kind: "ol", items: [
+      "Stop using \"heritage\" as a noun. It's a frame, not a feature.",
+      "Inventory the quantitative receipts — units shipped, customers held, decades on the bench.",
+      "Translate every soft claim (\"long-standing\") into a hard one (\"19 years with the same Tier-1 buyer\").",
+      "Train your sales team to lead with the receipt, not the date.",
+      "Audit your homepage for any sentence that opens with \"founded in.\" Cut or invert.",
+    ]},
+    { kind: "h2", text: "Why this matters now." },
+    { kind: "p", text: "The cohort buying B2B services in 2026 is, on average, eight years younger than the cohort that bought in 2019. They have been told a story about old companies — slow, change-averse, locked into legacy stacks — and they walk into every conversation looking for confirmation. Your job is to interrupt that story in the first three sentences." },
+    { kind: "p", text: "The receipts are how you do it. Not the year on the door." },
+    { kind: "endnote", text: "B. Walker is the principal at Boondock Walker. He has, on three separate occasions, talked clients out of hiding their founding date. Two of them sent thank-you notes." },
+  ],
+};
 
-const NOTE_MARGINALIA = [
-  { after: 1, text: "Note to self: track how many times \"heritage\" appears on the sites of the companies that pitch us this quarter. I bet it's >40%." },
-  { after: 4, text: "We dropped \"heritage\" from a client deck in Q4. Pipeline up 22% next quarter. Anecdote, not science." },
-  { after: 7, text: "If you can't fill the receipts inventory, that's the actual problem. Heritage was hiding it." },
-];
+const NOTE_MARGINALIAS = {
+  "seven-years-unagency": [
+    { after: 2, text: "The kitchen-table call: actual table, actual decision. We had two clients on retainer and one prospect about to sign. I cancelled the prospect that week." },
+    { after: 7, text: "The math beat the model. Overhead is the silent killer of agency margin — and of the senior attention clients are paying for." },
+    { after: 11, text: "AI was the hardest call. Adopt too early and you ship slop. Wait too long and you're competing with operators who shipped the slop and learned faster than you." },
+  ],
+  "stop-calling-it-heritage": [
+    { after: 1, text: "Note to self: track how many times \"heritage\" appears on the sites of the companies that pitch us this quarter. I bet it's >40%." },
+    { after: 4, text: "We dropped \"heritage\" from a client deck in Q4. Pipeline up 22% next quarter. Anecdote, not science." },
+    { after: 7, text: "If you can't fill the receipts inventory, that's the actual problem. Heritage was hiding it." },
+  ],
+};
 
 function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
@@ -38,6 +70,8 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
   const idx = FN_NOTES.findIndex(n => n.slug === note.slug);
   const prev = FN_NOTES[idx + 1]; // older
   const next = idx > 0 ? FN_NOTES[idx - 1] : null; // newer
+  const body = NOTE_BODIES[note.slug] || [{ kind: "p", text: "This note is being filed. Check back soon." }];
+  const marginalia = NOTE_MARGINALIAS[note.slug] || [];
 
   // Footer
   const Foot = () => (
@@ -113,7 +147,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1fr) 240px", gap: "clamp(28px, 4vw, 64px)" }}>
           {/* Article column */}
           <article style={{ maxWidth: 660 }}>
-            {NOTE_BODY.map((b, i) => <NoteBlock key={i} block={b} idx={i} drop={drop} />)}
+            {body.map((b, i) => <NoteBlock key={i} block={b} idx={i} drop={drop} />)}
             {/* End ornament */}
             <div style={{ marginTop: 28, display: "flex", alignItems: "center", gap: 14 }}>
               <span style={{ width: 14, height: 14, background: c, transform: "rotate(45deg)", display: "inline-block" }} />
@@ -128,7 +162,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
               {marginNotes && (
                 <div style={{ borderLeft: `2px solid ${c}`, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 22 }}>
                   <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>Margin notes</div>
-                  {NOTE_MARGINALIA.map((m, i) => (
+                  {marginalia.map((m, i) => (
                     <div key={i} style={{ fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 14, lineHeight: 1.55, color: BW.ink2 }}>
                       <span style={{ fontFamily: BW.ffM, fontStyle: "normal", fontSize: 9.5, letterSpacing: "0.22em", color: c, fontWeight: 700, textTransform: "uppercase", display: "block", marginBottom: 6 }}>¶ {m.after}</span>
                       {m.text}
