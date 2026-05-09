@@ -20,6 +20,26 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-10-mothers-day",
+      mediaType: "image",
+      src: SPEC + "2026-05-10-mothers-day.png",
+      alt: "Specimen — For the Mothers.",
+      title: "For the Mothers",
+      commentary: {
+        hook: "The tilt of her head says everything.",
+        body: [
+          "The small lean-in. The child's eyes already closed because they know they're safe.",
+          "Mothers do work the world doesn't see and rarely thanks for. The thousand quiet acts that build the people we become. The patience that keeps showing up after the patience has run out.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["mothers-day", "motherhood", "gratitude"],
+      relatedSlug: null,
+      publishedAt: "2026-05-10",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-09-weekends",
       mediaType: "image",
       src: SPEC + "2026-05-09-weekends.png",
