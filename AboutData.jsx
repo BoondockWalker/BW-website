@@ -13,8 +13,8 @@ const AB_CODES = [
 
 const AB_TEAM = [
   {
-    initials: "BW",
-    name: "B. Walker",
+    initials: "MN",
+    name: "M. Nead",
     role: "Principal",
     bio: "Founded the bureau in 2015. Leads brand foundations and positioning. Spent 18 years on the agency side before deciding the structure was the problem. Writes most of Field Notes.",
     yrs: 24,

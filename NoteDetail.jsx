@@ -46,7 +46,7 @@ const NOTE_BODIES = {
     { kind: "h2", text: "Why this matters now." },
     { kind: "p", text: "The cohort buying B2B services in 2026 is, on average, eight years younger than the cohort that bought in 2019. They have been told a story about old companies — slow, change-averse, locked into legacy stacks — and they walk into every conversation looking for confirmation. Your job is to interrupt that story in the first three sentences." },
     { kind: "p", text: "The receipts are how you do it. Not the year on the door." },
-    { kind: "endnote", text: "B. Walker is the principal at Boondock Walker. He has, on three separate occasions, talked clients out of hiding their founding date. Two of them sent thank-you notes." },
+    { kind: "endnote", text: "M. Nead is the principal at Boondock Walker. He has, on three separate occasions, talked clients out of hiding their founding date. Two of them sent thank-you notes." },
   ],
 };
 
@@ -111,7 +111,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
           {/* byline */}
           <div style={{ marginTop: 32, paddingTop: 18, borderTop: `0.75px solid ${BW.ruleL}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-              <span style={{ width: 36, height: 36, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 12, fontWeight: 700 }}>{a.initials || "BW"}</span>
+              <span style={{ width: 36, height: 36, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 12, fontWeight: 700 }}>{a.initials || "MN"}</span>
               <div>
                 <div style={{ fontFamily: BW.ffG, fontSize: 14, fontWeight: 600, color: BW.ink }}>By {note.author}</div>
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, marginTop: 2 }}>{a.role || "Bureau"}</div>
@@ -196,7 +196,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>About the writer</div>
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-              <span style={{ width: 64, height: 64, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 22, fontWeight: 700 }}>{a.initials || "BW"}</span>
+              <span style={{ width: 64, height: 64, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 22, fontWeight: 700 }}>{a.initials || "MN"}</span>
               <div>
                 <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 28, color: BW.ink }}>{note.author}</div>
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, marginTop: 2 }}>{a.role || "Bureau"}</div>

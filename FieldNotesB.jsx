@@ -67,7 +67,7 @@ function FNCardFoot({ author, initials, minutes, compact }) {
   return (
     <div style={{ paddingTop: 14, borderTop: `1px solid ${BW.ruleL}`, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-        <span style={{ width: 24, height: 24, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 9, fontWeight: 700 }}>{initials || "BW"}</span>
+        <span style={{ width: 24, height: 24, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 9, fontWeight: 700 }}>{initials || "MN"}</span>
         <span>{compact ? author.split(" ").slice(-1)[0] : author}</span>
       </div>
       <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600 }}>{minutes} min</span>
@@ -117,7 +117,7 @@ function FNDiary() {
           </li>
         ))}
       </ol>
-      <div style={{ marginTop: 6, fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 600 }}>— B. Walker, principal</div>
+      <div style={{ marginTop: 6, fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 600 }}>— M. Nead, principal</div>
     </aside>
   );
 }
