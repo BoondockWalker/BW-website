@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24.92 28.65">
   <defs>
-    
+    <style>
+      .cls-1 { fill: none; stroke: #14100c; stroke-width: 0.4; }
+      .cls-2 { fill: #14100c; }
+      .cls-3 { fill: #14100c; }
+      .cls-4 { fill: #14100c; }
+      .cls-5 { isolation: isolate; }
+      .cls-6 { fill: none; stroke: #14100c; stroke-width: 0.5; }
+      .cls-7 { fill: #c45a3a; }
+      .cls-8 { fill: #c8962b; }
+      .cls-9 { clip-path: url(#clippath); }
+    </style>
     <filter id="drop-shadow-1" x="8.71" y="12.98" width="7.82" height="6.41" filterUnits="userSpaceOnUse">
       <feOffset dx=".25" dy=".25"></feOffset>
       <feGaussianBlur result="blur" stdDeviation="0"></feGaussianBlur>
