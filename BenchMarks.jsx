@@ -122,7 +122,7 @@ function BMMasthead() {
 function BMCuratorStrip({ curator }) {
   if (!curator) return null;
   const isMobile = useMediaQuery("(max-width: 900px)");
-  const initials = curator.name ? curator.name.split(" ").map(n => n[0]).join("").slice(0, 2) : "BW";
+  const initials = curator.name ? curator.name.split(" ").map(n => n[0]).join("").slice(0, 2) : "MN";
   const photoSize = isMobile ? 40 : 46;
   return (
     <section style={{ background: `linear-gradient(rgba(20,16,12,0.14), rgba(20,16,12,0.14)), ${BW.chalk}`, color: BW.ink }}>
