@@ -5,6 +5,37 @@
    <NoteBlock> renders. Margin notes live in the parallel marginalia map.
    To add a new post: register both maps under the same slug. */
 const NOTE_BODIES = {
+  "arc-that-closes": [
+    { kind: "lede", text: "Most marketing teams think they're telling one kind of story. They're actually telling two. One ends with a customer saying yes. The other ends with an award on the shelf." },
+    { kind: "p", text: "These two stories often look the same on paper. They do very different jobs." },
+    { kind: "h2", text: "The story that wins awards." },
+    { kind: "p", text: "The award-winning story is the one most agencies are trained to tell. Set up a problem. Build a beautiful middle. End on something cinematic — a hero shot, a brand mark in the rain, a feeling. The shape is satisfying. It rewards craft. It does not, however, ask the viewer to do anything." },
+    { kind: "p", text: "Its measure of success is resonance. You watched it. You felt something. You maybe shared it. The agency wins an award. The client gets a plaque on the wall. The quarter ends. The pipeline forecast falls short. Nobody traces those last two sentences back to the first three." },
+    { kind: "p", text: "This isn't a complaint about beautiful work. The work is often beautiful. The problem is that the structure has no place for the customer to step in." },
+    { kind: "h2", text: "The story that closes." },
+    { kind: "p", text: "The other story is shaped to help someone make a decision. Four parts:" },
+    { kind: "ol", items: [
+      "What's at stake. The customer's current path is failing in a way they can name in one sentence.",
+      "The choice. Two roads. One they're on. One you're offering.",
+      "The consequence. What happens twelve months down each one.",
+      "The next step. Sized so small it would feel silly not to take it.",
+    ]},
+    { kind: "p", text: "The closing story isn't always beautiful. It can be plain. It always has a clear ending. It's shaped like a sale because that's what it's modeled on." },
+    { kind: "pullquote", text: "The award story rewards craft. The closing story rewards clarity. They aren't opposites — but most teams pick one and let the other one fall away.", attr: "Field Notes No 20" },
+    { kind: "h2", text: "Why the award story is the default." },
+    { kind: "p", text: "Three reasons. First, the award story is what gets agencies hired in the first place. New-business reels are built from old award winners. Second, it's what creative teams are taught — film school and ad school both train people to write for resonance, not for decisions. Third, the people who hire agencies are usually marketers, and marketing's job sits one step before the close. The agency hands the story to the sales team, and the sales team tries to bend it into something that closes. Usually it can't." },
+    { kind: "p", text: "This is part of why we built Boondock Walker the way we did. When the people writing the brand story also sit in on the pipeline review, the story comes out the right shape from the start." },
+    { kind: "h2", text: "How to tell which story your team is telling." },
+    { kind: "p", text: "Three quick questions. Run them on the next thing your team puts in front of you." },
+    { kind: "ol", items: [
+      "Where in the story does the customer make a decision? If you can't point at the moment, it's an award story.",
+      "What's the next sentence after the story ends? If it's \"and the brand won an award,\" award story. If it's \"and the customer bought,\" closing story.",
+      "Could you cut the last twenty seconds and lose anything? If no, it's an award story dressed up. The closing happens in those last twenty seconds.",
+    ]},
+    { kind: "p", text: "The closing story isn't anti-craft. It's harder to write than the award one, because the structure has to be both beautiful and useful. Most agency work picks beautiful and lets useful go. Our job is to insist on both — useful first, beautiful second, no compromise." },
+    { kind: "p", text: "Pipeline, not applause. The closing story is the one we file under." },
+    { kind: "endnote", text: "Mark is the principal at Boondock Walker. He still likes a beautiful film as much as the next person. He just won't ship one without an ending." },
+  ],
   "seven-years-unagency": [
     { kind: "lede", text: "Seven years ago, I sat at the kitchen table and decided Boondock Walker wasn't going to be an agency anymore." },
     { kind: "p", text: "We weren't going to scale into a holding company. We weren't going to staff up the floor with B and C teams. We weren't going to become the place that promised the senior strategist in the pitch and delivered the junior on the work. We were going to be something else — a shape the industry didn't have a word for yet, so we made one up." },
@@ -51,6 +82,11 @@ const NOTE_BODIES = {
 };
 
 const NOTE_MARGINALIAS = {
+  "arc-that-closes": [
+    { after: 4, text: "If you've ever sat in a kickoff and watched the agency's reel and thought \"beautiful, but I'm not sure who buys after watching that\" — you've felt the difference between these two stories." },
+    { after: 9, text: "The \"next step sized small\" is the easiest fix and the one most teams skip. A 15-minute call beats a buy button. A buy button beats nothing. The point is something a person can do today, not later." },
+    { after: 13, text: "We've watched the same campaign run twice — once shaped for awards, once shaped for closing. The closing version was less pretty and made twice the pipeline. We didn't need the awards." },
+  ],
   "seven-years-unagency": [
     { after: 2, text: "The kitchen-table call: actual table, actual decision. We had two clients on retainer and one prospect about to sign. I cancelled the prospect that week." },
     { after: 7, text: "The math beat the model. Overhead is the silent killer of agency margin — and of the senior attention clients are paying for." },
