@@ -116,11 +116,9 @@ function applyFilters(specimens, filters) {
 /* ───── Masthead ───── */
 function BMArchiveMasthead({ totalCount, filteredCount }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
-  const isNarrow = useMediaQuery("(max-width: 560px)");
-  const heroOverlap = isNarrow ? 25 : 30;
   return (
-    <section style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", marginTop: -heroOverlap }}>
-      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(56px, 8vw, 96px) clamp(20px, 5vw, 64px) clamp(36px, 5vw, 56px)" }}>
+    <section style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative" }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(24px, 4vw, 40px) clamp(20px, 5vw, 64px) clamp(36px, 5vw, 56px)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
           <span>BenchMarks · the archive</span>
           <span style={{ width: 28, height: 1, background: BW.clay }} />
