@@ -1,8 +1,20 @@
 /* global React, BW, FN_NOTES, FN_TAGS, FN_AUTHORS, NoteArt */
 /* Field Notes — archive page sections. */
 
-/* Inline editorial illustration — same vocabulary as homepage Field Notes. */
-function FNArt({ kind, color, caption, label }) {
+/* Inline editorial illustration — same vocabulary as homepage Field Notes.
+   When `image` is set, the SVG glyph is replaced by a real photo/illustration
+   (used for posts with hand-crafted lead artwork). The label/caption rails
+   still render on top. */
+function FNArt({ kind, color, caption, label, image, alt }) {
+  if (image) {
+    return (
+      <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden", background: color }}>
+        <img src={image} alt={alt || ""} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        {label && <span style={{ position: "absolute", left: 14, top: 12, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700, opacity: 0.95, textShadow: "0 1px 2px rgba(20,16,12,0.45)" }}>{label}</span>}
+        {caption && <span style={{ position: "absolute", right: 14, bottom: 10, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 12, color: BW.chalk50, opacity: 0.85, textShadow: "0 1px 2px rgba(20,16,12,0.45)" }}>{caption}</span>}
+      </div>
+    );
+  }
   let glyph = null;
   if (kind === "voice") glyph = (<g><circle cx="50%" cy="50%" r="28%" fill="none" stroke={BW.chalk50} strokeWidth="1.4" opacity="0.85" /><circle cx="50%" cy="50%" r="20%" fill="none" stroke={BW.chalk50} strokeWidth="1.0" opacity="0.6" /><circle cx="50%" cy="50%" r="12%" fill={BW.chalk50} opacity="0.95" /><path d="M -40 50%  Q 25% 35%, 50% 50% T 140% 50%" fill="none" stroke={BW.chalk50} strokeWidth="1.2" opacity="0.55" /></g>);
   else if (kind === "pipeline") glyph = (<g><polygon points="20,30 80,30 60,55 60,72 40,72 40,55" fill="none" stroke={BW.chalk50} strokeWidth="1.6" opacity="0.95" transform="scale(2.2) translate(2,4)" /></g>);
@@ -113,7 +125,7 @@ function FNFeatured({ note, themed }) {
             </div>
           </div>
         <div style={{ aspectRatio: isMobile ? "16/10" : "auto", minHeight: isMobile ? 0 : 440, position: "relative", overflow: "hidden" }}>
-          <FNArt kind={note.art} color={c} caption={`fig. 00 · featured`} label={`${note.issue} · ${note.date}`} />
+          <FNArt kind={note.art} color={c} caption={`fig. 00 · featured`} label={`${note.issue} · ${note.date}`} image={note.image} alt={note.imageAlt} />
           <div style={{ position: "absolute", left: 0, bottom: 0, padding: "8px 14px", background: BW.ink, color: BW.chalk50, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700 }}>{note.tag} · {note.kicker}</div>
         </div>
       </a>
