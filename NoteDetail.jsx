@@ -143,8 +143,8 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
       </section>
 
       {/* Body */}
-      <section style={{ background: BW.chalk, padding: "clamp(48px, 6vw, 96px) clamp(20px, 5vw, 56px) clamp(48px, 5vw, 72px)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1fr) 240px", gap: "clamp(28px, 4vw, 64px)" }}>
+      <section style={{ background: BW.chalk, paddingTop: "clamp(48px, 6vw, 96px)", paddingBottom: "clamp(48px, 5vw, 72px)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 5vw, 56px)", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1fr) 240px", gap: "clamp(28px, 4vw, 64px)" }}>
           {/* Article column */}
           <article style={{ maxWidth: 660 }}>
             {body.map((b, i) => <NoteBlock key={i} block={b} idx={i} drop={drop} />)}
