@@ -118,7 +118,7 @@ function FNFeatured({ note, themed }) {
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 1.8vw, 21px)", lineHeight: 1.5, margin: 0, color: BW.ink2, maxWidth: "52ch" }}>{note.dek}</p>
             <div style={{ marginTop: 32, paddingTop: 18, borderTop: `1px solid ${BW.ruleL}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-                <span style={{ width: 28, height: 28, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 10, fontWeight: 700 }}>{a.initials || "BW"}</span>
+                <span style={{ width: 28, height: 28, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 10, fontWeight: 700 }}>{a.initials || "MN"}</span>
                 <span>{note.author}</span><span>·</span><span>{note.minutes} min walk</span>
               </div>
               <span style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700, borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3 }}>Read note →</span>
