@@ -132,7 +132,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 5vw, 56px)" }}>
           <figure style={{ margin: 0, borderLeft: `0.75px solid ${BW.ink}`, borderRight: `0.75px solid ${BW.ink}` }}>
             <div style={{ aspectRatio: "16/7", position: "relative", overflow: "hidden", borderBottom: `0.75px solid ${BW.ink}` }}>
-              <FNArt kind={note.art} color={c} caption={`fig. 01 · ${note.kicker.toLowerCase()}`} label={`${note.issue} · ${note.date}`} />
+              <FNArt kind={note.art} color={c} caption={`fig. 01 · ${note.kicker.toLowerCase()}`} label={`${note.issue} · ${note.date}`} image={note.image} alt={note.imageAlt} />
             </div>
             <figcaption style={{ padding: "12px 18px", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
               <span>fig. 01 · Lead illustration</span>
