@@ -20,6 +20,28 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-09-weekends",
+      mediaType: "image",
+      src: SPEC + "2026-05-09-weekends.png",
+      alt: "Specimen — Occupation, Obsession.",
+      title: "Occupation, Obsession",
+      commentary: {
+        hook: "Two days off feels great. Five days on feels just as good.",
+        body: [
+          "The weekend is for relaxing, refueling, family, friends. Earned. Necessary.",
+          "But I don't count the hours until Friday. I don't dread Sunday night. The work week is the engine, not the obstacle.",
+          "When you love what you do, your occupation is your obsession.",
+          "If your week feels like a sentence to be served, that's the signal — not your schedule, not your boss, not the weather. The work itself.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["purpose", "mindset"],
+      relatedSlug: null,
+      publishedAt: "2026-05-09",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-08-betty",
       mediaType: "image",
       src: SPEC + "2026-05-08-Betty.png",
