@@ -20,6 +20,28 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-11-big-week",
+      mediaType: "video",
+      src: SPEC + "2026-05-11-big-week.mp4",
+      poster: SPEC + "2026-05-11-big-week.png",
+      alt: "Specimen — Big Week Ahead.",
+      title: "Big Week Ahead",
+      commentary: {
+        hook: "Monday morning. Doorway open.",
+        body: [
+          "Grateful for the road. Grateful for the gifts that got me here. Grateful for the people who trust us with the work.",
+          "The opportunities keep unfolding. Most of them weren't on the map.",
+          "Time to walk through.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["gratitude", "journey", "opportunity"],
+      relatedSlug: null,
+      publishedAt: "2026-05-11",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-10-mothers-day",
       mediaType: "image",
       src: SPEC + "2026-05-10-mothers-day.png",
