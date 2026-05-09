@@ -19,16 +19,21 @@ function getTodayISO() {
   return `${y}-${m}-${day}`;
 }
 
-/* ───── Selection logic — deterministic by date so the bench changes once a day.
-   `publishedPool` drives the deterministic day-of pick (so today's specimen can
-   never be unpublished). `fullPool` is consulted only for the pin override, so
-   Mark can pin an unpublished specimen to preview it before its launch day. ───── */
+/* ───── Selection logic — pick today's specimen by publishedAt match.
+   `publishedPool` drives the day-of pick (so today's specimen can never
+   be unpublished). `fullPool` is consulted only for the pin override, so
+   Mark can pin an unpublished specimen to preview it before its launch
+   day. If no specimen is dated today, fall back to a deterministic
+   day-indexed rotation through the published pool. ───── */
 function pickToday(publishedPool, fullPool, pinnedId) {
   if (pinnedId) {
     const pinned = (fullPool || []).find(s => s.id === pinnedId);
     if (pinned) return pinned;
   }
   if (!publishedPool || publishedPool.length === 0) return null;
+  const today = getTodayISO();
+  const exact = publishedPool.find(s => s.publishedAt === today);
+  if (exact) return exact;
   const day = Math.floor(Date.now() / 86400000);
   return publishedPool[day % publishedPool.length];
 }
