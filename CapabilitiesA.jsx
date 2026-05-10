@@ -64,7 +64,7 @@ function CapHero() {
 
 /* =========================================================================
    PILLARS — alternating editorial deep dives. One per practice.
-   Each pillar has its own surface color, an annotated specimen object,
+   Each pillar has its own surface color, an annotated fig. object,
    editorial copy, a service list, and a "see it in the wild" example.
    ========================================================================= */
 function CapPillarSection({ pillar, idx }) {
@@ -130,12 +130,12 @@ function CapPillarSection({ pillar, idx }) {
             </div>
           </div>
 
-          {/* SPECIMEN COLUMN — annotated object */}
+          {/* FIG. COLUMN — annotated object */}
           <div style={{ order: isMobile ? 1 : reverse ? 1 : 2, position: "relative", minHeight: isMobile ? 360 : 540 }}>
             <div style={{ position: "relative", aspectRatio: "1 / 1", maxWidth: isMobile ? 420 : "100%", margin: "0 auto" }}>
-              {/* Specimen frame label */}
+              {/* Fig. frame label */}
               <div style={{ position: "absolute", top: 0, left: 0, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: s.body, fontWeight: 600, lineHeight: 1.5 }}>
-                Specimen<br />№{pillar.n}
+                Fig.<br />№{pillar.n}
               </div>
               <div style={{ position: "absolute", top: 0, right: 0, textAlign: "right", fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: s.body, fontWeight: 600, lineHeight: 1.5 }}>
                 BDW · 2026<br />fig. 03.{pillar.n}
