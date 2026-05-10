@@ -57,28 +57,6 @@ const NOTE_BODIES = {
     { kind: "p", text: "More on that, soon." },
     { kind: "endnote", text: "Mark is the principal at Boondock Walker. He's been writing the next pivot's working name on the back of a notebook for eight months. He'll tell you when it's ready." },
   ],
-  "stop-calling-it-heritage": [
-    { kind: "lede", text: "Last week I sat in a conference room in Cleveland and watched a CEO apologize for the year on his door. He runs a $40m wholesale outfit founded in 1953. Three generations. The kind of business operators dream of acquiring. And he led with: \"I know we're old, but —\"" },
-    { kind: "p", text: "Stop. The receipts of having survived are an asset. Not a thing to apologize for. The minute you frame longevity as a liability, you've handed the conversation to the kid in the patagonia vest who launched eighteen months ago and wants to talk about his AI-native ops." },
-    { kind: "h2", text: "What \"heritage\" actually signals." },
-    { kind: "p", text: "When I hear the word heritage on a brand call, I hear three things, in order: first, that the business is older than its current category. Second, that nobody on the leadership team is sure what to say about that. Third, that the marketing team has been quietly resenting the founders for fifteen years." },
-    { kind: "p", text: "It's never the word that's the problem. It's the apology underneath it." },
-    { kind: "pullquote", text: "Heritage as positioning is a coward's move. Heritage as proof is the entire game.", attr: "Field Notes No 18" },
-    { kind: "h2", text: "The reframe — three sentences." },
-    { kind: "p", text: "Replace \"we've been around for 70 years\" with \"we've shipped 14,000 of these.\" Replace \"third generation\" with \"the third operator who decided not to break it.\" Replace \"family-owned\" with \"the only person you'd talk to has signed every PO since 2008.\"" },
-    { kind: "p", text: "These aren't taglines. They're the sentences your team should be saying on Zoom when the buyer asks the inevitable why-you question. Run them past your sales team this week. Watch what happens to the second-call rate." },
-    { kind: "ol", items: [
-      "Stop using \"heritage\" as a noun. It's a frame, not a feature.",
-      "Inventory the quantitative receipts — units shipped, customers held, decades on the bench.",
-      "Translate every soft claim (\"long-standing\") into a hard one (\"19 years with the same Tier-1 buyer\").",
-      "Train your sales team to lead with the receipt, not the date.",
-      "Audit your homepage for any sentence that opens with \"founded in.\" Cut or invert.",
-    ]},
-    { kind: "h2", text: "Why this matters now." },
-    { kind: "p", text: "The cohort buying B2B services in 2026 is, on average, eight years younger than the cohort that bought in 2019. They have been told a story about old companies — slow, change-averse, locked into legacy stacks — and they walk into every conversation looking for confirmation. Your job is to interrupt that story in the first three sentences." },
-    { kind: "p", text: "The receipts are how you do it. Not the year on the door." },
-    { kind: "endnote", text: "M. Nead is the principal at Boondock Walker. He has, on three separate occasions, talked clients out of hiding their founding date. Two of them sent thank-you notes." },
-  ],
 };
 
 const NOTE_MARGINALIAS = {
@@ -91,11 +69,6 @@ const NOTE_MARGINALIAS = {
     { after: 2, text: "The kitchen-table call: actual table, actual decision. We had two clients on retainer and one prospect about to sign. I cancelled the prospect that week." },
     { after: 7, text: "The math beat the model. Overhead is the silent killer of agency margin — and of the senior attention clients are paying for." },
     { after: 11, text: "AI was the hardest call. Adopt too early and you ship slop. Wait too long and you're competing with operators who shipped the slop and learned faster than you." },
-  ],
-  "stop-calling-it-heritage": [
-    { after: 1, text: "Note to self: track how many times \"heritage\" appears on the sites of the companies that pitch us this quarter. I bet it's >40%." },
-    { after: 4, text: "We dropped \"heritage\" from a client deck in Q4. Pipeline up 22% next quarter. Anecdote, not science." },
-    { after: 7, text: "If you can't fill the receipts inventory, that's the actual problem. Heritage was hiding it." },
   ],
 };
 
