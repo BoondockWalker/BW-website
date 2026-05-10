@@ -112,7 +112,7 @@ window.BW_CASES = [
     duration: "Multi-year",
     team: ["Strategy", "Brand", "Demand"],
     imagery: "photo",
-    heroImage: "assets/cases/tt-electronics/tt-campaign-infinities.webp",
+    heroImage: "assets/cases/tt-electronics/hero.jpg",
     featuredBg: "linear-gradient(135deg, #1A4F7A 0%, #0F3D66 45%, #082240 100%)",
     clientLogo: "assets/cases/tt-electronics/TT-logo-mono.svg",
     clientLogoInvert: true,
