@@ -122,14 +122,14 @@ function CaseHeroFullBleed({ d }) {
         }} />
       )}
 
-      {/* Vertical specimen number — left margin */}
+      {/* Vertical case number — left margin */}
       <div aria-hidden="true" style={{
         position: "absolute", left: 28, top: "50%", zIndex: 2,
         transform: "translateY(-50%) rotate(-90deg)", transformOrigin: "left center",
         fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.34em", textTransform: "uppercase",
         color: "rgba(244,236,218,0.5)", fontWeight: 700, whiteSpace: "nowrap",
       }}>
-        Specimen №{d.no} · {d.year}
+        Case №{d.no} · {d.year}
       </div>
 
       {/* CONTENT — editorial grid, content begins below the floating header.
@@ -139,7 +139,7 @@ function CaseHeroFullBleed({ d }) {
         flex: 1, display: "flex", flexDirection: "column",
         padding: isMobile ? "160px clamp(20px, 5vw, 48px) 0" : "200px clamp(40px, 6vw, 80px) 0",
       }}>
-        {/* Eyebrow row — left-side specimen label only */}
+        {/* Eyebrow row — left-side case label only */}
         <div style={{
           fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.32em", textTransform: "uppercase",
           color: BW.brass, fontWeight: 700, marginBottom: 56,
@@ -755,7 +755,7 @@ function CaseAdjacent({ prev, next }) {
           <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 9px)", mixBlendMode: "multiply" }} />
           <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700 }}>
             <span>{label}</span>
-            <span>Specimen №{c.no}</span>
+            <span>Case №{c.no}</span>
           </div>
           <div style={{ position: "relative" }}>
             <div style={{ fontFamily: BW.ffG, fontSize: 18, fontWeight: 700, letterSpacing: "0.04em", textTransform: "uppercase", color: BW.chalk50, marginBottom: 10 }}>{c.client}</div>
@@ -773,7 +773,7 @@ function CaseAdjacent({ prev, next }) {
       <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(32px, 5vw, 44px) clamp(20px, 5vw, 56px) 0" }}>
         <Reveal kind="rise">
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, flexWrap: "wrap" }}>
-            <span>Adjacent specimens</span>
+            <span>Adjacent cases</span>
             <span style={{ width: 28, height: 1, background: BW.brass }} />
             <span>Keep walking</span>
           </div>

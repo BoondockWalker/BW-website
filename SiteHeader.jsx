@@ -8,7 +8,7 @@
    Props:
      current     — which nav item is "current" (highlighted brass). e.g. "Work", or null for Home.
      breadcrumb  — optional sub-rail config: { label, parent: {href,label}, badge }
-                   e.g. { label: "O'Neil Digital Solutions", parent: {href:"work.html", label:"Work"}, badge: "Specimen №01" }
+                   e.g. { label: "O'Neil Digital Solutions", parent: {href:"work.html", label:"Work"}, badge: "Case №01" }
      tone        — "light" (default) for clay/chalk surfaces, "dark" for ink surfaces.
                    Affects the top rail rule and text only — the dark pill stays dark on both.
      compact     — slim variant w/o the top "vol XII" rail. Default false. Compact

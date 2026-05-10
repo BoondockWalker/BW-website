@@ -25,7 +25,7 @@ window.BW_CASE_DETAIL = {
 
   hero: {
     variant: "fullbleed",
-    eyebrow: "Client Success Story · Specimen №03",
+    eyebrow: "Client Success Story · Case №03",
     title: "A better way to do business.",
     image: `${BASE}/hero.jpg`,
     imageAlt: "Calyx — campfire under the Milky Way at dusk",

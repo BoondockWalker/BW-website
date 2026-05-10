@@ -21,7 +21,7 @@ function V3Cases() {
               Receipts, <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>not</em> case <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>studies.</em>
             </h2>
           </div>
-          <a style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, paddingBottom: 3, borderBottom: `1.5px solid ${BW.ink}`, cursor: "pointer", whiteSpace: "nowrap" }}>All 47 specimens →</a>
+          <a style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, paddingBottom: 3, borderBottom: `1.5px solid ${BW.ink}`, cursor: "pointer", whiteSpace: "nowrap" }}>All 47 cases →</a>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", border: `1px solid ${BW.ink}` }}>
@@ -29,7 +29,7 @@ function V3Cases() {
             <div key={c.co} style={{ borderRight: !isMobile && i < 2 ? `1px solid ${BW.ink}` : "none", borderBottom: isMobile && i < cases.length - 1 ? `1px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column" }}>
               <div style={{ aspectRatio: "16/11", background: c.c, position: "relative", overflow: "hidden", borderBottom: `1px solid ${BW.ink}` }}>
                 <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 8px)", mixBlendMode: "multiply" }} />
-                <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>SPECIMEN 0{i+1}</div>
+                <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>CASE 0{i+1}</div>
                 <div style={{ position: "absolute", left: 22, bottom: 22, fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.03em", lineHeight: 0.9, fontSize: "clamp(28px, 6vw, 40px)", textTransform: "uppercase", maxWidth: "calc(100% - 44px)" }}>{c.co}</div>
                 <div style={{ position: "absolute", right: 22, bottom: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: "rgba(251,247,238,0.75)", fontWeight: 400 }}>fig. {i+1}.0</div>
               </div>
@@ -123,7 +123,7 @@ function V3Trust() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
             <span>§06</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Operators we've shipped for</span>
           </div>
-          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>since 2015 · 47 specimens</span>
+          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>since 2015 · 47 cases</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
           {operators.map(n => (
