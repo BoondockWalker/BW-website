@@ -45,27 +45,41 @@ function getOverrideId() {
   return p.get("id");
 }
 
-/* ───── Inline italic — renders *like this* as <em>like this</em>.
-   Lightweight alternative to a markdown parser; the asterisk is the
-   only inline marker the bench supports. Body text is curator-authored
-   in BenchMarksData.jsx, so no XSS surface.
+/* ───── Inline format — *italic* and [text](url) markers.
+   Lightweight alternative to a markdown parser. Two markers supported:
+
+     *phrase*         → <em>phrase</em>
+     [text](url)      → <a href="url" target="_blank">text</a>
+
+   Body text is curator-authored in BenchMarksData.jsx, so no XSS surface.
 
    In a roman-text context (body): emphasized phrase renders italic.
    In an italic-text context (hook): pass { reverse: true } so the
    emphasized phrase renders roman against the surrounding italic —
    the typographic convention for italics-in-italic-set text. ───── */
-function renderInlineItalic(text, opts) {
+function renderInline(text, opts) {
   if (typeof text !== "string") return text;
   const reverse = !!(opts && opts.reverse);
   const emStyle = reverse ? { fontStyle: "normal" } : { fontStyle: "italic" };
-  const parts = text.split(/(\*[^*\n]+\*)/g);
+  const parts = text.split(/(\*[^*\n]+\*|\[[^\]]+\]\([^)]+\))/g);
   return parts.map((part, i) => {
     if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
       return <em key={i} style={emStyle}>{part.slice(1, -1)}</em>;
     }
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) {
+      return (
+        <a key={i} href={link[2]} target="_blank" rel="noopener noreferrer"
+           style={{ color: BW.clay, textDecoration: "underline", textDecorationThickness: "1px", textUnderlineOffset: "0.18em" }}>
+          {link[1]}
+        </a>
+      );
+    }
     return part;
   });
 }
+// Back-compat alias — older call sites can still reference the old name.
+const renderInlineItalic = renderInline;
 
 /* ───── Tag chip — bench reads in JetBrains Mono caps ───── */
 function BMTag({ children, light }) {
