@@ -19,7 +19,7 @@ window.BW_CASE_DETAIL = {
 
   hero: {
     variant: "fullbleed",
-    eyebrow: "Client Success Story · Specimen №01",
+    eyebrow: "Client Success Story · Case №01",
     title: "The Power of One.",
     image: `${BASE}/hero.jpg`,
     imageAlt: "Conceptual portrait — eye reflecting data field",
