@@ -79,23 +79,21 @@ function V3FieldNotes() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const isNarrow = useMediaQuery("(max-width: 560px)");
   const featured = {
-    issue: "No 14",
-    date: "Apr · 2026",
+    slug: "arc-that-closes",
+    issue: "No 20",
+    date: "May · 2026",
     kicker: "Voice / Long read",
-    title: "The year you stop calling it heritage.",
-    dek: "A 70-year wholesale brand has more in common with a startup than it thinks. The receipts of having survived are an asset operators buy — but only if you stop apologizing for the year on the door.",
+    title: "The story that closes. The story that wins awards.",
+    dek: "Two kinds of stories. They look the same on paper. They do very different jobs.",
     author: "M. Nead",
-    minutes: 9,
-    tag: "TRIAGE · VOICE",
+    minutes: 4,
+    tag: "VOICE",
     color: BW.clay,
-    art: "voice",
+    art: "compass",
   };
 
   const notes = [
-    { issue: "No 13", date: "Apr · 2026", kicker: "Nurture",         title: "Five lifecycle stages we'd delete tomorrow.",     author: "M. Kade",   minutes: 6, tag: "ENGAGEMENT", color: BW.plum,  art: "pipeline" },
-    { issue: "No 12", date: "Mar · 2026", kicker: "AI · Lab",        title: "Why our desk-rep starts with the failure-rate.", author: "J. Ortiz",  minutes: 7, tag: "LAB",      color: BW.brass,  art: "lab"      },
-    { issue: "No 11", date: "Mar · 2026", kicker: "Positioning",     title: "Category of one — without a category.",          author: "M. Nead", minutes: 5, tag: "BRAND",    color: BW.clay,   art: "compass"  },
-    { issue: "No 10", date: "Feb · 2026", kicker: "Operator's diary", title: "What we got wrong on the Halberd rebuild.",     author: "M. Kade",   minutes: 8, tag: "RECEIPTS", color: BW.forest, art: "receipts" },
+    { slug: "seven-years-unagency", issue: "No 19", date: "May · 2026", kicker: "Operator's diary", title: "Seven years unagency. What we learned, what's next.", author: "M. Nead", minutes: 4, tag: "VOICE", color: BW.clay, art: "compass" },
   ];
 
   return (

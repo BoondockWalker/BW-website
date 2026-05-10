@@ -42,7 +42,7 @@ const NOTE_TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 function App() {
   const [tweaks, setTweak] = useTweaks(NOTE_TWEAK_DEFAULTS);
   const params = new URLSearchParams(window.location.search);
-  const slug = params.get("slug") || "stop-calling-it-heritage";
+  const slug = params.get("slug") || "arc-that-closes";
   const note = FN_NOTES.find(n => n.slug === slug) || FN_NOTES[0];
   const related = FN_NOTES.filter(n => n.slug !== note.slug && n.tag === note.tag).slice(0, 2);
   // Pad with adjacent notes if we don't have 2 same-tag siblings
