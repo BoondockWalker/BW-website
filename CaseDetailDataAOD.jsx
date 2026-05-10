@@ -24,7 +24,7 @@ window.BW_CASE_DETAIL = {
 
   hero: {
     variant: "fullbleed",
-    eyebrow: "Client Success Story · Specimen №02",
+    eyebrow: "Client Success Story · Case №02",
     title: "Unleash the Gospel.",
     image: `${BASE}/hero.jpg`,
     imageAlt: "Archdiocese of Detroit — brand book cover, red and gold",

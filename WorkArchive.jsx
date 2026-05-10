@@ -28,7 +28,7 @@ function WorkMasthead({ count, filterCount }) {
           </h1>
           <div style={{ paddingBottom: isMobile ? 0 : 24 }}>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2vw, 19px)", lineHeight: 1.55, margin: "0 0 28px", color: BW.ink2, maxWidth: "44ch" }}>
-              Forty-seven specimens, twelve here in long form. Each one is a story we walked an operator through — from the day the brief showed up on a napkin to the quarter the pipeline finally cleared the forecast.
+              Forty-seven cases, twelve here in long form. Each one is a story we walked an operator through — from the day the brief showed up on a napkin to the quarter the pipeline finally cleared the forecast.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: "rgba(20,16,12,0.55)" }}>
               <div><div style={{ fontFamily: BW.ffG, fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 700, color: BW.ink, letterSpacing: "-0.02em", marginBottom: 4 }}>{count}</div><div>Featured</div></div>
@@ -100,7 +100,7 @@ function FeaturedCase({ c }) {
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, flexWrap: "wrap" }}>
           <span>§02</span>
           <span style={{ width: 28, height: 1, background: BW.brass }} />
-          <span>Featured Specimen · The longest walk of 2026</span>
+          <span>Featured Case · The longest walk of 2026</span>
         </div>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.05fr 1fr", maxWidth: 1440, margin: "0 auto", padding: "32px clamp(20px, 5vw, 64px) clamp(48px, 7vw, 64px)", gap: isMobile ? 40 : 64, alignItems: "center", position: "relative" }}>
@@ -112,13 +112,13 @@ function FeaturedCase({ c }) {
             ))}
           </div>
           <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.55)", fontWeight: 600, marginBottom: 16 }}>
-            Specimen №{c.no} · {c.year} · {c.industry}
+            Case №{c.no} · {c.year} · {c.industry}
           </div>
           <h2 style={{ fontFamily: BW.ffG, fontSize: "clamp(40px, 8vw, 56px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 14px", color: BW.chalk50, textTransform: "uppercase" }}>
             {c.client}
           </h2>
           <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(24px, 5vw, 36px)", lineHeight: 1.12, margin: "0 0 32px", color: BW.brass, letterSpacing: "-0.02em", fontWeight: 400 }}>
-            "{c.pull}"
+            {c.pull}
           </p>
           <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(15px, 1.8vw, 17px)", lineHeight: 1.55, margin: "0 0 36px", color: "rgba(244,236,218,0.78)", maxWidth: "44ch" }}>
             {c.lede}
@@ -148,7 +148,7 @@ function FeaturedCase({ c }) {
             <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.18) 0 2px, transparent 2px 9px)", mixBlendMode: "multiply" }} />
             {/* big folio */}
             <div style={{ position: "absolute", left: 28, top: 28, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>
-              Specimen №{c.no} · fig. {c.no}.0
+              Case №{c.no} · fig. {c.no}.0
             </div>
             {/* upper-right: client logo if provided, else big year mark */}
             {c.clientLogo ? (

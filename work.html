@@ -26,12 +26,12 @@
 <script type="text/babel" src="WorkArchive.jsx"></script>
 <script type="text/babel" src="WorkGrid.jsx"></script>
 <script type="text/babel">
-// Rotates the featured specimen on a per-session basis using two cookies:
+// Rotates the featured case on a per-session basis using two cookies:
 //   bw_featured_idx     — long-lived, stores the last shown index
 //   bw_featured_session — session-only marker; presence means "same session,
-//                         keep showing the same featured specimen"
+//                         keep showing the same featured case"
 // On a new session (cookie missing), advance to the next index and persist.
-// Refreshes within a session show the same specimen (the session marker
+// Refreshes within a session show the same case (the session marker
 // suppresses rotation until the browser/tab session ends).
 function pickRotatedFeatured(all) {
   if (typeof document === "undefined" || !all.length) return all[0];

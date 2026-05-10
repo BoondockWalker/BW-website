@@ -1,14 +1,25 @@
 /* global React, BW */
 /* Work index — Archive grid + ledger row + footer extras */
 
-/* Card thumbnail variants — abstract / photo / screenshot */
+/* Card thumbnail variants — abstract / photo / screenshot.
+   When the case has a real heroImage in WorkData, that image fills the
+   thumb and the decorative kind-based mockups are suppressed. The
+   gradient tone still paints behind it as a fallback / letterbox color. */
 function CaseThumb({ c, kind }) {
-  const isAbstract = (kind || c.imagery) === "abstract";
-  const isPhoto = (kind || c.imagery) === "photo";
-  const isShot = (kind || c.imagery) === "screenshot";
+  const hasHero = !!c.heroImage;
+  const isAbstract = !hasHero && (kind || c.imagery) === "abstract";
+  const isPhoto = !hasHero && (kind || c.imagery) === "photo";
+  const isShot = !hasHero && (kind || c.imagery) === "screenshot";
   return (
     <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden", background: c.tone, borderBottom: `1px solid ${BW.ink}` }}>
-      <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 8px)", mixBlendMode: "multiply" }} />
+      {hasHero && (
+        <>
+          <img src={c.heroImage} alt={c.client} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          {/* Scrim — keeps the chalk-colored overlay text legible across varied photography */}
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0.42) 0%, rgba(20,16,12,0.18) 35%, rgba(20,16,12,0.18) 65%, rgba(20,16,12,0.55) 100%)" }} />
+        </>
+      )}
+      {!hasHero && <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 8px)", mixBlendMode: "multiply" }} />}
       {isShot && (
         <div style={{ position: "absolute", left: 28, top: 28, right: 28, bottom: 64, background: BW.chalk50, border: `1px solid rgba(20,16,12,0.18)`, borderRadius: 6, overflow: "hidden", boxShadow: "0 12px 28px -10px rgba(0,0,0,0.35)" }}>
           <div style={{ height: 18, background: BW.chalk, borderBottom: `1px solid ${BW.ruleL}`, display: "flex", alignItems: "center", padding: "0 8px", gap: 4 }}>
@@ -45,7 +56,7 @@ function CaseThumb({ c, kind }) {
         if (p === "RB") Object.assign(css, { right: 8, bottom: 8, borderLeft: "none", borderTop: "none" });
         return <span key={p} style={css} />;
       })}
-      <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>SPECIMEN №{c.no}</div>
+      <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>CASE №{c.no}</div>
       <div style={{ position: "absolute", right: 22, top: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 14, color: "rgba(251,247,238,0.85)", fontWeight: 400 }}>{c.year}</div>
       {isAbstract && (
         <div style={{ position: "absolute", left: 22, bottom: 22, right: 22, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
@@ -53,7 +64,7 @@ function CaseThumb({ c, kind }) {
           <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600, textAlign: "right", maxWidth: 120 }}>{c.bigStat.k}</div>
         </div>
       )}
-      {(isPhoto || isShot) && (
+      {(isPhoto || isShot || hasHero) && (
         <div style={{ position: "absolute", right: 22, bottom: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: "rgba(251,247,238,0.75)" }}>fig. {c.no}.0</div>
       )}
     </div>
@@ -71,7 +82,7 @@ function CaseCard({ c }) {
         </div>
         <div>
           <h3 style={{ fontFamily: BW.ffG, fontSize: 26, fontWeight: 700, letterSpacing: "-0.02em", margin: "0 0 10px", color: BW.ink, textTransform: "uppercase" }}>{c.client}</h3>
-          <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 19, lineHeight: 1.25, color: BW.ink, margin: 0, fontWeight: 400, letterSpacing: "-0.01em" }}>"{c.pull}"</p>
+          <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 19, lineHeight: 1.25, color: BW.ink, margin: 0, fontWeight: 400, letterSpacing: "-0.01em" }}>{c.pull}</p>
         </div>
         <div style={{ marginTop: "auto", display: "flex", gap: 24, paddingTop: 16, borderTop: `1px solid ${BW.ruleL}` }}>
           {c.metrics.slice(0, 2).map(m => (
@@ -96,7 +107,7 @@ function CaseListRow({ c }) {
       <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>{c.year}</span>
       <div>
         <div style={{ fontFamily: BW.ffG, fontSize: 22, fontWeight: 700, letterSpacing: "-0.02em", textTransform: "uppercase", marginBottom: 4 }}>{c.client}</div>
-        <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: BW.ink2, fontWeight: 400 }}>"{c.pull}"</div>
+        <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: BW.ink2, fontWeight: 400 }}>{c.pull}</div>
       </div>
       <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>{c.pillar}</span>
       <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>{c.industry}</span>
@@ -133,16 +144,16 @@ function ArchiveGrid({ cases, view }) {
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
         <div style={{ display: "flex", flexDirection: isNarrow ? "column" : "row", justifyContent: "space-between", alignItems: isNarrow ? "flex-start" : "baseline", gap: isNarrow ? 12 : 0, marginBottom: 36 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
-            <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The Archive · Specimen Grid</span>
+            <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The Archive · Case Grid</span>
           </div>
-          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>{cases.length} of 47 specimens shown</span>
+          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>{cases.length} of 47 cases shown</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr" : isMobile ? "repeat(2, 1fr)" : "repeat(2, 1fr)", gap: isNarrow ? 20 : 28 }}>
           {cases.map(c => <CaseCard key={c.slug} c={c} />)}
         </div>
         {cases.length === 0 && (
           <div style={{ textAlign: "center", padding: "80px 0", fontFamily: BW.ffD, fontStyle: "italic", fontSize: 28, color: BW.ink2, letterSpacing: "-0.01em" }}>
-            No specimens match these filters.
+            No cases match these filters.
           </div>
         )}
       </div>
@@ -159,7 +170,7 @@ function WorkClosing() {
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 40 : 64, alignItems: "end" }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
-            <span>§04</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Add a specimen</span>
+            <span>§04</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Add a case</span>
           </div>
           <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 10vw, 96px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 32px", color: BW.chalk50 }}>
             Want your <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>name</em> in this archive?

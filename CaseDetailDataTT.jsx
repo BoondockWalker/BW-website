@@ -19,7 +19,7 @@ window.BW_CASE_DETAIL = {
 
   hero: {
     variant: "fullbleed",
-    eyebrow: "Client Success Story · Specimen №04",
+    eyebrow: "Client Success Story · Case №04",
     title: "Measuring Boundaries in Infinities.",
     titleColor: "#082240",
     image: `${TT_BASE}/hero.jpg`,

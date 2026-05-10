@@ -18,7 +18,7 @@ window.BW_CASE_DETAIL = {
   pull: "Redefining a world-class brand.",
 
   hero: {
-    eyebrow: "Client Success Story · Specimen №01",
+    eyebrow: "Client Success Story · Case №01",
     title: "The Power of One.",
     clientLogo: `${BASE}/logo.webp`,
     clientLogoHeight: 96,
@@ -72,7 +72,7 @@ window.BW_CASE_DETAIL = {
     {
       kind: "fullbleed",
       src: `${BASE}/sales-sheet-group.webp`,
-      alt: "ONEsuite sales collateral — three-up sheet specimen on navy",
+      alt: "ONEsuite sales collateral — three-up sheet sample on navy",
       caption: { label: "fig. 02 · Sales Collateral", title: "ONEsuite vertical sheets — Banking, Retirement, Healthcare" },
       surface: "#0E1726",
       height: "min(78vh, 760px)",
