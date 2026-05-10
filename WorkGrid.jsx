@@ -1,14 +1,25 @@
 /* global React, BW */
 /* Work index — Archive grid + ledger row + footer extras */
 
-/* Card thumbnail variants — abstract / photo / screenshot */
+/* Card thumbnail variants — abstract / photo / screenshot.
+   When the case has a real heroImage in WorkData, that image fills the
+   thumb and the decorative kind-based mockups are suppressed. The
+   gradient tone still paints behind it as a fallback / letterbox color. */
 function CaseThumb({ c, kind }) {
-  const isAbstract = (kind || c.imagery) === "abstract";
-  const isPhoto = (kind || c.imagery) === "photo";
-  const isShot = (kind || c.imagery) === "screenshot";
+  const hasHero = !!c.heroImage;
+  const isAbstract = !hasHero && (kind || c.imagery) === "abstract";
+  const isPhoto = !hasHero && (kind || c.imagery) === "photo";
+  const isShot = !hasHero && (kind || c.imagery) === "screenshot";
   return (
     <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden", background: c.tone, borderBottom: `1px solid ${BW.ink}` }}>
-      <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 8px)", mixBlendMode: "multiply" }} />
+      {hasHero && (
+        <>
+          <img src={c.heroImage} alt={c.client} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          {/* Scrim — keeps the chalk-colored overlay text legible across varied photography */}
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0.42) 0%, rgba(20,16,12,0.18) 35%, rgba(20,16,12,0.18) 65%, rgba(20,16,12,0.55) 100%)" }} />
+        </>
+      )}
+      {!hasHero && <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 8px)", mixBlendMode: "multiply" }} />}
       {isShot && (
         <div style={{ position: "absolute", left: 28, top: 28, right: 28, bottom: 64, background: BW.chalk50, border: `1px solid rgba(20,16,12,0.18)`, borderRadius: 6, overflow: "hidden", boxShadow: "0 12px 28px -10px rgba(0,0,0,0.35)" }}>
           <div style={{ height: 18, background: BW.chalk, borderBottom: `1px solid ${BW.ruleL}`, display: "flex", alignItems: "center", padding: "0 8px", gap: 4 }}>
@@ -53,7 +64,7 @@ function CaseThumb({ c, kind }) {
           <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600, textAlign: "right", maxWidth: 120 }}>{c.bigStat.k}</div>
         </div>
       )}
-      {(isPhoto || isShot) && (
+      {(isPhoto || isShot || hasHero) && (
         <div style={{ position: "absolute", right: 22, bottom: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: "rgba(251,247,238,0.75)" }}>fig. {c.no}.0</div>
       )}
     </div>
