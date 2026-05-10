@@ -47,7 +47,7 @@ function FNCard({ note, size, themed }) {
   return (
     <a href={`note.html?slug=${note.slug}`} style={{ display: "flex", flexDirection: "column", border: `0.75px solid ${BW.ink}`, background: BW.chalk50, color: BW.ink, textDecoration: "none" }}>
       <div style={{ aspectRatio: "16/10", borderBottom: `0.75px solid ${BW.ink}`, position: "relative" }}>
-        <FNArt kind={note.art} color={c} caption={`fig. ${note.issue.replace("No ", "")}`} label={note.kicker} />
+        <FNArt kind={note.art} color={c} caption={`fig. ${note.issue.replace("No ", "")}`} label={note.kicker} image={note.image} alt={note.imageAlt} />
       </div>
       <div style={{ padding: "22px 22px 18px", display: "flex", flexDirection: "column", gap: 14, flex: 1, justifyContent: "space-between" }}>
         <div>
