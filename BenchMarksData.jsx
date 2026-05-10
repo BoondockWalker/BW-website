@@ -20,6 +20,28 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-12-built-by-nick",
+      mediaType: "image",
+      src: SPEC + "2026-05-12-Built-by-Nick.gif",
+      poster: SPEC + "2026-05-12-Built-by-Nick.png",
+      alt: "Animated logo specimen — Built by Nick.",
+      title: "Built by Nick",
+      commentary: {
+        hook: "Recent logo work for my youngest.",
+        body: [
+          "*Built. by Nick* — an innovative take on website development for small businesses.",
+          "A confident serif. A declarative period. One orange dot doing the work of a thousand brand decisions.",
+          "Check it out: [builtbynick.ai](https://builtbynick.ai)",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["design", "brand", "family"],
+      relatedSlug: null,
+      publishedAt: "2026-05-12",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-11-big-week",
       mediaType: "video",
       src: SPEC + "2026-05-11-big-week.mp4",
