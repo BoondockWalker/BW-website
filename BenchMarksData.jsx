@@ -21,8 +21,8 @@ const BW_BENCHMARKS = {
   specimens: [
     {
       id: "2026-05-12-built-by-nick",
-      mediaType: "image",
-      src: SPEC + "2026-05-12-Built-by-Nick.gif",
+      mediaType: "video",
+      src: SPEC + "2026-05-12-Built-by-Nick.webm",
       poster: SPEC + "2026-05-12-Built-by-Nick.png",
       alt: "Animated logo specimen — Built by Nick.",
       title: "Built by Nick",
