@@ -41,7 +41,7 @@ function V3Thesis() {
         </div>
       </div>
 
-      {/* TENET SPECIMEN — replaces the old marquee */}
+      {/* TENET FIG. — replaces the old marquee */}
       <div style={{ background: BW.ink, color: BW.chalk, borderTop: `1.5px solid ${BW.ink}` }}>
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(40px, 6vw, 56px) clamp(20px, 5vw, 64px)", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "240px 1fr 200px", alignItems: isMobile ? "start" : "center", gap: isMobile ? 24 : 40 }}>
           <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.55)", fontWeight: 600, lineHeight: 1.5 }}>
@@ -95,9 +95,9 @@ function PillarIcon({ kind, c }) {
 function V3Pillars() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const pillars = [
-    { n: "01", k: "Brand", t: "Story architecture", body: "Voice, narrative, messaging that survives sales calls. Built to close, not to win awards.", c: BW.clay, img: "assets/field-journal.png?v=3", cap: "Specimen A · Field journal", numColor: BW.clay, tint: "none" },
-    { n: "02", k: "Demand", t: "Nurture & engagement", body: "Lifecycle as choreography. Stage-by-stage nurture, attribution, and sales-enablement that turn cold lists into warm conversations. (HubSpot under the hood — but the work is the motion, not the tool.)", c: BW.plum, img: "assets/coffee-napkin-burg.png?v=3", cap: "Specimen B · Coffee & napkin", numColor: BW.plum, tint: "none" },
-    { n: "03", k: "Lab", t: "Applied AI", body: "AI woven through the marketing motion — not a product, a substrate. Desk-reps that triage inbound, voice-trained content engines, intent scoring, custom tooling. Built for use, not for show.", c: BW.brass, img: "assets/brain.png", cap: "Specimen C · Cortex", numColor: BW.chalk2, tint: "sepia(0.55) saturate(0.55) hue-rotate(-10deg) brightness(1.18) contrast(0.92)" },
+    { n: "01", k: "Brand", t: "Story architecture", body: "Voice, narrative, messaging that survives sales calls. Built to close, not to win awards.", c: BW.clay, img: "assets/field-journal.png?v=3", cap: "Fig. A · Field journal", numColor: BW.clay, tint: "none" },
+    { n: "02", k: "Demand", t: "Nurture & engagement", body: "Lifecycle as choreography. Stage-by-stage nurture, attribution, and sales-enablement that turn cold lists into warm conversations. (HubSpot under the hood — but the work is the motion, not the tool.)", c: BW.plum, img: "assets/coffee-napkin-burg.png?v=3", cap: "Fig. B · Coffee & napkin", numColor: BW.plum, tint: "none" },
+    { n: "03", k: "Lab", t: "Applied AI", body: "AI woven through the marketing motion — not a product, a substrate. Desk-reps that triage inbound, voice-trained content engines, intent scoring, custom tooling. Built for use, not for show.", c: BW.brass, img: "assets/brain.png", cap: "Fig. C · Cortex", numColor: BW.chalk2, tint: "sepia(0.55) saturate(0.55) hue-rotate(-10deg) brightness(1.18) contrast(0.92)" },
   ];
   const pillarImgSize = isMobile ? 160 : 240;
   return (
@@ -126,7 +126,7 @@ function V3Pillars() {
             <p style={{ fontFamily: BW.ffSerif, fontSize: 16, lineHeight: 1.6, margin: 0, color: "rgba(244,236,218,0.78)" }}>{p.body}</p>
             <div style={{ marginTop: "auto", display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 18, borderTop: `1px solid rgba(244,236,218,0.18)`, gap: 12, flexWrap: "wrap" }}>
               <span style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.5)", fontWeight: 600 }}>{p.cap}</span>
-              <a style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: p.c, textDecoration: "none", borderBottom: `1.5px solid ${p.c}`, paddingBottom: 3, fontWeight: 700, cursor: "pointer" }}>View specimens →</a>
+              <a style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: p.c, textDecoration: "none", borderBottom: `1.5px solid ${p.c}`, paddingBottom: 3, fontWeight: 700, cursor: "pointer" }}>View projects →</a>
             </div>
           </div>
         ))}

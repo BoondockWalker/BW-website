@@ -34,7 +34,7 @@ const BW_CAPABILITIES = {
       example: { case: "O'Neil Digital Solutions", note: "Brand foundation, identity, sales collateral, website — across a near-decade engagement." },
       surface: "clay",
       objectImg: "assets/field-journal.png",
-      objectCap: "Specimen A · Field journal",
+      objectCap: "Fig. A · Field journal",
     },
     {
       n: "02",
@@ -56,7 +56,7 @@ const BW_CAPABILITIES = {
       example: { case: "Diebold Nixdorf", note: "Lifecycle program rebuild — pipeline lift across enterprise SKU lines." },
       surface: "plum",
       objectImg: "assets/coffee-napkin-burg.png",
-      objectCap: "Specimen B · Coffee & napkin",
+      objectCap: "Fig. B · Coffee & napkin",
     },
     {
       n: "03",
@@ -76,7 +76,7 @@ const BW_CAPABILITIES = {
       example: { case: "Lab — internal", note: "Voice-clone content engine. Trained on the bureau's archive; staff drafts approved at 2× the rate." },
       surface: "forest",
       objectImg: "assets/brain.png",
-      objectCap: "Specimen C · Cortex",
+      objectCap: "Fig. C · Cortex",
     },
   ],
 
