@@ -29,7 +29,7 @@ const BW_BENCHMARKS = {
       commentary: {
         hook: "Recent logo work for my youngest.",
         body: [
-          "*Built. by Nick* — an innovative take on website development for small businesses.",
+          "*Built. by Nick* — a young entrepreneur's take on website development for small businesses.",
           "A confident serif. A declarative period. One orange dot doing the work of a thousand brand decisions.",
           "Check it out: [builtbynick.ai](https://builtbynick.ai)",
         ],
