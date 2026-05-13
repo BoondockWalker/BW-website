@@ -77,7 +77,7 @@ function buildFacets(specimens) {
   });
 
   const tagsSorted = Object.entries(tagCounts)
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([key, count]) => ({ key, count }));
 
   const years = Object.keys(yearMonthMap).sort().reverse();

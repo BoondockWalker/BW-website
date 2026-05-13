@@ -20,6 +20,27 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-13-bevel-app",
+      mediaType: "image",
+      src: SPEC + "2026-05-13-Bevel-App.png",
+      alt: "Specimen — Bevel app dashboard.",
+      title: "Bevel",
+      commentary: {
+        hook: "Replaced five health apps with one.",
+        body: [
+          "Strain, recovery, sleep, stress, nutrition, activity — all on the same dashboard. Same source of truth.",
+          "The AI integration actually pulls its weight. Not “10-second motivational message” gimmickry — real pattern reads across the data you actually care about.",
+          "The best tools do less, on purpose. Bevel does a lot, in one place. Both are forms of the same discipline: getting out of your way.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["design", "health"],
+      relatedSlug: null,
+      publishedAt: "2026-05-13",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-12-built-by-nick",
       mediaType: "video",
       src: SPEC + "2026-05-12-Built-by-Nick.webm",
