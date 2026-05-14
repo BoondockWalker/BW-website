@@ -65,6 +65,16 @@ window.BW_CASE_DETAIL = {
       maxWidth: 820,
     },
 
+    /* -- Brand video — ONEsuite financial-services flyover --------- */
+    {
+      kind: "video",
+      src: `${BASE}/onesuite-flyover.mp4`,
+      caption: { label: "fig. 02 · Brand Video", title: "ONEsuite — transforming the financial-services customer experience" },
+      surface: "#0E1726",
+      aspect: "16/9",
+      controls: true,
+    },
+
     /* -- Big stat callout — the ONE earned number ----------------- */
     {
       kind: "stat",
@@ -79,7 +89,7 @@ window.BW_CASE_DETAIL = {
       kind: "fullbleed",
       src: `${BASE}/sales-sheets-2024.png`,
       alt: "ONEsuite sales collateral — Banking, Retirement, Healthcare",
-      caption: { label: "fig. 02 · Sales Collateral", title: "ONEsuite vertical sheets — Banking, Retirement, Healthcare" },
+      caption: { label: "fig. 03 · Sales Collateral", title: "ONEsuite vertical sheets — Banking, Retirement, Healthcare" },
       surface: "#FBF7EE",
       height: "min(90vh, 875px)",
       fit: "contain",

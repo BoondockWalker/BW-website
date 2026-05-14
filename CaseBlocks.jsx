@@ -794,6 +794,49 @@ function CaseAdjacent({ prev, next }) {
 
 /* =========================================================================
    BLOCK ROUTER — renders the right component based on `kind`.
+/* =========================================================================
+   VIDEO — embedded video player. Native <video> with optional poster.
+   Use for product demos, brand films, walkthroughs.
+   Props: src (string or array of {src, type}), poster, caption, surface,
+          surfaceGradient, aspect (default "16/9"), autoplay (default false),
+          muted, loop, controls (default true), imagePadding.
+   ========================================================================= */
+function VideoBlock({ block }) {
+  const { src, poster, caption, aspect = "16/9", surface = BW.chalk50, surfaceGradient, autoplay = false, muted = false, loop = false, controls = true, imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)" } = block;
+  const bg = surfaceGradient || surface;
+  const sources = Array.isArray(src) ? src : [{ src, type: "video/mp4" }];
+  return (
+    <section style={{ background: bg, padding: "0 0 60px" }}>
+      <Reveal kind="wipe" threshold={0.05}>
+        <div style={{ width: "100%", position: "relative", background: bg, padding: imagePadding, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <video
+            style={{ width: "100%", maxWidth: 1280, aspectRatio: aspect, display: "block", background: BW.ink }}
+            poster={poster}
+            controls={controls}
+            autoPlay={autoplay}
+            muted={autoplay || muted}
+            loop={loop}
+            playsInline
+            preload="metadata"
+          >
+            {sources.map((s, i) => <source key={i} src={s.src} type={s.type || "video/mp4"} />)}
+          </video>
+        </div>
+      </Reveal>
+      {caption && (
+        <Reveal kind="rise" delay={200}>
+          <div style={{ maxWidth: MAX_W, margin: "0 auto", padding: "18px clamp(20px, 5vw, 56px) 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
+            <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>{caption.label || "fig."}</span>
+            <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
+          </div>
+        </Reveal>
+      )}
+    </section>
+  );
+}
+
+/* =========================================================================
+   BLOCK ROUTER — renders the right component based on `kind`.
    ========================================================================= */
 const CASE_BLOCKS = {
   prose:        ProseBlock,
@@ -806,6 +849,7 @@ const CASE_BLOCKS = {
   stat:         StatCalloutBlock,
   statrow:      StatRowBlock,
   pullquote:    PullquoteBlock,
+  video:        VideoBlock,
 };
 
 function CaseBlocks({ blocks }) {
@@ -823,5 +867,5 @@ function CaseBlocks({ blocks }) {
 Object.assign(window, {
   CaseHero, CaseHeroFullBleed, ProseBlock, ServicesBlock, FullBleedImage, FloatingImage,
   ImageTextBlock, MultiImageBlock, SliderBlock, StatCalloutBlock, StatRowBlock,
-  PullquoteBlock, CaseAdjacent, CaseBlocks,
+  PullquoteBlock, VideoBlock, CaseAdjacent, CaseBlocks,
 });
