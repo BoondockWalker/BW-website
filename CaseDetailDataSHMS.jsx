@@ -43,9 +43,9 @@ window.BW_CASE_DETAIL = {
       alt: "Sacred Heart Major Seminary — Academic Mark, two-color lockup with the rampant-lion shield and grey wordmark",
       caption: { label: "fig. 01 · Academic Mark", title: "The refined academic mark — formal lockup with the rampant-lion shield" },
       surface: "#FBF7EE",
-      height: "min(64vh, 560px)",
+      height: "min(32vh, 280px)",
       fit: "contain",
-      imagePadding: "60px 28px",
+      imagePadding: "40px 28px",
     },
 
     /* -- The Brief / problem prose -------------------------------- */
@@ -145,7 +145,7 @@ window.BW_CASE_DETAIL = {
       ],
     },
 
-    /* -- Brand Guidelines — open book at 90°, full-bleed ---------- */
+    /* -- Brand Guidelines — open book at 90°, full-width ---------- */
     {
       kind: "fullbleed",
       src: `${SHMS_BASE}/brand-guidelines-cover-spread.jpg`,
@@ -153,8 +153,8 @@ window.BW_CASE_DETAIL = {
       caption: { label: "fig. 08 · Brand Guidelines", title: "Open at the doctrine — guidelines in use" },
       surface: "#FBF7EE",
       height: "min(86vh, 820px)",
-      fit: "contain",
-      imagePadding: "32px 28px",
+      fit: "cover",
+      imagePadding: "0",
     },
 
     /* -- Exterior Signage — three banners ------------------------ */
