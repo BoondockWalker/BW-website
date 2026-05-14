@@ -65,13 +65,15 @@ window.BW_CASE_DETAIL = {
       maxWidth: 820,
     },
 
-    /* -- Brand video — ONEsuite financial-services flyover --------- */
+    /* -- Brand video — ONEsuite financial-services flyover ---------
+       Floats on the cream chalk surface at ~half the previous width
+       so the editorial rhythm doesn't break for a single moving asset. */
     {
       kind: "video",
       src: `${BASE}/onesuite-flyover.mp4`,
       caption: { label: "fig. 02 · Brand Video", title: "ONEsuite — transforming the financial-services customer experience" },
-      surface: "#0E1726",
       aspect: "16/9",
+      maxWidth: 640,
       controls: true,
     },
 
