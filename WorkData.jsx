@@ -215,7 +215,7 @@ window.BW_CASES = [
     tags: ["Brand", "Website", "Education"],
     pull: "Where craft food concepts take off.",
     lede: "Central Kitchen is a craft food business accelerator and innovation hub. In partnership with our friends at Muse, Boondock Walker built the brand strategy, a new company website, and an online \"Craft Food Classroom\" — the platform Central Kitchen uses to recruit, teach, and connect craft food entrepreneurs.",
-    tone: "linear-gradient(135deg, #2E3F26 0%, #B8531E 100%)",
+    tone: "linear-gradient(135deg, #201c1d 0%, #ab8f50 100%)",
     bigStat: { v: "Craft.", k: "Community. Classroom." },
     metrics: [
       { v: "3", k: "Capabilities engaged" },
@@ -225,9 +225,9 @@ window.BW_CASES = [
     team: ["Strategy", "Brand"],
     imagery: "photo",
     heroImage: "assets/cases/central-kitchen/hero.jpg",
-    featuredBg: "linear-gradient(45deg, #1E2A1A 0%, #2E3F26 50%, #B8531E 100%)",
+    featuredBg: "linear-gradient(45deg, #0F0D0E 0%, #201c1d 50%, #ab8f50 100%)",
     clientLogo: "assets/cases/central-kitchen/logo.svg",
-    clientLogoHeight: 64,
+    clientLogoHeight: 72,
     href: "case-central-kitchen.html",
   },
 ];

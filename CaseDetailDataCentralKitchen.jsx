@@ -3,9 +3,9 @@
    Content sourced from boondockwalker.com/work/central-kitchen
    Assets in assets/cases/central-kitchen/ pulled from same.
 
-   Palette (working set — pending the brand SVG):
-     Sage   #2E3F26     Clay   #B8531E
-     Cream  #FBF7EE     Ink    #14100C
+   Brand palette (lifted from the supplied logo SVG):
+     Brass  #ab8f50    Ink    #201c1d
+     Cream  #FBF7EE    Chalk  #F4ECDA
 */
 
 const CK_BASE = "assets/cases/central-kitchen";
@@ -27,12 +27,12 @@ window.BW_CASE_DETAIL = {
     eyebrow: "Client Success Story · Case №08",
     title: "Where craft food concepts take off.",
     image: `${CK_BASE}/hero.jpg`,
-    imageAlt: "Central Kitchen — craft food entrepreneurs in the kitchen, hands at work",
+    imageAlt: "Central Kitchen — craft food entrepreneurs at work in the kitchen",
     imagePosition: "center center",
-    imageBg: "#2E3F26",
+    imageBg: "#201c1d",
     scrim: "bottomOnly",
     clientLogo: `${CK_BASE}/logo.svg`,
-    clientLogoHeight: 72,
+    clientLogoHeight: 88,
     clientLogoInvert: false,
     standfirst: "Central Kitchen is a craft food business accelerator and innovation hub that empowers entrepreneurs to achieve their fullest potential. You don't just learn and move on — you join a community of peers and experienced food professionals who rally to champion your best interests, through every stage of the journey.",
   },
@@ -42,10 +42,10 @@ window.BW_CASE_DETAIL = {
     {
       kind: "fullbleed",
       src: `${CK_BASE}/logo.svg`,
-      alt: "Central Kitchen — primary logo",
-      caption: { label: "fig. 01 · Logo", title: "The Central Kitchen mark" },
+      alt: "Central Kitchen — primary mark, brass + ink roundel",
+      caption: { label: "fig. 01 · Logo", title: "The Central Kitchen mark — brass on ink" },
       surface: "#FBF7EE",
-      height: "min(40vh, 360px)",
+      height: "min(44vh, 380px)",
       fit: "contain",
       imagePadding: "48px 28px",
       padTop: 64,
@@ -62,7 +62,7 @@ window.BW_CASE_DETAIL = {
       ],
       dropCap: true,
       maxWidth: 820,
-      accent: "#B8531E",
+      accent: "#ab8f50",
     },
 
     /* -- Services / capabilities ledger -------------------------- */
@@ -87,36 +87,54 @@ window.BW_CASE_DETAIL = {
         "We worked with Central Kitchen leadership to translate their accelerator's hands-on, peer-to-peer model into a brand voice and visual system that read as warm, expert, and approachable — equal parts mentor and community. Muse partnered on the website build so the strategy, story, and classroom landed in a single end-to-end experience.",
       ],
       maxWidth: 820,
-      accent: "#B8531E",
+      accent: "#ab8f50",
     },
 
-    /* -- Website slider — 5 screens ------------------------------ */
+    /* -- Website slider — finalized screens ---------------------- */
     {
       kind: "slider",
       eyebrow: "§05 · Website",
-      title: "The Central Kitchen site — five screens.",
+      title: "The Central Kitchen site — in motion.",
       surface: "#FBF7EE",
       slideHeight: 620,
       items: [
-        { src: `${CK_BASE}/website-1.webp`, alt: "Central Kitchen website — screen 1", caption: "fig. 05.1 · Home",       bg: "#FBF7EE", tilePadding: "0" },
-        { src: `${CK_BASE}/website-2.webp`, alt: "Central Kitchen website — screen 2", caption: "fig. 05.2 · Program",    bg: "#FBF7EE", tilePadding: "0" },
-        { src: `${CK_BASE}/website-3.webp`, alt: "Central Kitchen website — screen 3", caption: "fig. 05.3 · Classroom",  bg: "#FBF7EE", tilePadding: "0" },
-        { src: `${CK_BASE}/website-4.webp`, alt: "Central Kitchen website — screen 4", caption: "fig. 05.4 · Community",  bg: "#FBF7EE", tilePadding: "0" },
-        { src: `${CK_BASE}/website-5.webp`, alt: "Central Kitchen website — screen 5", caption: "fig. 05.5 · Apply",      bg: "#FBF7EE", tilePadding: "0" },
+        { src: `${CK_BASE}/website-1.png`, alt: "Central Kitchen website — screen 1", caption: "fig. 05.1 · Hero",        bg: "#FBF7EE", tilePadding: "0" },
+        { src: `${CK_BASE}/website-2.png`, alt: "Central Kitchen website — screen 2", caption: "fig. 05.2 · Program",     bg: "#FBF7EE", tilePadding: "0" },
+        { src: `${CK_BASE}/website-3.png`, alt: "Central Kitchen website — screen 3", caption: "fig. 05.3 · Classroom",   bg: "#FBF7EE", tilePadding: "0" },
+        { src: `${CK_BASE}/website-4.png`, alt: "Central Kitchen website — screen 4", caption: "fig. 05.4 · Community",   bg: "#FBF7EE", tilePadding: "0" },
+        { src: `${CK_BASE}/website-5.png`, alt: "Central Kitchen website — screen 5", caption: "fig. 05.5 · Apply",       bg: "#FBF7EE", tilePadding: "0" },
+      ],
+    },
+
+    /* -- Site Templates — five named pages ----------------------- */
+    {
+      kind: "multi",
+      eyebrow: "§06 · Site Templates",
+      title: "Five pages, one system.",
+      cols: 3,
+      gap: 28,
+      surface: "#FBF7EE",
+      padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)",
+      items: [
+        { src: `${CK_BASE}/page-home.jpg`,              alt: "Site template — Home",              caption: "Home" },
+        { src: `${CK_BASE}/page-bootcamp.jpg`,          alt: "Site template — Accelerator: Bootcamp", caption: "Accelerator · Bootcamp" },
+        { src: `${CK_BASE}/page-incubator-rental.jpg`,  alt: "Site template — Accelerator: Incubator / Rental", caption: "Accelerator · Incubator + Rental" },
+        { src: `${CK_BASE}/page-success-stories.jpg`,   alt: "Site template — Success Stories",   caption: "Success Stories" },
+        { src: `${CK_BASE}/page-contact.jpg`,           alt: "Site template — Contact Us",        caption: "Contact" },
       ],
     },
 
     /* -- Outcomes prose ------------------------------------------ */
     {
       kind: "prose",
-      eyebrow: "§06 · Outcomes",
+      eyebrow: "§07 · Outcomes",
       title: "A platform for the next generation of craft food.",
       body: [
         "Central Kitchen now has a brand foundation, a public-facing site, and an online classroom that work together — recruiting craft food entrepreneurs, teaching them what they need to launch and scale, and connecting them to a community of mentors and peers who keep showing up for them after the program ends.",
       ],
       align: "left",
       maxWidth: 760,
-      accent: "#B8531E",
+      accent: "#ab8f50",
     },
   ],
 };
