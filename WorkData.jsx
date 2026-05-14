@@ -171,7 +171,7 @@ window.BW_CASES = [
     imagery: "photo",
     heroImage: "assets/cases/sacred-heart/hero.jpg",
     featuredBg: "linear-gradient(45deg, #3A0E14 0%, #5A0F1D 50%, #b51e3d 100%)",
-    clientLogo: "assets/cases/sacred-heart/logo.svg",
+    clientLogo: "assets/cases/sacred-heart/academic-mark.png",
     clientLogoInvert: true,
     clientLogoHeight: 64,
     href: "case-sacred-heart.html",
