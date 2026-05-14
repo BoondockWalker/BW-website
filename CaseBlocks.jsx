@@ -340,7 +340,7 @@ function FullBleedImage({ block }) {
               <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: fit, objectPosition: position, display: "block" }} />
             </Parallax>
           ) : (
-            <img src={src} alt={alt} style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: fit, objectPosition: position, display: "block" }} />
+            <img src={src} alt={alt} style={{ ...(fit === "cover" ? { width: "100%", height: "100%" } : { maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }), objectFit: fit, objectPosition: position, display: "block" }} />
           )}
         </div>
       </Reveal>
