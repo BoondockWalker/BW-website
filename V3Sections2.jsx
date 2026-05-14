@@ -59,12 +59,10 @@ function V3Cases() {
             <a key={c.slug} href={c.href} style={{ borderRight: !isMobile && i < 2 ? `1px solid ${BW.ink}` : "none", borderBottom: isMobile && i < cases.length - 1 ? `1px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column", textDecoration: "none", color: "inherit", background: BW.chalk50 }}>
               <div style={{ aspectRatio: "16/11", background: c.c, position: "relative", overflow: "hidden", borderBottom: `1px solid ${BW.ink}` }}>
                 <img src={c.image} alt={c.co} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-                <div style={{ position: "absolute", inset: 0, background: c.c, mixBlendMode: "multiply", opacity: 0.78 }} />
-                <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 8px)", mixBlendMode: "multiply" }} />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0) 35%, rgba(20,16,12,0.42) 100%)" }} />
-                <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>CASE 0{i+1}</div>
-                <div style={{ position: "absolute", left: 22, bottom: 22, fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.03em", lineHeight: 0.9, fontSize: "clamp(24px, 4.4vw, 34px)", textTransform: "uppercase", maxWidth: "calc(100% - 44px)" }}>{c.co}</div>
-                <div style={{ position: "absolute", right: 22, bottom: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: "rgba(251,247,238,0.75)", fontWeight: 400 }}>fig. {i+1}.0</div>
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0) 45%, rgba(20,16,12,0.55) 100%)" }} />
+                <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700, textShadow: "0 1px 2px rgba(0,0,0,0.45)" }}>CASE 0{i+1}</div>
+                <div style={{ position: "absolute", left: 22, bottom: 22, fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.03em", lineHeight: 0.9, fontSize: "clamp(24px, 4.4vw, 34px)", textTransform: "uppercase", maxWidth: "calc(100% - 44px)", textShadow: "0 2px 6px rgba(0,0,0,0.5)" }}>{c.co}</div>
+                <div style={{ position: "absolute", right: 22, bottom: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: "rgba(251,247,238,0.85)", fontWeight: 400, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>fig. {i+1}.0</div>
               </div>
               <div style={{ padding: "26px 26px 28px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 24 }}>
                 <div>
