@@ -5,9 +5,39 @@
 function V3Cases() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const cases = [
-    { tag: "Brand · Demand", co: "Walker Bros.", pull: "A 70-year wholesale brand learns to close direct.", m1: "+148%", m1k: "SQL", m2: "$2.4M", m2k: "Pipeline", c: BW.clay },
-    { tag: "Lab · Demand",   co: "Halberd Tools", pull: "A trained AI desk-rep that sounds like founder.", m1: "2,140", m1k: "SQL routed", m2: "$0.42", m2k: "Cost / lead", c: BW.forest },
-    { tag: "Brand",          co: "North-by-Northeast", pull: "Repositioned mid-market, doubled enterprise close rate.", m1: "2.1×", m1k: "Close rate", m2: "37 days", m2k: "Sales cycle", c: BW.plum },
+    {
+      slug: "oneil-digital-solutions",
+      tag: "Brand · Demand",
+      co: "O'Neil Digital Solutions",
+      pull: "Redefining a world-class brand.",
+      m1: "5B+", m1k: "Pages delivered",
+      m2: "4×",  m2k: "Aspire leader",
+      c: BW.clay,
+      href: "case-oneil.html",
+      image: "assets/cases/oneil/hero.jpg",
+    },
+    {
+      slug: "tt-electronics",
+      tag: "Brand · Demand",
+      co: "TT Electronics IMS",
+      pull: "Your Vision. Integrated.",
+      m1: "+300%", m1k: "Traffic lift",
+      m2: "5",     m2k: "Languages live",
+      c: BW.forest,
+      href: "case-tt-electronics.html",
+      image: "assets/cases/tt-electronics/hero.jpg",
+    },
+    {
+      slug: "archdiocese-of-detroit",
+      tag: "Brand",
+      co: "Archdiocese of Detroit",
+      pull: "A 200-year institution, refit for a missionary century.",
+      m1: "1.3M", m1k: "Catholics reached",
+      m2: "200+", m2k: "Parishes adopting",
+      c: BW.plum,
+      href: "case-archdiocese-detroit.html",
+      image: "assets/cases/archdiocese-detroit/hero.jpg",
+    },
   ];
   return (
     <section id="work" style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
@@ -21,16 +51,19 @@ function V3Cases() {
               Receipts, <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>not</em> case <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>studies.</em>
             </h2>
           </div>
-          <a style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, paddingBottom: 3, borderBottom: `1.5px solid ${BW.ink}`, cursor: "pointer", whiteSpace: "nowrap" }}>All 47 cases →</a>
+          <a href="work.html" style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, paddingBottom: 3, borderBottom: `1.5px solid ${BW.ink}`, cursor: "pointer", whiteSpace: "nowrap" }}>All cases →</a>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", border: `1px solid ${BW.ink}` }}>
           {cases.map((c, i) => (
-            <div key={c.co} style={{ borderRight: !isMobile && i < 2 ? `1px solid ${BW.ink}` : "none", borderBottom: isMobile && i < cases.length - 1 ? `1px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column" }}>
+            <a key={c.slug} href={c.href} style={{ borderRight: !isMobile && i < 2 ? `1px solid ${BW.ink}` : "none", borderBottom: isMobile && i < cases.length - 1 ? `1px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column", textDecoration: "none", color: "inherit", background: BW.chalk50 }}>
               <div style={{ aspectRatio: "16/11", background: c.c, position: "relative", overflow: "hidden", borderBottom: `1px solid ${BW.ink}` }}>
+                <img src={c.image} alt={c.co} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <div style={{ position: "absolute", inset: 0, background: c.c, mixBlendMode: "multiply", opacity: 0.78 }} />
                 <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, rgba(20,16,12,0.16) 0 2px, transparent 2px 8px)", mixBlendMode: "multiply" }} />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0) 35%, rgba(20,16,12,0.42) 100%)" }} />
                 <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>CASE 0{i+1}</div>
-                <div style={{ position: "absolute", left: 22, bottom: 22, fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.03em", lineHeight: 0.9, fontSize: "clamp(28px, 6vw, 40px)", textTransform: "uppercase", maxWidth: "calc(100% - 44px)" }}>{c.co}</div>
+                <div style={{ position: "absolute", left: 22, bottom: 22, fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.03em", lineHeight: 0.9, fontSize: "clamp(24px, 4.4vw, 34px)", textTransform: "uppercase", maxWidth: "calc(100% - 44px)" }}>{c.co}</div>
                 <div style={{ position: "absolute", right: 22, bottom: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: "rgba(251,247,238,0.75)", fontWeight: 400 }}>fig. {i+1}.0</div>
               </div>
               <div style={{ padding: "26px 26px 28px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 24 }}>
@@ -43,7 +76,7 @@ function V3Cases() {
                   <div><div style={{ fontFamily: BW.ffG, fontWeight: 700, fontSize: 22, color: c.c, letterSpacing: "-0.01em", marginBottom: 2 }}>{c.m2}</div><div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>{c.m2k}</div></div>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
