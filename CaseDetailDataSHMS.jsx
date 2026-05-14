@@ -76,12 +76,39 @@ window.BW_CASE_DETAIL = {
       note: "Five capabilities engaged across a multi-year engagement.",
     },
 
+    /* -- Brand Expression — two-up: informal mark + Heart/Mind/Mission */
+    {
+      kind: "multi",
+      eyebrow: "§03 · Brand Expression",
+      title: "An informal voice and a tagline that does the work.",
+      cols: 2,
+      gap: 32,
+      surface: "#FBF7EE",
+      padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)",
+      items: [
+        { src: `${SHMS_BASE}/sacredheart-informal-mark.webp`,    alt: "\"sacred heart DETROIT\" — informal blackletter wordmark in black + burgundy", caption: "Informal mark · the everyday voice", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "48px", fit: "contain" },
+        { src: `${SHMS_BASE}/sacredheart-heart-mind-mission.webp`, alt: "HEART. MIND. MISSION. — stacked typographic tagline in burgundy / gold / purple", caption: "Heart. Mind. Mission. · the tagline made visible", bg: "#FBF7EE", aspect: "1 / 1", tilePadding: "48px", fit: "contain" },
+      ],
+    },
+
+    /* -- Brand Values — five icons + labels, full-bleed band ----- */
+    {
+      kind: "fullbleed",
+      src: `${SHMS_BASE}/sacredheart-values.webp`,
+      alt: "Sacred Heart values graphic — five pillars: Excellence in Academics · In the Heart of the Church · In the Heart of the City · Advancing the New Evangelization · According to the Heart of Jesus Christ",
+      caption: { label: "fig. 04 · Brand Values", title: "Five pillars — Excellence, Church, City, Evangelization, Heart of Jesus Christ" },
+      surface: "#FBF7EE",
+      height: "min(40vh, 360px)",
+      fit: "contain",
+      imagePadding: "32px clamp(20px, 5vw, 56px)",
+    },
+
     /* -- Brand Identity Guidelines — published book covers -------- */
     {
       kind: "fullbleed",
       src: `${SHMS_BASE}/brand-guidelines-covers.jpg`,
       alt: "\"Communicating Sacred Heart Major Seminary\" — Brand + Identity Guidelines, two covers on slate",
-      caption: { label: "fig. 03 · Brand Guidelines", title: "\"Communicating Sacred Heart Major Seminary\" — the published doctrine" },
+      caption: { label: "fig. 05 · Brand Guidelines", title: "\"Communicating Sacred Heart Major Seminary\" — the published doctrine" },
       surface: "#FBF7EE",
       height: "min(86vh, 820px)",
       fit: "contain",
@@ -91,7 +118,7 @@ window.BW_CASE_DETAIL = {
     /* -- Our Approach prose --------------------------------------- */
     {
       kind: "prose",
-      eyebrow: "§04 · Our Approach",
+      eyebrow: "§06 · Our Approach",
       title: "From foundation to graphic language.",
       body: [
         "The Boondock team worked closely with Sacred Heart leadership to establish a clear brand foundation for this nationally recognized Catholic institution of higher learning within the Archdiocese of Detroit. We collaborated in creating a framework that clearly defines their values and attributes, and how they create value — a clear understanding of their vocation, philosophy, and what sets them apart.",
@@ -105,7 +132,7 @@ window.BW_CASE_DETAIL = {
     /* -- Brand Guidelines close-up details — two-up --------------- */
     {
       kind: "multi",
-      eyebrow: "§05 · Inside the System",
+      eyebrow: "§07 · Inside the System",
       title: "Doctrine, color, and the rules that hold them.",
       cols: 2,
       gap: 32,
@@ -123,7 +150,7 @@ window.BW_CASE_DETAIL = {
       kind: "fullbleed",
       src: `${SHMS_BASE}/brand-guidelines-cover-spread.jpg`,
       alt: "Brand Guidelines — open book at 90° showing the cover and a key interior spread",
-      caption: { label: "fig. 06 · Brand Guidelines", title: "Open at the doctrine — guidelines in use" },
+      caption: { label: "fig. 08 · Brand Guidelines", title: "Open at the doctrine — guidelines in use" },
       surface: "#FBF7EE",
       height: "min(86vh, 820px)",
       fit: "contain",
@@ -133,7 +160,7 @@ window.BW_CASE_DETAIL = {
     /* -- Exterior Signage — three banners ------------------------ */
     {
       kind: "multi",
-      eyebrow: "§07 · Exterior Signage",
+      eyebrow: "§09 · Exterior Signage",
       title: "Heart. Mind. Mission. — applied in place.",
       cols: 3,
       gap: 28,
@@ -149,7 +176,7 @@ window.BW_CASE_DETAIL = {
     /* -- Outcomes prose ------------------------------------------- */
     {
       kind: "prose",
-      eyebrow: "§08 · Outcomes",
+      eyebrow: "§10 · Outcomes",
       title: "Clearer, easier, more impactful — and recognizable.",
       body: [
         "Brand communications from Sacred Heart Major Seminary are now clearer, easier to create, more impactful, and, above all, clearly recognizable. Unified communications reinforce the brand, which translates to more success in recruiting students and faculty, cultivating donors, soliciting funding, forging partnerships, and creating a real and lasting impact on their community, diocese, and Church.",
@@ -164,11 +191,11 @@ window.BW_CASE_DETAIL = {
       kind: "fullbleed",
       src: `${SHMS_BASE}/brand-guidelines-spread.jpg`,
       alt: "Brand Identity Guidelines — interior spread, full-width",
-      caption: { label: "fig. 09 · Brand Guidelines", title: "Inside the guidelines — the full graphic system" },
+      caption: { label: "fig. 11 · Brand Guidelines", title: "Inside the guidelines — the full graphic system" },
       surface: "#FBF7EE",
       height: "min(82vh, 760px)",
-      fit: "contain",
-      imagePadding: "20px 28px",
+      fit: "cover",
+      imagePadding: "0",
     },
   ],
 };
