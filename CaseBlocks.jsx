@@ -802,7 +802,7 @@ function CaseAdjacent({ prev, next }) {
           muted, loop, controls (default true), imagePadding.
    ========================================================================= */
 function VideoBlock({ block }) {
-  const { src, poster, caption, aspect = "16/9", surface = BW.chalk50, surfaceGradient, autoplay = false, muted = false, loop = false, controls = true, imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)" } = block;
+  const { src, poster, caption, aspect = "16/9", surface = BW.chalk50, surfaceGradient, autoplay = false, muted = false, loop = false, controls = true, maxWidth = 1280, imagePadding = "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)" } = block;
   const bg = surfaceGradient || surface;
   const sources = Array.isArray(src) ? src : [{ src, type: "video/mp4" }];
   return (
@@ -810,7 +810,7 @@ function VideoBlock({ block }) {
       <Reveal kind="wipe" threshold={0.05}>
         <div style={{ width: "100%", position: "relative", background: bg, padding: imagePadding, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <video
-            style={{ width: "100%", maxWidth: 1280, aspectRatio: aspect, display: "block", background: BW.ink }}
+            style={{ width: "100%", maxWidth, aspectRatio: aspect, display: "block", background: BW.ink, boxShadow: "0 18px 40px -16px rgba(20,16,12,0.35)" }}
             poster={poster}
             controls={controls}
             autoPlay={autoplay}
