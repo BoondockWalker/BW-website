@@ -90,6 +90,19 @@ function CaseHeroFullBleed({ d }) {
         }} />
       )}
 
+      {/* Optional colored tint — radial / linear gradient layered over the image
+          (e.g. a warm sunburst). Pass as h.tint (any CSS background value).
+          Renders above the image but below the scrim so it gets darkened in
+          the same areas the type sits over. */}
+      {h.tint && (
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0, zIndex: 0,
+          background: h.tint,
+          pointerEvents: "none",
+          mixBlendMode: "screen",
+        }} />
+      )}
+
       {/* Editorial scrim — keeps type legible against the image.
           Default: full editorial wash (left-weighted + bottom + light top).
           h.scrim === "bottomOnly": single bottom-up gradient that stays clear of the
