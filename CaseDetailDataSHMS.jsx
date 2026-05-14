@@ -29,7 +29,7 @@ window.BW_CASE_DETAIL = {
     imagePosition: "center center",
     imageBg: "#5A0F1D",
     scrim: "bottomOnly",
-    clientLogo: `${SHMS_BASE}/academic-mark.png`,
+    clientLogo: `${SHMS_BASE}/SHMS-logo-wht.svg`,
     clientLogoHeight: 72,
     clientLogoInvert: false,
     standfirst: "Sacred Heart Major Seminary is a Catholic institution of higher learning associated with the Archdiocese of Detroit — a leading center of the New Evangelization forming priests, deacons, and lay ministers who bring the truth of the Gospel to an increasingly secularized world.",
