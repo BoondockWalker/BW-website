@@ -154,8 +154,8 @@ window.BW_CASE_DETAIL = {
       caption: { label: "fig. 08 · Brand Guidelines", title: "Open at the doctrine — guidelines in use" },
       surface: "#FBF7EE",
       height: "min(86vh, 820px)",
-      fit: "cover",
-      imagePadding: "0",
+      fit: "contain",
+      imagePadding: "clamp(56px, 9vw, 120px) 0",
     },
 
     /* -- Exterior Signage — three banners ------------------------ */
