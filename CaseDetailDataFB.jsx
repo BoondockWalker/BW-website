@@ -73,7 +73,7 @@ window.BW_CASE_DETAIL = {
       src: `${BASE}/onesuite-flyover.mp4`,
       caption: { label: "fig. 02 · Brand Video", title: "ONEsuite — transforming the financial-services customer experience" },
       aspect: "16/9",
-      maxWidth: 640,
+      maxWidth: 800,
       controls: true,
     },
 
