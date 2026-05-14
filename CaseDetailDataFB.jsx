@@ -65,16 +65,20 @@ window.BW_CASE_DETAIL = {
       maxWidth: 820,
     },
 
-    /* -- Brand video — ONEsuite financial-services flyover ---------
-       Floats on the cream chalk surface at ~half the previous width
-       so the editorial rhythm doesn't break for a single moving asset. */
+    /* -- Product Ecosystem — image + text split (moved up: the
+       ONEsuite brand mark anchors the brand story before the receipts) */
     {
-      kind: "video",
-      src: `${BASE}/onesuite-flyover.mp4`,
-      caption: { label: "fig. 02 · Brand Video", title: "ONEsuite — transforming the financial-services customer experience" },
-      aspect: "16/9",
-      maxWidth: 640,
-      controls: true,
+      kind: "imagetext",
+      side: "left",
+      src: `${BASE}/onesuite-ecosystem.png`,
+      alt: "ONEsuite Product Ecosystem Model — interlocking ring diagram",
+      imageBg: "#FBF7EE",
+      eyebrow: "§03 · Product Ecosystem Model",
+      title: "Simplifying a complex product offering.",
+      body: [
+        "Boondock Walker worked with O'Neil to simplify its complex product offering, and present the ONEsuite platform as a comprehensive CCM + CX solution.",
+        "While O'Neil was widely known and respected in niche markets, there was a significant opportunity to grow into additional markets where they didn't have strong market share. Recognizing that they lacked a clear value proposition and brand positioning — and why each is important to their brand and business growth — Boondock Walker established a clear brand foundation, redefined the product & service offerings, and built the tools to help communicate and sell more effectively.",
+      ],
     },
 
     /* -- Big stat callout — the ONE earned number ----------------- */
@@ -91,7 +95,7 @@ window.BW_CASE_DETAIL = {
       kind: "fullbleed",
       src: `${BASE}/sales-sheets-2024.png`,
       alt: "ONEsuite sales collateral — Banking, Retirement, Healthcare",
-      caption: { label: "fig. 03 · Sales Collateral", title: "ONEsuite vertical sheets — Banking, Retirement, Healthcare" },
+      caption: { label: "fig. 02 · Sales Collateral", title: "ONEsuite vertical sheets — Banking, Retirement, Healthcare" },
       surface: "#FBF7EE",
       height: "min(90vh, 875px)",
       fit: "contain",
@@ -101,7 +105,7 @@ window.BW_CASE_DETAIL = {
     /* -- Brand Foundation: covers + spread on the brand gradient --- */
     {
       kind: "multi",
-      eyebrow: "§03 · Brand Foundation",
+      eyebrow: "§04 · Brand Foundation",
       title: "Positioning, identity, and the documents that hold them.",
       cols: 2,
       gap: 48,
@@ -111,21 +115,6 @@ window.BW_CASE_DETAIL = {
       items: [
         { src: `${BASE}/brand-guidelines-covers.png`, alt: "Brand Foundation + Brand Identity guidelines covers", caption: "Brand Foundation · Brand Identity — published guidelines" },
         { src: `${BASE}/brand-guidelines-spread.png`, alt: "Brand Foundation interior spread — The Brand Position", caption: "Brand Foundation · interior spread — Client Needs / Brand Values" },
-      ],
-    },
-
-    /* -- Product Ecosystem — image + text split ------------------- */
-    {
-      kind: "imagetext",
-      side: "left",
-      src: `${BASE}/onesuite-ecosystem.png`,
-      alt: "ONEsuite Product Ecosystem Model — interlocking ring diagram",
-      imageBg: "#FBF7EE",
-      eyebrow: "§04 · Product Ecosystem Model",
-      title: "Simplifying a complex product offering.",
-      body: [
-        "Boondock Walker worked with O'Neil to simplify its complex product offering, and present the ONEsuite platform as a comprehensive CCM + CX solution.",
-        "While O'Neil was widely known and respected in niche markets, there was a significant opportunity to grow into additional markets where they didn't have strong market share. Recognizing that they lacked a clear value proposition and brand positioning — and why each is important to their brand and business growth — Boondock Walker established a clear brand foundation, redefined the product & service offerings, and built the tools to help communicate and sell more effectively.",
       ],
     },
 
@@ -172,6 +161,18 @@ window.BW_CASE_DETAIL = {
         { src: `${BASE}/campaign-senior-woman.jpg`, alt: "Campaign — senior woman", caption: "Lifestyle · Active retirement" },
         { src: `${BASE}/campaign-stress.jpg`, alt: "Campaign — stress / wellness", caption: "Wellness · Mental health" },
       ],
+    },
+
+    /* -- Brand video — ONEsuite financial-services flyover --------
+       Demoted from the top of the case to sit just before Outcomes:
+       acts as a closing-recap hero before the results section. */
+    {
+      kind: "video",
+      src: `${BASE}/onesuite-flyover.mp4`,
+      caption: { label: "fig. 08 · Brand Film", title: "ONEsuite — transforming the financial-services customer experience" },
+      aspect: "16/9",
+      maxWidth: 800,
+      controls: true,
     },
 
     /* -- Outcomes prose ------------------------------------------- */
