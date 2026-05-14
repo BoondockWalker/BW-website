@@ -90,44 +90,26 @@ window.BW_CASE_DETAIL = {
       accent: "#ab8f50",
     },
 
-    /* -- Website slider — finalized screens ---------------------- */
-    {
-      kind: "slider",
-      eyebrow: "§05 · Website",
-      title: "The Central Kitchen site — in motion.",
-      surface: "#FBF7EE",
-      slideHeight: 620,
-      items: [
-        { src: `${CK_BASE}/website-1.png`, alt: "Central Kitchen website — screen 1", caption: "fig. 05.1 · Hero",        bg: "#FBF7EE", tilePadding: "0" },
-        { src: `${CK_BASE}/website-2.png`, alt: "Central Kitchen website — screen 2", caption: "fig. 05.2 · Program",     bg: "#FBF7EE", tilePadding: "0" },
-        { src: `${CK_BASE}/website-3.png`, alt: "Central Kitchen website — screen 3", caption: "fig. 05.3 · Classroom",   bg: "#FBF7EE", tilePadding: "0" },
-        { src: `${CK_BASE}/website-4.png`, alt: "Central Kitchen website — screen 4", caption: "fig. 05.4 · Community",   bg: "#FBF7EE", tilePadding: "0" },
-        { src: `${CK_BASE}/website-5.png`, alt: "Central Kitchen website — screen 5", caption: "fig. 05.5 · Apply",       bg: "#FBF7EE", tilePadding: "0" },
-      ],
-    },
-
-    /* -- Site Templates — five named pages ----------------------- */
+    /* -- Site Templates — three named pages ---------------------- */
     {
       kind: "multi",
-      eyebrow: "§06 · Site Templates",
-      title: "Five pages, one system.",
+      eyebrow: "§05 · Site Templates",
+      title: "Three pages, one system.",
       cols: 3,
       gap: 28,
       surface: "#FBF7EE",
       padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)",
       items: [
-        { src: `${CK_BASE}/page-home.jpg`,              alt: "Site template — Home",              caption: "Home" },
-        { src: `${CK_BASE}/page-bootcamp.jpg`,          alt: "Site template — Accelerator: Bootcamp", caption: "Accelerator · Bootcamp" },
-        { src: `${CK_BASE}/page-incubator-rental.jpg`,  alt: "Site template — Accelerator: Incubator / Rental", caption: "Accelerator · Incubator + Rental" },
-        { src: `${CK_BASE}/page-success-stories.jpg`,   alt: "Site template — Success Stories",   caption: "Success Stories" },
-        { src: `${CK_BASE}/page-contact.jpg`,           alt: "Site template — Contact Us",        caption: "Contact" },
+        { src: `${CK_BASE}/page-home.jpg`,              alt: "Site template — Home",                              caption: "Home" },
+        { src: `${CK_BASE}/page-bootcamp.jpg`,          alt: "Site template — Accelerator: Bootcamp",            caption: "Accelerator · Bootcamp" },
+        { src: `${CK_BASE}/page-incubator-rental.jpg`,  alt: "Site template — Accelerator: Incubator / Rental",  caption: "Accelerator · Incubator + Rental" },
       ],
     },
 
     /* -- Outcomes prose ------------------------------------------ */
     {
       kind: "prose",
-      eyebrow: "§07 · Outcomes",
+      eyebrow: "§06 · Outcomes",
       title: "A platform for the next generation of craft food.",
       body: [
         "Central Kitchen now has a brand foundation, a public-facing site, and an online classroom that work together — recruiting craft food entrepreneurs, teaching them what they need to launch and scale, and connecting them to a community of mentors and peers who keep showing up for them after the program ends.",
