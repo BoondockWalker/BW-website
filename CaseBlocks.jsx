@@ -331,14 +331,17 @@ function ServicesBlock({ block }) {
 function FullBleedImage({ block }) {
   const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)", padTop = 0, padBottom = 60 } = block;
   const bg = surfaceGradient || surface;
+  const naturalHeight = height === "auto";
   return (
     <section style={{ background: bg, padding: `${padTop}px 0 ${padBottom}px` }}>
       <Reveal kind="wipe" threshold={0.05}>
-        <div style={{ width: "100%", height, overflow: "hidden", position: "relative", background: bg, padding: imagePadding, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ width: "100%", height: naturalHeight ? "auto" : height, overflow: "hidden", position: "relative", background: bg, padding: imagePadding, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center" }}>
           {parallax > 0 ? (
             <Parallax amount={parallax} style={{ width: "100%", height: `calc(100% + ${parallax * 2}px)`, marginTop: -parallax }}>
               <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: fit, objectPosition: position, display: "block" }} />
             </Parallax>
+          ) : naturalHeight ? (
+            <img src={src} alt={alt} style={{ width: "100%", height: "auto", display: "block" }} />
           ) : (
             <img src={src} alt={alt} style={{ ...(fit === "cover" ? { width: "100%", height: "100%" } : { maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }), objectFit: fit, objectPosition: position, display: "block" }} />
           )}
