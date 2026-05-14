@@ -836,6 +836,83 @@ function VideoBlock({ block }) {
 }
 
 /* =========================================================================
+   OVERLAP — editorial composition of 2–3 images that cascade with soft
+   drop shadows. Used for product/UI screens that share a flow (entry →
+   process → output). On mobile, falls back to a vertical stack.
+
+   Props:
+     items: [{src, alt, top, left, right, bottom, width, z}]
+            Position values are CSS strings ("0%", "20%", etc.).
+            One of top/bottom required; one of left/right required.
+     eyebrow, title  — optional editorial rail above the figure
+     caption         — { label, title } figure caption below
+     surface         — section background (default chalk50)
+     aspect          — container aspect ratio (default "16/11")
+     maxWidth        — container max width (default 1100)
+     padding         — section padding
+   ========================================================================= */
+function OverlapBlock({ block }) {
+  const { items = [], eyebrow, title, caption, surface = BW.chalk50, aspect = "16/11", maxWidth = 1100, padding = SECTION_PAD } = block;
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  return (
+    <section style={{ background: surface, color: BW.ink, padding, fontFamily: BW.ffG }}>
+      <div style={{ maxWidth, margin: "0 auto" }}>
+        {(eyebrow || title) && (
+          <div style={{ marginBottom: 48 }}>
+            {eyebrow && (
+              <Reveal kind="rise">
+                <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 18 }}>{eyebrow}</div>
+              </Reveal>
+            )}
+            {title && (
+              <Reveal kind="rise" delay={120}>
+                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
+              </Reveal>
+            )}
+          </div>
+        )}
+        <Reveal kind="wipe" threshold={0.1}>
+          {isMobile ? (
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              {items.map((it, i) => (
+                <img key={i} src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "auto", display: "block", borderRadius: 12, boxShadow: "0 20px 44px -18px rgba(20,16,12,0.35), 0 6px 16px -8px rgba(20,16,12,0.18)" }} />
+              ))}
+            </div>
+          ) : (
+            <div style={{ position: "relative", width: "100%", aspectRatio: aspect }}>
+              {items.map((it, i) => (
+                <img
+                  key={i}
+                  src={it.src}
+                  alt={it.alt || ""}
+                  style={{
+                    position: "absolute",
+                    top: it.top, left: it.left, right: it.right, bottom: it.bottom,
+                    width: it.width,
+                    zIndex: it.z != null ? it.z : (i + 1),
+                    borderRadius: 12,
+                    boxShadow: "0 28px 56px -20px rgba(20,16,12,0.40), 0 8px 20px -10px rgba(20,16,12,0.22)",
+                    display: "block",
+                  }}
+                />
+              ))}
+            </div>
+          )}
+        </Reveal>
+        {caption && (
+          <Reveal kind="rise" delay={200}>
+            <div style={{ padding: "26px 0 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
+              <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>{caption.label || "fig."}</span>
+              <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
+            </div>
+          </Reveal>
+        )}
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================================
    BLOCK ROUTER — renders the right component based on `kind`.
    ========================================================================= */
 const CASE_BLOCKS = {
@@ -850,6 +927,7 @@ const CASE_BLOCKS = {
   statrow:      StatRowBlock,
   pullquote:    PullquoteBlock,
   video:        VideoBlock,
+  overlap:      OverlapBlock,
 };
 
 function CaseBlocks({ blocks }) {
@@ -867,5 +945,5 @@ function CaseBlocks({ blocks }) {
 Object.assign(window, {
   CaseHero, CaseHeroFullBleed, ProseBlock, ServicesBlock, FullBleedImage, FloatingImage,
   ImageTextBlock, MultiImageBlock, SliderBlock, StatCalloutBlock, StatRowBlock,
-  PullquoteBlock, VideoBlock, CaseAdjacent, CaseBlocks,
+  PullquoteBlock, VideoBlock, OverlapBlock, CaseAdjacent, CaseBlocks,
 });

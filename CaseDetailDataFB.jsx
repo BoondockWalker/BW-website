@@ -148,10 +148,31 @@ window.BW_CASE_DETAIL = {
       ],
     },
 
+    /* -- AI-Powered Healthcare Assessment — Lab pillar showcase ---
+       Three screens of the AI assessment tool we built for O'Neil:
+       entry (CTA), process (priorities ranking), output (personalized
+       report). Composed as a cascading overlap on the cream surface
+       to read as an editorial portfolio piece, not a screenshot grid. */
+    {
+      kind: "overlap",
+      eyebrow: "§07 · AI-Powered Assessment",
+      title: "An AI intake tool that gives health plans an honest diagnosis.",
+      aspect: "16/11",
+      items: [
+        // Back-left: the journey (the priorities ranking step)
+        { src: `${BASE}/assessment-priorities.webp`, alt: "Healthcare Communication Assessment — priorities ranking step", top: "0%", left: "0%", width: "54%", z: 1 },
+        // Front-right: the payoff (personalized report)
+        { src: `${BASE}/assessment-report.webp`, alt: "Healthcare Communication Assessment — personalized AI report", bottom: "0%", right: "0%", width: "54%", z: 2 },
+        // Accent (upper-right): the entry point (landing CTA)
+        { src: `${BASE}/assessment-cta.webp`, alt: "Healthcare Communication Assessment — landing CTA", top: "8%", right: "4%", width: "34%", z: 3 },
+      ],
+      caption: { label: "fig. 07 · AI Assessment", title: "Healthcare Communication Assessment — AI-powered intake tool" },
+    },
+
     /* -- "The Next Chapter" Campaign — slider ---------------------- */
     {
       kind: "slider",
-      eyebrow: "§07 · Advertising Campaign",
+      eyebrow: "§08 · Advertising Campaign",
       title: "\"The Next Chapter\" — five faces, one platform.",
       slideHeight: 560,
       items: [
@@ -169,7 +190,7 @@ window.BW_CASE_DETAIL = {
     {
       kind: "video",
       src: `${BASE}/onesuite-flyover.mp4`,
-      caption: { label: "fig. 08 · Brand Film", title: "ONEsuite — transforming the financial-services customer experience" },
+      caption: { label: "fig. 09 · Brand Film", title: "ONEsuite — transforming the financial-services customer experience" },
       aspect: "16/9",
       maxWidth: 800,
       controls: true,
@@ -178,7 +199,7 @@ window.BW_CASE_DETAIL = {
     /* -- Outcomes prose ------------------------------------------- */
     {
       kind: "prose",
-      eyebrow: "§08 · Outcomes",
+      eyebrow: "§09 · Outcomes",
       title: "Recognition the market handed back.",
       body: [
         "Their ONEsuite CCM & CX platform has been recognized as a global leader by industry analysts — four consecutive years on the Aspire leaderboard — further solidifying O'Neil's position at the cutting edge of digital communications.",
@@ -190,7 +211,7 @@ window.BW_CASE_DETAIL = {
     /* -- Receipts grid (mostly placeholders, per direction) -------- */
     {
       kind: "statrow",
-      eyebrow: "§09 · Receipts",
+      eyebrow: "§10 · Receipts",
       title: "What we can show. What we will.",
       items: [
         { v: "5B+",  k: "Digital document pages delivered, 2024", color: "#C44A2A" },
