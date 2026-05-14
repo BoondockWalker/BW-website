@@ -329,10 +329,10 @@ function ServicesBlock({ block }) {
    within (no crop). Use surface to set the bg color (white, blue, ink, etc).
    ========================================================================= */
 function FullBleedImage({ block }) {
-  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)" } = block;
+  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)", padTop = 0, padBottom = 60 } = block;
   const bg = surfaceGradient || surface;
   return (
-    <section style={{ background: bg, padding: "0 0 60px" }}>
+    <section style={{ background: bg, padding: `${padTop}px 0 ${padBottom}px` }}>
       <Reveal kind="wipe" threshold={0.05}>
         <div style={{ width: "100%", height, overflow: "hidden", position: "relative", background: bg, padding: imagePadding, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center" }}>
           {parallax > 0 ? (
