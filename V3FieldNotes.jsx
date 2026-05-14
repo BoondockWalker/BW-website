@@ -90,10 +90,13 @@ function V3FieldNotes() {
     tag: "VOICE",
     color: BW.clay,
     art: "compass",
+    image: "assets/field-notes/arc-that-closes.webp",
+    imageAlt: "Two narrative arcs on plum: same beats, different endings — one terminating in a decorative bloom, the other in a solid filled circle",
+    href: "note.html?slug=arc-that-closes",
   };
 
   const notes = [
-    { slug: "seven-years-unagency", issue: "No 19", date: "May · 2026", kicker: "Operator's diary", title: "Seven years unagency. What we learned, what's next.", author: "M. Nead", minutes: 4, tag: "VOICE", color: BW.clay, art: "compass" },
+    { slug: "seven-years-unagency", issue: "No 19", date: "May · 2026", kicker: "Operator's diary", title: "Seven years unagency. What we learned, what's next.", author: "M. Nead", minutes: 4, tag: "VOICE", color: BW.clay, art: "compass", image: "assets/field-notes/seven-years-unagency.webp", imageAlt: "Bauhaus-style illustration: a single confident path pivoting at a marked waypoint toward a distant horizon", href: "note.html?slug=seven-years-unagency" },
   ];
 
   return (
@@ -118,10 +121,10 @@ function V3FieldNotes() {
         {/* Bulletin grid */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", border: `1.5px solid ${BW.ink}`, background: BW.chalk50 }}>
           {/* FEATURED */}
-          <article style={{ borderRight: !isMobile ? `1.5px solid ${BW.ink}` : "none", borderBottom: isMobile ? `1.5px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column" }}>
+          <a href={featured.href} style={{ borderRight: !isMobile ? `1.5px solid ${BW.ink}` : "none", borderBottom: isMobile ? `1.5px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column", textDecoration: "none", color: "inherit" }}>
             {/* hero image */}
             <div style={{ aspectRatio: "16/8", borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
-              <NoteArt kind={featured.art} color={featured.color} caption="fig. 07.0 · featured" label={`${featured.issue} · ${featured.date}`} />
+              <img src={featured.image} alt={featured.imageAlt} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               <div style={{ position: "absolute", left: 0, bottom: 0, padding: "8px 12px", background: BW.ink, color: BW.chalk50, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700 }}>{featured.tag}</div>
             </div>
             {/* body */}
@@ -134,17 +137,17 @@ function V3FieldNotes() {
                   <span style={{ width: 26, height: 26, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 10, fontWeight: 700 }}>BW</span>
                   <span>{featured.author}</span><span>·</span><span>{featured.minutes} min walk</span>
                 </div>
-                <a style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3, cursor: "pointer" }}>Read note →</a>
+                <span style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3, cursor: "pointer" }}>Read note →</span>
               </div>
             </div>
-          </article>
+          </a>
 
           {/* NOTES LIST w/ thumbnails */}
           <div style={{ display: "flex", flexDirection: "column" }}>
             {notes.map((n, i) => (
-              <article key={n.issue} style={{ padding: "20px clamp(16px, 4vw, 24px)", borderBottom: i < notes.length - 1 ? `1px solid ${BW.ruleM}` : "none", display: "grid", gridTemplateColumns: isNarrow ? "80px 1fr" : "120px 1fr auto", gap: isNarrow ? 14 : 20, alignItems: "center" }}>
+              <a key={n.issue} href={n.href} style={{ padding: "20px clamp(16px, 4vw, 24px)", borderBottom: i < notes.length - 1 ? `1px solid ${BW.ruleM}` : "none", display: "grid", gridTemplateColumns: isNarrow ? "80px 1fr" : "120px 1fr auto", gap: isNarrow ? 14 : 20, alignItems: "center", textDecoration: "none", color: "inherit" }}>
                 <div style={{ width: isNarrow ? 80 : 120, aspectRatio: "5/4", border: `1px solid ${BW.ink}`, overflow: "hidden", flexShrink: 0 }}>
-                  <NoteArt kind={n.art} color={n.color} caption={`fig. 07.${i+1}`} label={n.issue} />
+                  <img src={n.image} alt={n.imageAlt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 </div>
                 <div>
                   <div style={{ display: "flex", gap: 10, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600, marginBottom: 6 }}>
@@ -156,7 +159,7 @@ function V3FieldNotes() {
                   </div>
                 </div>
                 {!isNarrow && <span style={{ fontFamily: BW.ffG, fontSize: 18, color: BW.ink, alignSelf: "center" }}>→</span>}
-              </article>
+              </a>
             ))}
           </div>
         </div>
