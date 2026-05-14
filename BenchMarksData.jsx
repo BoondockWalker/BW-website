@@ -20,6 +20,27 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-14-color",
+      mediaType: "image",
+      src: SPEC + "2026-05-14-Color.png",
+      alt: "Specimen — Color palette study.",
+      title: "Thirty Years In",
+      commentary: {
+        hook: "Still excited by the same craft.",
+        body: [
+          "A great color palette isn't just about what looks nice. It's a system. Each color has a job — what leads, what supports, what signals, what grounds the whole thing.",
+          "Every brand needs a different mix. The principles don't really change, but the answers do.",
+          "After thirty years, I still get excited every time I create one.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["brand", "color", "design"],
+      relatedSlug: null,
+      publishedAt: "2026-05-14",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-13-bevel-app",
       mediaType: "image",
       src: SPEC + "2026-05-13-Bevel-App.png",
