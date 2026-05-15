@@ -20,6 +20,27 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine specimen-by-specimen.
   specimens: [
     {
+      id: "2026-05-15-coffee",
+      mediaType: "image",
+      src: SPEC + "2026-05-15-Coffee.png",
+      alt: "Specimen — Friday coffee.",
+      title: "Tired and Lit Up",
+      commentary: {
+        hook: "Friday. Long week. Worth every hour.",
+        body: [
+          "Exhausted in the best way. The kind of tired that comes from working on things that actually matter.",
+          "A lot of what we've been building lately is starting to show its shape. Some of it is going to surprise people. More on that soon.",
+          "Right now, the only plan is rest, family, and a clear head for Monday.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["gratitude", "opportunity"],
+      relatedSlug: null,
+      publishedAt: "2026-05-15",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-14-color",
       mediaType: "image",
       src: SPEC + "2026-05-14-Color.png",
