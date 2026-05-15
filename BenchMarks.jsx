@@ -1265,31 +1265,45 @@ function BenchMarksPage() {
       // The mount wrapper is offscreen; the card itself is the first child.
       const node = mount.firstElementChild || mount;
 
-      // 1×1 transparent PNG. Reused below as imagePlaceholder for html-to-image.
+      // 1×1 transparent PNG. Used as a swap-in when an image can't be inlined.
       const TRANSPARENT_PX = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
 
-      // Wait for every <img> in the card to settle (load or error) before
-      // capture. html-to-image rejects with the raw img error event when any
-      // single image fails — a flaky favicon or transient 404 would tank the
-      // whole share. Swap failures to the transparent PNG so capture still
-      // succeeds; the rest of the card is intact.
-      await Promise.all(Array.from(node.querySelectorAll("img")).map(img => new Promise(resolve => {
-        if (img.complete && img.naturalWidth > 0) { resolve(); return; }
-        const done = () => {
-          img.removeEventListener("load", onLoad);
-          img.removeEventListener("error", onError);
-          resolve();
-        };
-        const onLoad = () => done();
-        const onError = () => {
-          // Replace the failing src; wait one frame so the swap commits before
-          // capture, then resolve regardless of whether the placeholder loads.
+      // Inline every <img> in the off-screen card as a data: URL up-front.
+      // Two reasons:
+      //   1. html-to-image fetches each <img>.src to embed it, and on the
+      //      previous build the artifact image was silently falling through
+      //      to imagePlaceholder — captured PNG had no main image, just the
+      //      card background + logo + hook. Inlining here removes that step.
+      //   2. We can see exactly which URL failed (and how) via the warn log
+      //      below, which html-to-image hides behind a placeholder.
+      await Promise.all(Array.from(node.querySelectorAll("img")).map(async img => {
+        const src = img.src;
+        if (!src || src.startsWith("data:")) return;
+        try {
+          const res = await fetch(src);
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const blob = await res.blob();
+          const dataUrl = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = () => reject(new Error("FileReader failed"));
+            reader.readAsDataURL(blob);
+          });
+          await new Promise(resolve => {
+            const settle = () => {
+              img.removeEventListener("load", settle);
+              img.removeEventListener("error", settle);
+              resolve();
+            };
+            img.addEventListener("load", settle);
+            img.addEventListener("error", settle);
+            img.src = dataUrl;
+            if (img.complete) settle();
+          });
+        } catch (e) {
+          console.warn("[BenchMarks] could not inline image, using transparent placeholder:", src, e);
           img.src = TRANSPARENT_PX;
-          requestAnimationFrame(done);
-        };
-        img.addEventListener("load", onLoad);
-        img.addEventListener("error", onError);
-        if (img.complete && img.naturalWidth === 0) onError();
+        }
       })));
 
       // html-to-image's final step wraps the cloned DOM in an SVG and loads
