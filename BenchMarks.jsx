@@ -1265,11 +1265,38 @@ function BenchMarksPage() {
       // The mount wrapper is offscreen; the card itself is the first child.
       const node = mount.firstElementChild || mount;
 
+      // Wait for every <img> in the card to settle (load or error) before
+      // capture. html-to-image rejects with the raw img error event when any
+      // single image fails — a flaky favicon or transient 404 would tank the
+      // whole share. Swap failures to a 1×1 transparent PNG so capture still
+      // succeeds; the rest of the card is intact.
+      const TRANSPARENT_PX = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+      await Promise.all(Array.from(node.querySelectorAll("img")).map(img => new Promise(resolve => {
+        if (img.complete && img.naturalWidth > 0) { resolve(); return; }
+        const done = () => {
+          img.removeEventListener("load", onLoad);
+          img.removeEventListener("error", onError);
+          resolve();
+        };
+        const onLoad = () => done();
+        const onError = () => {
+          // Replace the failing src; wait one frame so the swap commits before
+          // capture, then resolve regardless of whether the placeholder loads.
+          img.src = TRANSPARENT_PX;
+          requestAnimationFrame(done);
+        };
+        img.addEventListener("load", onLoad);
+        img.addEventListener("error", onError);
+        if (img.complete && img.naturalWidth === 0) onError();
+      })));
+
       const dataUrl = await window.htmlToImage.toPng(node, {
         pixelRatio: 1,
         width: 1080,
         height: 1080,
-        cacheBust: true,
+        // cacheBust intentionally omitted: same-origin assets are already in
+        // cache after the preload above, and a re-fetch with ?t=… can fail on
+        // some dev servers, taking the whole capture down with it.
         fetchRequestInit: { mode: "cors" },
       });
 
