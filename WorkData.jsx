@@ -297,7 +297,7 @@ window.BW_CASES = [
     tags: ["Brand", "Packaging", "CPG"],
     pull: "Pure. Wonderfood.",
     lede: "Nature's Legacy makes specialty foods produced with ancient grains. We rebuilt the brand foundation, identity system, and full line of packaging — the work that helped them grow online sales +450%, the company +120%, and led to a favorable buyout.",
-    tone: "linear-gradient(135deg, #4A5A1F 0%, #B58D3E 100%)",
+    tone: "linear-gradient(135deg, #4d0c00 0%, #FFD457 100%)",
     bigStat: { v: "+450%", k: "Online sales" },
     metrics: [
       { v: "+450%", k: "Online sales" },
@@ -308,7 +308,7 @@ window.BW_CASES = [
     team: ["Strategy", "Brand"],
     imagery: "photo",
     heroImage: "assets/cases/natures-legacy/hero.jpg",
-    featuredBg: "linear-gradient(45deg, #2B3514 0%, #4A5A1F 50%, #B58D3E 100%)",
+    featuredBg: "linear-gradient(45deg, #2a0700 0%, #4d0c00 50%, #FFD457 100%)",
     clientLogo: "assets/cases/natures-legacy/logo.svg",
     clientLogoHeight: 56,
     href: "case-natures-legacy.html",
