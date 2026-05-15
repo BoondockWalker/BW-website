@@ -3,9 +3,9 @@
    Content sourced from boondockwalker.com/work/natures-legacy
    Assets in assets/cases/natures-legacy/ pulled from same.
 
-   Working palette (pending the brand SVG):
-     Wheat  #B58D3E    Olive  #4A5A1F
-     Cream  #FBF7EE    Ink    #14100C
+   Brand palette (lifted from the supplied logo SVG):
+     Maroon  #4d0c00    Amber  #FFD457
+     Cream   #FBF7EE    Ink    #14100C
 */
 
 const NL_BASE = "assets/cases/natures-legacy";
@@ -29,7 +29,7 @@ window.BW_CASE_DETAIL = {
     image: `${NL_BASE}/hero.jpg`,
     imageAlt: "Nature's Legacy — specialty ancient-grain foods, packaging in retail context",
     imagePosition: "center center",
-    imageBg: "#4A5A1F",
+    imageBg: "#4d0c00",
     scrim: "bottomOnly",
     clientLogo: `${NL_BASE}/logo.svg`,
     clientLogoHeight: 64,
@@ -62,7 +62,7 @@ window.BW_CASE_DETAIL = {
       ],
       dropCap: true,
       maxWidth: 820,
-      accent: "#B58D3E",
+      accent: "#4d0c00",
     },
 
     /* -- Services / capabilities ledger -------------------------- */
@@ -103,7 +103,7 @@ window.BW_CASE_DETAIL = {
         "We helped Nature's Legacy increase the overall awareness of spelt and ancient grains, helping consumers better understand that gluten in spelt is different than the gluten found in wheat — and the body breaks it down in vastly different ways.",
       ],
       maxWidth: 820,
-      accent: "#B58D3E",
+      accent: "#4d0c00",
     },
 
     /* -- Brand Book — 2-up --------------------------------------- */
@@ -131,7 +131,7 @@ window.BW_CASE_DETAIL = {
       ],
       align: "left",
       maxWidth: 760,
-      accent: "#B58D3E",
+      accent: "#4d0c00",
     },
 
     /* -- Stat row ------------------------------------------------- */
