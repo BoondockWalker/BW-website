@@ -1273,26 +1273,63 @@ function BenchMarksPage() {
         fetchRequestInit: { mode: "cors" },
       });
 
-      // Synthetic anchor click — works on all evergreen browsers without
-      // needing user-gesture forwarding (we're still inside the click stack).
-      const a = document.createElement("a");
-      a.href = dataUrl;
-      a.download = `benchmarks-${artifact.id}.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      const filename = `benchmarks-${artifact.id}.png`;
+      const caption = buildIgCaption(artifact);
+
+      // On mobile (iOS 16.4+ / Android Chrome), prefer the native share sheet.
+      // The OS hands the PNG to whichever app the user picks — Instagram lands
+      // in compose with the image pre-attached, no manual download/upload.
+      // Desktop browsers fall through to the synthetic download below.
+      let cancelled = false;
+      let shared = false;
+      try {
+        const blob = await (await fetch(dataUrl)).blob();
+        const file = new File([blob], filename, { type: "image/png" });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              files: [file],
+              title: artifact.title || "BenchMarks",
+              text: caption,
+            });
+            shared = true;
+          } catch (shareErr) {
+            // AbortError = user dismissed the share sheet. Treat as a cancel,
+            // not a failure — don't fall through to a desktop download.
+            if (shareErr && shareErr.name === "AbortError") {
+              cancelled = true;
+            } else {
+              console.warn("[BenchMarks] Web Share failed; using download:", shareErr);
+            }
+          }
+        }
+      } catch (prepErr) {
+        console.warn("[BenchMarks] Share prep failed; using download:", prepErr);
+      }
+
+      if (!shared && !cancelled) {
+        // Synthetic anchor click — works on all evergreen browsers without
+        // needing user-gesture forwarding (we're still inside the click stack).
+        const a = document.createElement("a");
+        a.href = dataUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
 
       // Best-effort clipboard write — clipboard API requires secure context
-      // (localhost counts). Don't fail the whole share if it errors.
+      // (localhost counts). Don't fail the whole share if it errors. Even when
+      // Web Share succeeds we still copy: IG sometimes drops the text payload.
       try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(buildIgCaption(artifact));
+          await navigator.clipboard.writeText(caption);
         }
       } catch (clipErr) {
         console.warn("[BenchMarks] Clipboard write failed:", clipErr);
       }
 
-      flashShareToast("success");
+      if (!cancelled) flashShareToast("success");
     } catch (err) {
       console.error("[BenchMarks] Share failed:", err);
       flashShareToast("error");
