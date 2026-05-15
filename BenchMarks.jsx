@@ -1,16 +1,16 @@
 /* global React, BW, Eyebrow, Btn, Tag, Italic, useMediaQuery, BW_BENCHMARKS, SiteHeader */
-/* BenchMarks — operator's bench. Daily-rotating specimens, current desk, edits to thinking.
+/* BenchMarks — operator's bench. Daily-rotating artifacts, current desk, edits to thinking.
    Visual sibling of Field Notes — same editorial rhythm, slightly more curated/quiet.
    §01 Masthead   — "From the desk" eyebrow + Italic display H1
-   §02 Today      — full-bleed specimen hero (image|quote|link|audio) + commentary + actions
+   §02 Today      — full-bleed artifact hero (image|quote|link|audio) + commentary + actions
    §03 On the desk — three-column current reading/listening/arguing
    §04 Edits      — numbered list of recent edits to thinking
-   §05 Recent     — last 30 specimens compact card grid → archive
+   §05 Recent     — last 30 artifacts compact card grid → archive
    §06 Footer     — matches field-notes.html
 */
 
 /* ───── Today as a YYYY-MM-DD string in the browser's local time zone.
-   Lexicographic <= comparison against specimen.publishedAt is the publish gate. ───── */
+   Lexicographic <= comparison against artifact.publishedAt is the publish gate. ───── */
 function getTodayISO() {
   const d = new Date();
   const y = d.getFullYear();
@@ -19,11 +19,11 @@ function getTodayISO() {
   return `${y}-${m}-${day}`;
 }
 
-/* ───── Selection logic — pick today's specimen by publishedAt match.
-   `publishedPool` drives the day-of pick (so today's specimen can never
+/* ───── Selection logic — pick today's artifact by publishedAt match.
+   `publishedPool` drives the day-of pick (so today's artifact can never
    be unpublished). `fullPool` is consulted only for the pin override, so
-   Mark can pin an unpublished specimen to preview it before its launch
-   day. If no specimen is dated today, fall back to a deterministic
+   Mark can pin an unpublished artifact to preview it before its launch
+   day. If no artifact is dated today, fall back to a deterministic
    day-indexed rotation through the published pool. ───── */
 function pickToday(publishedPool, fullPool, pinnedId) {
   if (pinnedId) {
@@ -122,7 +122,7 @@ function BMMasthead() {
             One thing on the bench, every day. A photograph, a quote, a link, a recording — whatever the operator pinned to the wall this morning, with a note on why it matters.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-            <span>— One specimen / day</span>
+            <span>— One artifact / day</span>
             <span>— Same one all day</span>
             <span>— New one tomorrow</span>
           </div>
@@ -178,7 +178,7 @@ function BMCuratorStrip({ curator }) {
             fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase",
             color: BW.ink3, fontWeight: 700,
           }}>
-            One specimen / day
+            One artifact / day
           </span>
         </div>
       </div>
@@ -186,18 +186,18 @@ function BMCuratorStrip({ curator }) {
   );
 }
 
-/* ───── §02 Today — square specimen on the left, commentary stack on the right ───── */
-function BMToday({ specimen, isArchive, onPrev, onNext }) {
+/* ───── §02 Today — square artifact on the left, commentary stack on the right ───── */
+function BMToday({ artifact, isArchive, onPrev, onNext }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
 
-  if (!specimen) {
+  if (!artifact) {
     return (
       <section style={{ background: BW.chalk, borderBottom: `1.5px solid ${BW.ink}` }}>
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(56px, 8vw, 96px) clamp(20px, 5vw, 64px)" }}>
           <Eyebrow>§02 · Today</Eyebrow>
           <div style={{ marginTop: 28, padding: "64px 32px", border: `1.5px dashed ${BW.ruleL}`, textAlign: "center" }}>
             <h2 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(36px, 6vw, 64px)", lineHeight: 1.04, letterSpacing: "-0.02em", margin: "0 0 14px", color: BW.ink }}>
-              First specimen lands soon.
+              First artifact lands soon.
             </h2>
             <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.55, margin: 0, color: BW.ink2, maxWidth: "44ch", marginInline: "auto" }}>
               The bench is freshly waxed. Check back in a day or two — Mark's already got something pinned for tomorrow.
@@ -209,7 +209,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
   }
 
   // Format the date as "TUE 05 MAY 2026" for the eyebrow.
-  const eyebrowDate = formatBenchDate(specimen.publishedAt);
+  const eyebrowDate = formatBenchDate(artifact.publishedAt);
   const eyebrowLabel = isArchive ? "Pulled from the archive" : "Today";
 
   return (
@@ -221,16 +221,16 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
           <span style={{ width: 28, height: 1, background: BW.clay }} />
           <span>Today, on the bench</span>
           <span style={{ flex: 1, height: 1, background: BW.ruleL, minWidth: 32 }} />
-          <span style={{ color: BW.ink2 }}>{specimen.publishedAt}</span>
+          <span style={{ color: BW.ink2 }}>{artifact.publishedAt}</span>
         </div>
 
-        {/* Two-column layout: square specimen | content stack.
-            On desktop: left = specimen square, right = full content stack.
+        {/* Two-column layout: square artifact | content stack.
+            On desktop: left = artifact square, right = full content stack.
             On mobile: collapses to a single column and the image is rendered
             in source order between the section rail and the hook (we replicate
             the square inline below for mobile only).
             The relative positioning is the anchor for the desktop prev/next
-            nav arrows that sit in the gutters outside the specimen frame. */}
+            nav arrows that sit in the gutters outside the artifact frame. */}
         <div style={{
           position: "relative",
           display: "grid",
@@ -239,14 +239,14 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
           alignItems: "start",
         }}>
           {/* Desktop-only nav arrows — live in the page gutters, vertically
-              centered against the specimen square. Hidden on mobile because
+              centered against the artifact square. Hidden on mobile because
               the actions row carries the prev/next there. */}
           {!isMobile && (
             <>
               <button
                 type="button"
                 onClick={onPrev}
-                aria-label="Previous specimen"
+                aria-label="Previous artifact"
                 className="bm-nav"
                 style={{
                   position: "absolute",
@@ -269,7 +269,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
               <button
                 type="button"
                 onClick={onNext}
-                aria-label="Next specimen"
+                aria-label="Next artifact"
                 className="bm-nav"
                 style={{
                   position: "absolute",
@@ -291,7 +291,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
               </button>
             </>
           )}
-          {/* LEFT — square specimen frame. Hidden on mobile; the inline copy
+          {/* LEFT — square artifact frame. Hidden on mobile; the inline copy
               below handles the mobile order. */}
           {!isMobile && (
           <div style={{
@@ -307,7 +307,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
               overflow: "hidden",
               boxShadow: "0 18px 48px -28px rgba(20,16,12,0.45)",
             }}>
-              <BMHero specimen={specimen} />
+              <BMHero artifact={artifact} />
             </div>
             {/* Tiny meta-line under the square — IG card aesthetic */}
             <div style={{
@@ -316,7 +316,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
               fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase",
               color: BW.ink3, fontWeight: 700,
             }}>
-              <span>Specimen · {(specimen.mediaType || "").toUpperCase()}</span>
+              <span>Artifact · {(artifact.mediaType || "").toUpperCase()}</span>
               <span>1080 × 1080</span>
             </div>
           </div>
@@ -372,7 +372,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
                   <button
                     type="button"
                     onClick={onPrev}
-                    aria-label="Previous specimen"
+                    aria-label="Previous artifact"
                     style={{
                       position: "absolute", top: "50%", left: 12,
                       transform: "translateY(-50%)",
@@ -392,7 +392,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
                   <button
                     type="button"
                     onClick={onNext}
-                    aria-label="Next specimen"
+                    aria-label="Next artifact"
                     style={{
                       position: "absolute", top: "50%", right: 12,
                       transform: "translateY(-50%)",
@@ -415,7 +415,7 @@ function BMToday({ specimen, isArchive, onPrev, onNext }) {
                   fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase",
                   color: BW.ink3, fontWeight: 700,
                 }}>
-                  <span>Specimen · {(specimen.mediaType || "").toUpperCase()}</span>
+                  <span>Artifact · {(specimen.mediaType || "").toUpperCase()}</span>
                   <span>1080 × 1080</span>
                 </div>
               </div>
@@ -560,7 +560,7 @@ function BMHeroVideo({ s }) {
             loop
             playsInline
             preload="metadata"
-            aria-label={s.alt || s.title || "Specimen video"}
+            aria-label={s.alt || s.title || "Artifact video"}
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         )
@@ -593,7 +593,7 @@ function BMHeroQuote({ s }) {
         )}
       </div>
       <div style={{ position: "absolute", right: "clamp(16px,3%,24px)", bottom: "clamp(14px,2.8%,20px)", fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>
-        Quote · specimen
+        Quote · artifact
       </div>
     </blockquote>
   );
@@ -616,7 +616,7 @@ function BMHeroLink({ s }) {
           <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.linkHost || "external link"}</span>
         </div>
         <span style={{ fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, flexShrink: 0 }}>
-          Link · specimen
+          Link · artifact
         </span>
       </div>
 
@@ -659,7 +659,7 @@ function BMHeroAudio({ s }) {
           <span style={{ width: 8, height: 8, borderRadius: "50%", background: BW.brass, boxShadow: "0 0 0 4px rgba(200,150,43,0.25)" }} />
           <span>Now playing</span>
         </div>
-        <span style={{ fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>Audio · specimen</span>
+        <span style={{ fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>Audio · artifact</span>
       </div>
 
       {/* Middle — title + by */}
@@ -1056,7 +1056,7 @@ function BMFooter() {
 
 /* ───── Page composition ───── */
 function BenchMarksPage() {
-  const data = (typeof window !== "undefined" && window.BW_BENCHMARKS) || { specimens: [], desk: [], edits: [], curator: null, pinnedSpecimenId: null };
+  const data = (typeof window !== "undefined" && window.BW_BENCHMARKS) || { artifacts: [], desk: [], edits: [], curator: null, pinnedArtifactId: null };
 
   // currentId tracks the specimen the page is showing right now. It seeds
   // from the URL and updates when the prev/next nav fires. We listen to
@@ -1074,10 +1074,10 @@ function BenchMarksPage() {
   // invisible to visitors. Browser-local date is fine; the spec is inclusive
   // (publishedAt === today is published). Recompute only when the source
   // specimens array changes.
-  const publishedSpecimens = React.useMemo(() => {
+  const publishedArtifacts = React.useMemo(() => {
     const today = getTodayISO();
-    return (data.specimens || []).filter(s => s.publishedAt && s.publishedAt <= today);
-  }, [data.specimens]);
+    return (data.artifacts || []).filter(s => s.publishedAt && s.publishedAt <= today);
+  }, [data.artifacts]);
 
   // Today's deterministic pick — independent of the URL override. Drawn from
   // the published pool so an unpublished specimen can never be the day-of
@@ -1087,8 +1087,8 @@ function BenchMarksPage() {
   // The pin lookup inside pickToday consults the *full* specimens array —
   // that's the override path that lets Mark preview an unpublished pin.
   const todayPick = React.useMemo(
-    () => pickToday(publishedSpecimens, data.specimens, data.pinnedSpecimenId),
-    [publishedSpecimens, data.specimens, data.pinnedSpecimenId]
+    () => pickToday(publishedArtifacts, data.artifacts, data.pinnedArtifactId),
+    [publishedArtifacts, data.artifacts, data.pinnedArtifactId]
   );
 
   // ?id= override path — bypasses the publish gate by looking up against the
@@ -1096,8 +1096,8 @@ function BenchMarksPage() {
   // preview an unpublished specimen before its launch day.
   const requested = React.useMemo(() => {
     if (!currentId) return null;
-    return (data.specimens || []).find(s => s.id === currentId) || null;
-  }, [data.specimens, currentId]);
+    return (data.artifacts || []).find(s => s.id === currentId) || null;
+  }, [data.artifacts, currentId]);
 
   const todaySpecimen = requested || todayPick;
   const isArchive = !!requested && (!todayPick || requested.id !== todayPick.id);
@@ -1110,8 +1110,8 @@ function BenchMarksPage() {
   // next/prev jumps the visitor back into the published rotation. Correct
   // behavior — an out-of-band preview shouldn't graft itself into the cycle.
   const sortedSpecimens = React.useMemo(
-    () => [...publishedSpecimens].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1)),
-    [publishedSpecimens]
+    () => [...publishedArtifacts].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1)),
+    [publishedArtifacts]
   );
 
   const goTo = React.useCallback((id) => {
@@ -1180,7 +1180,7 @@ function BenchMarksPage() {
       <BMMasthead />
       <BMCuratorStrip curator={data.curator} />
       <BMToday specimen={todaySpecimen} isArchive={isArchive} onPrev={onPrev} onNext={onNext} />
-      <BMRecent specimens={publishedSpecimens} todayId={todayPick ? todayPick.id : null} />
+      <BMRecent specimens={publishedArtifacts} todayId={todayPick ? todayPick.id : null} />
       <BMDesk desk={data.desk} />
       <BMEdits edits={data.edits} />
       <BMFooter />

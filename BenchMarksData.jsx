@@ -1,6 +1,6 @@
 /* global window */
 /* Boondock Walker — BenchMarksData. Daily ledger.
-   Specimens are placeholder commentary on Mark's uploaded images.
+   Artifacts are placeholder commentary on Mark's uploaded images.
    Replace the `commentary` blocks below with the real notes. */
 
 const SPEC = "assets/benchmarks/specimens/";
@@ -10,21 +10,21 @@ const BW_BENCHMARKS = {
     name: "Mark Nead",
     role: "Curator",
     photo: "assets/benchmarks/curator/Mark-Nead-headshot.jpg",
-    bio: "I keep the bench. One specimen a day, three things on the desk, and a running log of edits to my own thinking. If something here lands, it earned the spot.",
+    bio: "I keep the bench. One artifact a day, three things on the desk, and a running log of edits to my own thinking. If something here lands, it earned the spot.",
   },
 
-  // Optional override for today's specimen. When null, the page picks by date.
-  pinnedSpecimenId: null,
+  // Optional override for today's artifact. When null, the page picks by date.
+  pinnedArtifactId: null,
 
-  // 14 specimens, newest first. Each points at a real uploaded image.
-  // Commentary below is placeholder — refine specimen-by-specimen.
-  specimens: [
+  // 14 artifacts, newest first. Each points at a real uploaded image.
+  // Commentary below is placeholder — refine artifact-by-artifact.
+  artifacts: [
     {
       id: "2026-05-15-coffee",
       mediaType: "video",
       src: SPEC + "2026-05-15-Coffee.mp4",
       poster: SPEC + "2026-05-15-Coffee.png",
-      alt: "Specimen — Friday coffee.",
+      alt: "Artifact — Friday coffee.",
       title: "Tired and Lit Up",
       commentary: {
         hook: "Friday. Long week. Worth every hour.",
@@ -45,7 +45,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-14-color",
       mediaType: "image",
       src: SPEC + "2026-05-14-Color.png",
-      alt: "Specimen — Color palette study.",
+      alt: "Artifact — Color palette study.",
       title: "Thirty Years In",
       commentary: {
         hook: "Still excited by the same craft.",
@@ -66,7 +66,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-13-bevel-app",
       mediaType: "image",
       src: SPEC + "2026-05-13-Bevel-App.png",
-      alt: "Specimen — Bevel app dashboard.",
+      alt: "Artifact — Bevel app dashboard.",
       title: "Bevel",
       commentary: {
         hook: "Replaced five health apps with one.",
@@ -88,7 +88,7 @@ const BW_BENCHMARKS = {
       mediaType: "video",
       src: SPEC + "2026-05-12-Built-by-Nick.webm",
       poster: SPEC + "2026-05-12-Built-by-Nick.png",
-      alt: "Animated logo specimen — Built by Nick.",
+      alt: "Animated logo artifact — Built by Nick.",
       title: "Built by Nick",
       commentary: {
         hook: "Recent logo work for my youngest.",
@@ -110,7 +110,7 @@ const BW_BENCHMARKS = {
       mediaType: "video",
       src: SPEC + "2026-05-11-big-week.mp4",
       poster: SPEC + "2026-05-11-big-week.png",
-      alt: "Specimen — Big Week Ahead.",
+      alt: "Artifact — Big Week Ahead.",
       title: "Big Week Ahead",
       commentary: {
         hook: "Monday morning. Doorway open.",
@@ -131,7 +131,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-10-mothers-day",
       mediaType: "image",
       src: SPEC + "2026-05-10-mothers-day.png",
-      alt: "Specimen — For the Mothers.",
+      alt: "Artifact — For the Mothers.",
       title: "For the Mothers",
       commentary: {
         hook: "The tilt of her head says everything.",
@@ -151,7 +151,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-09-weekends",
       mediaType: "image",
       src: SPEC + "2026-05-09-weekends.png",
-      alt: "Specimen — Occupation, Obsession.",
+      alt: "Artifact — Occupation, Obsession.",
       title: "Occupation, Obsession",
       commentary: {
         hook: "Two days off feels great. Five days on feels just as good.",
@@ -193,7 +193,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-07-locked-in",
       mediaType: "image",
       src: SPEC + "2026-05-07-Locked-In.png",
-      alt: "Specimen — Locked In.",
+      alt: "Artifact — Locked In.",
       title: "Locked In",
       commentary: {
         hook: "Seven months. Five days a week.",
@@ -236,7 +236,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-05-nobull-color-palette",
       mediaType: "image",
       src: SPEC + "2026-05-05-Nobull-color-palette.png",
-      alt: "NoBull brand color palette specimen.",
+      alt: "NoBull brand color palette artifact.",
       title: "Palettes hide in plain sight.",
       commentary: {
         hook: "Five swatches that earn their slot.",
@@ -257,7 +257,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-04-stanley",
       mediaType: "image",
       src: SPEC + "2026-05-04-Stanley.png",
-      alt: "Stanley product specimen.",
+      alt: "Stanley product artifact.",
       title: "Big Cup Energy",
       commentary: {
         hook: "Somewhere along the way, water got a personality.",
@@ -280,7 +280,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-03-claude-notion",
       mediaType: "image",
       src: SPEC + "2026-05-03-Claude-Notion.png",
-      alt: "Specimen — Claude and Notion integration.",
+      alt: "Artifact — Claude and Notion integration.",
       title: "The Plus Sign Does the Work",
       commentary: {
         hook: "Two tools, one workflow, and somehow the whole thing thinks better.",
@@ -303,7 +303,7 @@ const BW_BENCHMARKS = {
       id: "2026-05-02-b-unchained",
       mediaType: "image",
       src: SPEC + "2026-05-02-B-Unchained.png",
-      alt: "Specimen — B-Unchained.",
+      alt: "Artifact — B-Unchained.",
       title: "Brave & Boundless",
       commentary: {
         hook: "Art for the first book. Two years in, closer than ever.",
@@ -345,7 +345,7 @@ const BW_BENCHMARKS = {
       id: "2026-04-30-evernote",
       mediaType: "image",
       src: SPEC + "2026-04-30-Evernote.png",
-      alt: "Evernote brand specimen.",
+      alt: "Evernote brand artifact.",
       title: "From $250 to $10,249",
       commentary: {
         hook: "Take note.",
@@ -387,7 +387,7 @@ const BW_BENCHMARKS = {
       id: "2026-04-28-truth-in-me",
       mediaType: "image",
       src: SPEC + "2026-04-28-Truth-in-Me.png",
-      alt: "Specimen — Truth in Me.",
+      alt: "Artifact — Truth in Me.",
       title: "Truth in Me",
       commentary: {
         hook: "Found this in a book and stopped reading.",
@@ -408,7 +408,7 @@ const BW_BENCHMARKS = {
       id: "2026-04-27-hubspot",
       mediaType: "image",
       src: SPEC + "2026-04-27-HubSpot.png",
-      alt: "HubSpot brand specimen.",
+      alt: "HubSpot brand artifact.",
       title: "Sophisticated, Welcoming",
       commentary: {
         hook: "HubSpot is one of the few enterprise tools I actually enjoy opening.",
@@ -431,7 +431,7 @@ const BW_BENCHMARKS = {
       mediaType: "video",
       src: SPEC + "2026-04-26-Optimize-the-Machine.mp4",
       poster: SPEC + "2026-04-26-Optimize-the-Machine.png",
-      alt: "Specimen — Optimize the Machine.",
+      alt: "Artifact — Optimize the Machine.",
       title: "Optimize the Machine",
       commentary: {
         hook: "Most people work in their machine. Few work on it.",
@@ -453,7 +453,7 @@ const BW_BENCHMARKS = {
       mediaType: "video",
       src: SPEC + "2026-04-25-BB-fire.mp4",
       poster: SPEC + "2026-04-25-BB-fire.png",
-      alt: "Specimen — BB fire imagery.",
+      alt: "Artifact — BB fire imagery.",
       title: "When the Map Is Burning",
       commentary: {
         hook: "Stop referring to the legend.",
@@ -474,7 +474,7 @@ const BW_BENCHMARKS = {
       id: "2026-04-24-boundlessness",
       mediaType: "image",
       src: SPEC + "2026-04-24-Boundlessness.png",
-      alt: "Specimen — Boundlessness.",
+      alt: "Artifact — Boundlessness.",
       title: "Boundlessness",
       commentary: {
         hook: "Asked Midjourney for “boundlessness.” This is what came back.",
@@ -495,7 +495,7 @@ const BW_BENCHMARKS = {
       id: "2026-04-23-humble-and-kind",
       mediaType: "image",
       src: SPEC + "2026-04-23-Humble-and-Kind.png",
-      alt: "Specimen — Humble and Kind.",
+      alt: "Artifact — Humble and Kind.",
       title: "Humble and Kind",
       commentary: {
         hook: "He got down to her height. That's the whole thing.",
@@ -518,7 +518,7 @@ const BW_BENCHMARKS = {
       mediaType: "video",
       src: SPEC + "2026-04-22-ThreeFours.mp4",
       poster: SPEC + "2026-04-22-ThreeFours.png",
-      alt: "Specimen — Three Fours animation.",
+      alt: "Artifact — Three Fours animation.",
       title: "ThreeFours",
       commentary: {
         hook: "Recent design work. Defense market. Trust as the central constraint.",
