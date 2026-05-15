@@ -93,7 +93,7 @@ function FigFlourish({ id, light }) {
     <div style={{
       position: "absolute", right: 48, bottom: 48,
       fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400,
-      fontSize: 18, letterSpacing: "-0.01em", color,
+      fontSize: 16, letterSpacing: "-0.01em", color,
     }}>
       fig. {text}
     </div>
@@ -400,14 +400,18 @@ function CardAudio({ artifact, date }) {
         borderBottom: `1px solid ${BW.ruleD}`,
         padding: "12px 0",
       }}>
-        {bars.map((h, i) => (
-          <span key={i} style={{
-            flex: 1, height: `${h}%`, minHeight: 4,
-            background: i % 7 === 0 ? BW.brass : BW.chalk2,
-            opacity: i % 7 === 0 ? 0.95 : 0.6,
-            borderRadius: 2,
-          }} />
-        ))}
+        {bars.map((h, i) => {
+          // Alternating rhythm — every 3rd bar reads brass against chalk2.
+          const isAccent = i % 3 === 0;
+          return (
+            <span key={i} style={{
+              flex: 1, height: `${h}%`, minHeight: 4,
+              background: isAccent ? BW.brass : BW.chalk2,
+              opacity: isAccent ? 0.95 : 0.6,
+              borderRadius: 2,
+            }} />
+          );
+        })}
       </div>
 
       {/* Title — Fraunces italic, below the waveform */}
@@ -455,13 +459,21 @@ function BMShareCard({ artifact }) {
     <div
       id="bm-share-card"
       data-artifact-id={artifact.id}
+      data-media-type={m}
       role="img"
       aria-label={`BenchMarks share card — ${artifact.title || artifact.id || "artifact"}`}
       style={{
         position: "relative",
         width: CARD_SIZE,
         height: CARD_SIZE,
-        // Fixed canvas. No min/max, no flex. html-to-image captures exactly this box.
+        // Belt-and-braces: lock the size even if mounted inside a flex/grid
+        // container that would otherwise stretch or shrink the root.
+        minWidth: CARD_SIZE,
+        minHeight: CARD_SIZE,
+        maxWidth: CARD_SIZE,
+        maxHeight: CARD_SIZE,
+        flex: "0 0 auto",
+        // Fixed canvas. html-to-image captures exactly this box.
         boxSizing: "border-box",
         overflow: "hidden",
         background: BW.chalk50,

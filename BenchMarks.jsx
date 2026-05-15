@@ -229,7 +229,7 @@ function BMCuratorStrip({ curator }) {
 }
 
 /* ───── §02 Today — square artifact on the left, commentary stack on the right ───── */
-function BMToday({ artifact, isArchive, onPrev, onNext }) {
+function BMToday({ artifact, isArchive, onPrev, onNext, onShare, sharing, shareToast }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
 
   if (!artifact) {
@@ -524,7 +524,14 @@ function BMToday({ artifact, isArchive, onPrev, onNext }) {
             {/* 8. Action row — permalink + share buttons (and mobile prev/next) */}
             <div style={{ marginTop: "clamp(28px, 3vw, 40px)", paddingTop: 22, borderTop: `1px solid ${BW.ruleL}` }}>
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 12 }}>Share / save</div>
-              <BMActions artifactId={artifact.id} layout="row" mobile={isMobile} />
+              <BMActions
+                artifactId={artifact.id}
+                layout="row"
+                mobile={isMobile}
+                onShare={onShare ? () => onShare(artifact) : undefined}
+                sharing={sharing}
+                shareToast={shareToast}
+              />
             </div>
           </div>
         </div>
@@ -821,7 +828,28 @@ function BMActions({ artifactId, layout, mobilePrev, mobileNext, mobile, onShare
       >
         {copied ? "Permalink copied" : "Copy permalink"}
       </a>
-      <SoonBtn label="Share to IG" />
+      <button
+        type="button"
+        onClick={onShare}
+        disabled={!onShare || sharing}
+        aria-busy={sharing ? "true" : undefined}
+        className="bm-action"
+        style={{
+          display: "inline-flex", alignItems: "center", gap: 10, justifyContent: "center",
+          fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.18em",
+          textTransform: "uppercase", fontWeight: 700,
+          padding: "12px 18px", borderRadius: 999,
+          border: `1.5px solid ${BW.ink}`,
+          background: shareActive ? BW.ink : "transparent",
+          color: shareActive ? BW.brass : BW.ink,
+          cursor: (!onShare || sharing) ? "default" : "pointer",
+          opacity: (!onShare || sharing) ? 0.7 : 1,
+          transition: "all 200ms",
+          flex: stack ? "0 0 auto" : "1 1 auto",
+        }}
+      >
+        {shareLabel}
+      </button>
       {showMobileNav && (
         <NavIconBtn label="Next artifact" onClick={mobileNext} dir="next" />
       )}
@@ -1173,6 +1201,108 @@ function BenchMarksPage() {
   const onPrev = React.useCallback(() => navigate("prev"), [navigate]);
   const onNext = React.useCallback(() => navigate("next"), [navigate]);
 
+  /* ───── Share-to-IG plumbing.
+     shareTargetId drives the off-screen mount of <BMShareCard>; we keep the
+     mount in the page tree (not a portal) so the existing React render path
+     handles it. The capture flow:
+       1. set shareTargetId → BMShareCard mounts at left:-99999px
+       2. wait 2× requestAnimationFrame to let layout & fonts settle
+       3. html-to-image.toPng on the mount node at 1080×1080
+       4. trigger anchor download + copy caption to clipboard
+       5. flash toast for 3s, then unmount the card.
+     The html-to-image CDN script is loaded async in the page <head>; on the
+     first click after page load it may not have arrived yet — guard with a
+     warn + visible error toast rather than throwing. ───── */
+  const [shareTargetId, setShareTargetId] = React.useState(null);
+  const [sharing, setSharing] = React.useState(false);
+  const [shareToast, setShareToast] = React.useState(null); // null | "success" | "error"
+  const shareToastTimerRef = React.useRef(null);
+
+  const shareTarget = React.useMemo(() => {
+    if (!shareTargetId) return null;
+    return (data.artifacts || []).find(s => s.id === shareTargetId) || null;
+  }, [shareTargetId, data.artifacts]);
+
+  const flashShareToast = React.useCallback((variant) => {
+    setShareToast(variant);
+    if (shareToastTimerRef.current) window.clearTimeout(shareToastTimerRef.current);
+    shareToastTimerRef.current = window.setTimeout(() => {
+      setShareToast(null);
+      shareToastTimerRef.current = null;
+    }, 3000);
+  }, []);
+
+  React.useEffect(() => () => {
+    if (shareToastTimerRef.current) window.clearTimeout(shareToastTimerRef.current);
+  }, []);
+
+  const onShare = React.useCallback(async (artifact) => {
+    if (!artifact || sharing) return;
+    if (typeof window === "undefined") return;
+    if (!window.htmlToImage || typeof window.htmlToImage.toPng !== "function") {
+      console.warn("[BenchMarks] html-to-image not loaded yet — try again in a moment.");
+      flashShareToast("error");
+      return;
+    }
+    if (typeof window.BMShareCard !== "function") {
+      console.warn("[BenchMarks] BMShareCard not loaded yet.");
+      flashShareToast("error");
+      return;
+    }
+
+    setSharing(true);
+    setShareTargetId(artifact.id);
+
+    try {
+      // Wait for the off-screen card to mount AND lay out. One rAF schedules
+      // the next paint; a second rAF guarantees we run after that paint has
+      // committed. This is the cheapest reliable way to avoid capturing an
+      // unstyled / unmeasured tree.
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const mount = document.getElementById("bm-share-mount");
+      if (!mount) throw new Error("Share mount node missing after rAF.");
+      // The mount wrapper is offscreen; the card itself is the first child.
+      const node = mount.firstElementChild || mount;
+
+      const dataUrl = await window.htmlToImage.toPng(node, {
+        pixelRatio: 1,
+        width: 1080,
+        height: 1080,
+        cacheBust: true,
+        fetchRequestInit: { mode: "cors" },
+      });
+
+      // Synthetic anchor click — works on all evergreen browsers without
+      // needing user-gesture forwarding (we're still inside the click stack).
+      const a = document.createElement("a");
+      a.href = dataUrl;
+      a.download = `benchmarks-${artifact.id}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // Best-effort clipboard write — clipboard API requires secure context
+      // (localhost counts). Don't fail the whole share if it errors.
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(buildIgCaption(artifact));
+        }
+      } catch (clipErr) {
+        console.warn("[BenchMarks] Clipboard write failed:", clipErr);
+      }
+
+      flashShareToast("success");
+    } catch (err) {
+      console.error("[BenchMarks] Share failed:", err);
+      flashShareToast("error");
+    } finally {
+      setSharing(false);
+      // Unmount the off-screen card — we re-mount per click, no need to keep
+      // the DOM around (and re-mounting forces fresh layout next time).
+      setShareTargetId(null);
+    }
+  }, [sharing, flashShareToast]);
+
   // Keyboard ← / → navigation. Bail when an editable element holds focus so
   // we don't intercept caret movement inside inputs, textareas, selects, or
   // contentEditable regions. Also skip when modifier keys are held.
@@ -1210,11 +1340,39 @@ function BenchMarksPage() {
       <NotesNav current="BenchMarks" />
       <BMMasthead />
       <BMCuratorStrip curator={data.curator} />
-      <BMToday artifact={todayArtifact} isArchive={isArchive} onPrev={onPrev} onNext={onNext} />
+      <BMToday
+        artifact={todayArtifact}
+        isArchive={isArchive}
+        onPrev={onPrev}
+        onNext={onNext}
+        onShare={onShare}
+        sharing={sharing}
+        shareToast={shareToast}
+      />
       <BMRecent artifacts={publishedArtifacts} todayId={todayPick ? todayPick.id : null} />
       <BMDesk desk={data.desk} />
       <BMEdits edits={data.edits} />
       <BMFooter />
+      {/* Off-screen mount for IG share-card capture. Stays in the page tree so
+          React owns its lifecycle; positioned far off-screen and not pointer-
+          interactive so it never affects layout or focus. Mounted only while
+          a share is in flight; unmounted in the finally{} of onShare. */}
+      {shareTarget && typeof window !== "undefined" && typeof window.BMShareCard === "function" && (
+        <div
+          id="bm-share-mount"
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "-99999px",
+            top: 0,
+            width: 1080,
+            height: 1080,
+            pointerEvents: "none",
+          }}
+        >
+          {React.createElement(window.BMShareCard, { artifact: shareTarget })}
+        </div>
+      )}
     </div>
   );
 }
