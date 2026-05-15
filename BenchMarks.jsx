@@ -1,4 +1,4 @@
-/* global React, BW, Eyebrow, Btn, Tag, Italic, useMediaQuery, BW_BENCHMARKS, SiteHeader */
+/* global React, BW, Eyebrow, Btn, Tag, Italic, useMediaQuery, BW_BENCHMARKS, FN_NOTES, SiteHeader */
 /* BenchMarks — operator's bench. Daily-rotating artifacts, current desk, edits to thinking.
    Visual sibling of Field Notes — same editorial rhythm, slightly more curated/quiet.
    §01 Masthead   — "From the desk" eyebrow + Italic display H1
@@ -935,6 +935,98 @@ function BMDesk({ desk }) {
   );
 }
 
+/* ───── §04 Recent from Field Notes — three latest dispatches.
+   Mirrors the dark visual treatment of BMEdits (which it replaces) so the
+   page rhythm stays the same; each row is a link into note.html. Pulls
+   from window.FN_NOTES; the array is newest-first by editorial convention
+   so we just take the first three. ───── */
+function BMRecentPosts({ posts }) {
+  if (!posts || posts.length === 0) return null;
+  const recent = posts.slice(0, 3);
+  return (
+    <section style={{ background: BW.ink, color: BW.chalk50, borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
+      <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(244,236,218,0.04) 0 1.5px, transparent 1.5px 8px)", pointerEvents: "none" }} />
+      <div style={{ position: "relative", maxWidth: 1440, margin: "0 auto", padding: "clamp(48px, 7vw, 88px) clamp(20px, 5vw, 64px)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 24, flexWrap: "wrap" }}>
+          <span>§04</span>
+          <span style={{ width: 28, height: 1, background: BW.brass }} />
+          <span>From Field Notes</span>
+          <span style={{ flex: 1, height: 1, background: "rgba(244,236,218,0.18)", minWidth: 32 }} />
+        </div>
+
+        <h2 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1, letterSpacing: "-0.02em", margin: "0 0 44px", color: BW.chalk50, maxWidth: "20ch" }}>
+          From the field.
+        </h2>
+
+        <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 0 }}>
+          {recent.map((p, i) => (
+            <li key={p.slug} style={{ borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: i === recent.length - 1 ? `1px solid rgba(244,236,218,0.18)` : "none" }}>
+              <a
+                href={`note.html?slug=${encodeURIComponent(p.slug)}`}
+                className="bm-post-row"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "auto 1fr auto",
+                  gap: "clamp(18px,3vw,40px)",
+                  alignItems: "start",
+                  padding: "26px 0",
+                  color: BW.chalk50,
+                  textDecoration: "none",
+                }}
+              >
+                <div style={{ display: "flex", flexDirection: "column", gap: 6, minWidth: 84 }}>
+                  <span style={{ fontFamily: BW.ffM, fontSize: 22, fontWeight: 700, color: BW.brass, letterSpacing: "0.04em" }}>
+                    {p.issue}
+                  </span>
+                  <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>
+                    {p.date}
+                  </span>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <p className="bm-post-title" style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(22px, 2.6vw, 32px)", lineHeight: 1.18, letterSpacing: "-0.015em", margin: 0, color: BW.chalk50, maxWidth: "40ch", transition: "color 180ms" }}>
+                    {p.title}
+                  </p>
+                  {p.dek && (
+                    <p style={{ fontFamily: BW.ffSerif, fontSize: 15.5, lineHeight: 1.55, margin: 0, color: BW.chalk2, maxWidth: "60ch" }}>
+                      {p.dek}
+                    </p>
+                  )}
+                  {(p.kicker || p.minutes) && (
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700, marginTop: 4 }}>
+                      {p.kicker && <span>{p.kicker}</span>}
+                      {p.kicker && p.minutes && <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>}
+                      {p.minutes && <span>{p.minutes} min read</span>}
+                    </div>
+                  )}
+                </div>
+                <span aria-hidden="true" className="bm-post-arrow" style={{ alignSelf: "center", fontFamily: BW.ffM, fontSize: 22, color: BW.brass, transition: "transform 180ms" }}>
+                  →
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
+
+        <div style={{ marginTop: 36, display: "flex", justifyContent: "flex-end" }}>
+          <a
+            href="field-notes.html"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 10,
+              fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em",
+              textTransform: "uppercase", fontWeight: 700,
+              color: BW.brass, textDecoration: "none",
+              borderBottom: `1px solid ${BW.brass}`,
+              paddingBottom: 4,
+            }}
+          >
+            Read all dispatches →
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ───── §04 Last week's edits to thinking — numbered list ───── */
 function BMEdits({ edits }) {
   if (!edits || edits.length === 0) return null;
@@ -1438,9 +1530,12 @@ function BenchMarksPage() {
         .bm-nav { transition: background 180ms, color 180ms, transform 180ms; }
         .bm-nav:hover { background: ${BW.brass} !important; color: ${BW.ink} !important; }
         .bm-nav:focus-visible { outline: 2px solid ${BW.brass}; outline-offset: 3px; }
+        .bm-post-row:hover .bm-post-title { color: ${BW.brass}; }
+        .bm-post-row:hover .bm-post-arrow { transform: translateX(4px); }
+        .bm-post-row:focus-visible { outline: 2px solid ${BW.brass}; outline-offset: -4px; }
         @media (prefers-reduced-motion: reduce) {
-          .bm-card, .bm-nav { transition: none !important; }
-          .bm-card:hover { transform: none !important; }
+          .bm-card, .bm-nav, .bm-post-row * { transition: none !important; }
+          .bm-card:hover, .bm-post-row:hover .bm-post-arrow { transform: none !important; }
         }
       `}</style>
       <SiteHeader current="Field Notes" sticky={true} />
@@ -1458,7 +1553,7 @@ function BenchMarksPage() {
       />
       <BMRecent artifacts={publishedArtifacts} todayId={todayPick ? todayPick.id : null} />
       <BMDesk desk={data.desk} />
-      <BMEdits edits={data.edits} />
+      <BMRecentPosts posts={typeof FN_NOTES !== "undefined" ? FN_NOTES : []} />
       <BMFooter />
       {/* Off-screen mount for IG share-card capture. Stays in the page tree so
           React owns its lifecycle; positioned far off-screen and not pointer-
