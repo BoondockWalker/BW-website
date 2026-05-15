@@ -21,8 +21,9 @@ const BW_BENCHMARKS = {
   specimens: [
     {
       id: "2026-05-15-coffee",
-      mediaType: "image",
-      src: SPEC + "2026-05-15-Coffee.png",
+      mediaType: "video",
+      src: SPEC + "2026-05-15-Coffee.mp4",
+      poster: SPEC + "2026-05-15-Coffee.png",
       alt: "Specimen — Friday coffee.",
       title: "Tired and Lit Up",
       commentary: {
