@@ -1304,7 +1304,7 @@ function BenchMarksPage() {
           console.warn("[BenchMarks] could not inline image, using transparent placeholder:", src, e);
           img.src = TRANSPARENT_PX;
         }
-      })));
+      }));
 
       // html-to-image's final step wraps the cloned DOM in an SVG and loads
       // that SVG into an <img> to rasterize. Two things commonly break that:
