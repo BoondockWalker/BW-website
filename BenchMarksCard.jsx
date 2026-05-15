@@ -56,7 +56,7 @@ function TypeChip({ type, light }) {
 function LockupTL() {
   return (
     <img
-      src="/assets/BW-lockup-color.svg?v=8"
+      src="assets/BW-lockup-color.svg?v=8"
       alt="Boondock Walker"
       style={{
         position: "absolute", top: 48, right: 48,
