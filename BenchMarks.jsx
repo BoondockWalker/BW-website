@@ -9,6 +9,11 @@
    §06 Footer     — matches field-notes.html
 */
 
+/* IG share is hidden for now — flip to true to bring the Share to IG button
+   back. All the supporting code (onShare callback, BMShareCard mount, html-
+   to-image script) is left in place so re-enabling is a one-line change. */
+const BM_SHARE_ENABLED = false;
+
 /* ───── Today as a YYYY-MM-DD string in the browser's local time zone.
    Lexicographic <= comparison against artifact.publishedAt is the publish gate. ───── */
 function getTodayISO() {
@@ -829,28 +834,30 @@ function BMActions({ artifactId, layout, mobilePrev, mobileNext, mobile, onShare
       >
         {copied ? "Permalink copied" : "Copy permalink"}
       </a>
-      <button
-        type="button"
-        onClick={onShare}
-        disabled={!onShare || sharing}
-        aria-busy={sharing ? "true" : undefined}
-        className="bm-action"
-        style={{
-          display: "inline-flex", alignItems: "center", gap: 10, justifyContent: "center",
-          fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.18em",
-          textTransform: "uppercase", fontWeight: 700,
-          padding: "12px 18px", borderRadius: 999,
-          border: `1.5px solid ${BW.ink}`,
-          background: shareActive ? BW.ink : "transparent",
-          color: shareActive ? BW.brass : BW.ink,
-          cursor: (!onShare || sharing) ? "default" : "pointer",
-          opacity: (!onShare || sharing) ? 0.7 : 1,
-          transition: "all 200ms",
-          flex: stack ? "0 0 auto" : "1 1 auto",
-        }}
-      >
-        {shareLabel}
-      </button>
+      {BM_SHARE_ENABLED && (
+        <button
+          type="button"
+          onClick={onShare}
+          disabled={!onShare || sharing}
+          aria-busy={sharing ? "true" : undefined}
+          className="bm-action"
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 10, justifyContent: "center",
+            fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.18em",
+            textTransform: "uppercase", fontWeight: 700,
+            padding: "12px 18px", borderRadius: 999,
+            border: `1.5px solid ${BW.ink}`,
+            background: shareActive ? BW.ink : "transparent",
+            color: shareActive ? BW.brass : BW.ink,
+            cursor: (!onShare || sharing) ? "default" : "pointer",
+            opacity: (!onShare || sharing) ? 0.7 : 1,
+            transition: "all 200ms",
+            flex: stack ? "0 0 auto" : "1 1 auto",
+          }}
+        >
+          {shareLabel}
+        </button>
+      )}
       {showMobileNav && (
         <NavIconBtn label="Next artifact" onClick={mobileNext} dir="next" />
       )}
