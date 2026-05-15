@@ -1,5 +1,5 @@
 /* global React, BW, Eyebrow, useMediaQuery, BW_BENCHMARKS, SiteHeader, BMCard, BMFooter */
-/* BenchMarks Archive — every specimen on the bench, filterable.
+/* BenchMarks Archive — every artifact on the bench, filterable.
    Filter rail (left, sticky) + results grid (right). Filter state mirrored to URL.
 
    URL params:
@@ -14,7 +14,7 @@
 const PAGE_SIZE = 24;
 
 /* ───── Today as a YYYY-MM-DD string in the browser's local time zone.
-   Lexicographic <= comparison against specimen.publishedAt is the publish gate. ───── */
+   Lexicographic <= comparison against artifact.publishedAt is the publish gate. ───── */
 function getTodayISO() {
   const d = new Date();
   const y = d.getFullYear();
@@ -61,12 +61,12 @@ function writeFiltersToUrl(filters) {
 }
 
 /* ───── Derive filter facets from data ───── */
-function buildFacets(specimens) {
+function buildFacets(artifacts) {
   const typeCounts = { image: 0, video: 0, quote: 0, link: 0, audio: 0 };
   const tagCounts = {};
   const yearMonthMap = {}; // year -> Set<month>
 
-  (specimens || []).forEach(s => {
+  (artifacts || []).forEach(s => {
     if (s.mediaType && typeCounts[s.mediaType] !== undefined) typeCounts[s.mediaType]++;
     (s.tags || []).forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
     if (s.publishedAt && /^\d{4}-\d{2}/.test(s.publishedAt)) {
@@ -90,8 +90,8 @@ function buildFacets(specimens) {
 }
 
 /* ───── Apply filters ───── */
-function applyFilters(specimens, filters) {
-  let out = (specimens || []).slice();
+function applyFilters(artifacts, filters) {
+  let out = (artifacts || []).slice();
   if (filters.types && filters.types.length) {
     out = out.filter(s => filters.types.includes(s.mediaType));
   }
@@ -341,8 +341,8 @@ function BenchMarksArchivePage() {
 
   // Publish gate — applied once at the top of the page so every downstream
   // consumer (filter rail facets, year/month dropdowns, tag chips, results
-  // grid, total stat) sees only published specimens. Browser-local date,
-  // inclusive comparison. Recompute only when the source specimens change.
+  // grid, total stat) sees only published artifacts. Browser-local date,
+  // inclusive comparison. Recompute only when the source artifacts change.
   const publishedArtifacts = React.useMemo(() => {
     const today = getTodayISO();
     return (data.artifacts || []).filter(s => s.publishedAt && s.publishedAt <= today);
@@ -396,7 +396,7 @@ function BenchMarksArchivePage() {
               ) : (
                 <>
                   <div style={{ display: "grid", gridTemplateColumns: isMobileGrid ? "1fr" : isTabletGrid ? "1fr 1fr" : "repeat(3, 1fr)", gap: "clamp(14px, 1.6vw, 20px)" }}>
-                    {visible.map(s => <BMCard key={s.id} specimen={s} />)}
+                    {visible.map(s => <BMCard key={s.id} artifact={s} />)}
                   </div>
 
                   {visibleEnd < filtered.length && (
