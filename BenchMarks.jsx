@@ -1265,13 +1265,61 @@ function BenchMarksPage() {
       // The mount wrapper is offscreen; the card itself is the first child.
       const node = mount.firstElementChild || mount;
 
-      const dataUrl = await window.htmlToImage.toPng(node, {
+      // 1×1 transparent PNG. Reused below as imagePlaceholder for html-to-image.
+      const TRANSPARENT_PX = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+
+      // Wait for every <img> in the card to settle (load or error) before
+      // capture. html-to-image rejects with the raw img error event when any
+      // single image fails — a flaky favicon or transient 404 would tank the
+      // whole share. Swap failures to the transparent PNG so capture still
+      // succeeds; the rest of the card is intact.
+      await Promise.all(Array.from(node.querySelectorAll("img")).map(img => new Promise(resolve => {
+        if (img.complete && img.naturalWidth > 0) { resolve(); return; }
+        const done = () => {
+          img.removeEventListener("load", onLoad);
+          img.removeEventListener("error", onError);
+          resolve();
+        };
+        const onLoad = () => done();
+        const onError = () => {
+          // Replace the failing src; wait one frame so the swap commits before
+          // capture, then resolve regardless of whether the placeholder loads.
+          img.src = TRANSPARENT_PX;
+          requestAnimationFrame(done);
+        };
+        img.addEventListener("load", onLoad);
+        img.addEventListener("error", onError);
+        if (img.complete && img.naturalWidth === 0) onError();
+      })));
+
+      // html-to-image's final step wraps the cloned DOM in an SVG and loads
+      // that SVG into an <img> to rasterize. Two things commonly break that:
+      //   1. Font embedding bloats the SVG with huge @font-face data URLs;
+      //      Safari + some Chromium builds reject the resulting image.
+      //   2. A single failing resource embed leaves a malformed url() in the
+      //      SVG. imagePlaceholder gives toPng a clean fallback.
+      const toPngOptions = {
         pixelRatio: 1,
         width: 1080,
         height: 1080,
-        cacheBust: true,
+        // cacheBust intentionally omitted: same-origin assets are already in
+        // cache after the preload above, and a re-fetch with ?t=… can fail on
+        // some dev servers, taking the whole capture down with it.
         fetchRequestInit: { mode: "cors" },
-      });
+        imagePlaceholder: TRANSPARENT_PX,
+        skipFonts: true,
+      };
+      let dataUrl;
+      try {
+        dataUrl = await window.htmlToImage.toPng(node, toPngOptions);
+      } catch (capErr) {
+        // The error from html-to-image is often the raw <img> error event with
+        // no message. Surface the failing src + dimensions so we can diagnose.
+        const tgt = capErr && capErr.target;
+        const detail = tgt ? `src=${tgt.currentSrc || tgt.src || "(none)"} natural=${tgt.naturalWidth}×${tgt.naturalHeight}` : "(no target)";
+        console.error("[BenchMarks] toPng rejected:", capErr, detail);
+        throw capErr;
+      }
 
       const filename = `benchmarks-${artifact.id}.png`;
       const caption = buildIgCaption(artifact);
