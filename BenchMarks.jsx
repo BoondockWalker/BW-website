@@ -81,6 +81,48 @@ function renderInline(text, opts) {
 // Back-compat alias — older call sites can still reference the old name.
 const renderInlineItalic = renderInline;
 
+/* ───── Build the IG caption for a given artifact.
+   Template:
+
+     {hook}
+
+     {body joined with "\n\n"}
+
+     — Mark Nead
+     {permalink}
+
+     #BoondockWalker #BenchMarks {tags as #hashtags}
+
+   Permalink is derived at call time from window.location so the same code
+   works on localhost, GitHub Pages, and any future custom domain.
+   Per-artifact override: if artifact.social.igCaption is a non-empty
+   string, use it verbatim — no template munging. ───── */
+function buildIgCaption(artifact) {
+  if (!artifact) return "";
+  const override = artifact.social && typeof artifact.social.igCaption === "string"
+    ? artifact.social.igCaption.trim()
+    : "";
+  if (override) return artifact.social.igCaption;
+
+  const hook = (artifact.hook || "").trim();
+  const body = Array.isArray(artifact.body)
+    ? artifact.body.filter(p => typeof p === "string" && p.trim().length).join("\n\n")
+    : (typeof artifact.body === "string" ? artifact.body : "");
+  const permalink = (typeof window !== "undefined")
+    ? `${window.location.origin}${window.location.pathname}?id=${encodeURIComponent(artifact.id)}`
+    : `?id=${encodeURIComponent(artifact.id)}`;
+
+  const tags = Array.isArray(artifact.tags) ? artifact.tags.filter(Boolean) : [];
+  const hashSuffix = tags.length
+    ? " " + tags.map(t => "#" + String(t).replace(/[^A-Za-z0-9]+/g, "")).filter(s => s.length > 1).join(" ")
+    : "";
+  const hashtagLine = `#BoondockWalker #BenchMarks${hashSuffix}`;
+
+  return [hook, body, `— Mark Nead\n${permalink}`, hashtagLine]
+    .filter(s => s && s.length)
+    .join("\n\n");
+}
+
 /* ───── Tag chip — bench reads in JetBrains Mono caps ───── */
 function BMTag({ children, light }) {
   const c = light ? BW.chalk2 : BW.ink2;
@@ -691,8 +733,8 @@ function BMHeroAudio({ s }) {
   );
 }
 
-/* ───── §02 Actions row — Permalink (live), IG (coming soon) ───── */
-function BMActions({ artifactId, layout, mobilePrev, mobileNext, mobile }) {
+/* ───── §02 Actions row — Permalink (live), IG share (live) ───── */
+function BMActions({ artifactId, layout, mobilePrev, mobileNext, mobile, onShare, sharing, shareToast }) {
   const [copied, setCopied] = React.useState(false);
   const isMobile = useMediaQuery("(max-width: 560px)");
   // Row on desktop (when called with layout="row"); column on narrow viewports.
@@ -715,27 +757,16 @@ function BMActions({ artifactId, layout, mobilePrev, mobileNext, mobile }) {
     }
   };
 
-  // Disabled "coming soon" button — share-to-IG.
-  const SoonBtn = ({ label }) => (
-    <button
-      type="button"
-      disabled
-      title="Coming soon"
-      aria-disabled="true"
-      style={{
-        display: "inline-flex", alignItems: "center", gap: 10, justifyContent: "center",
-        fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.18em",
-        textTransform: "uppercase", fontWeight: 600,
-        padding: "12px 18px", borderRadius: 999,
-        border: `1.5px solid ${BW.ruleL}`, background: "transparent",
-        color: BW.ink3, cursor: "not-allowed", textDecoration: "none",
-        opacity: 0.55, position: "relative",
-      }}
-    >
-      <span>{label}</span>
-      <span style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", color: BW.brass, fontWeight: 700, paddingLeft: 8, borderLeft: `1px solid ${BW.ruleL}` }}>Soon</span>
-    </button>
-  );
+  // Share-to-IG button label — swaps in toast text when a share just resolved.
+  // Mirrors the permalink "Copy permalink → Permalink copied" pattern above.
+  const shareLabel = shareToast === "success"
+    ? "Card downloaded · caption copied"
+    : shareToast === "error"
+      ? "Share failed — check console"
+      : sharing
+        ? "Preparing card…"
+        : "Share to IG";
+  const shareActive = shareToast === "success" || shareToast === "error";
 
   // Mobile-only prev/next icon buttons — render only when the parent passes
   // handlers AND we are actually on mobile. Square 40px buttons that match
