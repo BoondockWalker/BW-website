@@ -122,7 +122,7 @@ function BMMasthead() {
             One thing on the bench, every day. A photograph, a quote, a link, a recording — whatever the operator pinned to the wall this morning, with a note on why it matters.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-            <span>— One artifact / day</span>
+            <span>— One thing from the bench, every day.</span>
             <span>— Same one all day</span>
             <span>— New one tomorrow</span>
           </div>
@@ -178,7 +178,7 @@ function BMCuratorStrip({ curator }) {
             fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase",
             color: BW.ink3, fontWeight: 700,
           }}>
-            One artifact / day
+            One thing from the bench, every day.
           </span>
         </div>
       </div>
@@ -340,24 +340,24 @@ function BMToday({ artifact, isArchive, onPrev, onNext }) {
             </div>
 
             {/* 2. Tag chips */}
-            {specimen.tags && specimen.tags.length > 0 && (
+            {artifact.tags && artifact.tags.length > 0 && (
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 18 }}>
-                {specimen.tags.map(t => <BMTag key={t}>{t}</BMTag>)}
+                {artifact.tags.map(t => <BMTag key={t}>{t}</BMTag>)}
               </div>
             )}
 
-            {/* 3. Specimen title — section-display scale */}
-            {specimen.title && (
+            {/* 3. Artifact title — section-display scale */}
+            {artifact.title && (
               <h3 style={{
                 fontFamily: BW.ffG, fontWeight: 700, fontSize: "clamp(15px, 1.4vw, 18px)",
                 letterSpacing: "0.04em", textTransform: "uppercase",
                 margin: "0 0 14px", color: BW.ink2,
               }}>
-                {specimen.title}
+                {artifact.title}
               </h3>
             )}
 
-            {/* Mobile-only inline specimen square — sits between title and hook
+            {/* Mobile-only inline artifact square — sits between title and hook
                 so the read goes: eyebrow → tags → title → image → hook → body. */}
             {isMobile && (
               <div style={{ width: "100%", maxWidth: 520, marginInline: "auto", margin: "0 auto 22px" }}>
@@ -366,9 +366,9 @@ function BMToday({ artifact, isArchive, onPrev, onNext }) {
                   border: `1.5px solid ${BW.ink}`, background: BW.ink,
                   overflow: "hidden", boxShadow: "0 12px 32px -22px rgba(20,16,12,0.45)",
                 }}>
-                  <BMHero specimen={specimen} />
+                  <BMHero artifact={artifact} />
                   {/* Mobile overlay nav arrows — pinned to image edges, vertically
-                      centered, so it's obvious you can swipe between specimens. */}
+                      centered, so it's obvious you can swipe between artifacts. */}
                   <button
                     type="button"
                     onClick={onPrev}
@@ -415,26 +415,26 @@ function BMToday({ artifact, isArchive, onPrev, onNext }) {
                   fontFamily: BW.ffM, fontSize: 9.5, letterSpacing: "0.28em", textTransform: "uppercase",
                   color: BW.ink3, fontWeight: 700,
                 }}>
-                  <span>Artifact · {(specimen.mediaType || "").toUpperCase()}</span>
+                  <span>Artifact · {(artifact.mediaType || "").toUpperCase()}</span>
                   <span>1080 × 1080</span>
                 </div>
               </div>
             )}
 
             {/* 4. Hook — Fraunces italic, display scale */}
-            {specimen.commentary && specimen.commentary.hook && (
+            {artifact.commentary && artifact.commentary.hook && (
               <h2 style={{
                 fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400,
                 fontSize: "clamp(36px, 4.5vw, 64px)", lineHeight: 1.04,
                 letterSpacing: "-0.02em", margin: "0 0 24px", color: BW.ink,
                 maxWidth: "22ch",
               }}>
-                {renderInlineItalic(specimen.commentary.hook, { reverse: true })}
+                {renderInlineItalic(artifact.commentary.hook, { reverse: true })}
               </h2>
             )}
 
             {/* 5. Body paragraphs — Copernicus */}
-            {specimen.commentary && specimen.commentary.body && specimen.commentary.body.map((p, i) => (
+            {artifact.commentary && artifact.commentary.body && artifact.commentary.body.map((p, i) => (
               <p key={i} style={{
                 fontFamily: BW.ffSerif, fontSize: 17.5, lineHeight: 1.62,
                 margin: "0 0 16px", color: BW.ink, maxWidth: "60ch",
@@ -442,38 +442,38 @@ function BMToday({ artifact, isArchive, onPrev, onNext }) {
             ))}
 
             {/* 6. Signoff — small monospace italic */}
-            {specimen.commentary && specimen.commentary.signoff && (
+            {artifact.commentary && artifact.commentary.signoff && (
               <div style={{
                 marginTop: 8, fontFamily: BW.ffM, fontStyle: "italic",
                 fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase",
                 color: BW.ink2, fontWeight: 600,
               }}>
-                {specimen.commentary.signoff}
+                {artifact.commentary.signoff}
               </div>
             )}
 
             {/* 7. Source line — small caps, links to sourceUrl */}
-            {specimen.sourceLabel && (
+            {artifact.sourceLabel && (
               <div style={{
                 marginTop: 22, paddingTop: 18, borderTop: `1px solid ${BW.ruleL}`,
                 fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.28em",
                 textTransform: "uppercase", color: BW.ink3, fontWeight: 700,
               }}>
                 Source ·{" "}
-                {specimen.sourceUrl ? (
-                  <a href={specimen.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: BW.ink, textDecoration: "none", borderBottom: `1px solid ${BW.ruleL}`, paddingBottom: 1 }}>
-                    {specimen.sourceLabel}
+                {artifact.sourceUrl ? (
+                  <a href={artifact.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: BW.ink, textDecoration: "none", borderBottom: `1px solid ${BW.ruleL}`, paddingBottom: 1 }}>
+                    {artifact.sourceLabel}
                   </a>
                 ) : (
-                  <span style={{ color: BW.ink2 }}>{specimen.sourceLabel}</span>
+                  <span style={{ color: BW.ink2 }}>{artifact.sourceLabel}</span>
                 )}
               </div>
             )}
 
             {/* Related field note link — keep, useful surface */}
-            {specimen.relatedSlug && (
+            {artifact.relatedSlug && (
               <div style={{ marginTop: 18 }}>
-                <a href={`note.html?slug=${specimen.relatedSlug.replace(/^field-notes\//, "")}`} style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: BW.ink, textDecoration: "none", borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3 }}>
+                <a href={`note.html?slug=${artifact.relatedSlug.replace(/^field-notes\//, "")}`} style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: BW.ink, textDecoration: "none", borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3 }}>
                   Related field note →
                 </a>
               </div>
@@ -482,7 +482,7 @@ function BMToday({ artifact, isArchive, onPrev, onNext }) {
             {/* 8. Action row — permalink + share buttons (and mobile prev/next) */}
             <div style={{ marginTop: "clamp(28px, 3vw, 40px)", paddingTop: 22, borderTop: `1px solid ${BW.ruleL}` }}>
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 12 }}>Share / save</div>
-              <BMActions specimenId={specimen.id} layout="row" mobile={isMobile} />
+              <BMActions artifactId={artifact.id} layout="row" mobile={isMobile} />
             </div>
           </div>
         </div>
@@ -502,14 +502,14 @@ function formatBenchDate(iso) {
   return `${days[d.getDay()]} ${dd} ${months[d.getMonth()]} ${d.getFullYear()}`;
 }
 
-/* ───── Specimen hero — different visual treatment per mediaType ───── */
-function BMHero({ specimen }) {
-  const m = specimen.mediaType;
-  if (m === "image") return <BMHeroImage s={specimen} />;
-  if (m === "video") return <BMHeroVideo s={specimen} />;
-  if (m === "quote") return <BMHeroQuote s={specimen} />;
-  if (m === "link")  return <BMHeroLink s={specimen} />;
-  if (m === "audio") return <BMHeroAudio s={specimen} />;
+/* ───── Artifact hero — different visual treatment per mediaType ───── */
+function BMHero({ artifact }) {
+  const m = artifact.mediaType;
+  if (m === "image") return <BMHeroImage s={artifact} />;
+  if (m === "video") return <BMHeroVideo s={artifact} />;
+  if (m === "quote") return <BMHeroQuote s={artifact} />;
+  if (m === "link")  return <BMHeroLink s={artifact} />;
+  if (m === "audio") return <BMHeroAudio s={artifact} />;
   return null;
 }
 
@@ -526,7 +526,7 @@ function BMHeroImage({ s }) {
       {stillSrc ? (
         <img
           src={stillSrc}
-          alt={s.alt || s.title || "Specimen"}
+          alt={s.alt || s.title || "Artifact"}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       ) : (
@@ -548,7 +548,7 @@ function BMHeroVideo({ s }) {
         showStillFrame ? (
           <img
             src={s.poster}
-            alt={s.alt || s.title || "Specimen"}
+            alt={s.alt || s.title || "Artifact"}
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         ) : (
@@ -692,7 +692,7 @@ function BMHeroAudio({ s }) {
 }
 
 /* ───── §02 Actions row — Permalink (live), IG (coming soon) ───── */
-function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
+function BMActions({ artifactId, layout, mobilePrev, mobileNext, mobile }) {
   const [copied, setCopied] = React.useState(false);
   const isMobile = useMediaQuery("(max-width: 560px)");
   // Row on desktop (when called with layout="row"); column on narrow viewports.
@@ -700,7 +700,7 @@ function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
   const onCopy = (e) => {
     e.preventDefault();
     if (typeof window === "undefined") return;
-    const url = `${window.location.origin}${window.location.pathname.replace(/[^/]*$/, "")}benchmarks.html?id=${encodeURIComponent(specimenId)}`;
+    const url = `${window.location.origin}${window.location.pathname.replace(/[^/]*$/, "")}benchmarks.html?id=${encodeURIComponent(artifactId)}`;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(() => {
         setCopied(true);
@@ -771,7 +771,7 @@ function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
       alignItems: stack ? "stretch" : "center",
     }}>
       {showMobileNav && (
-        <NavIconBtn label="Previous specimen" onClick={mobilePrev} dir="prev" />
+        <NavIconBtn label="Previous artifact" onClick={mobilePrev} dir="prev" />
       )}
       <a
         href="#"
@@ -792,7 +792,7 @@ function BMActions({ specimenId, layout, mobilePrev, mobileNext, mobile }) {
       </a>
       <SoonBtn label="Share to IG" />
       {showMobileNav && (
-        <NavIconBtn label="Next specimen" onClick={mobileNext} dir="next" />
+        <NavIconBtn label="Next artifact" onClick={mobileNext} dir="next" />
       )}
     </div>
   );
@@ -915,14 +915,14 @@ function BMEdits({ edits }) {
   );
 }
 
-/* ───── Compact specimen card — used on §05 grid + archive grid ───── */
-function BMCard({ specimen }) {
-  const teaser = (specimen.commentary && specimen.commentary.hook) || specimen.title || specimen.linkTitle || (specimen.quote ? `"${specimen.quote.slice(0, 80)}…"` : "Specimen");
-  const date = specimen.publishedAt;
-  const tags = specimen.tags || [];
-  const typeLabel = (specimen.mediaType || "").toUpperCase();
+/* ───── Compact artifact card — used on §05 grid + archive grid ───── */
+function BMCard({ artifact }) {
+  const teaser = (artifact.commentary && artifact.commentary.hook) || artifact.title || artifact.linkTitle || (artifact.quote ? `"${artifact.quote.slice(0, 80)}…"` : "Artifact");
+  const date = artifact.publishedAt;
+  const tags = artifact.tags || [];
+  const typeLabel = (artifact.mediaType || "").toUpperCase();
   const TypeIcon = () => {
-    const m = specimen.mediaType;
+    const m = artifact.mediaType;
     if (m === "image") return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>IMG</span>;
     if (m === "video") return <span style={{ fontFamily: BW.ffM, fontWeight: 700 }}>▶</span>;
     if (m === "quote") return <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18 }}>“ ”</span>;
@@ -933,22 +933,22 @@ function BMCard({ specimen }) {
 
   // Card thumb: prefer the still poster when one is supplied (animated GIFs
   // and videos both keep their card thumb static). Otherwise fall back to the
-  // image src for image-type specimens.
-  const thumbSrc = specimen.poster
-                 ? specimen.poster
-                 : specimen.mediaType === "image" ? specimen.src
+  // image src for image-type artifacts.
+  const thumbSrc = artifact.poster
+                 ? artifact.poster
+                 : artifact.mediaType === "image" ? artifact.src
                  : null;
 
   return (
-    <a href={`benchmarks.html?id=${encodeURIComponent(specimen.id)}`} className="bm-card"
+    <a href={`benchmarks.html?id=${encodeURIComponent(artifact.id)}`} className="bm-card"
        style={{ display: "flex", flexDirection: "column", border: `0.75px solid ${BW.ink}`, background: BW.chalk50, color: BW.ink, textDecoration: "none", minHeight: 280, transition: "transform 200ms cubic-bezier(.2,.7,.2,1)" }}>
       {/* Thumb / type plate */}
-      <div style={{ position: "relative", aspectRatio: "16/10", borderBottom: `0.75px solid ${BW.ink}`, overflow: "hidden", background: specimen.mediaType === "quote" || specimen.mediaType === "audio" ? BW.ink : BW.chalk }}>
+      <div style={{ position: "relative", aspectRatio: "16/10", borderBottom: `0.75px solid ${BW.ink}`, overflow: "hidden", background: artifact.mediaType === "quote" || artifact.mediaType === "audio" ? BW.ink : BW.chalk }}>
         {thumbSrc ? (
-          <img src={thumbSrc} alt={specimen.alt || ""} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+          <img src={thumbSrc} alt={artifact.alt || ""} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
         ) : (
           <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
-                color: specimen.mediaType === "quote" || specimen.mediaType === "audio" ? BW.brass : BW.ink2,
+                color: artifact.mediaType === "quote" || artifact.mediaType === "audio" ? BW.brass : BW.ink2,
                 fontFamily: BW.ffD, fontSize: 56, fontStyle: "italic" }}>
             <TypeIcon />
           </div>
@@ -956,8 +956,8 @@ function BMCard({ specimen }) {
         {/* Type tag overlay */}
         <span style={{ position: "absolute", top: 10, left: 10, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700,
               padding: "3px 7px", borderRadius: 2,
-              background: specimen.mediaType === "quote" || specimen.mediaType === "audio" ? BW.brass : BW.ink,
-              color: specimen.mediaType === "quote" || specimen.mediaType === "audio" ? BW.ink : BW.chalk50 }}>
+              background: artifact.mediaType === "quote" || artifact.mediaType === "audio" ? BW.brass : BW.ink,
+              color: artifact.mediaType === "quote" || artifact.mediaType === "audio" ? BW.ink : BW.chalk50 }}>
           {typeLabel}
         </span>
       </div>
@@ -982,12 +982,12 @@ function BMCard({ specimen }) {
 }
 
 /* ───── §05 Recent benchmarks — last 30, excluding today's pick ───── */
-function BMRecent({ specimens, todayId }) {
+function BMRecent({ artifacts, todayId }) {
   const isMobile = useMediaQuery("(max-width: 720px)");
   const isTablet = useMediaQuery("(max-width: 1080px)");
-  if (!specimens || specimens.length === 0) return null;
+  if (!artifacts || artifacts.length === 0) return null;
 
-  const sorted = [...specimens]
+  const sorted = [...artifacts]
     .filter(s => s.id !== todayId)
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
     .slice(0, 30);
@@ -1002,7 +1002,7 @@ function BMRecent({ specimens, todayId }) {
           <span style={{ width: 28, height: 1, background: BW.clay }} />
           <span>Recent benchmarks</span>
           <span style={{ flex: 1, height: 1, background: BW.ruleL, minWidth: 32 }} />
-          <span style={{ color: BW.ink2 }}>{sorted.length} specimens</span>
+          <span style={{ color: BW.ink2 }}>{sorted.length} artifacts</span>
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", paddingBottom: 16, borderBottom: `1.5px solid ${BW.ink}`, marginBottom: 28, flexWrap: "wrap", gap: 12 }}>
@@ -1015,7 +1015,7 @@ function BMRecent({ specimens, todayId }) {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : isTablet ? "1fr 1fr" : "repeat(4, 1fr)", gap: "clamp(14px, 1.6vw, 20px)" }}>
-          {sorted.map(s => <BMCard key={s.id} specimen={s} />)}
+          {sorted.map(s => <BMCard key={s.id} artifact={s} />)}
         </div>
 
         <div style={{ marginTop: 36, display: "flex", justifyContent: "center" }}>
@@ -1058,7 +1058,7 @@ function BMFooter() {
 function BenchMarksPage() {
   const data = (typeof window !== "undefined" && window.BW_BENCHMARKS) || { artifacts: [], desk: [], edits: [], curator: null, pinnedArtifactId: null };
 
-  // currentId tracks the specimen the page is showing right now. It seeds
+  // currentId tracks the artifact the page is showing right now. It seeds
   // from the URL and updates when the prev/next nav fires. We listen to
   // popstate so the back/forward buttons re-sync the view.
   const [currentId, setCurrentId] = React.useState(() => getOverrideId());
@@ -1073,18 +1073,18 @@ function BenchMarksPage() {
   // Publish gate — anything with a publishedAt strictly in the future stays
   // invisible to visitors. Browser-local date is fine; the spec is inclusive
   // (publishedAt === today is published). Recompute only when the source
-  // specimens array changes.
+  // artifacts array changes.
   const publishedArtifacts = React.useMemo(() => {
     const today = getTodayISO();
     return (data.artifacts || []).filter(s => s.publishedAt && s.publishedAt <= today);
   }, [data.artifacts]);
 
   // Today's deterministic pick — independent of the URL override. Drawn from
-  // the published pool so an unpublished specimen can never be the day-of
+  // the published pool so an unpublished artifact can never be the day-of
   // pick. We need this separately so we can decide whether the showing
-  // specimen is "today" or "from the archive" (which is true only when the
-  // URL id resolves to a specimen *other than* today's pick).
-  // The pin lookup inside pickToday consults the *full* specimens array —
+  // artifact is "today" or "from the archive" (which is true only when the
+  // URL id resolves to an artifact *other than* today's pick).
+  // The pin lookup inside pickToday consults the *full* artifacts array —
   // that's the override path that lets Mark preview an unpublished pin.
   const todayPick = React.useMemo(
     () => pickToday(publishedArtifacts, data.artifacts, data.pinnedArtifactId),
@@ -1092,24 +1092,24 @@ function BenchMarksPage() {
   );
 
   // ?id= override path — bypasses the publish gate by looking up against the
-  // *full* specimens array. That's intentional: Mark shares a deep link to
-  // preview an unpublished specimen before its launch day.
+  // *full* artifacts array. That's intentional: Mark shares a deep link to
+  // preview an unpublished artifact before its launch day.
   const requested = React.useMemo(() => {
     if (!currentId) return null;
     return (data.artifacts || []).find(s => s.id === currentId) || null;
   }, [data.artifacts, currentId]);
 
-  const todaySpecimen = requested || todayPick;
+  const todayArtifact = requested || todayPick;
   const isArchive = !!requested && (!todayPick || requested.id !== todayPick.id);
 
-  // Sorted specimens (publishedAt desc) — drawn from the published pool only,
-  // so prev/next nav (chevrons + arrow keys) skips unpublished specimens.
+  // Sorted artifacts (publishedAt desc) — drawn from the published pool only,
+  // so prev/next nav (chevrons + arrow keys) skips unpublished artifacts.
   // Index 0 is the newest, last index is the oldest. "Next" = newer = -1;
   // "Prev" = older = +1. Both wrap.
-  // Note: a deep-linked unpublished specimen isn't in this list, so clicking
+  // Note: a deep-linked unpublished artifact isn't in this list, so clicking
   // next/prev jumps the visitor back into the published rotation. Correct
   // behavior — an out-of-band preview shouldn't graft itself into the cycle.
-  const sortedSpecimens = React.useMemo(
+  const sortedArtifacts = React.useMemo(
     () => [...publishedArtifacts].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1)),
     [publishedArtifacts]
   );
@@ -1120,24 +1120,24 @@ function BenchMarksPage() {
     params.set("id", id);
     const newUrl = `${window.location.pathname}?${params.toString()}${window.location.hash || ""}`;
     // pushState — not replaceState — so the browser back button steps
-    // through the specimens the user actually visited.
-    window.history.pushState({ specimenId: id }, "", newUrl);
+    // through the artifacts the user actually visited.
+    window.history.pushState({ artifactId: id }, "", newUrl);
     setCurrentId(id);
   }, []);
 
   const navigate = React.useCallback((dir) => {
-    if (sortedSpecimens.length === 0) return;
-    const showingId = (todaySpecimen && todaySpecimen.id) || sortedSpecimens[0].id;
-    let idx = sortedSpecimens.findIndex(s => s.id === showingId);
+    if (sortedArtifacts.length === 0) return;
+    const showingId = (todayArtifact && todayArtifact.id) || sortedArtifacts[0].id;
+    let idx = sortedArtifacts.findIndex(s => s.id === showingId);
     if (idx === -1) idx = 0;
-    // dir = "next" → newer specimen → smaller index (with wrap to last).
-    // dir = "prev" → older specimen → larger index (with wrap to first).
-    const len = sortedSpecimens.length;
+    // dir = "next" → newer artifact → smaller index (with wrap to last).
+    // dir = "prev" → older artifact → larger index (with wrap to first).
+    const len = sortedArtifacts.length;
     const nextIdx = dir === "next"
       ? (idx - 1 + len) % len
       : (idx + 1) % len;
-    goTo(sortedSpecimens[nextIdx].id);
-  }, [sortedSpecimens, todaySpecimen, goTo]);
+    goTo(sortedArtifacts[nextIdx].id);
+  }, [sortedArtifacts, todayArtifact, goTo]);
 
   const onPrev = React.useCallback(() => navigate("prev"), [navigate]);
   const onNext = React.useCallback(() => navigate("next"), [navigate]);
@@ -1179,8 +1179,8 @@ function BenchMarksPage() {
       <NotesNav current="BenchMarks" />
       <BMMasthead />
       <BMCuratorStrip curator={data.curator} />
-      <BMToday specimen={todaySpecimen} isArchive={isArchive} onPrev={onPrev} onNext={onNext} />
-      <BMRecent specimens={publishedArtifacts} todayId={todayPick ? todayPick.id : null} />
+      <BMToday artifact={todayArtifact} isArchive={isArchive} onPrev={onPrev} onNext={onNext} />
+      <BMRecent artifacts={publishedArtifacts} todayId={todayPick ? todayPick.id : null} />
       <BMDesk desk={data.desk} />
       <BMEdits edits={data.edits} />
       <BMFooter />
