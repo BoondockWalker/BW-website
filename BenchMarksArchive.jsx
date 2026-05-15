@@ -131,7 +131,7 @@ function BMArchiveMasthead({ totalCount, filteredCount }) {
           </h1>
           <div style={{ paddingBottom: isMobile ? 0 : 16 }}>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 1.8vw, 18px)", lineHeight: 1.55, margin: "0 0 24px", color: BW.ink2, maxWidth: "44ch" }}>
-              Every specimen Mark's pinned to the wall — image, quote, link, recording. Filter by type, year, or tag. The bench keeps everything.
+              Every artifact Mark's pinned to the wall — image, quote, link, recording. Filter by type, year, or tag. The bench keeps everything.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: BW.ink3 }}>
               <div>
@@ -314,7 +314,7 @@ function BMArchiveEmpty({ onClear }) {
     <div style={{ border: `1.5px dashed ${BW.ruleL}`, padding: "64px 32px", textAlign: "center", background: BW.chalk50 }}>
       <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 14 }}>Nothing on the bench</div>
       <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4vw, 40px)", lineHeight: 1.04, letterSpacing: "-0.02em", margin: "0 0 16px", color: BW.ink }}>
-        No specimens match these filters.
+        No artifacts match these filters.
       </h3>
       <p style={{ fontFamily: BW.ffSerif, fontSize: 16, lineHeight: 1.55, margin: "0 auto 24px", color: BW.ink2, maxWidth: "44ch" }}>
         Try loosening one constraint — drop a tag, widen the year, or clear it all.
@@ -328,7 +328,7 @@ function BMArchiveEmpty({ onClear }) {
 
 /* ───── Page composition ───── */
 function BenchMarksArchivePage() {
-  const data = (typeof window !== "undefined" && window.BW_BENCHMARKS) || { specimens: [], desk: [], edits: [], curator: null };
+  const data = (typeof window !== "undefined" && window.BW_BENCHMARKS) || { artifacts: [], desk: [], edits: [], curator: null };
   const isMobile = useMediaQuery("(max-width: 900px)");
   const isTabletGrid = useMediaQuery("(max-width: 1100px)");
   const isMobileGrid = useMediaQuery("(max-width: 720px)");
@@ -343,13 +343,13 @@ function BenchMarksArchivePage() {
   // consumer (filter rail facets, year/month dropdowns, tag chips, results
   // grid, total stat) sees only published specimens. Browser-local date,
   // inclusive comparison. Recompute only when the source specimens change.
-  const publishedSpecimens = React.useMemo(() => {
+  const publishedArtifacts = React.useMemo(() => {
     const today = getTodayISO();
-    return (data.specimens || []).filter(s => s.publishedAt && s.publishedAt <= today);
-  }, [data.specimens]);
+    return (data.artifacts || []).filter(s => s.publishedAt && s.publishedAt <= today);
+  }, [data.artifacts]);
 
-  const facets = React.useMemo(() => buildFacets(publishedSpecimens), [publishedSpecimens]);
-  const filtered = React.useMemo(() => applyFilters(publishedSpecimens, filters), [publishedSpecimens, filters]);
+  const facets = React.useMemo(() => buildFacets(publishedArtifacts), [publishedArtifacts]);
+  const filtered = React.useMemo(() => applyFilters(publishedArtifacts, filters), [publishedArtifacts, filters]);
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const pageClamped = Math.min(filters.page, totalPages);
   const visibleEnd = pageClamped * PAGE_SIZE;
@@ -371,7 +371,7 @@ function BenchMarksArchivePage() {
       `}</style>
       <SiteHeader current="Field Notes" sticky={true} />
       <NotesNav current="BenchMarks" />
-      <BMArchiveMasthead totalCount={publishedSpecimens.length} filteredCount={filtered.length} />
+      <BMArchiveMasthead totalCount={publishedArtifacts.length} filteredCount={filtered.length} />
 
       <section style={{ background: BW.chalk, borderBottom: `1.5px solid ${BW.ink}` }}>
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(28px, 4vw, 48px) clamp(20px, 5vw, 64px) clamp(56px, 6vw, 80px)" }}>
@@ -382,7 +382,7 @@ function BenchMarksArchivePage() {
               {/* Result count + active chips */}
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", paddingBottom: 14, borderBottom: `1.5px solid ${BW.ink}`, marginBottom: 24, flexWrap: "wrap", gap: 12 }}>
                 <h2 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(24px, 3vw, 36px)", lineHeight: 1, letterSpacing: "-0.02em", margin: 0 }}>
-                  {filtered.length === 0 ? "No specimens." : filtered.length === 1 ? "One specimen." : `${filtered.length} specimens.`}
+                  {filtered.length === 0 ? "No artifacts." : filtered.length === 1 ? "One artifact." : `${filtered.length} artifacts.`}
                 </h2>
                 <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>
                   {filters.sort === "desc" ? "Newest first" : "Oldest first"}
