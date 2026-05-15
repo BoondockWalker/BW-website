@@ -104,10 +104,11 @@ function buildIgCaption(artifact) {
     : "";
   if (override) return artifact.social.igCaption;
 
-  const hook = (artifact.hook || "").trim();
-  const body = Array.isArray(artifact.body)
-    ? artifact.body.filter(p => typeof p === "string" && p.trim().length).join("\n\n")
-    : (typeof artifact.body === "string" ? artifact.body : "");
+  const commentary = artifact.commentary || {};
+  const hook = (commentary.hook || "").trim();
+  const body = Array.isArray(commentary.body)
+    ? commentary.body.filter(p => typeof p === "string" && p.trim().length).join("\n\n")
+    : (typeof commentary.body === "string" ? commentary.body : "");
   const permalink = (typeof window !== "undefined")
     ? `${window.location.origin}${window.location.pathname}?id=${encodeURIComponent(artifact.id)}`
     : `?id=${encodeURIComponent(artifact.id)}`;
