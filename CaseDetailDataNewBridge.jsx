@@ -33,7 +33,7 @@ window.BW_CASE_DETAIL = {
     imagePosition: "center center",
     imageBg: "#00245d",
     scrim: "bottomOnly",
-    clientLogo: `${NB_BASE}/logo.svg`,
+    clientLogo: `${NB_BASE}/logo-wht.svg`,
     clientLogoHeight: 64,
     clientLogoInvert: false,
     standfirst: "NewBridge Cleveland Center for Arts & Technology was created to serve the Cleveland community by establishing a dual vocation and education center in the heart of the city — career training for displaced and disadvantaged workers, and the arts as a means to motivate underserved urban youth to stay in school and pursue higher education. NewBridge is modeled after Pittsburgh's Manchester-Bidwell, a 40-year-old program founded by visionary and MacArthur Fellow Bill Strickland.",
@@ -98,19 +98,18 @@ window.BW_CASE_DETAIL = {
       accent: "#0093d0",
     },
 
-    /* -- Brand Foundation — 2 presentation spreads -------------- */
+    /* -- Brand Foundation — one large presentation spread, centered --- */
     {
-      kind: "multi",
+      kind: "floating",
       eyebrow: "§05 · Brand Foundation",
       title: "The doctrine, on the wall.",
-      cols: 2,
-      gap: 32,
+      src: `${NB_BASE}/presentation-p14.png`,
+      alt: "NewBridge brand presentation — interior spread from the 11×17 deck",
+      caption: "Brand presentation · interior spread",
       surface: "#FBF7EE",
+      maxWidth: 1280,
+      maxHeight: 900,
       padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)",
-      items: [
-        { src: `${NB_BASE}/presentation-p2.png`,  alt: "NewBridge brand presentation — page 2 of the 11×17 deck",  caption: "Brand presentation · p. 02" },
-        { src: `${NB_BASE}/presentation-p14.png`, alt: "NewBridge brand presentation — page 14 of the 11×17 deck", caption: "Brand presentation · p. 14" },
-      ],
     },
 
     /* -- Brochure spreads ---------------------------------------- */
@@ -129,28 +128,31 @@ window.BW_CASE_DETAIL = {
       ],
     },
 
-    /* -- Banners — 4 in the space -------------------------------- */
+    /* -- Banners — four, side-by-side ---------------------------- */
     {
-      kind: "slider",
+      kind: "multi",
       eyebrow: "§07 · Banners",
       title: "Mosaic, scaled to the room.",
+      cols: 4,
+      gap: 16,
       surface: "#FBF7EE",
-      slideHeight: 620,
+      padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)",
       items: [
-        { src: `${NB_BASE}/banner-1.jpg`, alt: "NewBridge banner — design 1", caption: "fig. 07.1 · Banner 01", width: 900, bg: "#FBF7EE" },
-        { src: `${NB_BASE}/banner-2.jpg`, alt: "NewBridge banner — design 2", caption: "fig. 07.2 · Banner 02", width: 900, bg: "#FBF7EE" },
-        { src: `${NB_BASE}/banner-3.jpg`, alt: "NewBridge banner — design 3", caption: "fig. 07.3 · Banner 03", width: 900, bg: "#FBF7EE" },
-        { src: `${NB_BASE}/banner-4.jpg`, alt: "NewBridge banner — design 4", caption: "fig. 07.4 · Banner 04", width: 900, bg: "#FBF7EE" },
+        { src: `${NB_BASE}/banner-1.jpg`, alt: "NewBridge banner — design 1", caption: "Banner · 01" },
+        { src: `${NB_BASE}/banner-2.jpg`, alt: "NewBridge banner — design 2", caption: "Banner · 02" },
+        { src: `${NB_BASE}/banner-3.jpg`, alt: "NewBridge banner — design 3", caption: "Banner · 03" },
+        { src: `${NB_BASE}/banner-4.jpg`, alt: "NewBridge banner — design 4", caption: "Banner · 04" },
       ],
     },
 
-    /* -- Website — 4 site pages ---------------------------------- */
+    /* -- Website — 4 site pages, tightened slider --------------- */
     {
       kind: "slider",
       eyebrow: "§08 · Website",
       title: "The site — community front door, funding tool, student stage.",
       surface: "#FBF7EE",
       slideHeight: 620,
+      gap: 14,
       items: [
         { src: `${NB_BASE}/site-home-1.png`,  alt: "NewBridge website — Home (version 1)", caption: "fig. 08.1 · Home", width: 1100, bg: "#FBF7EE" },
         { src: `${NB_BASE}/site-home-3.png`,  alt: "NewBridge website — Home (version 3)", caption: "fig. 08.2 · Home · alt", width: 1100, bg: "#FBF7EE" },
