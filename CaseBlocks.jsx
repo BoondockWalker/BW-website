@@ -479,7 +479,7 @@ function MultiImageBlock({ block }) {
    Uses scroll-snap; arrow buttons for desktop.
    ========================================================================= */
 function SliderBlock({ block }) {
-  const { items = [], eyebrow, title, surface = BW.chalk50, padding = SECTION_PAD, slideHeight: rawSlideHeight = 620 } = block;
+  const { items = [], eyebrow, title, surface = BW.chalk50, padding = SECTION_PAD, slideHeight: rawSlideHeight = 620, gap = 28 } = block;
   const isMobile = useMediaQuery("(max-width: 768px)");
   const slideHeight = isMobile ? Math.min(rawSlideHeight, 420) : rawSlideHeight;
   const trackRef = React.useRef(null);
@@ -545,7 +545,7 @@ function SliderBlock({ block }) {
         onScroll={onScroll}
         style={{
           display: "flex",
-          gap: 28,
+          gap,
           overflowX: "auto",
           scrollSnapType: "x mandatory",
           padding: "8px clamp(20px, 5vw, 56px) 32px",
