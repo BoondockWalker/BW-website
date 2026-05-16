@@ -20,6 +20,28 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine artifact-by-artifact.
   artifacts: [
     {
+      id: "2026-05-16-rainy-saturday",
+      mediaType: "image",
+      src: SPEC + "2026-05-16-Rainy-Saturday.png",
+      alt: "Artifact — Rainy Saturday. Umbrella sheltering a stack of geometric shapes.",
+      title: "Under the Canopy",
+      commentary: {
+        hook: "Rain on a Saturday. Everything underneath gets to breathe.",
+        body: [
+          "An umbrella over a stack of rectangles. The whole composition is a study in shelter — geometry that protects the geometry.",
+          "That's what a weekend is supposed to do. The week keeps its shape. The roof takes the weather. The people underneath get to be people for a minute.",
+          "Four colors doing real work. A confident rust, a deep teal, a mustard holding the middle, a brown that grounds the whole thing. The same family that keeps showing up on the bench this month — train your eye and the world keeps handing them over.",
+          "Stay under the canopy. Notice the rain. That's the whole assignment.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["design", "color", "rest"],
+      relatedSlug: null,
+      publishedAt: "2026-05-16",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-15-coffee",
       mediaType: "video",
       src: SPEC + "2026-05-15-Coffee.mp4",
