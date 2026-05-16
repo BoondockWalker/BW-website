@@ -22,7 +22,7 @@ const BW_BENCHMARKS = {
     {
       id: "2026-05-16-rainy-saturday-umbrella",
       mediaType: "image",
-      src: SPEC + "2026-05-16-Rainy-Saturday.png",
+      src: SPEC + "2026-05-16-rainy-saturday-umbrella.jpg",
       alt: "Artifact — Rainy Saturday. Umbrella sheltering a stack of geometric shapes.",
       title: "Rainy Saturday",
       commentary: {
