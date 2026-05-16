@@ -3,8 +3,8 @@
    Content sourced from boondockwalker.com/work/cleveland-whiskey
    Assets in assets/cases/cleveland-whiskey/ pulled from same.
 
-   Working palette (no SVG logo shipped — pending):
-     Char    #1F1410    Copper  #B8762E
+   Brand palette (lifted from the supplied logo SVG):
+     Char    #1F1410    Rust    #ae4d47
      Cream   #FBF7EE    Ink     #14100C
 */
 
@@ -31,22 +31,37 @@ window.BW_CASE_DETAIL = {
     imagePosition: "center center",
     imageBg: "#1F1410",
     scrim: "bottomOnly",
-    /* no SVG logo shipped — header falls back to typeset client name */
+    clientLogo: `${CW_BASE}/logo.svg`,
+    clientLogoHeight: 56,
+    clientLogoInvert: true,
     standfirst: "Cleveland Whiskey is a bold innovator of disruptive technology that radically accelerates the maturation and flavor development of distilled spirits — a perfect storm of increasing demand in an industry that hasn't changed in generations. Their process uses unique woods that elicit a range of tastes fittingly described as \"radically different.\" Cleveland Whiskey has won a series of gold medals and was named Whiskey Innovator of the Year at the 2016 Berlin International Spirits Competition.",
   },
 
   blocks: [
+    /* -- Logo on cream ------------------------------------------- */
+    {
+      kind: "fullbleed",
+      src: `${CW_BASE}/logo.svg`,
+      alt: "Cleveland Whiskey — primary logo lockup, rust red on cream",
+      caption: { label: "fig. 01 · Logo", title: "The Cleveland Whiskey mark — rust red on cream" },
+      surface: "#FBF7EE",
+      height: "min(34vh, 300px)",
+      fit: "contain",
+      imagePadding: "48px 28px",
+      padTop: 64,
+    },
+
     /* -- The Brief / problem prose ------------------------------- */
     {
       kind: "prose",
-      eyebrow: "§01 · The Brief",
+      eyebrow: "§02 · The Brief",
       title: "Strengthen the brand. Launch the new collection.",
       body: [
         "Now in 14 states, Europe, and China, Cleveland Whiskey tapped Boondock Walker to strengthen the existing brand while bringing an exciting new collection — Cleveland Underground — to market.",
       ],
       dropCap: true,
       maxWidth: 820,
-      accent: "#B8762E",
+      accent: "#ae4d47",
     },
 
     /* -- Services / capabilities ledger -------------------------- */
@@ -80,7 +95,7 @@ window.BW_CASE_DETAIL = {
         "Boondock Walker helped Cleveland Whiskey launch one of the first and most successful regulation crowdfunding efforts ever — successfully closing with 951 new investors and an equity raise exceeding $850,000. Boondock was responsible for creating and distributing all social media content and investor communications.",
       ],
       maxWidth: 820,
-      accent: "#B8762E",
+      accent: "#ae4d47",
     },
 
     /* -- Cleveland Underground — featured ----------------------- */
@@ -190,7 +205,7 @@ window.BW_CASE_DETAIL = {
     /* -- Website scene — full-bleed ----------------------------- */
     {
       kind: "fullbleed",
-      src: `${CW_BASE}/web-scene.jpg`,
+      src: `${CW_BASE}/web-scene.webp`,
       alt: "Cleveland Whiskey responsive website — desktop composition",
       caption: { label: "fig. 12 · Website", title: "Responsive website — the bottle's story online" },
       surface: "#FBF7EE",
