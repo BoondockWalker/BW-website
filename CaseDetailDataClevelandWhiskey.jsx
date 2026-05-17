@@ -99,18 +99,17 @@ window.BW_CASE_DETAIL = {
       accent: "#ae4d47",
     },
 
-    /* -- Cleveland Underground — featured ----------------------- */
+    /* -- Cleveland Underground — featured, floating ------------- */
     {
-      kind: "fullbleed",
-      src: `${CW_BASE}/cu-featured.png`,
+      kind: "floating",
+      eyebrow: "§04 · Cleveland Underground",
+      title: "Cleveland Underground — the new collection.",
+      src: `${CW_BASE}/cu-featured.jpg`,
       alt: "Cleveland Underground — the new collection, hero composition",
-      caption: { label: "fig. 04 · Cleveland Underground", title: "Cleveland Underground — the new collection" },
+      caption: "fig. 04 · Cleveland Underground",
       surface: "#FBF7EE",
-      height: "auto",
-      imagePadding: "0",
-      padTop: 0,
-      padBottom: 0,
-      blend: "multiply",
+      maxWidth: 760,
+      maxHeight: 560,
     },
 
     /* -- Recipe Cards — 4 in a 2x2 ------------------------------ */
