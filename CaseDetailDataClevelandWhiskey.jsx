@@ -102,7 +102,7 @@ window.BW_CASE_DETAIL = {
     /* -- Cleveland Underground — featured ----------------------- */
     {
       kind: "fullbleed",
-      src: `${CW_BASE}/cu-featured.jpg`,
+      src: `${CW_BASE}/cu-featured.png`,
       alt: "Cleveland Underground — the new collection, hero composition",
       caption: { label: "fig. 04 · Cleveland Underground", title: "Cleveland Underground — the new collection" },
       surface: "#FBF7EE",
