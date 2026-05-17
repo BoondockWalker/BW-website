@@ -154,27 +154,29 @@ function CaseHeroFullBleed({ d }) {
       <div style={{
         position: "relative", zIndex: 3,
         flex: 1, display: "flex", flexDirection: "column",
-        padding: isMobile ? "160px clamp(20px, 5vw, 48px) 0" : "200px clamp(40px, 6vw, 80px) 0",
+        padding: isMobile ? "140px clamp(20px, 5vw, 48px) 0" : "150px clamp(40px, 6vw, 80px) 0",
       }}>
         {/* Eyebrow row — left-side case label only */}
         <div style={{
           fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.32em", textTransform: "uppercase",
-          color: BW.brass, fontWeight: 700, marginBottom: 56,
+          color: BW.brass, fontWeight: 700, marginBottom: 36,
         }}>
           {h.eyebrow || "Client Success Story"}
         </div>
 
-        {/* Top spacer — pushes the headline down into the lower-third of the hero */}
-        <div style={{ flex: 1, minHeight: 80 }} />
+        {/* Top spacer — pushes the headline down into the lower-third of the hero.
+            No minHeight so it can collapse when the H1 + ledger together would otherwise
+            push the ledger below the fold. */}
+        <div style={{ flex: 1 }} />
 
         {/* Display title — set huge, italic */}
         <h1 style={{
           fontFamily: BW.ffD,
-          fontSize: "clamp(72px, 11.5vw, 192px)",
+          fontSize: "clamp(64px, 9.5vw, 160px)",
           fontWeight: 400,
           letterSpacing: "-0.045em",
-          lineHeight: 0.86,
-          margin: "0 0 64px",
+          lineHeight: 0.9,
+          margin: "0 0 36px",
           color: h.titleColor || BW.chalk50,
           fontStyle: "italic",
           maxWidth: "16ch",
@@ -187,9 +189,9 @@ function CaseHeroFullBleed({ d }) {
         <div style={{
           display: "grid",
           gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1.4fr",
-          gap: isMobile ? 32 : 80,
+          gap: isMobile ? 28 : 64,
           alignItems: isMobile ? "start" : "end",
-          paddingBottom: 64,
+          paddingBottom: 32,
           borderBottom: `1px solid rgba(244,236,218,0.14)`,
         }}>
           <div>
@@ -229,7 +231,7 @@ function CaseHeroFullBleed({ d }) {
       }}>
         {ledger.map((row, i) => (
           <div key={row.k} style={{
-            padding: "20px clamp(16px, 4vw, 28px)",
+            padding: "14px clamp(16px, 4vw, 28px)",
             borderRight: i < ledger.length - 1 ? `1px solid rgba(244,236,218,0.14)` : "none",
             borderBottom: isMobile ? `1px solid rgba(244,236,218,0.14)` : "none",
           }}>
