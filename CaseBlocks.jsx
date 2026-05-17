@@ -330,7 +330,7 @@ function ServicesBlock({ block }) {
    within (no crop). Use surface to set the bg color (white, blue, ink, etc).
    ========================================================================= */
 function FullBleedImage({ block }) {
-  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)", padTop = 0, padBottom = 60, imageMaxWidth } = block;
+  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)", padTop = 0, padBottom = 60, imageMaxWidth, blend } = block;
   const bg = surfaceGradient || surface;
   const naturalHeight = height === "auto";
   return (
@@ -339,12 +339,12 @@ function FullBleedImage({ block }) {
         <div style={{ width: "100%", height: naturalHeight ? "auto" : height, overflow: "hidden", position: "relative", background: bg, padding: imagePadding, boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center" }}>
           {parallax > 0 ? (
             <Parallax amount={parallax} style={{ width: "100%", height: `calc(100% + ${parallax * 2}px)`, marginTop: -parallax }}>
-              <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: fit, objectPosition: position, display: "block" }} />
+              <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: fit, objectPosition: position, display: "block", mixBlendMode: blend || "normal" }} />
             </Parallax>
           ) : naturalHeight ? (
-            <img src={src} alt={alt} style={{ width: "100%", height: "auto", maxWidth: imageMaxWidth || "100%", margin: imageMaxWidth ? "0 auto" : 0, display: "block" }} />
+            <img src={src} alt={alt} style={{ width: "100%", height: "auto", maxWidth: imageMaxWidth || "100%", margin: imageMaxWidth ? "0 auto" : 0, display: "block", mixBlendMode: blend || "normal" }} />
           ) : (
-            <img src={src} alt={alt} style={{ ...(fit === "cover" ? { width: "100%", height: "100%" } : { maxWidth: imageMaxWidth || "100%", maxHeight: "100%", width: "auto", height: "auto" }), objectFit: fit, objectPosition: position, display: "block" }} />
+            <img src={src} alt={alt} style={{ ...(fit === "cover" ? { width: "100%", height: "100%" } : { maxWidth: imageMaxWidth || "100%", maxHeight: "100%", width: "auto", height: "auto" }), objectFit: fit, objectPosition: position, display: "block", mixBlendMode: blend || "normal" }} />
           )}
         </div>
       </Reveal>
