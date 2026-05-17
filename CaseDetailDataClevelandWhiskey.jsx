@@ -45,8 +45,9 @@ window.BW_CASE_DETAIL = {
       alt: "Cleveland Whiskey — primary logo lockup, rust red on cream",
       caption: { label: "fig. 01 · Logo", title: "The Cleveland Whiskey mark — rust red on cream" },
       surface: "#FBF7EE",
-      height: "min(34vh, 300px)",
+      height: "min(24vh, 210px)",
       fit: "contain",
+      imageMaxWidth: "min(50%, 560px)",
       imagePadding: "48px 28px",
       padTop: 64,
     },
@@ -128,17 +129,18 @@ window.BW_CASE_DETAIL = {
       ],
     },
 
-    /* -- Sell sheet --------------------------------------------- */
+    /* -- Sell sheet — floating with drop shadow ----------------- */
     {
-      kind: "fullbleed",
+      kind: "floating",
+      eyebrow: "§06 · Sales Collateral",
+      title: "Sell sheet — the line on a single page.",
       src: `${CW_BASE}/cu-sellsheet.jpg`,
       alt: "Cleveland Underground sell sheet — distributor + retailer collateral",
-      caption: { label: "fig. 06 · Sales Collateral", title: "Sell sheet — the line on a single page" },
+      caption: "fig. 06 · Sales Collateral",
       surface: "#FBF7EE",
-      height: "auto",
-      imagePadding: "0",
-      padTop: 0,
-      padBottom: 0,
+      maxWidth: 900,
+      maxHeight: 1100,
+      shadow: true,
     },
 
     /* -- Shelf Talkers — full-bleed ----------------------------- */
@@ -215,17 +217,17 @@ window.BW_CASE_DETAIL = {
       padBottom: 0,
     },
 
-    /* -- iPhone view -------------------------------------------- */
+    /* -- iPhone view — floating, centered ----------------------- */
     {
-      kind: "fullbleed",
+      kind: "floating",
+      eyebrow: "§13 · Mobile",
+      title: "Site on iPhone — the brand in the pocket.",
       src: `${CW_BASE}/web-iphone.jpg`,
       alt: "Cleveland Whiskey responsive website — iPhone composition",
-      caption: { label: "fig. 13 · Mobile", title: "Site on iPhone — the brand in the pocket" },
+      caption: "fig. 13 · Mobile",
       surface: "#FBF7EE",
-      height: "auto",
-      imagePadding: "0",
-      padTop: 0,
-      padBottom: 0,
+      maxWidth: 900,
+      maxHeight: 760,
     },
 
     /* -- Newsfeed posts — slider of 5 --------------------------- */
@@ -242,7 +244,6 @@ window.BW_CASE_DETAIL = {
         { src: `${CW_BASE}/news-blackcherry.png`,     alt: "Cleveland Underground newsfeed — Black Cherry",    caption: "fig. 14.2 · Black Cherry", width: 640, bg: "#FBF7EE" },
         { src: `${CW_BASE}/news-hickory.png`,         alt: "Cleveland Underground newsfeed — Hickory",         caption: "fig. 14.3 · Hickory",     width: 640, bg: "#FBF7EE" },
         { src: `${CW_BASE}/news-sugarmaple.png`,      alt: "Cleveland Underground newsfeed — Sugar Maple",     caption: "fig. 14.4 · Sugar Maple", width: 640, bg: "#FBF7EE" },
-        { src: `${CW_BASE}/news-wefunder-stats.png`,  alt: "Cleveland Whiskey newsfeed — WeFunder crowdfunding stats", caption: "fig. 14.5 · WeFunder", width: 640, bg: "#FBF7EE" },
       ],
     },
   ],

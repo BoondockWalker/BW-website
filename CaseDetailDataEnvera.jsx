@@ -44,8 +44,9 @@ window.BW_CASE_DETAIL = {
       alt: "Envera wordmark — amber + tangerine duotone",
       caption: { label: "fig. 01 · Logo", title: "The Envera wordmark — amber over tangerine" },
       surface: "#FBF7EE",
-      height: "min(50vh, 440px)",
+      height: "min(22vh, 200px)",
       fit: "contain",
+      imageMaxWidth: "min(50%, 560px)",
       imagePadding: "60px 28px",
     },
 

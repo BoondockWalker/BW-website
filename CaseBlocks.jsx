@@ -112,7 +112,7 @@ function CaseHeroFullBleed({ d }) {
         <div aria-hidden="true" style={{
           position: "absolute", inset: 0, zIndex: 1,
           background: h.scrim === "bottomOnly"
-            ? "linear-gradient(180deg, transparent 0%, transparent 50%, rgba(20,16,12,0.55) 80%, rgba(20,16,12,0.78) 100%)"
+            ? "linear-gradient(180deg, transparent 0%, rgba(20,16,12,0.18) 35%, rgba(20,16,12,0.55) 60%, rgba(20,16,12,0.78) 80%, rgba(20,16,12,0.88) 100%)"
             : "linear-gradient(95deg, rgba(20,16,12,0.62) 0%, rgba(20,16,12,0.42) 32%, rgba(20,16,12,0.22) 60%, rgba(20,16,12,0.30) 100%), linear-gradient(180deg, rgba(20,16,12,0.40) 0%, transparent 28%, transparent 70%, rgba(20,16,12,0.78) 100%)",
           pointerEvents: "none",
         }} />
@@ -174,6 +174,7 @@ function CaseHeroFullBleed({ d }) {
           color: h.titleColor || BW.chalk50,
           fontStyle: "italic",
           maxWidth: "16ch",
+          textShadow: h.image ? "0 2px 24px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45)" : "none",
         }}>
           {h.title}
         </h1>
@@ -329,7 +330,7 @@ function ServicesBlock({ block }) {
    within (no crop). Use surface to set the bg color (white, blue, ink, etc).
    ========================================================================= */
 function FullBleedImage({ block }) {
-  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)", padTop = 0, padBottom = 60 } = block;
+  const { src, alt, caption, height = "min(82vh, 820px)", surface = BW.chalk50, surfaceGradient, parallax = 0, fit = "contain", position = "center", imagePadding = "clamp(32px, 5vw, 60px) clamp(20px, 5vw, 56px)", padTop = 0, padBottom = 60, imageMaxWidth } = block;
   const bg = surfaceGradient || surface;
   const naturalHeight = height === "auto";
   return (
@@ -341,9 +342,9 @@ function FullBleedImage({ block }) {
               <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: fit, objectPosition: position, display: "block" }} />
             </Parallax>
           ) : naturalHeight ? (
-            <img src={src} alt={alt} style={{ width: "100%", height: "auto", display: "block" }} />
+            <img src={src} alt={alt} style={{ width: "100%", height: "auto", maxWidth: imageMaxWidth || "100%", margin: imageMaxWidth ? "0 auto" : 0, display: "block" }} />
           ) : (
-            <img src={src} alt={alt} style={{ ...(fit === "cover" ? { width: "100%", height: "100%" } : { maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }), objectFit: fit, objectPosition: position, display: "block" }} />
+            <img src={src} alt={alt} style={{ ...(fit === "cover" ? { width: "100%", height: "100%" } : { maxWidth: imageMaxWidth || "100%", maxHeight: "100%", width: "auto", height: "auto" }), objectFit: fit, objectPosition: position, display: "block" }} />
           )}
         </div>
       </Reveal>
@@ -363,12 +364,22 @@ function FullBleedImage({ block }) {
    FLOATING IMAGE — single image centered on chalk, generous margin.
    ========================================================================= */
 function FloatingImage({ block }) {
-  const { src, alt, caption, maxHeight = 580, maxWidth = 1100, surface = BW.chalk50, padding = "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)" } = block;
+  const { src, alt, caption, eyebrow, title, maxHeight = 580, maxWidth = 1100, surface = BW.chalk50, padding = "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)", shadow = false } = block;
   return (
     <section style={{ background: surface, padding, fontFamily: BW.ffG }}>
       <div style={{ maxWidth, margin: "0 auto", textAlign: "center" }}>
+        {eyebrow && (
+          <Reveal kind="rise">
+            <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 18 }}>{eyebrow}</div>
+          </Reveal>
+        )}
+        {title && (
+          <Reveal kind="rise" delay={120}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: "0 0 40px", color: BW.ink }}>{title}</h2>
+          </Reveal>
+        )}
         <Reveal kind="wipe" threshold={0.15}>
-          <img src={src} alt={alt} style={{ width: "100%", maxHeight, objectFit: "contain", display: "block", margin: "0 auto" }} />
+          <img src={src} alt={alt} style={{ width: "100%", maxHeight, objectFit: "contain", display: "block", margin: "0 auto", boxShadow: shadow ? "0 30px 60px -20px rgba(20,16,12,0.35), 0 18px 36px -14px rgba(20,16,12,0.20)" : "none" }} />
         </Reveal>
         {caption && (
           <Reveal kind="rise" delay={300}>
