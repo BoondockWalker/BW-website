@@ -54,6 +54,7 @@ function pickRotatedFeatured(all) {
 }
 
 function WorkApp() {
+  const isMobile = useMediaQuery("(max-width: 900px)");
   const [pillar, setPillar] = React.useState("All");
   const [industry, setIndustry] = React.useState("All industries");
   const [outcome, setOutcome] = React.useState("All outcomes");
@@ -62,7 +63,9 @@ function WorkApp() {
 
   const all = window.BW_CASES;
   const featured = React.useMemo(() => pickRotatedFeatured(all), [all]);
-  const rest = all.filter(c => c.slug !== featured.slug);
+  // On mobile, the featured editorial row is dropped — the featured case is
+  // shown as a regular tile in the grid alongside the others.
+  const rest = isMobile ? all : all.filter(c => c.slug !== featured.slug);
 
   const filtered = rest.filter(c => {
     if (pillar !== "All" && !(c.pillars || []).includes(pillar)) return false;
@@ -81,8 +84,8 @@ function WorkApp() {
   return (
     <div>
       <SiteHeader current="Work" sticky={true} />
-      <WorkMasthead count={all.length} filterCount={sorted.length + 1} />
-      <FeaturedCase c={featured} />
+      <WorkMasthead count={all.length} filterCount={sorted.length + (isMobile ? 0 : 1)} />
+      {!isMobile && <FeaturedCase c={featured} />}
       <FilterRow {...{ pillar, setPillar, industry, setIndustry, outcome, setOutcome, sort, setSort, view, setView }} />
       <ArchiveGrid cases={sorted} view={view} />
       <WorkClosing />
