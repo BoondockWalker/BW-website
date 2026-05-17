@@ -48,6 +48,7 @@ window.BW_CASE_DETAIL = {
       fit: "contain",
       imageMaxWidth: "min(50%, 560px)",
       imagePadding: "60px 28px",
+      padTop: 112,
     },
 
     /* -- The Brief / problem prose -------------------------------- */

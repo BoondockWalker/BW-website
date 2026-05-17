@@ -49,7 +49,7 @@ window.BW_CASE_DETAIL = {
       fit: "contain",
       imageMaxWidth: "min(50%, 560px)",
       imagePadding: "48px 28px",
-      padTop: 64,
+      padTop: 112,
     },
 
     /* -- The Brief / problem prose ------------------------------- */
@@ -217,33 +217,20 @@ window.BW_CASE_DETAIL = {
       padBottom: 0,
     },
 
-    /* -- iPhone view — floating, centered ----------------------- */
-    {
-      kind: "floating",
-      eyebrow: "§13 · Mobile",
-      title: "Site on iPhone — the brand in the pocket.",
-      src: `${CW_BASE}/web-iphone.jpg`,
-      alt: "Cleveland Whiskey responsive website — iPhone composition",
-      caption: "fig. 13 · Mobile",
-      surface: "#FBF7EE",
-      maxWidth: 900,
-      maxHeight: 760,
-    },
-
-    /* -- Newsfeed posts — slider of 5 --------------------------- */
+    /* -- Newsfeed posts — slider of 4 --------------------------- */
     {
       kind: "slider",
-      eyebrow: "§14 · Newsfeed Posts",
+      eyebrow: "§13 · Newsfeed Posts",
       title: "The line, in the feed.",
       surface: "#FBF7EE",
       slideHeight: 640,
       gap: 14,
       captionGap: 10,
       items: [
-        { src: `${CW_BASE}/news-apple.png`,           alt: "Cleveland Underground newsfeed — Apple wood",      caption: "fig. 14.1 · Apple",      width: 640, bg: "#FBF7EE" },
-        { src: `${CW_BASE}/news-blackcherry.png`,     alt: "Cleveland Underground newsfeed — Black Cherry",    caption: "fig. 14.2 · Black Cherry", width: 640, bg: "#FBF7EE" },
-        { src: `${CW_BASE}/news-hickory.png`,         alt: "Cleveland Underground newsfeed — Hickory",         caption: "fig. 14.3 · Hickory",     width: 640, bg: "#FBF7EE" },
-        { src: `${CW_BASE}/news-sugarmaple.png`,      alt: "Cleveland Underground newsfeed — Sugar Maple",     caption: "fig. 14.4 · Sugar Maple", width: 640, bg: "#FBF7EE" },
+        { src: `${CW_BASE}/news-apple.png`,           alt: "Cleveland Underground newsfeed — Apple wood",      caption: "fig. 13.1 · Apple",      width: 640, bg: "#FBF7EE" },
+        { src: `${CW_BASE}/news-blackcherry.png`,     alt: "Cleveland Underground newsfeed — Black Cherry",    caption: "fig. 13.2 · Black Cherry", width: 640, bg: "#FBF7EE" },
+        { src: `${CW_BASE}/news-hickory.png`,         alt: "Cleveland Underground newsfeed — Hickory",         caption: "fig. 13.3 · Hickory",     width: 640, bg: "#FBF7EE" },
+        { src: `${CW_BASE}/news-sugarmaple.png`,      alt: "Cleveland Underground newsfeed — Sugar Maple",     caption: "fig. 13.4 · Sugar Maple", width: 640, bg: "#FBF7EE" },
       ],
     },
   ],
