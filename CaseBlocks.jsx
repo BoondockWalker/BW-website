@@ -378,9 +378,16 @@ function FloatingImage({ block }) {
             <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: "0 0 40px", color: BW.ink }}>{title}</h2>
           </Reveal>
         )}
-        <Reveal kind="wipe" threshold={0.15}>
-          <img src={src} alt={alt} style={{ width: "100%", maxHeight, objectFit: "contain", display: "block", margin: "0 auto", boxShadow: shadow ? "0 30px 60px -20px rgba(20,16,12,0.35), 0 18px 36px -14px rgba(20,16,12,0.20)" : "none", mixBlendMode: blend || "normal" }} />
-        </Reveal>
+        {blend ? (
+          /* Skip Reveal when a blend mode is requested — Reveal applies a
+             transform, which creates a new stacking context and prevents
+             mix-blend-mode from compositing against the section surface. */
+          <img src={src} alt={alt} style={{ width: "100%", maxHeight, objectFit: "contain", display: "block", margin: "0 auto", boxShadow: shadow ? "0 30px 60px -20px rgba(20,16,12,0.35), 0 18px 36px -14px rgba(20,16,12,0.20)" : "none", mixBlendMode: blend }} />
+        ) : (
+          <Reveal kind="wipe" threshold={0.15}>
+            <img src={src} alt={alt} style={{ width: "100%", maxHeight, objectFit: "contain", display: "block", margin: "0 auto", boxShadow: shadow ? "0 30px 60px -20px rgba(20,16,12,0.35), 0 18px 36px -14px rgba(20,16,12,0.20)" : "none" }} />
+          </Reveal>
+        )}
         {caption && (
           <Reveal kind="rise" delay={300}>
             <div style={{ marginTop: 32, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
