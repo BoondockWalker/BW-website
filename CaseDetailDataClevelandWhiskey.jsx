@@ -102,7 +102,7 @@ window.BW_CASE_DETAIL = {
     /* -- Cleveland Underground — featured ----------------------- */
     {
       kind: "fullbleed",
-      src: `${CW_BASE}/cu-featured.jpg`,
+      src: `${CW_BASE}/cu-featured.png`,
       alt: "Cleveland Underground — the new collection, hero composition",
       caption: { label: "fig. 04 · Cleveland Underground", title: "Cleveland Underground — the new collection" },
       surface: "#FBF7EE",
@@ -110,7 +110,6 @@ window.BW_CASE_DETAIL = {
       imagePadding: "0",
       padTop: 0,
       padBottom: 0,
-      blend: "multiply",
     },
 
     /* -- Recipe Cards — 4 in a 2x2 ------------------------------ */
