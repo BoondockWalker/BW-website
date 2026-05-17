@@ -111,9 +111,13 @@ function CaseHeroFullBleed({ d }) {
       {h.image && (
         <div aria-hidden="true" style={{
           position: "absolute", inset: 0, zIndex: 1,
-          background: h.scrim === "bottomOnly"
-            ? "linear-gradient(180deg, transparent 0%, rgba(20,16,12,0.18) 35%, rgba(20,16,12,0.55) 60%, rgba(20,16,12,0.78) 80%, rgba(20,16,12,0.88) 100%)"
-            : "linear-gradient(95deg, rgba(20,16,12,0.62) 0%, rgba(20,16,12,0.42) 32%, rgba(20,16,12,0.22) 60%, rgba(20,16,12,0.30) 100%), linear-gradient(180deg, rgba(20,16,12,0.40) 0%, transparent 28%, transparent 70%, rgba(20,16,12,0.78) 100%)",
+          background: h.scrim === "none"
+            ? "transparent"
+            : h.scrim === "soft"
+              ? "linear-gradient(180deg, transparent 0%, rgba(20,16,12,0.08) 50%, rgba(20,16,12,0.32) 80%, rgba(20,16,12,0.50) 100%)"
+              : h.scrim === "bottomOnly"
+                ? "linear-gradient(180deg, transparent 0%, rgba(20,16,12,0.18) 35%, rgba(20,16,12,0.55) 60%, rgba(20,16,12,0.78) 80%, rgba(20,16,12,0.88) 100%)"
+                : "linear-gradient(95deg, rgba(20,16,12,0.62) 0%, rgba(20,16,12,0.42) 32%, rgba(20,16,12,0.22) 60%, rgba(20,16,12,0.30) 100%), linear-gradient(180deg, rgba(20,16,12,0.40) 0%, transparent 28%, transparent 70%, rgba(20,16,12,0.78) 100%)",
           pointerEvents: "none",
         }} />
       )}
@@ -174,7 +178,7 @@ function CaseHeroFullBleed({ d }) {
           color: h.titleColor || BW.chalk50,
           fontStyle: "italic",
           maxWidth: "16ch",
-          textShadow: h.image ? "0 2px 24px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45)" : "none",
+          textShadow: (h.image && h.titleShadow !== false) ? "0 2px 24px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45)" : "none",
         }}>
           {h.title}
         </h1>
