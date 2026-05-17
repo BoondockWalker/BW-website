@@ -169,22 +169,25 @@ function CaseHeroFullBleed({ d }) {
             push the ledger below the fold. */}
         <div style={{ flex: 1 }} />
 
-        {/* Display title — set huge, italic. Subtle entry animation on mount. */}
-        <Reveal kind="wipeUp" delay={150}>
-          <h1 style={{
-            fontFamily: BW.ffD,
-            fontSize: "clamp(64px, 9.5vw, 160px)",
-            fontWeight: 400,
-            letterSpacing: "-0.045em",
-            lineHeight: 0.9,
-            margin: "0 0 36px",
-            color: h.titleColor || BW.chalk50,
-            fontStyle: "italic",
-            maxWidth: "16ch",
-            textShadow: (h.image && h.titleShadow !== false) ? "0 2px 24px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45)" : "none",
-          }}>
-            {h.title}
-          </h1>
+        {/* Display title — set huge, italic. Subtle entry: fade in on load,
+            then slow drift upward as the user scrolls past. */}
+        <Reveal kind="fadeIn" delay={120}>
+          <Parallax amount={-50}>
+            <h1 style={{
+              fontFamily: BW.ffD,
+              fontSize: "clamp(64px, 9.5vw, 160px)",
+              fontWeight: 400,
+              letterSpacing: "-0.045em",
+              lineHeight: 0.9,
+              margin: "0 0 36px",
+              color: h.titleColor || BW.chalk50,
+              fontStyle: "italic",
+              maxWidth: "16ch",
+              textShadow: (h.image && h.titleShadow !== false) ? "0 2px 24px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45)" : "none",
+            }}>
+              {h.title}
+            </h1>
+          </Parallax>
         </Reveal>
 
         {/* Lower row — logo + standfirst, two columns. Pinned above the ledger. */}
