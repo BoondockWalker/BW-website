@@ -99,7 +99,7 @@ window.BW_CASE_DETAIL = {
       accent: "#ae4d47",
     },
 
-    /* -- Cleveland Underground — featured, floating ------------- */
+    /* -- Cleveland Underground — featured, floating + blend ----- */
     {
       kind: "floating",
       eyebrow: "§04 · Cleveland Underground",
@@ -110,6 +110,7 @@ window.BW_CASE_DETAIL = {
       surface: "#FBF7EE",
       maxWidth: 950,
       maxHeight: 820,
+      blend: "multiply",
     },
 
     /* -- Recipe Cards — 4 in a 2x2 ------------------------------ */
