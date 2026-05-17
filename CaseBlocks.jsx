@@ -364,7 +364,7 @@ function FullBleedImage({ block }) {
    FLOATING IMAGE — single image centered on chalk, generous margin.
    ========================================================================= */
 function FloatingImage({ block }) {
-  const { src, alt, caption, eyebrow, title, maxHeight = 580, maxWidth = 1100, surface = BW.chalk50, padding = "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)", shadow = false } = block;
+  const { src, alt, caption, eyebrow, title, maxHeight = 580, maxWidth = 1100, surface = BW.chalk50, padding = "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)", shadow = false, blend } = block;
   return (
     <section style={{ background: surface, padding, fontFamily: BW.ffG }}>
       <div style={{ maxWidth, margin: "0 auto", textAlign: "center" }}>
@@ -379,7 +379,7 @@ function FloatingImage({ block }) {
           </Reveal>
         )}
         <Reveal kind="wipe" threshold={0.15}>
-          <img src={src} alt={alt} style={{ width: "100%", maxHeight, objectFit: "contain", display: "block", margin: "0 auto", boxShadow: shadow ? "0 30px 60px -20px rgba(20,16,12,0.35), 0 18px 36px -14px rgba(20,16,12,0.20)" : "none" }} />
+          <img src={src} alt={alt} style={{ width: "100%", maxHeight, objectFit: "contain", display: "block", margin: "0 auto", boxShadow: shadow ? "0 30px 60px -20px rgba(20,16,12,0.35), 0 18px 36px -14px rgba(20,16,12,0.20)" : "none", mixBlendMode: blend || "normal" }} />
         </Reveal>
         {caption && (
           <Reveal kind="rise" delay={300}>
