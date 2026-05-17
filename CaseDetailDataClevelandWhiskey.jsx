@@ -110,6 +110,7 @@ window.BW_CASE_DETAIL = {
       imagePadding: "0",
       padTop: 0,
       padBottom: 0,
+      blend: "multiply",
     },
 
     /* -- Recipe Cards — 4 in a 2x2 ------------------------------ */
