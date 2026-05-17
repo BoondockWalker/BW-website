@@ -84,7 +84,7 @@ function CaseHeroFullBleed({ d }) {
         <div aria-hidden="true" style={{
           position: "absolute", inset: 0, zIndex: 0,
           backgroundImage: `url(${h.image})`,
-          backgroundSize: "cover",
+          backgroundSize: (isMobile && h.imageSizeMobile) ? h.imageSizeMobile : (h.imageSize || "cover"),
           backgroundPosition: (isMobile && h.imagePositionMobile) ? h.imagePositionMobile : (h.imagePosition || "center"),
           backgroundRepeat: "no-repeat",
         }} />
