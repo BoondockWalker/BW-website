@@ -217,20 +217,34 @@ window.BW_CASE_DETAIL = {
       padBottom: 0,
     },
 
+    /* -- Home page — long vertical scroll, floating + shadow ---- */
+    {
+      kind: "floating",
+      eyebrow: "§13 · Home Page",
+      title: "The home page — top to bottom.",
+      src: `${CW_BASE}/web-home-long.jpg`,
+      alt: "Cleveland Whiskey home page — long-form vertical screenshot, scrollable in full",
+      caption: "fig. 13 · Home Page",
+      surface: "#FBF7EE",
+      maxWidth: 760,
+      maxHeight: 2400,
+      shadow: true,
+    },
+
     /* -- Newsfeed posts — slider of 4 --------------------------- */
     {
       kind: "slider",
-      eyebrow: "§13 · Newsfeed Posts",
+      eyebrow: "§14 · Newsfeed Posts",
       title: "The line, in the feed.",
       surface: "#FBF7EE",
       slideHeight: 640,
       gap: 14,
       captionGap: 10,
       items: [
-        { src: `${CW_BASE}/news-apple.png`,           alt: "Cleveland Underground newsfeed — Apple wood",      caption: "fig. 13.1 · Apple",      width: 640, bg: "#FBF7EE" },
-        { src: `${CW_BASE}/news-blackcherry.png`,     alt: "Cleveland Underground newsfeed — Black Cherry",    caption: "fig. 13.2 · Black Cherry", width: 640, bg: "#FBF7EE" },
-        { src: `${CW_BASE}/news-hickory.png`,         alt: "Cleveland Underground newsfeed — Hickory",         caption: "fig. 13.3 · Hickory",     width: 640, bg: "#FBF7EE" },
-        { src: `${CW_BASE}/news-sugarmaple.png`,      alt: "Cleveland Underground newsfeed — Sugar Maple",     caption: "fig. 13.4 · Sugar Maple", width: 640, bg: "#FBF7EE" },
+        { src: `${CW_BASE}/news-apple.png`,           alt: "Cleveland Underground newsfeed — Apple wood",      caption: "fig. 14.1 · Apple",      width: 640, bg: "#FBF7EE" },
+        { src: `${CW_BASE}/news-blackcherry.png`,     alt: "Cleveland Underground newsfeed — Black Cherry",    caption: "fig. 14.2 · Black Cherry", width: 640, bg: "#FBF7EE" },
+        { src: `${CW_BASE}/news-hickory.png`,         alt: "Cleveland Underground newsfeed — Hickory",         caption: "fig. 14.3 · Hickory",     width: 640, bg: "#FBF7EE" },
+        { src: `${CW_BASE}/news-sugarmaple.png`,      alt: "Cleveland Underground newsfeed — Sugar Maple",     caption: "fig. 14.4 · Sugar Maple", width: 640, bg: "#FBF7EE" },
       ],
     },
   ],
