@@ -26,7 +26,7 @@ window.BW_CASE_DETAIL = {
     variant: "fullbleed",
     eyebrow: "Client Success Story · Case №12",
     title: "Distilling a radically different whiskey brand.",
-    image: `${CW_BASE}/hero.jpg`,
+    image: `${CW_BASE}/hero.jpg?v=2`,
     imageAlt: "Cleveland Whiskey — bottle and barrels, the radically different bourbon",
     imagePosition: "center center",
     imageBg: "#1F1410",
