@@ -85,7 +85,7 @@ function CaseHeroFullBleed({ d }) {
           position: "absolute", inset: 0, zIndex: 0,
           backgroundImage: `url(${h.image})`,
           backgroundSize: "cover",
-          backgroundPosition: h.imagePosition || "center",
+          backgroundPosition: (isMobile && h.imagePositionMobile) ? h.imagePositionMobile : (h.imagePosition || "center"),
           backgroundRepeat: "no-repeat",
         }} />
       )}

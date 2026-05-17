@@ -29,6 +29,7 @@ window.BW_CASE_DETAIL = {
     image: `${CW_BASE}/hero.jpg?v=2`,
     imageAlt: "Cleveland Whiskey — bottle and barrels, the radically different bourbon",
     imagePosition: "center center",
+    imagePositionMobile: "78% center",
     imageBg: "#1F1410",
     scrim: "soft",
     titleShadow: false,
