@@ -29,8 +29,8 @@
                    color reads continuously without a chalk seam at the pill midline. */
 
 const SITE_NAV_ITEMS = [
-  { label: "Work",        href: "work.html" },
   { label: "Capabilities", href: "capabilities.html" },
+  { label: "Work",        href: "work.html" },
   { label: "The Lab",      href: "index.html#the-lab" },
   { label: "Field Notes",  href: "field-notes.html" },
   { label: "About",        href: "about.html" },
