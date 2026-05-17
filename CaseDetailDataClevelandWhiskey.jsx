@@ -108,8 +108,8 @@ window.BW_CASE_DETAIL = {
       alt: "Cleveland Underground — the new collection, hero composition",
       caption: "fig. 04 · Cleveland Underground",
       surface: "#FBF7EE",
-      maxWidth: 760,
-      maxHeight: 560,
+      maxWidth: 950,
+      maxHeight: 820,
     },
 
     /* -- Recipe Cards — 4 in a 2x2 ------------------------------ */
