@@ -20,6 +20,26 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine artifact-by-artifact.
   artifacts: [
     {
+      id: "2026-05-17-cavs",
+      mediaType: "image",
+      src: SPEC + "2026-05-17-cavs.png",
+      alt: "Artifact — Cleveland Cavaliers.",
+      title: "Never Count Them Out",
+      commentary: {
+        hook: "Watched a team I'd already mourned find a pulse.",
+        body: [
+          "I had totally given up on the Cavs. Because it was clear they'd given up on themselves.",
+          "Never count someone out. You never know what they have until they dig deep enough to find it.",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["resilience", "sports"],
+      relatedSlug: null,
+      publishedAt: "2026-05-17",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-16-rainy-saturday-umbrella",
       mediaType: "image",
       src: SPEC + "2026-05-16-rainy-saturday-umbrella.jpg",
