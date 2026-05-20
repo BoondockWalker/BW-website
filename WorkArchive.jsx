@@ -28,7 +28,7 @@ function WorkMasthead({ count, filterCount }) {
           </h1>
           <div style={{ paddingBottom: isMobile ? 0 : 24 }}>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2vw, 19px)", lineHeight: 1.55, margin: "0 0 28px", color: BW.ink2, maxWidth: "44ch" }}>
-              Forty-seven cases, twelve here in long form. Each one is a story we walked an operator through — from the day the brief showed up on a napkin to the quarter the pipeline finally cleared the forecast.
+              Twelve selected cases — each one a story we walked an operator through, from the day the brief landed to the quarter the pipeline finally hit the number.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: "rgba(20,16,12,0.55)" }}>
               <div><div style={{ fontFamily: BW.ffG, fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 700, color: BW.ink, letterSpacing: "-0.02em", marginBottom: 4 }}>{count}</div><div>Featured</div></div>
@@ -100,7 +100,7 @@ function FeaturedCase({ c }) {
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, flexWrap: "wrap" }}>
           <span>§02</span>
           <span style={{ width: 28, height: 1, background: BW.brass }} />
-          <span>Featured Case · The longest walk of 2026</span>
+          <span>Featured Case</span>
         </div>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.05fr 1fr", maxWidth: 1440, margin: "0 auto", padding: "32px clamp(20px, 5vw, 64px) clamp(48px, 7vw, 64px)", gap: isMobile ? 40 : 64, alignItems: "center", position: "relative" }}>

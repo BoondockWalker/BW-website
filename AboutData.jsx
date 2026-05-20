@@ -67,7 +67,7 @@ const AB_BUILD = [
 
 const AB_LEDGER = [
   { value: "11", unit: "years", label: "On the bench" },
-  { value: "62", unit: "engagements", label: "Brands held" },
+  { value: "12", unit: "selected cases", label: "In the archive" },
   { value: "4.2", unit: "yr avg", label: "Client tenure" },
   { value: "18", unit: "issues", label: "Field Notes filed" },
   { value: "3", unit: "principals", label: "On every call" },

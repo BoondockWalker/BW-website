@@ -106,7 +106,7 @@ function V3FieldNotes() {
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "flex-end", gap: isMobile ? 24 : 0, marginBottom: 48 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24, flexWrap: "wrap" }}>
-              <span>§07</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Field Notes · Bulletin from the bench</span>
+              <span>§07</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Field Notes · Bulletin from the field</span>
             </div>
             <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: 0, color: BW.ink }}>
               Notes from the <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>field,</em> filed by the <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>walkers.</em>
@@ -166,7 +166,7 @@ function V3FieldNotes() {
 
         {/* Footer rail */}
         <div style={{ marginTop: 22, display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? 12 : 0, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
-          <span>47 notes filed since 2015 · all free, no email gate</span>
+          <span>All free, no email gate</span>
           <a style={{ color: BW.ink, textDecoration: "none", borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3, fontWeight: 700, cursor: "pointer" }}>Browse the full archive →</a>
         </div>
       </div>

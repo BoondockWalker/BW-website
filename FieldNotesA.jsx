@@ -60,10 +60,9 @@ function FNMasthead({ filterCount, totalCount }) {
         {/* Standfirst */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 24 : 80, paddingTop: 24, borderTop: `1.5px solid ${BW.ink}`, alignItems: "start" }}>
           <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.45, margin: 0, color: BW.ink, maxWidth: "44ch" }}>
-            A bulletin from the bench. Twice-monthly notes on brand, demand, and the lab — written by the operators who do the work. No email gate, no growth-hack gloss.
+            A bulletin from the field. Twice-monthly notes on brand, demand, and the lab — written by the team that does the work. No email gate, no growth-hack gloss.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-            <span>— Filed since 2015</span>
             <span>— ~600 operators on the list</span>
             <span>— Index updates weekly</span>
           </div>
@@ -142,7 +141,7 @@ function FNNewsletterRail() {
     <aside style={{ position: isMobile ? "static" : "sticky", top: isMobile ? "auto" : 80, alignSelf: "start", border: `1.5px solid ${BW.ink}`, background: BW.ink, color: BW.chalk50, padding: "28px 26px", display: "flex", flexDirection: "column", gap: 18 }}>
       <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>★ Subscribe</div>
       <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: 28, lineHeight: 1.05, letterSpacing: "-0.02em", margin: 0, color: BW.chalk50 }}>The bulletin, in your inbox.</h3>
-      <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.55, margin: 0, color: BW.chalk2 }}>Twice a month. The two best notes, plus one operator's-diary scrap from the bench. No email gate on the archive — this is just the easier way to read it.</p>
+      <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.55, margin: 0, color: BW.chalk2 }}>Twice a month. The two best notes, plus one short field entry. No email gate on the archive — this is just the easier way to read it.</p>
       {!submitted ? (
         <form onSubmit={(e) => { e.preventDefault(); if (email) setSubmitted(true); }} style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 4 }}>
           <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@operator.co" style={{ padding: "12px 14px", borderRadius: 0, border: `1px solid rgba(244,236,218,0.28)`, background: "transparent", color: BW.chalk50, fontFamily: BW.ffG, fontSize: 14, outline: "none" }} />
