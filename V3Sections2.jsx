@@ -112,7 +112,7 @@ function V3Lab() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 18px", borderBottom: `1px solid ${BW.ruleL}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
               <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ width: 8, height: 8, background: BW.forest, borderRadius: "50%", boxShadow: "0 0 0 4px rgba(46,70,38,0.18)" }} />
-                Trail · house voice loaded
+                Voice model loaded
               </span>
               <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontSize: 12, color: "rgba(20,16,12,0.55)", fontWeight: 400 }}>v0.4</span>
             </div>
@@ -179,7 +179,7 @@ function V3Trust() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
             <span>§06</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Operators we've shipped for</span>
           </div>
-          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>since 2015 · 47 cases</span>
+          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>12 selected cases</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
           {operators.map(o => {
@@ -238,7 +238,7 @@ function V3Footer() {
           {[
             ["Practice", ["Brand", "Demand", "The Lab", "Field Notes"]],
             ["Bureau", ["Cleveland", "Remote", "Careers", "Press"]],
-            ["Contact", ["hello@bdw.co", "Book a 30-min", "Substack", "LinkedIn"]],
+            ["Contact", ["hello@boondockwalker.com", "Book a 30-min", "Substack", "LinkedIn"]],
           ].map(([h, items]) => (
             <div key={h}>
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, marginBottom: 14, fontWeight: 700 }}>{h}</div>

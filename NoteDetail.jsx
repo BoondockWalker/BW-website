@@ -181,7 +181,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
               )}
               <div style={{ borderTop: `0.75px solid ${BW.ruleL}`, paddingTop: 20, display: "flex", flexDirection: "column", gap: 12 }}>
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>Tip the editor</div>
-                <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.5, margin: 0, color: BW.ink2 }}>Replied to a sentence and want to argue with it? <a href="mailto:bureau@boondockwalker.com" style={{ color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>bureau@boondockwalker.com</a></p>
+                <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.5, margin: 0, color: BW.ink2 }}>Replied to a sentence and want to argue with it? <a href="mailto:hello@boondockwalker.com" style={{ color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>hello@boondockwalker.com</a></p>
               </div>
             </aside>
           )}

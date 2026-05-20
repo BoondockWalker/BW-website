@@ -28,7 +28,7 @@ function V3Thesis() {
             </p>
           </div>
           <div style={{ paddingTop: 8 }}>
-            <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", marginBottom: 18, fontWeight: 600 }}>Four tenets, hand-stitched.</div>
+            <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", marginBottom: 18, fontWeight: 600 }}>Four tenets we work by.</div>
             <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "14px 22px", fontFamily: BW.ffSerif, fontSize: 17, color: BW.ink, lineHeight: 1.5 }}>
               {tenets.map(([n, t]) => (
                 <React.Fragment key={n}>

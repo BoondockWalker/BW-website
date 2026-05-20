@@ -146,7 +146,7 @@ function ArchiveGrid({ cases, view }) {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
             <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The Archive · Case Grid</span>
           </div>
-          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>{cases.length} of 47 cases shown</span>
+          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>{cases.length} cases shown</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr" : isMobile ? "repeat(2, 1fr)" : "repeat(2, 1fr)", gap: isNarrow ? 20 : 28 }}>
           {cases.map(c => <CaseCard key={c.slug} c={c} />)}
