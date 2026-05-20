@@ -5,6 +5,40 @@
    <NoteBlock> renders. Margin notes live in the parallel marginalia map.
    To add a new post: register both maps under the same slug. */
 const NOTE_BODIES = {
+  "brand-foundations-fail-tuesday": [
+    { kind: "lede", text: "The brand foundation arrives bound. Or designed, or presented, or all three. Pages on purpose, audience, voice, pillars, archetype. The CMO nods. The deck gets shared in a company-wide email with the subject line \"exciting.\" A few people open it. Most don't." },
+    { kind: "p", text: "Three months later, it's a file path nobody can find." },
+    { kind: "p", text: "This isn't a knock on the work. The strategy in those decks is usually fine — sometimes excellent. The problem isn't what's in the foundation. It's that the foundation can't be used by the people who need to use it, in the moments they need to use it." },
+    { kind: "h2", text: "The Tuesday test." },
+    { kind: "p", text: "It's Tuesday at 2pm. A copywriter is writing a paid social ad. A sales rep is drafting a follow-up email to a stalled deal. A junior designer is laying out a one-pager for a trade show booth. None of them have an hour to re-read a 60-page document. They have maybe ten minutes before the next thing." },
+    { kind: "p", text: "Can any of them use the brand foundation, in those ten minutes, to make a decision?" },
+    { kind: "p", text: "If the answer is no — and for most foundations, the honest answer is no — the foundation didn't fail at strategy. It failed at format." },
+    { kind: "h2", text: "Why this keeps happening." },
+    { kind: "p", text: "Three reasons, and they compound." },
+    { kind: "p", text: "The first is that brand foundations get sold to executives, so they get shaped for executives. The deliverable has to survive a boardroom presentation, justify a six-figure invoice, and read as serious. That pushes it toward density, design polish, and length. None of which help a copywriter on a Tuesday." },
+    { kind: "p", text: "The second is format inheritance. The deck-and-PDF combination is a hand-off shape from a print era. It made sense when \"the work\" meant a campaign that got produced once a year by a small team in the same building. It makes much less sense now, when the work is distributed across a dozen people in five tools and gets shipped every day." },
+    { kind: "p", text: "The third is the billing model. Agencies bill on the artifact, not on what the artifact enables. So the artifact gets thicker. More pages, more sections, more archetypes, more frameworks. Length signals value at the point of delivery. It signals nothing about whether the thing will get used." },
+    { kind: "p", text: "The result, across the industry, is consistent: foundations that win the presentation and lose the workday." },
+    { kind: "h2", text: "What a working foundation actually has to do." },
+    { kind: "p", text: "Reframe the deliverable. Not a document. A reference surface — something a practitioner can work against in the ten minutes they actually have." },
+    { kind: "p", text: "Three properties matter." },
+    { kind: "ol", items: [
+      "Queryable. A copywriter should be able to ask it a question and get an answer. \"Would we say 'unlock' or 'enable' here?\" \"Does this headline sound like us?\" \"What's the one-sentence version of our positioning I can drop into a cold email?\" The foundation has to be searchable, askable, navigable — not just readable.",
+      "Decision-shaped. Built around the choices people actually make. A practitioner on a Tuesday is not asking \"what is our brand archetype.\" They're asking \"should this ad open with a stat or a story.\" The foundation has to be organized around the second question, not the first. The strategic abstractions are upstream; the daily decisions are downstream; the foundation has to translate.",
+      "Embedded. Living where the work happens. Not in a shared drive. In the brief template, the writing tool, the slide deck, the email draft. The foundation has to meet the practitioner inside their workflow, not require them to leave it.",
+    ]},
+    { kind: "p", text: "A foundation with those three properties looks almost nothing like a 60-page PDF. It looks more like infrastructure than artifact." },
+    { kind: "h2", text: "What changes when the foundation gets used." },
+    { kind: "p", text: "This is the part that's easy to miss. A foundation that doesn't get used isn't neutral. It's not just expensive shelfware. It's worse than that — because in its absence, everyone invents the brand fresh every Tuesday." },
+    { kind: "p", text: "The copywriter writes the ad in their own voice. The sales rep drafts the email in theirs. The designer makes a call on the one-pager based on what feels right that afternoon. None of those people are doing anything wrong. They're doing their jobs, with the tools they have, under the pressure they're under. But the cumulative effect is a brand that drifts — not because the strategy was bad, but because the strategy never made it to the workday." },
+    { kind: "pullquote", text: "Brand consistency isn't a guideline document. It's a thousand small Tuesdays going the right way.", attr: "Field Notes No 21" },
+    { kind: "p", text: "A foundation that gets used compounds. Every brief, every email, every ad pulls in the same direction without anyone having to think hard about it. That's the real product. The PDF was never the product." },
+    { kind: "h2", text: "What we're building." },
+    { kind: "p", text: "We've spent twenty years writing brand foundations. The good ones got used. The great ones still didn't get used enough." },
+    { kind: "p", text: "So we're building something to close that gap — a tool that turns the foundation from a document you read once into a surface you work against every day." },
+    { kind: "p", text: "More on that soon." },
+    { kind: "endnote", text: "Mark is the principal at Boondock Walker. He has, over the years, written a number of 60-page brand foundations he is otherwise proud of." },
+  ],
   "arc-that-closes": [
     { kind: "lede", text: "Most marketing teams think they're telling one kind of story. They're actually telling two. One ends with a customer saying yes. The other ends with an award on the shelf." },
     { kind: "p", text: "These two stories often look the same on paper. They do very different jobs." },
@@ -60,6 +94,11 @@ const NOTE_BODIES = {
 };
 
 const NOTE_MARGINALIAS = {
+  "brand-foundations-fail-tuesday": [
+    { after: 2, text: "Pick a brand foundation you commissioned in the last three years. Ask three people on your team to find it without looking at email. Time them." },
+    { after: 6, text: "The Tuesday test isn't a thought experiment. Sit next to a copywriter and watch them write an ad. Note every time they reach for the brand doc and every time they don't. The ratio is the foundation's real adoption rate." },
+    { after: 13, text: "The hardest part is letting go of the artifact. The PDF feels like the deliverable. It isn't. The deliverable is the brand showing up the same way on Tuesday at 2pm whether you're in the room or not." },
+  ],
   "arc-that-closes": [
     { after: 4, text: "If you've ever sat in a kickoff and watched the agency's reel and thought \"beautiful, but I'm not sure who buys after watching that\" — you've felt the difference between these two stories." },
     { after: 9, text: "The \"next step sized small\" is the easiest fix and the one most teams skip. A 15-minute call beats a buy button. A buy button beats nothing. The point is something a person can do today, not later." },
