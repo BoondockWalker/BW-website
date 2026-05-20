@@ -18,7 +18,8 @@ const FN_AUTHORS = {
 };
 
 const FN_NOTES = [
-  { slug: "arc-that-closes",          issue: "No 20", date: "May 13 · 2026", kicker: "Voice / Long read",  title: "The story that closes. The story that wins awards.", dek: "Two kinds of stories. They look the same on paper. They do very different jobs.", author: "M. Nead",  minutes: 4, tag: "Voice",    art: "compass",  size: "L", featured: true, image: "assets/field-notes/arc-that-closes.webp", imageAlt: "Two narrative arcs on plum: same beats, different endings — one terminating in a decorative bloom, the other in a solid filled circle" },
+  { slug: "brand-foundations-fail-tuesday", issue: "No 21", date: "May 20 · 2026", kicker: "Brand / Long read", title: "Most brand foundations fail on a Tuesday.", dek: "Built to win the presentation. Not to survive the workday.", author: "M. Nead",  minutes: 5, tag: "Brand",    art: "receipts", size: "L", featured: true },
+  { slug: "arc-that-closes",          issue: "No 20", date: "May 13 · 2026", kicker: "Voice / Long read",  title: "The story that closes. The story that wins awards.", dek: "Two kinds of stories. They look the same on paper. They do very different jobs.", author: "M. Nead",  minutes: 4, tag: "Voice",    art: "compass",  size: "L", image: "assets/field-notes/arc-that-closes.webp", imageAlt: "Two narrative arcs on plum: same beats, different endings — one terminating in a decorative bloom, the other in a solid filled circle" },
   { slug: "seven-years-unagency",     issue: "No 19", date: "May 09 · 2026", kicker: "Operator's diary",   title: "Seven years unagency. What we learned, what's next.", dek: "We bet on a model. The bet paid. The next one is bigger.", author: "M. Nead",  minutes: 4, tag: "Voice",    art: "compass",  size: "L", image: "assets/field-notes/seven-years-unagency.webp", imageAlt: "Bauhaus-style illustration: a single confident path pivoting at a marked waypoint toward a distant horizon" },
 ];
 
