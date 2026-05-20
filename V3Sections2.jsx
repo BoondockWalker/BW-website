@@ -145,7 +145,7 @@ function V3Lab() {
 function V3Trust() {
   const isMobile = useMediaQuery("(max-width: 700px)");
   const isTablet = useMediaQuery("(max-width: 1000px)");
-  const operators = ["Walker Bros.", "Halberd", "N×NE", "Field & Co.", "Marrow", "Praxis", "Halyard", "Northbeam", "Bowline", "Atlas Mfg.", "Quarry", "Greylock"];
+  const operators = ["O'Neil DS", "TT Electronics", "Cleveland Whiskey", "AFIMAC", "Calyx", "Envera", "Nature's Legacy", "Central Kitchen", "Maker Town", "NewBridge", "Sacred Heart", "Archdiocese of Detroit"];
   const cols = isMobile ? 2 : isTablet ? 3 : 6;
   return (
     <section style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 80px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
