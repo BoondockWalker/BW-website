@@ -145,7 +145,30 @@ function V3Lab() {
 function V3Trust() {
   const isMobile = useMediaQuery("(max-width: 700px)");
   const isTablet = useMediaQuery("(max-width: 1000px)");
-  const operators = ["O'Neil DS", "TT Electronics", "Cleveland Whiskey", "AFIMAC", "Calyx", "Envera", "Nature's Legacy", "Central Kitchen", "Maker Town", "NewBridge", "Sacred Heart", "Archdiocese of Detroit"];
+  const operators = [
+    { name: "Cleveland Clinic Innovations" },
+    { name: "O'Neil DS", href: "case-oneil.html" },
+    { name: "TT Electronics", href: "case-tt-electronics.html" },
+    { name: "Cleveland Whiskey", href: "case-cleveland-whiskey.html" },
+    { name: "Oswald Companies" },
+    { name: "AFIMAC", href: "case-afimac.html" },
+    { name: "Gallagher Sharp" },
+    { name: "Bialosky Cleveland" },
+    { name: "Corporate United" },
+    { name: "Origin Entertainment" },
+    { name: "Suracy" },
+    { name: "Euclid Chemical Co." },
+    { name: "Evarts Tremaine" },
+    { name: "Exacta" },
+    { name: "Calyx", href: "case-calyx.html" },
+    { name: "Envera", href: "case-envera.html" },
+    { name: "Nature's Legacy", href: "case-natures-legacy.html" },
+    { name: "Central Kitchen", href: "case-central-kitchen.html" },
+    { name: "Maker Town", href: "case-maker-town.html" },
+    { name: "NewBridge", href: "case-newbridge.html" },
+    { name: "Sacred Heart", href: "case-sacred-heart.html" },
+    { name: "Archdiocese of Detroit", href: "case-archdiocese-detroit.html" },
+  ];
   const cols = isMobile ? 2 : isTablet ? 3 : 6;
   return (
     <section style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 80px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
@@ -157,9 +180,12 @@ function V3Trust() {
           <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>since 2015 · 47 cases</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
-          {operators.map(n => (
-            <div key={n} style={{ padding: "26px 14px", borderRight: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}`, fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, letterSpacing: "-0.005em", textTransform: "uppercase", color: BW.ink, textAlign: "center" }}>{n}</div>
-          ))}
+          {operators.map(o => {
+            const cellStyle = { padding: "26px 14px", borderRight: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}`, fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, letterSpacing: "-0.005em", textTransform: "uppercase", color: BW.ink, textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1.25 };
+            return o.href
+              ? <a key={o.name} href={o.href} style={{ ...cellStyle, textDecoration: "none", transition: "background 160ms ease" }} onMouseEnter={e => e.currentTarget.style.background = "rgba(20,16,12,0.06)"} onMouseLeave={e => e.currentTarget.style.background = "transparent"}>{o.name}</a>
+              : <div key={o.name} style={cellStyle}>{o.name}</div>;
+          })}
         </div>
       </div>
     </section>
