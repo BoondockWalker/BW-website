@@ -53,7 +53,7 @@ const BW_CAPABILITIES = {
         "Attribution & Reporting",
         "HubSpot Architecture",
       ],
-      example: { case: "Diebold Nixdorf", note: "Lifecycle program rebuild — pipeline lift across enterprise SKU lines." },
+      example: { case: "AFIMAC", note: "Lifecycle engine for a long-cycle service — introducing CSTL to buyers who didn't know the category existed." },
       surface: "plum",
       objectImg: "assets/coffee-napkin-burg.png",
       objectCap: "Fig. B · Coffee & napkin",
@@ -146,9 +146,10 @@ const BW_CAPABILITIES = {
       { v: "4×", k: "Aspire leaderboard recognition, consecutive years", c: "plum" },
       { v: "10", k: "Capabilities typically engaged across a retainer", c: "forest" },
     ],
+    // TODO: replace anonymized attribution with a real client quote + named attribution.
     pull: {
       quote: "They don't think like an agency. They think like a revenue team that happens to write well.",
-      attrib: "VP Marketing, mid-cap fintech",
+      attrib: "TODO — real client name + title",
     },
   },
 

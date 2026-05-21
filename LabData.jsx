@@ -165,9 +165,10 @@ const BW_LAB = {
       { v: "2×", k: "Editor approval rate on voice-cloned drafts versus cold drafts", c: "brass" },
       { v: "+38%", k: "Pipeline conversion lift after deploying the intent-and-fit model", c: "clay300" },
     ],
+    // TODO: replace anonymized attribution with a real client quote + named attribution.
     pull: {
       quote: "It stopped feeling like a vendor relationship. They were shipping things on Thursday that we'd asked about on Monday.",
-      attrib: "VP Demand Gen, enterprise services client",
+      attrib: "TODO — real client name + title",
     },
   },
 
