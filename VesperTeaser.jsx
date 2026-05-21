@@ -204,7 +204,7 @@ function VesperPage() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
             {[
               { k: "What it is", v: "An AI tool that builds your brand foundation — and helps your team use it" },
-              { k: "Who it's for", v: "Companies that need a real brand foundation without an agency engagement" },
+              { k: "Who it's for", v: "Companies that need to build a brand foundation — or finally use the one they have" },
               { k: "How fast", v: "Days, not months" },
               { k: "How much", v: "A fraction of agency cost" },
             ].map((s) => (

@@ -48,7 +48,7 @@ function LabVesperFeature() {
             <div style={{ marginTop: 4, display: "grid", gridTemplateColumns: isNarrow ? "1fr 1fr" : "repeat(3, 1fr)", borderTop: `1px solid ${BW.ruleL}`, paddingTop: 18 }}>
               {[
                 { k: "What", v: "A complete brand foundation, built by AI" },
-                { k: "Built for", v: "Companies without an agency-sized budget" },
+                { k: "Built for", v: "Companies that need to build a brand foundation — or finally use the one they have" },
                 { k: "Time and cost", v: "Days, not months. Fraction of agency cost." },
               ].map((s, i) => (
                 <div key={s.k} style={{ paddingRight: i < 2 ? 14 : 0, paddingLeft: i > 0 && !isNarrow ? 14 : 0 }}>
