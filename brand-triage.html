@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boondock Walker — Brand Triage</title>
+<link rel="icon" href="assets/BW-crest.svg" type="image/svg+xml">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  html, body { margin: 0; background: #FBF7EE; color: #14100C; }
+  body { font-family: 'Space Grotesk', system-ui, sans-serif; }
+  a { cursor: pointer; }
+  a:hover { opacity: 0.92; }
+  ::selection { background: #C44A2A; color: #FBF7EE; }
+
+  /* =========================================================================
+     BRAND TRIAGE — restyled for the new BW site.
+     - Tokens: BW.chalk50 #FBF7EE, BW.chalk #F4ECDA, BW.ink #14100C,
+       BW.clay #C44A2A, BW.brass #C8962B, BW.forest #2E4626
+     - Type: Fraunces (display italic), Space Grotesk (sans), Copernicus (serif),
+       JetBrains Mono (eyebrow labels)
+     - Editorial register: §NN · LABEL eyebrows, 1.5px ink borders, no rounding,
+       large display italics, mono labels.
+     ========================================================================= */
+  #brandTriageApp *, #brandTriageApp *::before, #brandTriageApp *::after { box-sizing: border-box; }
+  #brandTriageApp { max-width: 1100px; margin: 0 auto; padding: clamp(56px, 9vw, 110px) clamp(20px, 5vw, 56px); position: relative; }
+
+  /* hatch overlay matches site rhythm */
+  #brandTriageApp::before {
+    content: ""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, rgba(20,16,12,0.04) 0 1px, transparent 1px 5px);
+    mix-blend-mode: multiply; pointer-events: none;
+  }
+  #brandTriageApp > * { position: relative; z-index: 1; }
+
+  #brandTriageApp [data-step] { display: none !important; }
+  #brandTriageApp [data-step].active { display: block !important; }
+
+  /* Eyebrow row + headline */
+  #brandTriageApp .eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: #C44A2A; font-weight: 700; margin-bottom: 28px;
+  }
+  #brandTriageApp .display-h1 {
+    font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 400;
+    font-size: clamp(48px, 9vw, 84px); letter-spacing: -0.03em; line-height: 0.96;
+    margin: 0 0 28px; color: #14100C;
+  }
+  #brandTriageApp .display-h1 em { color: #C44A2A; font-style: italic; font-weight: 400; }
+  #brandTriageApp .lede {
+    font-family: 'Copernicus', Georgia, serif; font-size: 19px; line-height: 1.55;
+    margin: 0 0 18px; color: rgba(20,16,12,0.72); max-width: 56ch;
+  }
+  #brandTriageApp .lede.small { font-size: 15px; color: rgba(20,16,12,0.62); }
+  #brandTriageApp h2.step-h2 {
+    font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 400;
+    font-size: clamp(32px, 5vw, 48px); letter-spacing: -0.025em; line-height: 1.05;
+    margin: 0 0 10px; color: #14100C;
+  }
+  #brandTriageApp .step-sub {
+    font-family: 'Copernicus', Georgia, serif; font-size: 17px; line-height: 1.55;
+    color: rgba(20,16,12,0.72); margin: 0 0 32px; max-width: 60ch;
+  }
+
+  /* Progress rail — three thin segments, brass when active */
+  #brandTriageApp .progress { display: flex; gap: 10px; margin: 0 0 36px; max-width: 480px; }
+  #brandTriageApp .progress-bar { height: 3px; flex: 1; background: rgba(20,16,12,0.14); }
+  #brandTriageApp .progress-bar.active { background: #C8962B; }
+
+  /* Welcome state */
+  #brandTriageApp .welcome { padding: clamp(48px, 8vw, 96px) 0; max-width: 720px; }
+  #brandTriageApp .welcome .display-h1 { margin-bottom: 36px; }
+  #brandTriageApp .welcome .lede { font-size: 21px; margin-bottom: 14px; }
+  #brandTriageApp .welcome-cta { margin-top: 28px; }
+
+  /* Tool card — ink-bordered editorial container */
+  #brandTriageApp .tool-card {
+    border: 1.5px solid #14100C; background: #FBF7EE;
+    box-shadow: 0 30px 60px -28px rgba(20,16,12,0.18);
+  }
+  #brandTriageApp .tool-card-header {
+    padding: 12px 22px; border-bottom: 1px solid rgba(20,16,12,0.18);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #14100C; font-weight: 700;
+  }
+  #brandTriageApp .tool-card-body { padding: 28px clamp(20px, 4vw, 32px); }
+
+  /* Category tag — editorial pill with colored border + small caps */
+  #brandTriageApp .tag {
+    display: inline-block; font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+    padding: 5px 10px; border: 1px solid currentColor; border-radius: 3px;
+    margin-bottom: 14px;
+  }
+  #brandTriageApp .tag-sales       { color: #C44A2A; }
+  #brandTriageApp .tag-positioning { color: #C8962B; }
+  #brandTriageApp .tag-brand       { color: #5E2638; }
+  #brandTriageApp .tag-identity    { color: #2E4626; }
+  #brandTriageApp .tag-marketing   { color: #2E4626; }
+  #brandTriageApp .tag-culture     { color: rgba(20,16,12,0.7); }
+  #brandTriageApp .tag-other       { color: rgba(20,16,12,0.55); }
+
+  /* Pain point button — chalk surface, ink border, clay accent on hover/select */
+  #brandTriageApp .category-group { margin-bottom: 32px; }
+  #brandTriageApp .pain-points { display: flex; flex-direction: column; gap: 8px; }
+  #brandTriageApp .pain-point {
+    width: 100%; text-align: left; padding: 16px 18px;
+    border: 1px solid rgba(20,16,12,0.18); background: #FBF7EE;
+    color: #14100C; cursor: pointer; transition: background 0.18s, border-color 0.18s, color 0.18s;
+    font-family: 'Copernicus', Georgia, serif; font-size: 17px; font-weight: 400; line-height: 1.4;
+  }
+  #brandTriageApp .pain-point:hover { border-color: #14100C; background: rgba(196,74,42,0.04); }
+  #brandTriageApp .pain-point.selected {
+    background: #14100C; border-color: #14100C; color: #FBF7EE;
+  }
+  #brandTriageApp .pain-point.selected:hover { background: #14100C; }
+  #brandTriageApp .pain-point:disabled { opacity: 0.4; cursor: default; }
+
+  /* Ranked list (Step 2) */
+  #brandTriageApp .ranked-container {
+    background: #F4ECDA; padding: 18px;
+    border: 1px solid rgba(20,16,12,0.18); margin-bottom: 28px;
+  }
+  #brandTriageApp .ranked-container.empty { display: none !important; }
+  #brandTriageApp .ranked-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(20,16,12,0.55); font-weight: 700; margin-bottom: 14px;
+  }
+  #brandTriageApp .ranked-list { display: flex; flex-direction: column; gap: 8px; }
+  #brandTriageApp .ranked-item {
+    display: flex; align-items: center; gap: 12px;
+    background: #FBF7EE; padding: 12px 16px; border: 1px solid rgba(20,16,12,0.18);
+    cursor: grab; transition: box-shadow 0.18s, transform 0.18s, opacity 0.18s;
+  }
+  #brandTriageApp .ranked-item:active { cursor: grabbing; }
+  #brandTriageApp .ranked-item.dragging { opacity: 0.5; box-shadow: 0 8px 20px rgba(20,16,12,0.18); transform: scale(1.01); }
+  #brandTriageApp .ranked-item.drag-over { border-color: #C44A2A; border-style: dashed; }
+  #brandTriageApp .rank-number {
+    width: 26px; height: 26px; background: #14100C; color: #FBF7EE;
+    font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  #brandTriageApp .ranked-text { flex: 1; font-family: 'Copernicus', Georgia, serif; font-size: 17px; color: #14100C; line-height: 1.4; }
+  #brandTriageApp .drag-handle { color: rgba(20,16,12,0.4); margin-right: 2px; font-size: 14px; user-select: none; }
+  #brandTriageApp .rank-btn {
+    background: none; border: none; cursor: pointer; padding: 4px 8px;
+    font-size: 18px; color: rgba(20,16,12,0.4); transition: color 0.15s;
+  }
+  #brandTriageApp .rank-btn:hover { color: #C44A2A; }
+
+  /* Form */
+  #brandTriageApp .form-group { margin-bottom: 22px; }
+  #brandTriageApp .form-label {
+    display: block; font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; color: rgba(20,16,12,0.62); margin-bottom: 8px;
+  }
+  #brandTriageApp .form-label span.optional { opacity: 0.6; font-weight: 400; }
+  #brandTriageApp .form-input {
+    width: 100%; padding: 12px 0; background: transparent; color: #14100C;
+    border: none; border-bottom: 1.5px solid rgba(20,16,12,0.25);
+    font-family: 'Copernicus', Georgia, serif; font-size: 17px;
+    transition: border-color 0.18s;
+  }
+  #brandTriageApp .form-input:focus { outline: none; border-color: #14100C; }
+  #brandTriageApp textarea.form-input { resize: vertical; min-height: 84px; line-height: 1.5; padding: 12px 14px; border: 1.5px solid rgba(20,16,12,0.25); background: #FBF7EE; }
+  #brandTriageApp textarea.form-input:focus { border-color: #14100C; }
+  #brandTriageApp select.form-input { padding: 12px 0; }
+
+  /* Custom-concern block under the ranked list */
+  #brandTriageApp .custom-concern-box { margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(20,16,12,0.18); }
+
+  /* Buttons — match Btn primitive */
+  #brandTriageApp .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 14px 24px; border: none; cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif; font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 700;
+    transition: background 0.18s, color 0.18s, border-color 0.18s, opacity 0.18s;
+  }
+  #brandTriageApp .btn-primary { background: #14100C; color: #FBF7EE; }
+  #brandTriageApp .btn-primary:hover { background: #C44A2A; }
+  #brandTriageApp .btn-primary:disabled { background: rgba(20,16,12,0.2); color: rgba(251,247,238,0.7); cursor: not-allowed; }
+  #brandTriageApp .btn-secondary { background: transparent; color: #14100C; border: 1.5px solid #14100C; }
+  #brandTriageApp .btn-secondary:hover { background: #14100C; color: #FBF7EE; }
+  #brandTriageApp .btn-link {
+    background: none; border: none; cursor: pointer; padding: 8px 0;
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 700; color: rgba(20,16,12,0.62);
+  }
+  #brandTriageApp .btn-link:hover { color: #14100C; }
+
+  /* Footer nav inside steps */
+  #brandTriageApp .footer-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 0 0; margin-top: 32px; border-top: 1px solid rgba(20,16,12,0.18);
+  }
+  #brandTriageApp .selected-count {
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: rgba(20,16,12,0.62); font-weight: 700;
+  }
+
+  /* Results page */
+  #brandTriageApp .results-header { margin-bottom: 36px; }
+  #brandTriageApp .results-eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: #C44A2A;
+    font-weight: 700; margin-bottom: 14px;
+  }
+  #brandTriageApp .results-h1 {
+    font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 400;
+    font-size: clamp(40px, 7vw, 64px); letter-spacing: -0.03em; line-height: 1.0;
+    margin: 0 0 8px; color: #14100C;
+  }
+  #brandTriageApp .results-sub {
+    font-family: 'Copernicus', Georgia, serif; font-size: 17px; color: rgba(20,16,12,0.72);
+  }
+  #brandTriageApp .challenges-summary { background: #F4ECDA; padding: 22px; margin-bottom: 36px; border: 1px solid rgba(20,16,12,0.18); }
+  #brandTriageApp .challenge-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 10px; }
+  #brandTriageApp .challenge-item:last-child { margin-bottom: 0; }
+  #brandTriageApp .challenge-num {
+    width: 22px; height: 22px; background: #14100C; color: #FBF7EE;
+    font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+  #brandTriageApp .challenge-text { font-family: 'Copernicus', Georgia, serif; font-size: 17px; color: #14100C; line-height: 1.4; }
+  #brandTriageApp .custom-concern-result { margin-top: 14px; padding-top: 14px; border-top: 1px dashed rgba(20,16,12,0.18); font-family: 'Copernicus', Georgia, serif; font-size: 15px; color: rgba(20,16,12,0.72); font-style: italic; }
+  #brandTriageApp .custom-concern-result:empty { display: none; }
+  #brandTriageApp .custom-concern-result .concern-label { font-style: normal; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(20,16,12,0.55); font-weight: 700; display: block; margin-bottom: 6px; }
+  #brandTriageApp .guidance-header {
+    font-family: 'JetBrains Mono', ui-monospace, monospace; text-transform: uppercase;
+    font-size: 11px; letter-spacing: 0.3em; font-weight: 700; color: #C44A2A;
+    margin-top: 28px; margin-bottom: 14px;
+  }
+  #brandTriageApp .guidance-header:first-child { margin-top: 0; }
+  #brandTriageApp .guidance-text {
+    font-family: 'Copernicus', Georgia, serif; font-size: 17px; line-height: 1.65;
+    color: #14100C; margin: 0 0 14px; max-width: 64ch;
+  }
+  #brandTriageApp .cta-box {
+    display: flex; flex-direction: column; gap: 12px;
+    padding: 28px; background: #F4ECDA; border: 1px solid rgba(20,16,12,0.18);
+    margin-top: 40px;
+  }
+  @media (min-width: 640px) { #brandTriageApp .cta-box { flex-direction: row; } }
+  #brandTriageApp .cta-box .btn { flex: 1; padding: 16px 24px; }
+  #brandTriageApp .email-confirm {
+    text-align: center; font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(20,16,12,0.55); font-weight: 700; margin-top: 28px;
+  }
+
+  /* Loading overlay */
+  #brandTriageApp .loading-overlay {
+    position: fixed; inset: 0; background: rgba(251,247,238,0.96);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 9999;
+  }
+  #brandTriageApp .loading-spinner {
+    width: 48px; height: 48px; border: 3px solid rgba(20,16,12,0.14);
+    border-top-color: #C44A2A; border-radius: 50%;
+    animation: bt-spin 1s linear infinite; margin-bottom: 24px;
+  }
+  @keyframes bt-spin { to { transform: rotate(360deg); } }
+  #brandTriageApp .loading-text {
+    font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 400;
+    font-size: 22px; color: #14100C; margin-bottom: 8px;
+  }
+  #brandTriageApp .loading-subtext {
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: rgba(20,16,12,0.55); font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<!-- React mount: top chrome (SiteHeader) -->
+<div id="chromeTop"></div>
+
+<!-- Brand Triage app — vanilla JS, restyled to match the new BW site -->
+<div id="brandTriageApp">
+
+  <!-- Step 0: Welcome -->
+  <div data-step="0" class="active">
+    <div class="welcome">
+      <div class="eyebrow">§01 · Form 04-T · Patient intake</div>
+      <h1 class="display-h1">What's actually <em>wrong</em> with the brand?</h1>
+      <p class="lede">Most founders feel the symptom long before they can name it. Brand Triage is a two-minute intake that puts a clinical name on the discomfort — and tells you whether to watch it, treat it, or rebuild.</p>
+      <p class="lede small">You'll select the challenges you recognize, rank the most critical, and tell us where to send a personalized PDF. No call required.</p>
+      <div class="welcome-cta">
+        <button class="btn btn-primary" onclick="BrandTriage.goToStep(1)">Get Started →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 1: Select -->
+  <div data-step="1">
+    <div class="eyebrow">§02 · Symptom checklist · 01 of 03</div>
+    <div class="progress">
+      <div class="progress-bar active"></div>
+      <div class="progress-bar"></div>
+      <div class="progress-bar"></div>
+    </div>
+    <h2 class="step-h2">What challenges are you facing?</h2>
+    <p class="step-sub">Select all that apply. The chart sketches itself as you go.</p>
+    <div id="painPointsList"></div>
+    <div class="footer-nav">
+      <span class="selected-count"><span id="selectedCount">0</span> selected</span>
+      <button class="btn btn-primary" id="step1Next" disabled onclick="BrandTriage.goToStep(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- Step 2: Rank -->
+  <div data-step="2">
+    <div class="eyebrow">§03 · Prioritize · 02 of 03</div>
+    <div class="progress">
+      <div class="progress-bar active"></div>
+      <div class="progress-bar active"></div>
+      <div class="progress-bar"></div>
+    </div>
+    <h2 class="step-h2">Prioritize your top challenges.</h2>
+    <p class="step-sub">Tap to add up to five, most critical first. Drag to reorder.</p>
+    <div class="ranked-container empty" id="rankedContainer">
+      <div class="ranked-label">Your priorities</div>
+      <div class="ranked-list" id="rankedList"></div>
+    </div>
+    <div id="availableList"></div>
+    <div class="custom-concern-box">
+      <label class="form-label">Anything else we should know? <span class="optional">(optional)</span></label>
+      <textarea class="form-input" id="customConcern" rows="3" placeholder="Other challenges or context that would help us read your situation…"></textarea>
+    </div>
+    <div class="footer-nav">
+      <button class="btn-link" onclick="BrandTriage.goToStep(1)">← Back</button>
+      <button class="btn btn-primary" id="step2Next" disabled onclick="BrandTriage.goToStep(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Contact -->
+  <div data-step="3">
+    <div class="eyebrow">§04 · Send my report · 03 of 03</div>
+    <div class="progress">
+      <div class="progress-bar active"></div>
+      <div class="progress-bar active"></div>
+      <div class="progress-bar active"></div>
+    </div>
+    <h2 class="step-h2">Where should we send your report?</h2>
+    <p class="step-sub">We'll email you a PDF with personalized guidance.</p>
+    <div class="form-group">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-input" id="contactName" placeholder="Jane Smith" oninput="BrandTriage.checkForm()">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" id="contactEmail" placeholder="jane@company.com" oninput="BrandTriage.checkForm()">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Company</label>
+      <input type="text" class="form-input" id="contactCompany" placeholder="Acme Inc." oninput="BrandTriage.checkForm()">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Industry</label>
+      <select class="form-input" id="contactIndustry" oninput="BrandTriage.checkForm()">
+        <option value="">Select your industry…</option>
+        <option value="Manufacturing">Manufacturing</option>
+        <option value="Professional Services">Professional Services</option>
+        <option value="Technology / SaaS">Technology / SaaS</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="Financial Services">Financial Services</option>
+        <option value="Construction / Trades">Construction / Trades</option>
+        <option value="Retail / E-commerce">Retail / E-commerce</option>
+        <option value="Hospitality / Food Service">Hospitality / Food Service</option>
+        <option value="Real Estate">Real Estate</option>
+        <option value="Nonprofit">Nonprofit</option>
+        <option value="Education">Education</option>
+        <option value="Legal">Legal</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Phone <span class="optional">(optional)</span></label>
+      <input type="tel" class="form-input" id="contactPhone" placeholder="(555) 555-5555">
+    </div>
+    <div class="footer-nav">
+      <button class="btn-link" onclick="BrandTriage.goToStep(2)">← Back</button>
+      <button class="btn btn-primary" id="step3Next" disabled onclick="BrandTriage.submitForm()">Get my report →</button>
+    </div>
+  </div>
+
+  <!-- Step 4: Results -->
+  <div data-step="4">
+    <div class="results-header">
+      <div class="results-eyebrow">§05 · Brand Triage report</div>
+      <h2 class="results-h1">Your personalized read.</h2>
+      <p class="results-sub">Personalized guidance for <span id="resultsCompany"></span>.</p>
+    </div>
+    <div class="challenges-summary">
+      <div class="ranked-label">Your top challenges</div>
+      <div id="resultsChallenges"></div>
+      <div id="resultsCustomConcern" class="custom-concern-result"></div>
+    </div>
+    <div id="guidanceContent"></div>
+    <div class="cta-box">
+      <button class="btn btn-primary" onclick="BrandTriage.downloadPDF()">Download PDF</button>
+      <a class="btn btn-secondary" href="index.html#contact" style="text-decoration:none">Schedule a call →</a>
+    </div>
+    <p class="email-confirm">A copy has been sent to <span id="resultsEmail"></span></p>
+  </div>
+
+</div>
+
+<!-- React mount: bottom chrome (V3Footer) -->
+<div id="chromeFooter"></div>
+
+<!-- Brand Triage logic (vanilla JS — unmodified from the live BW build) -->
+<script>
+(function() {
+  const painPoints = [
+    { id: 1,  text: "We're not growing as fast as we should",                    category: 'sales' },
+    { id: 2,  text: "We need more qualified leads",                              category: 'sales' },
+    { id: 3,  text: "Our sales are declining",                                   category: 'sales' },
+    { id: 4,  text: "We don't have the tools we need to sell",                   category: 'sales' },
+    { id: 5,  text: "Our team struggles to articulate our value",                category: 'sales' },
+    { id: 6,  text: "We're launching a new product or service",                  category: 'positioning' },
+    { id: 7,  text: "We've expanded into new markets",                           category: 'positioning' },
+    { id: 8,  text: "We need to position for investment or acquisition",         category: 'positioning' },
+    { id: 9,  text: "We're pivoting and need to reintroduce ourselves",          category: 'positioning' },
+    { id: 10, text: "We're entering a crowded market",                           category: 'positioning' },
+    { id: 11, text: "Our brand doesn't reflect who we are today",                category: 'brand' },
+    { id: 12, text: "We need to stand out from competitors",                     category: 'brand' },
+    { id: 13, text: "We've outgrown our current brand",                          category: 'brand' },
+    { id: 14, text: "We lack a compelling brand story",                          category: 'brand' },
+    { id: 15, text: "Customers don't connect with us emotionally",               category: 'brand' },
+    { id: 16, text: "Our look is outdated or uninspired",                        category: 'identity' },
+    { id: 17, text: "Our marketing materials are inconsistent",                  category: 'identity' },
+    { id: 18, text: "Our website doesn't represent us well",                     category: 'identity' },
+    { id: 19, text: "We lack professional, cohesive brand assets",               category: 'identity' },
+    { id: 20, text: "Customers don't fully understand what we do",               category: 'marketing' },
+    { id: 21, text: "We struggle to communicate how we're different",            category: 'marketing' },
+    { id: 22, text: "We're behind in digital and don't know where to start",     category: 'marketing' },
+    { id: 23, text: "Our messaging isn't resonating",                            category: 'marketing' },
+    { id: 24, text: "Internally, we're not aligned on who we are",               category: 'culture' },
+    { id: 25, text: "We're struggling to attract top talent",                    category: 'culture' },
+    { id: 26, text: "Our team can't articulate what we stand for",               category: 'culture' },
+    { id: 27, text: "I'm not sure what's wrong, but something is",               category: 'other' },
+    { id: 28, text: "I don't have time for this — just call me",                 category: 'other' }
+  ];
+
+  const categoryLabels = {
+    sales: 'Sales', positioning: 'Positioning', brand: 'Brand',
+    identity: 'Identity', marketing: 'Marketing', culture: 'Culture', other: 'Other'
+  };
+
+  let selected = [];
+  let ranked = [];
+
+  function goToStep(step) {
+    document.querySelectorAll('#brandTriageApp [data-step]').forEach(function(el) {
+      el.classList.remove('active');
+    });
+    document.querySelector('#brandTriageApp [data-step="' + step + '"]').classList.add('active');
+    if (step === 2) renderRankingStep();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderPainPoints() {
+    var container = document.getElementById('painPointsList');
+    var categories = [];
+    painPoints.forEach(function(p) {
+      if (categories.indexOf(p.category) === -1) categories.push(p.category);
+    });
+
+    var html = '';
+    categories.forEach(function(cat) {
+      html += '<div class="category-group">';
+      html += '<span class="tag tag-' + cat + '">' + categoryLabels[cat] + '</span>';
+      html += '<div class="pain-points">';
+      painPoints.forEach(function(p) {
+        if (p.category === cat) {
+          html += '<button class="pain-point cat-' + p.category + '" data-id="' + p.id + '">' + p.text + '</button>';
+        }
+      });
+      html += '</div></div>';
+    });
+    container.innerHTML = html;
+
+    container.querySelectorAll('.pain-point').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        toggleSelect(parseInt(this.getAttribute('data-id')));
+      });
+    });
+  }
+
+  function toggleSelect(id) {
+    var point = painPoints.find(function(p) { return p.id === id; });
+    var idx = selected.findIndex(function(p) { return p.id === id; });
+    if (idx > -1) {
+      selected.splice(idx, 1);
+      ranked = ranked.filter(function(p) { return p.id !== id; });
+    } else {
+      selected.push(point);
+    }
+    updateSelectionUI();
+  }
+
+  function updateSelectionUI() {
+    document.querySelectorAll('#brandTriageApp .pain-point').forEach(function(btn) {
+      var id = parseInt(btn.getAttribute('data-id'));
+      var isSelected = selected.some(function(p) { return p.id === id; });
+      if (isSelected) btn.classList.add('selected'); else btn.classList.remove('selected');
+    });
+    document.getElementById('selectedCount').textContent = selected.length;
+    document.getElementById('step1Next').disabled = selected.length === 0;
+  }
+
+  function renderRankingStep() {
+    var rankedContainer = document.getElementById('rankedContainer');
+    var rankedList = document.getElementById('rankedList');
+    var availableList = document.getElementById('availableList');
+
+    if (ranked.length === 0) rankedContainer.classList.add('empty');
+    else rankedContainer.classList.remove('empty');
+
+    var rankedHtml = '';
+    ranked.forEach(function(p, i) {
+      rankedHtml += '<div class="ranked-item" draggable="true" data-index="' + i + '">';
+      rankedHtml += '<span class="drag-handle">☰</span>';
+      rankedHtml += '<span class="rank-number">' + (i + 1) + '</span>';
+      rankedHtml += '<span class="ranked-text">' + p.text + '</span>';
+      rankedHtml += '<button class="rank-btn remove" data-action="remove" data-index="' + i + '">×</button>';
+      rankedHtml += '</div>';
+    });
+    rankedList.innerHTML = rankedHtml;
+
+    var draggedItem = null;
+    var draggedIndex = null;
+    rankedList.querySelectorAll('.ranked-item').forEach(function(item) {
+      item.addEventListener('dragstart', function(e) {
+        draggedItem = this;
+        draggedIndex = parseInt(this.getAttribute('data-index'));
+        this.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      item.addEventListener('dragend', function() {
+        this.classList.remove('dragging');
+        rankedList.querySelectorAll('.ranked-item').forEach(function(el) { el.classList.remove('drag-over'); });
+      });
+      item.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        if (this !== draggedItem) this.classList.add('drag-over');
+      });
+      item.addEventListener('dragleave', function() { this.classList.remove('drag-over'); });
+      item.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+        var targetIndex = parseInt(this.getAttribute('data-index'));
+        if (draggedIndex !== targetIndex) {
+          var draggedPoint = ranked.splice(draggedIndex, 1)[0];
+          ranked.splice(targetIndex, 0, draggedPoint);
+          renderRankingStep();
+        }
+      });
+    });
+
+    rankedList.querySelectorAll('.rank-btn.remove').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        removeRank(parseInt(this.getAttribute('data-index')));
+      });
+    });
+
+    var available = selected.filter(function(p) {
+      return !ranked.some(function(r) { return r.id === p.id; });
+    });
+    var availHtml = '';
+    available.forEach(function(p) {
+      availHtml += '<button class="pain-point cat-' + p.category + '" data-id="' + p.id + '"' + (ranked.length >= 5 ? ' disabled' : '') + '>' + p.text + '</button>';
+    });
+    availableList.innerHTML = availHtml;
+
+    availableList.querySelectorAll('.pain-point').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        if (ranked.length < 5) addToRank(parseInt(this.getAttribute('data-id')));
+      });
+    });
+
+    document.getElementById('step2Next').disabled = ranked.length < 1;
+  }
+
+  function addToRank(id) {
+    if (ranked.length >= 5) return;
+    var point = painPoints.find(function(p) { return p.id === id; });
+    if (!ranked.some(function(r) { return r.id === id; })) {
+      ranked.push(point);
+      renderRankingStep();
+    }
+  }
+
+  function removeRank(index) {
+    ranked.splice(index, 1);
+    renderRankingStep();
+  }
+
+  function checkForm() {
+    var name = document.getElementById('contactName').value.trim();
+    var email = document.getElementById('contactEmail').value.trim();
+    var company = document.getElementById('contactCompany').value.trim();
+    var industry = document.getElementById('contactIndustry').value;
+    document.getElementById('step3Next').disabled = !(name && email && company && industry);
+  }
+
+  async function submitForm() {
+    var name = document.getElementById('contactName').value.trim();
+    var email = document.getElementById('contactEmail').value.trim();
+    var company = document.getElementById('contactCompany').value.trim();
+    var industry = document.getElementById('contactIndustry').value;
+    var phone = document.getElementById('contactPhone').value.trim();
+    var customConcern = document.getElementById('customConcern').value.trim();
+
+    var btn = document.getElementById('step3Next');
+    btn.textContent = 'Generating…';
+    btn.disabled = true;
+
+    var loadingOverlay = document.createElement('div');
+    loadingOverlay.className = 'loading-overlay';
+    loadingOverlay.innerHTML = '<div class="loading-spinner"></div><div class="loading-text">We\'re working on it…</div><div class="loading-subtext">Generating your personalized guidance</div>';
+    document.getElementById('brandTriageApp').appendChild(loadingOverlay);
+
+    var guidance = '';
+    try {
+      var response = await fetch('https://boondockwalker.com/wp-content/themes/hello-elementor/brand-triage-api.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, company: company, industry: industry, phone: phone, challenges: ranked, customConcern: customConcern })
+      });
+      var data = await response.json();
+      guidance = data.guidance;
+    } catch (error) {
+      var cats = [];
+      ranked.forEach(function(r) {
+        var label = categoryLabels[r.category].toLowerCase();
+        if (cats.indexOf(label) === -1) cats.push(label);
+      });
+      guidance = 'Thank you for sharing your challenges, ' + name + '. Based on what you\'ve told us, you\'re facing a combination of ' + cats.join(', ') + ' issues that are likely interconnected.\n\nYour top priority — "' + (ranked[0] ? ranked[0].text : '') + '" — is often a symptom of deeper brand alignment issues. When addressed strategically, solving this can create positive ripple effects across your other challenges.\n\nWe\'d love to explore this further with you. A Boondock Walker strategist will reach out within 24 hours to discuss your specific situation and potential paths forward.';
+    }
+
+    loadingOverlay.remove();
+
+    document.getElementById('resultsCompany').textContent = company;
+    document.getElementById('resultsEmail').textContent = email;
+
+    var challengesHtml = '';
+    ranked.forEach(function(p, i) {
+      challengesHtml += '<div class="challenge-item">';
+      challengesHtml += '<span class="challenge-num">' + (i + 1) + '</span>';
+      challengesHtml += '<span class="challenge-text">' + p.text + '</span>';
+      challengesHtml += '</div>';
+    });
+    document.getElementById('resultsChallenges').innerHTML = challengesHtml;
+
+    var customConcernResult = document.getElementById('resultsCustomConcern');
+    if (customConcern) {
+      customConcernResult.innerHTML = '<span class="concern-label">Additional context</span>"' + customConcern + '"';
+    } else {
+      customConcernResult.innerHTML = '';
+    }
+
+    var guidanceHtml = '';
+    var lines = guidance.split('\n');
+    lines.forEach(function(line) {
+      line = line.trim();
+      if (!line) return;
+      if (line.indexOf('## ') === 0) {
+        guidanceHtml += '<h3 class="guidance-header">' + line.replace('## ', '') + '</h3>';
+      } else if (line.indexOf('**') === 0 && line.lastIndexOf('**') === line.length - 2) {
+        guidanceHtml += '<h3 class="guidance-header">' + line.replace(/\*\*/g, '') + '</h3>';
+      } else {
+        line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        guidanceHtml += '<p class="guidance-text">' + line + '</p>';
+      }
+    });
+    document.getElementById('guidanceContent').innerHTML = guidanceHtml;
+
+    goToStep(4);
+  }
+
+  function downloadPDF() {
+    if (typeof jspdf === 'undefined' && typeof jsPDF === 'undefined') {
+      var script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+      script.onload = function() { loadLogoAndGenerate(); };
+      document.head.appendChild(script);
+    } else {
+      loadLogoAndGenerate();
+    }
+  }
+
+  function loadLogoAndGenerate() {
+    var img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = function() { generatePDF(img); };
+    img.onerror = function() { generatePDF(null); };
+    img.src = 'assets/BW-crest.svg';
+  }
+
+  function generatePDF(logoImg) {
+    function normalizeText(text) {
+      if (!text) return '';
+      return text
+        .replace(/[‘’]/g, "'")
+        .replace(/[“”]/g, '"')
+        .replace(/[–—]/g, '-')
+        .replace(/…/g, '...')
+        .replace(/ /g, ' ')
+        .replace(/[​-‍﻿]/g, '');
+    }
+    var company = normalizeText(document.getElementById('resultsCompany').textContent);
+    var name = normalizeText(document.getElementById('contactName').value.trim());
+    var customConcern = normalizeText(document.getElementById('customConcern').value.trim());
+    var challenges = [];
+    document.querySelectorAll('#resultsChallenges .challenge-item').forEach(function(item, i) {
+      var text = item.querySelector('.challenge-text');
+      if (text) challenges.push((i + 1) + '. ' + normalizeText(text.textContent));
+    });
+    var guidanceSections = [];
+    document.querySelectorAll('#guidanceContent > *').forEach(function(el) {
+      if (el.classList.contains('guidance-header')) {
+        guidanceSections.push({ type: 'header', text: normalizeText(el.textContent) });
+      } else if (el.classList.contains('guidance-text')) {
+        guidanceSections.push({ type: 'text', text: normalizeText(el.textContent) });
+      }
+    });
+    var doc = new jspdf.jsPDF();
+    var pageWidth = doc.internal.pageSize.getWidth();
+    var pageHeight = doc.internal.pageSize.getHeight();
+    var margin = 20;
+    var maxWidth = pageWidth - (margin * 2);
+    var y = margin;
+    var lineHeight = 1.1;
+    var currentSection = '';
+    function addFooter() {
+      if (logoImg) {
+        var logoHeight = 15;
+        var logoWidth = logoHeight * (logoImg.width / logoImg.height);
+        var logoX = (pageWidth - logoWidth) / 2;
+        doc.addImage(logoImg, 'PNG', logoX, pageHeight - 20, logoWidth, logoHeight);
+      }
+    }
+    function checkPageBreak(neededSpace) {
+      if (y + neededSpace > pageHeight - 30) {
+        addFooter();
+        doc.addPage();
+        y = margin;
+        return true;
+      }
+      return false;
+    }
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(40, 40, 40);
+    doc.text('Brand Triage Report', margin, y);
+    y += 8;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(80, 80, 80);
+    doc.text('For: ' + name + ', ' + company, margin, y);
+    y += 15;
+    var customConcernLines = customConcern ? doc.splitTextToSize('"' + customConcern + '"', maxWidth - 10) : [];
+    var challengeBoxHeight = 12 + (challenges.length * 9);
+    if (customConcern) challengeBoxHeight += 15 + (customConcernLines.length * 6);
+    checkPageBreak(challengeBoxHeight);
+    doc.setFillColor(245, 245, 245);
+    doc.roundedRect(margin, y, maxWidth, challengeBoxHeight, 3, 3, 'F');
+    y += 8;
+    doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(150, 150, 150);
+    doc.text('YOUR TOP CHALLENGES', margin + 5, y); y += 9;
+    doc.setFontSize(11); doc.setFont('helvetica', 'normal'); doc.setTextColor(40, 40, 40);
+    challenges.forEach(function(c) { doc.text(c, margin + 5, y); y += 8; });
+    if (customConcern) {
+      y += 6;
+      doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(150, 150, 150);
+      doc.text('ADDITIONAL CONTEXT', margin + 5, y); y += 8;
+      doc.setFontSize(10); doc.setFont('helvetica', 'italic'); doc.setTextColor(80, 80, 80);
+      customConcernLines.forEach(function(line) { doc.text(line, margin + 5, y); y += 6; });
+    }
+    y += 10;
+    guidanceSections.forEach(function(section) {
+      if (section.type === 'header') {
+        currentSection = section.text.toUpperCase();
+        checkPageBreak(20); y += 6;
+        doc.setFontSize(11); doc.setFont('helvetica', 'bold'); doc.setTextColor(196, 74, 42);
+        doc.text(section.text.toUpperCase(), margin, y); y += 10;
+      } else {
+        doc.setFontSize(10); doc.setTextColor(40, 40, 40);
+        var numberedMatch = section.text.match(/^(\d+\.\s*)(\*\*)?([^—\-]+)(\*\*)?([\s]*[—\-][\s]*)(.*)$/);
+        if (currentSection === 'STRATEGIC PRIORITIES' && numberedMatch) {
+          var number = numberedMatch[1];
+          var boldPart = numberedMatch[3].trim();
+          var separator = ' — ';
+          var restPart = numberedMatch[6] || '';
+          checkPageBreak(15);
+          doc.setFont('helvetica', 'bold');
+          var boldText = number + boldPart;
+          var boldWidth = doc.getTextWidth(boldText);
+          doc.text(boldText, margin, y);
+          doc.setFont('helvetica', 'normal');
+          var remainingWidth = maxWidth - boldWidth;
+          var fullRest = separator + restPart;
+          if (doc.getTextWidth(fullRest) <= remainingWidth) {
+            doc.text(fullRest, margin + boldWidth, y); y += 7 * lineHeight;
+          } else {
+            doc.text(separator, margin + boldWidth, y); y += 7 * lineHeight;
+            var restLines = doc.splitTextToSize(restPart, maxWidth - 10);
+            restLines.forEach(function(line) { checkPageBreak(8); doc.text(line, margin + 10, y); y += 6 * lineHeight; });
+          }
+          y += 5;
+        } else {
+          doc.setFont('helvetica', 'normal');
+          var lines = doc.splitTextToSize(section.text, maxWidth);
+          checkPageBreak(lines.length * 7);
+          lines.forEach(function(line) { checkPageBreak(8); doc.text(line, margin, y); y += 6 * lineHeight; });
+          y += 5;
+        }
+      }
+    });
+    checkPageBreak(40); y += 10;
+    doc.setDrawColor(200, 200, 200);
+    doc.line(margin, y, pageWidth - margin, y); y += 10;
+    doc.setFontSize(11); doc.setFont('helvetica', 'normal'); doc.setTextColor(100, 100, 100);
+    doc.text('Ready to take the next step?', pageWidth / 2, y, { align: 'center' }); y += 8;
+    doc.setFontSize(12); doc.setFont('helvetica', 'bold'); doc.setTextColor(196, 74, 42);
+    doc.text('boondockwalker.com', pageWidth / 2, y, { align: 'center' });
+    addFooter();
+    var totalPages = doc.internal.getNumberOfPages();
+    for (var i = 1; i < totalPages; i++) { doc.setPage(i); addFooter(); }
+    doc.save('Brand-Triage-Report-' + company.replace(/[^a-zA-Z0-9]/g, '-') + '.pdf');
+  }
+
+  renderPainPoints();
+
+  window.BrandTriage = { goToStep: goToStep, checkForm: checkForm, submitForm: submitForm, downloadPDF: downloadPDF };
+})();
+</script>
+
+<!-- Site chrome — React renders SiteHeader at top + V3Footer at bottom -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="V3Sections2.jsx"></script>
+<script type="text/babel" src="SiteHeader.jsx"></script>
+<script type="text/babel">
+ReactDOM.createRoot(document.getElementById("chromeTop")).render(<SiteHeader current="The Lab" sticky={true} />);
+ReactDOM.createRoot(document.getElementById("chromeFooter")).render(<V3Footer />);
+</script>
+
+</body>
+</html>
