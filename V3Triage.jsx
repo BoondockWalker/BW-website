@@ -179,7 +179,7 @@ function V3Triage() {
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>Free · No call required</div>
               </div>
               <div style={{ padding: "0 22px 20px" }}>
-                <a style={{ display: "inline-flex", justifyContent: "center", alignItems: "center", background: BW.ink, color: BW.chalk50, padding: "14px 22px", borderRadius: 4, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", whiteSpace: "nowrap", minHeight: 44, width: "100%", boxSizing: "border-box" }}>Start Brand Triage →</a>
+                <a href="brand-triage.html" style={{ display: "inline-flex", justifyContent: "center", alignItems: "center", background: BW.ink, color: BW.chalk50, padding: "14px 22px", borderRadius: 4, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", whiteSpace: "nowrap", minHeight: 44, width: "100%", boxSizing: "border-box" }}>Start Brand Triage →</a>
               </div>
             </>
           ) : (
@@ -195,7 +195,7 @@ function V3Triage() {
                 Free<br/>No call required
               </div>
               <div style={{ padding: "20px 22px 20px 0" }}>
-                <a style={{ background: BW.ink, color: BW.chalk50, padding: "13px 22px", borderRadius: 4, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", whiteSpace: "nowrap" }}>Start Brand Triage →</a>
+                <a href="brand-triage.html" style={{ background: BW.ink, color: BW.chalk50, padding: "13px 22px", borderRadius: 4, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", whiteSpace: "nowrap" }}>Start Brand Triage →</a>
               </div>
             </>
           )}
