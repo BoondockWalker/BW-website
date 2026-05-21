@@ -191,22 +191,22 @@ function VesperPage() {
           </h1>
 
           {/* Tagline */}
-          <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.8vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.025em", margin: "0 0 clamp(24px, 3vw, 32px)", color: BW.ink, maxWidth: "20ch" }}>
-            A brand foundation <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>your team will actually use.</em>
+          <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.8vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.025em", margin: "0 0 clamp(24px, 3vw, 32px)", color: BW.ink, maxWidth: "30ch" }}>
+            A complete brand foundation. <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>Built in days. Used every day.</em>
           </p>
 
           {/* Standfirst */}
-          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2.1vw, 22px)", lineHeight: 1.5, margin: "0 0 clamp(36px, 4vw, 48px)", color: BW.ink2, maxWidth: "58ch" }}>
-            We've written brand foundations for twenty years. Even the best ones tend to sit unopened on a marketing team's shared drive. Vesper is the AI assistant we built to fix that. It's trained on your brand foundation and lives inside the tools your team already uses — so a writer, seller, or designer can stay on-brand without leaving their workflow.
+          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2.1vw, 22px)", lineHeight: 1.5, margin: "0 0 clamp(36px, 4vw, 48px)", color: BW.ink2, maxWidth: "60ch" }}>
+            For most of our twenty years, we've built brand foundations the way every agency does: expensive, slow, and stuck in a PDF nobody opens. Vesper changes both halves. It builds you a comprehensive foundation — positioning, voice, audiences, messaging, narrative — at a fraction of agency cost, in days. Then it lives inside the tools your team already uses, so the foundation earns its keep every day.
           </p>
 
           {/* Ledger row */}
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
             {[
-              { k: "What it is", v: "An AI assistant trained on your brand foundation" },
-              { k: "Who it's for", v: "Marketing teams whose brand guide is praised at launch, then never used" },
-              { k: "Availability", v: "Rolling early access, starting now" },
-              { k: "Built by", v: "Boondock Walker · The Lab" },
+              { k: "What it is", v: "An AI tool that builds your brand foundation — and helps your team use it" },
+              { k: "Who it's for", v: "Companies that need a real brand foundation without an agency engagement" },
+              { k: "How fast", v: "Days, not months" },
+              { k: "How much", v: "A fraction of agency cost" },
             ].map((s) => (
               <div key={s.k} style={{ padding: "18px 20px", borderRight: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}`, background: BW.chalk50 }}>
                 <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 6 }}>{s.k}</div>
@@ -217,14 +217,60 @@ function VesperPage() {
         </div>
       </section>
 
-      {/* §02 — What it does. Three capability cards. */}
+      {/* §02 — Build the foundation. */}
       <section style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}` }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 32, flexWrap: "wrap" }}>
-            <span>§02</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>What Vesper does · Today</span>
+            <span>§02</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Build · The foundation</span>
           </div>
-          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 48px", color: BW.ink, maxWidth: "22ch" }}>
-            Three things your team can do <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>in seconds.</em>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? 28 : 64, alignItems: "start", marginBottom: 40 }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: 0, color: BW.ink }}>
+              A complete brand foundation, <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>built in days, at a fraction of agency cost.</em>
+            </h2>
+            <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "44ch" }}>
+              You answer structured questions about your company, your audience, and where you're headed. Vesper produces the kind of comprehensive brand foundation that has traditionally required an expensive, multi-month agency engagement.
+            </p>
+          </div>
+
+          {/* What Vesper builds for you */}
+          <div style={{ border: `1.5px solid ${BW.ink}`, background: BW.chalk }}>
+            <div style={{ padding: "14px 22px", borderBottom: `1px solid ${BW.ruleL}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span>What Vesper builds for you</span>
+              <span style={{ color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>Five core sections</span>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(5, 1fr)" }}>
+              {[
+                { n: "01", k: "Positioning", v: "How you stand apart in your category, in language a customer can repeat." },
+                { n: "02", k: "Voice & tone", v: "How your brand sounds when it speaks — and what to never say." },
+                { n: "03", k: "Audiences",   v: "Who you're for, and what each segment actually cares about." },
+                { n: "04", k: "Messaging",   v: "Pillars and proof points your team can pull from on any deadline." },
+                { n: "05", k: "Narrative",   v: "The story your marketing, sales, and product all tell together." },
+              ].map((p, i) => (
+                <div key={p.n} style={{ padding: "22px 22px", borderRight: !isMobile && i < 4 ? `1px solid ${BW.ruleL}` : "none", borderBottom: isMobile && i < 4 ? `1px solid ${BW.ruleL}` : "none", display: "flex", flexDirection: "column", gap: 8 }}>
+                  <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>{p.n}</div>
+                  <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 20, lineHeight: 1.15, color: BW.ink, fontWeight: 400, letterSpacing: "-0.015em" }}>{p.k}</div>
+                  <div style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.5, color: BW.ink2 }}>{p.v}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ marginTop: 18, display: "flex", flexWrap: "wrap", gap: 16, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>
+            <span>● Days, not months</span>
+            <span>● A fraction of agency cost</span>
+            <span>● Yours to own and update</span>
+          </div>
+        </div>
+      </section>
+
+      {/* §03 — Use it every day. Three capability cards. */}
+      <section style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}` }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 32, flexWrap: "wrap" }}>
+            <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Use · Every day</span>
+          </div>
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 48px", color: BW.ink, maxWidth: "24ch" }}>
+            Then your team can use it <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>in seconds.</em>
           </h2>
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", border: `1.5px solid ${BW.ink}`, background: BW.chalk50 }}>
@@ -268,24 +314,25 @@ function VesperPage() {
         </div>
       </section>
 
-      {/* §03 — Pullquote band on ink */}
+      {/* Pullquote band on ink — the thesis */}
       <section style={{ background: BW.ink, color: BW.chalk50, padding: "clamp(56px, 8vw, 96px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk50} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk50} 1px, transparent 1px)`, backgroundSize: "60px 60px", opacity: 0.04, pointerEvents: "none" }} />
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", textAlign: "center" }}>
           <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 28 }}>★ The thesis</div>
           <blockquote style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.6vw, 56px)", lineHeight: 1.08, letterSpacing: "-0.022em", margin: 0, color: BW.chalk50 }}>
-            "A brand foundation only matters when your team is actually using it."
+            "A brand foundation is only worth building if your team is going to use it. Vesper makes both parts true."
           </blockquote>
           <div style={{ marginTop: 32, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>— Field Notes № 22</div>
         </div>
       </section>
 
       {/* §04 — What's coming + Signup, two-column */}
+      {/* (was §03 before the BUILD/USE split) */}
       <section style={{ background: BW.plum, color: BW.chalk50, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk50} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk50} 1px, transparent 1px)`, backgroundSize: "60px 60px", opacity: 0.04, pointerEvents: "none" }} />
         <div style={{ maxWidth: 1240, margin: "0 auto", position: "relative" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 32, flexWrap: "wrap" }}>
-            <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>What's coming · And how to get on the list</span>
+            <span>§04</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>What's coming · And how to get on the list</span>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.05fr 1fr", gap: isMobile ? 40 : 64, alignItems: "start" }}>
@@ -326,20 +373,21 @@ function VesperPage() {
       </section>
 
       {/* §05 — Read the announcement (Field Note recirc) */}
+      {/* (was §04 before the BUILD/USE split) */}
       <section style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}` }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
-            <span>§04</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The long version</span>
+            <span>§05</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The long version</span>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 28 : 56, alignItems: "start" }}>
             <div>
               <a href="note.html?slug=introducing-vesper" style={{ display: "block", border: `1.5px solid ${BW.ink}`, padding: "32px clamp(22px, 4vw, 36px) 28px", background: BW.chalk50, textDecoration: "none", color: BW.ink }}>
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 14 }}>Field Notes № 22 · Lab / Announcement</div>
                 <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, lineHeight: 1.05, letterSpacing: "-0.025em", margin: "0 0 16px", color: BW.ink }}>
-                  Introducing Vesper. A brand foundation that gets used.
+                  Introducing Vesper. A complete brand foundation, built in days.
                 </h3>
                 <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.55, color: BW.ink2, margin: "0 0 20px" }}>
-                  Eighteen months in development. The full story: why we built Vesper, what it does today, what's coming next, and the principles we set for ourselves along the way.
+                  The full story: how Vesper replaces an expensive, multi-month agency engagement with a comprehensive foundation in days — and how it then lives inside your team's tools to stay useful every day.
                 </p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: `1px solid ${BW.ruleL}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
                   <span>M. Nead · 6 min walk</span>
