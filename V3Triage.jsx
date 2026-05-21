@@ -30,9 +30,9 @@ function V3Triage() {
 
   const VERDICT_COLOR = { WATCH: BW.forest, TREAT: BW.brass, REBUILD: BW.clay };
   const VERDICT_NOTE = {
-    WATCH:   "monitor — no urgent intervention",
-    TREAT:   "targeted work, weeks not quarters",
-    REBUILD: "foundation cracked — start over",
+    WATCH:   "Track these quarterly. They're not what's blocking growth today — but if they're still here in a year, they're next up.",
+    TREAT:   "Fixable in a focused 4-to-8-week sprint. The work is contained — usually a single surface like messaging, the sales deck, or a piece of the funnel.",
+    REBUILD: "The cracks are in the foundation. Campaigns and patches will keep rolling off until the positioning is solid. Plan on a 90-day rebuild before downstream work starts compounding.",
   };
 
   // chart data — only show rows for verdicts present in the selection
@@ -115,13 +115,13 @@ function V3Triage() {
                 <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 30, lineHeight: 1.18, color: "rgba(244,236,218,0.78)", margin: 0, fontWeight: 400, letterSpacing: "-0.02em", maxWidth: 420 }}>
                   The chart writes itself once the patient speaks up.
                 </p>
-                <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "8px 18px", fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.04em", color: "rgba(244,236,218,0.7)", maxWidth: 420 }}>
-                  <span style={{ color: BW.forest, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>Watch</span>
-                  <span style={{ fontFamily: BW.ffSerif, fontSize: 13, fontStyle: "italic" }}>monitor — no urgent intervention</span>
-                  <span style={{ color: BW.brass,  fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>Treat</span>
-                  <span style={{ fontFamily: BW.ffSerif, fontSize: 13, fontStyle: "italic" }}>targeted work, weeks not quarters</span>
-                  <span style={{ color: BW.clay,   fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>Rebuild</span>
-                  <span style={{ fontFamily: BW.ffSerif, fontSize: 13, fontStyle: "italic" }}>foundation cracked — start over</span>
+                <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "12px 18px", fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.04em", color: "rgba(244,236,218,0.7)", maxWidth: 480 }}>
+                  {["WATCH", "TREAT", "REBUILD"].map((v) => (
+                    <React.Fragment key={v}>
+                      <span style={{ color: VERDICT_COLOR[v], fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}>{v}</span>
+                      <span style={{ fontFamily: BW.ffSerif, fontSize: 13.5, lineHeight: 1.45 }}>{VERDICT_NOTE[v]}</span>
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
             ) : (
@@ -147,7 +147,7 @@ function V3Triage() {
                           <span style={{ fontFamily: BW.ffM, fontSize: 9, color: "rgba(244,236,218,0.45)", fontWeight: 600 }}>{String(matches.length).padStart(2, "0")} symptom{matches.length === 1 ? "" : "s"}</span>
                         </div>
                         <div>
-                          <div style={{ fontFamily: BW.ffSerif, fontSize: 13, fontStyle: "italic", color: "rgba(244,236,218,0.7)", marginBottom: 6 }}>{VERDICT_NOTE[v]}</div>
+                          <div style={{ fontFamily: BW.ffSerif, fontSize: 13.5, lineHeight: 1.45, color: "rgba(244,236,218,0.78)", marginBottom: 10 }}>{VERDICT_NOTE[v]}</div>
                           <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 4 }}>
                             {matches.map((s) => (
                               <li key={s.id} style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.4, color: BW.chalk }}>
