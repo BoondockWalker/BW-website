@@ -160,17 +160,17 @@ function BMMasthead() {
         </div>
 
         {/* Wordmark */}
-        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(64px, 14vw, 184px)", lineHeight: 0.86, letterSpacing: "-0.04em", margin: "clamp(28px,4vw,44px) 0 clamp(20px,3vw,32px)", color: BW.ink }}>
+        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(64px, 14vw, 184px)", lineHeight: 0.86, letterSpacing: "-0.025em", margin: "clamp(28px,4vw,44px) 0 clamp(20px,3vw,32px)", color: BW.ink }}>
           BenchMarks.
         </h1>
 
         {/* Standfirst */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 24 : 80, paddingTop: 24, borderTop: `1.5px solid ${BW.ink}`, alignItems: "start" }}>
           <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.45, margin: 0, color: BW.ink, maxWidth: "48ch" }}>
-            One thing on the bench, every day. A photograph, a quote, a link, a recording — whatever the operator pinned to the wall this morning, with a note on why it matters.
+            One thing on the desk, every day. A photograph, a quote, a link, a recording — whatever the operator pinned to the wall this morning, with a note on why it matters.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-            <span>— One thing from the bench, every day.</span>
+            <span>— One thing from the desk, every day.</span>
             <span>— Same one all day</span>
             <span>— New one tomorrow</span>
           </div>
@@ -226,7 +226,7 @@ function BMCuratorStrip({ curator }) {
             fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase",
             color: BW.ink3, fontWeight: 700,
           }}>
-            One thing from the bench, every day.
+            One thing from the desk, every day.
           </span>
         </div>
       </div>
@@ -267,7 +267,7 @@ function BMToday({ artifact, isArchive, onPrev, onNext, onShare, sharing, shareT
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: "clamp(24px, 3vw, 36px)", flexWrap: "wrap" }}>
           <span>§02</span>
           <span style={{ width: 28, height: 1, background: BW.clay }} />
-          <span>Today, on the bench</span>
+          <span>Today, on the desk</span>
           <span style={{ flex: 1, height: 1, background: BW.ruleL, minWidth: 32 }} />
           <span style={{ color: BW.ink2 }}>{artifact.publishedAt}</span>
         </div>
@@ -1166,7 +1166,7 @@ function BMRecent({ artifacts, todayId }) {
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", paddingBottom: 16, borderBottom: `1.5px solid ${BW.ink}`, marginBottom: 28, flexWrap: "wrap", gap: 12 }}>
           <h2 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 3.4vw, 40px)", lineHeight: 1, letterSpacing: "-0.02em", margin: 0 }}>
-            Lately, on the bench.
+            Lately, on the desk.
           </h2>
           <a href="benchmarks-archive.html" style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: BW.ink, textDecoration: "none", borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3 }}>
             View archive →
@@ -1204,7 +1204,7 @@ function BMFooter() {
           <a href="about.html" style={{ display: "block", color: BW.chalk2, textDecoration: "none" }}>About</a>
         </div>
         <div style={{ fontFamily: BW.ffSerif, fontSize: 14, color: BW.chalk2, lineHeight: 1.6, fontStyle: "italic" }}>
-          "If something on the bench earned its spot today, it'll have to defend it again tomorrow."<br/>
+          "If something on the desk earned its spot today, it'll have to defend it again tomorrow."<br/>
           <span style={{ fontStyle: "normal", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3 }}>— The bench, house rule</span>
         </div>
         <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, lineHeight: 1.8 }}>© 2026 BDW Bureau<br/>One thing / day · forever</div>

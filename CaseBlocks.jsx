@@ -24,7 +24,7 @@ function CaseHero({ d }) {
           </div>
         </Reveal>
         <Reveal kind="rise" delay={140}>
-          <h1 style={{ fontFamily: BW.ffD, fontSize: "clamp(56px, 8vw, 120px)", fontWeight: 400, letterSpacing: "-0.035em", lineHeight: 0.95, margin: "0 0 56px", color: BW.ink, fontStyle: "italic" }}>
+          <h1 style={{ fontFamily: BW.ffD, fontSize: "clamp(56px, 8vw, 120px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.95, margin: "0 0 56px", color: BW.ink, fontStyle: "italic" }}>
             {d.hero.title}
           </h1>
         </Reveal>
@@ -176,7 +176,7 @@ function CaseHeroFullBleed({ d }) {
             fontFamily: BW.ffD,
             fontSize: "clamp(64px, 9.5vw, 160px)",
             fontWeight: 400,
-            letterSpacing: "-0.045em",
+            letterSpacing: "-0.03em",
             lineHeight: 0.9,
             margin: "0 0 36px",
             color: h.titleColor || BW.chalk50,

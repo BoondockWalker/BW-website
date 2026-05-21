@@ -168,7 +168,7 @@ function LabSpecimens() {
 
         <div style={{ marginTop: 28, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
           <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 600 }}>BDW · Lab · Specimen index</span>
-          <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>Fig. 05 · Hypotheses on the bench</span>
+          <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>Fig. 05 · Hypotheses in the lab</span>
         </div>
       </div>
     </section>
@@ -236,7 +236,7 @@ function LabCTA() {
           <span style={{ width: 28, height: 1, background: BW.clay300 }} />
           <span>{d.eyebrow.split(" / ")[1]}</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(48px, 9vw, 124px)", lineHeight: 0.92, letterSpacing: "-0.04em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
+        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(48px, 9vw, 124px)", lineHeight: 0.92, letterSpacing: "-0.025em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
           {d.title} <em style={{ color: BW.clay300, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
         </h2>
         <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? 32 : 64, alignItems: "end" }}>

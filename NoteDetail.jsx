@@ -5,6 +5,81 @@
    <NoteBlock> renders. Margin notes live in the parallel marginalia map.
    To add a new post: register both maps under the same slug. */
 const NOTE_BODIES = {
+  "introducing-vesper": [
+    { kind: "lede", text: "Most brands are built on a foundation that's never been defined. The founder knows the product, the customer, and the problem the product solves. What the founder doesn't have — and has never had time to write down — is a clear statement of what the brand stands for, who it speaks to, and how it sounds. Without that, every downstream decision becomes a guess." },
+    { kind: "p", text: "For most of our twenty years at Boondock Walker, this has been the work: sitting with operators and founders and writing the foundation that defines the brand. Some of those engagements have run six figures and several months. Almost none of them have been small." },
+    { kind: "p", text: "Today we are launching Vesper. It is an AI-guided brand strategy platform that produces a complete brand foundation in days, at a fraction of agency cost, for the founders and small business owners we could never serve at agency scale." },
+    { kind: "p", text: "Vesper is a product of the Boondock Walker Lab. It runs on the same methodology our agency clients have paid for over the last decade. The framework hasn't changed. What's changed is who can access it." },
+    { kind: "h2", text: "How Vesper works." },
+    { kind: "p", text: "Vesper runs on a five-step framework we call GUIDE — Gather, Understand, Identify, Design, Execute. You answer a structured set of questions about your business, your audience, and your ambition; Vesper produces the foundation step by step. The output is comprehensive: positioning, voice, audiences, messaging, narrative." },
+    { kind: "ol", items: [
+      "Gather. Discovery — your business, your market, your audience, and the story only you can tell.",
+      "Understand. Finding the patterns, tensions, and truths that become your strategic raw material.",
+      "Identify. Pinpointing the core — your values, purpose, positioning, and personality.",
+      "Design. Designing the external expression of your foundation — voice, message, brand promise.",
+      "Execute. Everything comes together in your living brand foundation, ready from day one.",
+    ]},
+    { kind: "p", text: "It is the same framework Boondock Walker strategists run with agency clients. The AI does the analytic and synthetic work that used to require a senior strategist's calendar — and a calendar like that runs three to six months, on average, before a founder gets a foundation in their hands." },
+    { kind: "h2", text: "What you get." },
+    { kind: "p", text: "Not a PDF. Not a binder. A living brand foundation, organized into four sections that grow with the business:" },
+    { kind: "ol", items: [
+      "Internal Identity — vision, core purpose, mission, brand values, brand personality.",
+      "External Positioning — brand promise, value proposition, position statement.",
+      "Identity Guidelines — color palette, typography, image and illustration style, usage guidelines.",
+      "Messaging in Action — email templates, social media messaging, elevator pitch frameworks.",
+    ]},
+    { kind: "p", text: "The foundation updates as the business evolves. The version written for the company you are today should grow with the company you are becoming." },
+    { kind: "h2", text: "Then it serves the rest of the work." },
+    { kind: "p", text: "A foundation is not the endpoint. It is the source. Once Vesper has built yours, every downstream decision in marketing and sales has something to stand on. The copywriter writing a paid ad. The salesperson handling an objection on a discovery call. The designer laying out a landing page. The founder pitching an investor. Each of them is working from the same definition of who the brand is and what it sounds like — not from a fresh guess every Tuesday." },
+    { kind: "p", text: "This is the part the industry has always promised and rarely delivered: a brand foundation that becomes infrastructure for the rest of the business, not a deliverable that sits on a shared drive." },
+    { kind: "pullquote", text: "It is not a design problem. It is not a marketing problem. It is a foundation problem.", attr: "Field Notes No 22" },
+    { kind: "h2", text: "Who Vesper is for." },
+    { kind: "p", text: "Two audiences, sharing one problem." },
+    { kind: "p", text: "The first is the early-stage founder. You know your product and your market — but when someone asks what your brand stands for, you are still working it out. Vesper gives you the foundation before you build everything else, so every decision from here has something to stand on." },
+    { kind: "p", text: "The second is the established small business. You have grown organically, but inconsistent messaging and unclear positioning are holding you back. Vesper defines the foundation you have been operating without — and gives your next chapter something solid to build from." },
+    { kind: "p", text: "Both audiences share a constraint: they need real brand strategy, but they are not in a position to commission a six-figure agency engagement. Vesper is the answer for that bracket." },
+    { kind: "h2", text: "The Boondock Walker relationship." },
+    { kind: "p", text: "Vesper is a product of Boondock Walker, but Vesper is its own thing. The bureau continues to do the work we have always done — full-scale brand strategy and demand engagements for clients who want a senior team running the whole motion." },
+    { kind: "p", text: "Vesper extends that expertise to a market we could never reach with the agency model: the founders and small business owners who need the strategy but cannot justify the engagement. Vesper users who outgrow the platform are natural candidates for a Boondock Walker engagement when they are ready." },
+    { kind: "h2", text: "How to get in." },
+    { kind: "p", text: "The Vesper waitlist is open at vesper.build. Add your email there to be in line when access opens for your wave. Current Boondock Walker clients are first; past clients are second; the public list is third." },
+    { kind: "p", text: "When Vesper is ready for you, one short email lands in your inbox. No drip campaign. No countdown. The first time you hear from us about your access, it will be the email that lets you in." },
+    { kind: "endnote", text: "Mark is the principal at Boondock Walker. Eighteen months ago he wrote Vesper on the back of a notebook. The notebook is on its third refill, and the name still feels right." },
+  ],
+  "brand-foundations-fail-tuesday": [
+    { kind: "lede", text: "The brand foundation arrives bound. Or designed, or presented, or all three. Pages on purpose, audience, voice, pillars, archetype. The CMO nods. The deck gets shared in a company-wide email with the subject line \"exciting.\" A few people open it. Most don't." },
+    { kind: "p", text: "Three months later, it's a file path nobody can find." },
+    { kind: "p", text: "This isn't a knock on the work. The strategy in those decks is usually fine — sometimes excellent. The problem isn't what's in the foundation. It's that the foundation can't be used by the people who need to use it, in the moments they need to use it." },
+    { kind: "h2", text: "The Tuesday test." },
+    { kind: "p", text: "It's Tuesday at 2pm. A copywriter is writing a paid social ad. A sales rep is drafting a follow-up email to a stalled deal. A junior designer is laying out a one-pager for a trade show booth. None of them have an hour to re-read a 60-page document. They have maybe ten minutes before the next thing." },
+    { kind: "p", text: "Can any of them use the brand foundation, in those ten minutes, to make a decision?" },
+    { kind: "p", text: "If the answer is no — and for most foundations, the honest answer is no — the foundation didn't fail at strategy. It failed at format." },
+    { kind: "h2", text: "Why this keeps happening." },
+    { kind: "p", text: "Three reasons, and they compound." },
+    { kind: "p", text: "The first is that brand foundations get sold to executives, so they get shaped for executives. The deliverable has to survive a boardroom presentation, justify a six-figure invoice, and read as serious. That pushes it toward density, design polish, and length. None of which help a copywriter on a Tuesday." },
+    { kind: "p", text: "The second is format inheritance. The deck-and-PDF combination is a hand-off shape from a print era. It made sense when \"the work\" meant a campaign that got produced once a year by a small team in the same building. It makes much less sense now, when the work is distributed across a dozen people in five tools and gets shipped every day." },
+    { kind: "p", text: "The third is the billing model. Agencies bill on the artifact, not on what the artifact enables. So the artifact gets thicker. More pages, more sections, more archetypes, more frameworks. Length signals value at the point of delivery. It signals nothing about whether the thing will get used." },
+    { kind: "p", text: "The result, across the industry, is consistent: foundations that win the presentation and lose the workday." },
+    { kind: "h2", text: "What a working foundation actually has to do." },
+    { kind: "p", text: "Reframe the deliverable. Not a document. A reference surface — something a practitioner can work against in the ten minutes they actually have." },
+    { kind: "p", text: "Three properties matter." },
+    { kind: "ol", items: [
+      "Queryable. A copywriter should be able to ask it a question and get an answer. \"Would we say 'unlock' or 'enable' here?\" \"Does this headline sound like us?\" \"What's the one-sentence version of our positioning I can drop into a cold email?\" The foundation has to be searchable, askable, navigable — not just readable.",
+      "Decision-shaped. Built around the choices people actually make. A practitioner on a Tuesday is not asking \"what is our brand archetype.\" They're asking \"should this ad open with a stat or a story.\" The foundation has to be organized around the second question, not the first. The strategic abstractions are upstream; the daily decisions are downstream; the foundation has to translate.",
+      "Embedded. Living where the work happens. Not in a shared drive. In the brief template, the writing tool, the slide deck, the email draft. The foundation has to meet the practitioner inside their workflow, not require them to leave it.",
+    ]},
+    { kind: "p", text: "A foundation with those three properties looks almost nothing like a 60-page PDF. It looks more like infrastructure than artifact." },
+    { kind: "h2", text: "What changes when the foundation gets used." },
+    { kind: "p", text: "This is the part that's easy to miss. A foundation that doesn't get used isn't neutral. It's not just expensive shelfware. It's worse than that — because in its absence, everyone invents the brand fresh every Tuesday." },
+    { kind: "p", text: "The copywriter writes the ad in their own voice. The sales rep drafts the email in theirs. The designer makes a call on the one-pager based on what feels right that afternoon. None of those people are doing anything wrong. They're doing their jobs, with the tools they have, under the pressure they're under. But the cumulative effect is a brand that drifts — not because the strategy was bad, but because the strategy never made it to the workday." },
+    { kind: "pullquote", text: "Brand consistency isn't a guideline document. It's a thousand small Tuesdays going the right way.", attr: "Field Notes No 21" },
+    { kind: "p", text: "A foundation that gets used compounds. Every brief, every email, every ad pulls in the same direction without anyone having to think hard about it. That's the real product. The PDF was never the product." },
+    { kind: "h2", text: "What we're building." },
+    { kind: "p", text: "We've spent twenty years writing brand foundations. The good ones got used. The great ones still didn't get used enough." },
+    { kind: "p", text: "So we're building something to close that gap — a tool that turns the foundation from a document you read once into a surface you work against every day." },
+    { kind: "p", text: "More on that soon." },
+    { kind: "endnote", text: "Mark is the principal at Boondock Walker. He has, over the years, written a number of 60-page brand foundations he is otherwise proud of." },
+  ],
   "arc-that-closes": [
     { kind: "lede", text: "Most marketing teams think they're telling one kind of story. They're actually telling two. One ends with a customer saying yes. The other ends with an award on the shelf." },
     { kind: "p", text: "These two stories often look the same on paper. They do very different jobs." },
@@ -60,6 +135,17 @@ const NOTE_BODIES = {
 };
 
 const NOTE_MARGINALIAS = {
+  "introducing-vesper": [
+    { after: 2, text: "Hundreds of these engagements, two decades. We've watched the math from both sides: the founder who cannot afford the engagement, and the bureau that cannot bring its fee down without breaking the model." },
+    { after: 7, text: "GUIDE is the working framework we developed over a decade of agency engagements. The AI version is faithful to the original. Same questions. Same logic. Same outputs. The difference is who can access it." },
+    { after: 14, text: "A clear foundation compounds. It is worth more on month twelve than on day one — by then every team has been making decisions against it, and the brand has the kind of consistency you cannot fake from a style guide." },
+    { after: 24, text: "We are not unbundling our agency. We are extending it. Vesper is the product for the bracket of clients we could never serve at agency scale — and a natural on-ramp for the ones who outgrow it." },
+  ],
+  "brand-foundations-fail-tuesday": [
+    { after: 2, text: "Pick a brand foundation you commissioned in the last three years. Ask three people on your team to find it without looking at email. Time them." },
+    { after: 6, text: "The Tuesday test isn't a thought experiment. Sit next to a copywriter and watch them write an ad. Note every time they reach for the brand doc and every time they don't. The ratio is the foundation's real adoption rate." },
+    { after: 13, text: "The hardest part is letting go of the artifact. The PDF feels like the deliverable. It isn't. The deliverable is the brand showing up the same way on Tuesday at 2pm whether you're in the room or not." },
+  ],
   "arc-that-closes": [
     { after: 4, text: "If you've ever sat in a kickoff and watched the agency's reel and thought \"beautiful, but I'm not sure who buys after watching that\" — you've felt the difference between these two stories." },
     { after: 9, text: "The \"next step sized small\" is the easiest fix and the one most teams skip. A 15-minute call beats a buy button. A buy button beats nothing. The point is something a person can do today, not later." },
@@ -112,7 +198,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
             <span>{note.minutes} min walk</span>
           </div>
           {/* Title */}
-          <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(42px, 7vw, 96px)", lineHeight: 0.96, letterSpacing: "-0.035em", margin: "clamp(28px, 4vw, 48px) 0 clamp(20px, 3vw, 28px)", color: BW.ink, maxWidth: "18ch" }}>
+          <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(42px, 7vw, 96px)", lineHeight: 0.96, letterSpacing: "-0.02em", margin: "clamp(28px, 4vw, 48px) 0 clamp(20px, 3vw, 28px)", color: BW.ink, maxWidth: "18ch" }}>
             {note.title}
           </h1>
           {/* dek */}
@@ -181,7 +267,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
               )}
               <div style={{ borderTop: `0.75px solid ${BW.ruleL}`, paddingTop: 20, display: "flex", flexDirection: "column", gap: 12 }}>
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>Tip the editor</div>
-                <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.5, margin: 0, color: BW.ink2 }}>Replied to a sentence and want to argue with it? <a href="mailto:bureau@boondockwalker.com" style={{ color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>bureau@boondockwalker.com</a></p>
+                <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.5, margin: 0, color: BW.ink2 }}>Replied to a sentence and want to argue with it? <a href="mailto:hello@boondockwalker.com" style={{ color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>hello@boondockwalker.com</a></p>
               </div>
             </aside>
           )}
@@ -267,7 +353,7 @@ function NoteBlock({ block, idx, drop }) {
     return (
       <p style={styleCommon}>
         {drop && (
-          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "5.4em", lineHeight: 0.85, float: "left", marginRight: 12, marginTop: 6, marginBottom: -6, color: BW.clay, letterSpacing: "-0.04em" }}>
+          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "5.4em", lineHeight: 0.85, float: "left", marginRight: 12, marginTop: 6, marginBottom: -6, color: BW.clay, letterSpacing: "-0.025em" }}>
             {block.text.charAt(0)}
           </span>
         )}

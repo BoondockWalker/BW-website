@@ -178,7 +178,7 @@ function CapProcess() {
                   <span style={{ fontFamily: BW.ffM, fontSize: isMobile ? 9 : 10, letterSpacing: "0.22em", color: isActive ? BW.clay300 : BW.ink3, fontWeight: 600 }}>{st.n}</span>
                   <span style={{
                     fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic",
-                    fontSize: "clamp(56px, 12vw, 168px)", lineHeight: 0.85, letterSpacing: "-0.04em",
+                    fontSize: "clamp(56px, 12vw, 168px)", lineHeight: 0.85, letterSpacing: "-0.025em",
                     color: isActive ? BW.clay300 : BW.clay,
                     transform: isActive ? "translateY(-2px)" : "translateY(0)",
                     transition: "transform 240ms cubic-bezier(.2,.7,.2,1), color 240ms",
@@ -293,7 +293,7 @@ function CapCTA() {
           <span style={{ width: 28, height: 1, background: BW.ink }} />
           <span>{d.eyebrow.split(" / ")[1]}</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(48px, 9vw, 124px)", lineHeight: 0.92, letterSpacing: "-0.04em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
+        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(48px, 9vw, 124px)", lineHeight: 0.92, letterSpacing: "-0.025em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
           {d.title} <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
         </h2>
         <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? 32 : 64, alignItems: "end" }}>

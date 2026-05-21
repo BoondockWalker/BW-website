@@ -112,7 +112,7 @@ function V3Lab() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 18px", borderBottom: `1px solid ${BW.ruleL}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
               <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ width: 8, height: 8, background: BW.forest, borderRadius: "50%", boxShadow: "0 0 0 4px rgba(46,70,38,0.18)" }} />
-                Trail · house voice loaded
+                Voice model loaded
               </span>
               <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontSize: 12, color: "rgba(20,16,12,0.55)", fontWeight: 400 }}>v0.4</span>
             </div>
@@ -145,7 +145,32 @@ function V3Lab() {
 function V3Trust() {
   const isMobile = useMediaQuery("(max-width: 700px)");
   const isTablet = useMediaQuery("(max-width: 1000px)");
-  const operators = ["Walker Bros.", "Halberd", "N×NE", "Field & Co.", "Marrow", "Praxis", "Halyard", "Northbeam", "Bowline", "Atlas Mfg.", "Quarry", "Greylock"];
+  const operators = [
+    { name: "AFIMAC", href: "case-afimac.html" },
+    { name: "Archdiocese of Detroit", href: "case-archdiocese-detroit.html" },
+    { name: "Bialosky Cleveland" },
+    { name: "Calyx", href: "case-calyx.html" },
+    { name: "Central Kitchen", href: "case-central-kitchen.html" },
+    { name: "Cleveland Clinic Innovations" },
+    { name: "Cleveland Whiskey", href: "case-cleveland-whiskey.html" },
+    { name: "Corporate United" },
+    { name: "Envera", href: "case-envera.html" },
+    { name: "Euclid Chemical Co." },
+    { name: "Evarts Tremaine" },
+    { name: "Exacta" },
+    { name: "Gallagher Sharp" },
+    { name: "Guthrie Health" },
+    { name: "Maker Town", href: "case-maker-town.html" },
+    { name: "Nature's Legacy", href: "case-natures-legacy.html" },
+    { name: "NewBridge", href: "case-newbridge.html" },
+    { name: "O'Neil Digital Solutions", href: "case-oneil.html" },
+    { name: "Origin Entertainment" },
+    { name: "Oswald Companies" },
+    { name: "Risk International" },
+    { name: "Sacred Heart Major Seminary", href: "case-sacred-heart.html" },
+    { name: "Suracy" },
+    { name: "TT Electronics", href: "case-tt-electronics.html" },
+  ];
   const cols = isMobile ? 2 : isTablet ? 3 : 6;
   return (
     <section style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 80px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
@@ -154,12 +179,15 @@ function V3Trust() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
             <span>§06</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Operators we've shipped for</span>
           </div>
-          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>since 2015 · 47 cases</span>
+          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>12 selected cases</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
-          {operators.map(n => (
-            <div key={n} style={{ padding: "26px 14px", borderRight: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}`, fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, letterSpacing: "-0.005em", textTransform: "uppercase", color: BW.ink, textAlign: "center" }}>{n}</div>
-          ))}
+          {operators.map(o => {
+            const cellStyle = { padding: "26px 14px", borderRight: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}`, fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, letterSpacing: "-0.005em", textTransform: "uppercase", color: BW.ink, textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1.25 };
+            return o.href
+              ? <a key={o.name} href={o.href} style={{ ...cellStyle, textDecoration: "none", transition: "background 160ms ease" }} onMouseEnter={e => e.currentTarget.style.background = "rgba(20,16,12,0.06)"} onMouseLeave={e => e.currentTarget.style.background = "transparent"}>{o.name}</a>
+              : <div key={o.name} style={cellStyle}>{o.name}</div>;
+          })}
         </div>
       </div>
     </section>
@@ -210,7 +238,7 @@ function V3Footer() {
           {[
             ["Practice", ["Brand", "Demand", "The Lab", "Field Notes"]],
             ["Bureau", ["Cleveland", "Remote", "Careers", "Press"]],
-            ["Contact", ["hello@bdw.co", "Book a 30-min", "Substack", "LinkedIn"]],
+            ["Contact", ["hello@boondockwalker.com", "Book a 30-min", "Substack", "LinkedIn"]],
           ].map(([h, items]) => (
             <div key={h}>
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, marginBottom: 14, fontWeight: 700 }}>{h}</div>

@@ -1,5 +1,7 @@
-/* global React, BW */
-/* §07 — Field Notes. Blog index w/ featured image + post thumbnails. */
+/* global React, BW, FN_NOTES, FN_TAGS, FN_AUTHORS */
+/* §07 — Field Notes. Blog index w/ featured image + post thumbnails.
+   Posts are sourced from FieldNotesData.jsx so the newest issue is
+   always the homepage featured. */
 
 /* Inline editorial illustration — composed of paper-texture stripes, a brand
    shape, and a fig. caption. Different "kind" makes each post recognizable. */
@@ -78,26 +80,32 @@ function NoteArt({ kind, color, caption, label }) {
 function V3FieldNotes() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const isNarrow = useMediaQuery("(max-width: 560px)");
-  const featured = {
-    slug: "arc-that-closes",
-    issue: "No 20",
-    date: "May · 2026",
-    kicker: "Voice / Long read",
-    title: "The story that closes. The story that wins awards.",
-    dek: "Two kinds of stories. They look the same on paper. They do very different jobs.",
-    author: "M. Nead",
-    minutes: 4,
-    tag: "VOICE",
-    color: BW.clay,
-    art: "compass",
-    image: "assets/field-notes/arc-that-closes.webp",
-    imageAlt: "Two narrative arcs on plum: same beats, different endings — one terminating in a decorative bloom, the other in a solid filled circle",
-    href: "note.html?slug=arc-that-closes",
-  };
 
-  const notes = [
-    { slug: "seven-years-unagency", issue: "No 19", date: "May · 2026", kicker: "Operator's diary", title: "Seven years unagency. What we learned, what's next.", author: "M. Nead", minutes: 4, tag: "VOICE", color: BW.clay, art: "compass", image: "assets/field-notes/seven-years-unagency.webp", imageAlt: "Bauhaus-style illustration: a single confident path pivoting at a marked waypoint toward a distant horizon", href: "note.html?slug=seven-years-unagency" },
-  ];
+  const tagColorFor = (tagKey) => {
+    const t = (FN_TAGS || []).find(x => x.key === tagKey);
+    return t ? t.color : BW.clay;
+  };
+  const toPost = (n) => ({
+    slug: n.slug,
+    issue: n.issue,
+    date: n.date,
+    kicker: n.kicker,
+    title: n.title,
+    dek: n.dek,
+    author: n.author,
+    minutes: n.minutes,
+    tag: (n.tag || "").toUpperCase(),
+    color: tagColorFor(n.tag),
+    art: n.art || "compass",
+    image: n.image,
+    imageAlt: n.imageAlt,
+    href: `note.html?slug=${n.slug}`,
+  });
+
+  const all = (FN_NOTES || []).map(toPost);
+  const featured = all[0];
+  const notes = all.slice(1, 3);
+  if (!featured) return null;
 
   return (
     <section id="field-notes" style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative" }}>
@@ -106,7 +114,7 @@ function V3FieldNotes() {
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "flex-end", gap: isMobile ? 24 : 0, marginBottom: 48 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24, flexWrap: "wrap" }}>
-              <span>§07</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Field Notes · Bulletin from the bench</span>
+              <span>§07</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Field Notes · Bulletin from the field</span>
             </div>
             <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: 0, color: BW.ink }}>
               Notes from the <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>field,</em> filed by the <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>walkers.</em>
@@ -122,9 +130,15 @@ function V3FieldNotes() {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", border: `1.5px solid ${BW.ink}`, background: BW.chalk50 }}>
           {/* FEATURED */}
           <a href={featured.href} style={{ borderRight: !isMobile ? `1.5px solid ${BW.ink}` : "none", borderBottom: isMobile ? `1.5px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column", textDecoration: "none", color: "inherit" }}>
-            {/* hero image */}
+            {/* hero image — falls back to NoteArt glyph when no lead artwork */}
             <div style={{ aspectRatio: "16/8", borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
-              <img src={featured.image} alt={featured.imageAlt} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              {featured.image ? (
+                <img src={featured.image} alt={featured.imageAlt} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              ) : (
+                <div style={{ position: "absolute", inset: 0 }}>
+                  <NoteArt kind={featured.art} color={featured.color} caption={`fig. 00 · ${featured.issue.toLowerCase()}`} label={featured.issue} />
+                </div>
+              )}
               <div style={{ position: "absolute", left: 0, bottom: 0, padding: "8px 12px", background: BW.ink, color: BW.chalk50, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700 }}>{featured.tag}</div>
             </div>
             {/* body */}
@@ -147,7 +161,11 @@ function V3FieldNotes() {
             {notes.map((n, i) => (
               <a key={n.issue} href={n.href} style={{ padding: "20px clamp(16px, 4vw, 24px)", borderBottom: i < notes.length - 1 ? `1px solid ${BW.ruleM}` : "none", display: "grid", gridTemplateColumns: isNarrow ? "80px 1fr" : "120px 1fr auto", gap: isNarrow ? 14 : 20, alignItems: "center", textDecoration: "none", color: "inherit" }}>
                 <div style={{ width: isNarrow ? 80 : 120, aspectRatio: "5/4", border: `1px solid ${BW.ink}`, overflow: "hidden", flexShrink: 0 }}>
-                  <img src={n.image} alt={n.imageAlt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  {n.image ? (
+                    <img src={n.image} alt={n.imageAlt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  ) : (
+                    <NoteArt kind={n.art} color={n.color} caption={n.issue.toLowerCase()} label={n.issue} />
+                  )}
                 </div>
                 <div>
                   <div style={{ display: "flex", gap: 10, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600, marginBottom: 6 }}>
@@ -166,7 +184,7 @@ function V3FieldNotes() {
 
         {/* Footer rail */}
         <div style={{ marginTop: 22, display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? 12 : 0, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
-          <span>47 notes filed since 2015 · all free, no email gate</span>
+          <span>All free, no email gate</span>
           <a style={{ color: BW.ink, textDecoration: "none", borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3, fontWeight: 700, cursor: "pointer" }}>Browse the full archive →</a>
         </div>
       </div>

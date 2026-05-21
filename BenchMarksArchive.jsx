@@ -1,5 +1,5 @@
 /* global React, BW, Eyebrow, useMediaQuery, BW_BENCHMARKS, SiteHeader, BMCard, BMFooter */
-/* BenchMarks Archive — every artifact on the bench, filterable.
+/* BenchMarks Archive — every artifact on the desk, filterable.
    Filter rail (left, sticky) + results grid (right). Filter state mirrored to URL.
 
    URL params:
@@ -126,8 +126,8 @@ function BMArchiveMasthead({ totalCount, filteredCount }) {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end" }}>
-          <h1 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 144px)", lineHeight: 0.9, letterSpacing: "-0.04em", margin: 0, color: BW.ink }}>
-            Everything<br/>on the bench.
+          <h1 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 144px)", lineHeight: 0.9, letterSpacing: "-0.025em", margin: 0, color: BW.ink }}>
+            Everything<br/>on the desk.
           </h1>
           <div style={{ paddingBottom: isMobile ? 0 : 16 }}>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 1.8vw, 18px)", lineHeight: 1.55, margin: "0 0 24px", color: BW.ink2, maxWidth: "44ch" }}>
@@ -312,7 +312,7 @@ function BMFilterRail({ filters, setFilters, facets, isMobile }) {
 function BMArchiveEmpty({ onClear }) {
   return (
     <div style={{ border: `1.5px dashed ${BW.ruleL}`, padding: "64px 32px", textAlign: "center", background: BW.chalk50 }}>
-      <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 14 }}>Nothing on the bench</div>
+      <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700, marginBottom: 14 }}>Nothing on the desk</div>
       <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4vw, 40px)", lineHeight: 1.04, letterSpacing: "-0.02em", margin: "0 0 16px", color: BW.ink }}>
         No artifacts match these filters.
       </h3>
