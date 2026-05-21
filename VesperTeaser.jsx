@@ -51,10 +51,10 @@ function VesperSignup() {
       <div style={{ background: BW.chalk50, border: `1.5px solid ${BW.ink}`, padding: "28px 28px 28px", display: "flex", flexDirection: "column", gap: 14 }}>
         <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.forest, fontWeight: 700 }}>● You're on the list</div>
         <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 24, lineHeight: 1.2, color: BW.ink, margin: 0, fontWeight: 400, letterSpacing: "-0.01em" }}>
-          Thanks. We'll send <em style={{ fontStyle: "italic" }}>one</em> short email when Vesper is ready for you — no drip, no campaign, no countdown.
+          Thanks. We'll send <em style={{ fontStyle: "italic" }}>one</em> short email when Vesper is ready for you. No drip campaign, no countdown.
         </p>
         <p style={{ fontFamily: BW.ffSerif, fontSize: 15, lineHeight: 1.55, color: BW.ink2, margin: 0 }}>
-          If you have a foundation we wrote, you're already in the first ring. If we have ever worked together, you're in the second. Either way — we'll see you soon.
+          If we wrote your brand foundation, you're in the first wave. If we've worked together before, you're in the second. Either way, we'll be in touch soon.
         </p>
       </div>
     );
@@ -63,7 +63,7 @@ function VesperSignup() {
   return (
     <form onSubmit={submit} style={{ background: BW.chalk50, border: `1.5px solid ${BW.ink}`, display: "flex", flexDirection: "column" }}>
       <div style={{ padding: "12px 22px", borderBottom: `1px solid ${BW.ruleL}`, display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700 }}>
-        <span>§ Early access · form 22-V</span>
+        <span>Early access signup</span>
         <span style={{ display: "flex", alignItems: "center", gap: 8, color: BW.clay }}>
           <span style={{ width: 7, height: 7, background: BW.clay, borderRadius: "50%" }} />
           rolling
@@ -76,17 +76,17 @@ function VesperSignup() {
           <input
             type="email"
             required
-            placeholder="you@operator.co"
+            placeholder="you@company.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             style={{ fontFamily: BW.ffG, fontSize: 17, padding: "12px 14px", border: `1.5px solid ${BW.ink}`, borderRadius: 4, background: BW.chalk, color: BW.ink, outline: "none" }}
           />
         </label>
         <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>What's your seat? <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0 }}>(optional)</span></span>
+          <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>Your role <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0 }}>(optional)</span></span>
           <input
             type="text"
-            placeholder="Founder · Brand lead · Demand lead · Copy · Sales · Other"
+            placeholder="Marketing lead · Founder · Writer · Sales · Other"
             value={role}
             onChange={(e) => setRole(e.target.value)}
             style={{ fontFamily: BW.ffG, fontSize: 15, padding: "12px 14px", border: `1.5px solid ${BW.ruleL}`, borderRadius: 4, background: BW.chalk, color: BW.ink, outline: "none" }}
@@ -109,7 +109,7 @@ function VesperSignup() {
           {status === "sending" ? "Filing…" : "Put me on the list →"}
         </button>
         <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600, lineHeight: 1.6 }}>
-          One short email when it's ready. No drip. No countdown. <br/>
+          One short email when Vesper is ready for you. No drip campaign, no countdown. <br/>
           Prefer to write us directly? <a href={VESPER_MAILTO} style={{ color: BW.ink, textDecoration: "none", borderBottom: `1px solid ${BW.ink}` }}>vesper@boondockwalker.com</a>
         </div>
       </div>
@@ -192,21 +192,21 @@ function VesperPage() {
 
           {/* Tagline */}
           <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.8vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.025em", margin: "0 0 clamp(24px, 3vw, 32px)", color: BW.ink, maxWidth: "20ch" }}>
-            A brand foundation, <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>made to be used.</em>
+            A brand foundation <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>your team will actually use.</em>
           </p>
 
           {/* Standfirst */}
-          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2.1vw, 22px)", lineHeight: 1.5, margin: "0 0 clamp(36px, 4vw, 48px)", color: BW.ink2, maxWidth: "52ch" }}>
-            We have written brand foundations for twenty years. The good ones get praised in the boardroom. The great ones still sit unopened on a Tuesday at 2pm. Vesper is the small, opinionated system we built to close that gap — your foundation, made queryable, decision-shaped, and embedded where the work actually happens.
+          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2.1vw, 22px)", lineHeight: 1.5, margin: "0 0 clamp(36px, 4vw, 48px)", color: BW.ink2, maxWidth: "58ch" }}>
+            We've written brand foundations for twenty years. Even the best ones tend to sit unopened on a marketing team's shared drive. Vesper is the AI assistant we built to fix that. It's trained on your brand foundation and lives inside the tools your team already uses — so a writer, seller, or designer can stay on-brand without leaving their workflow.
           </p>
 
           {/* Ledger row */}
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
             {[
-              { k: "What", v: "AI-led brand foundation" },
-              { k: "Who", v: "Operators with a foundation that isn't earning its rent" },
-              { k: "When", v: "Rolling, starting now" },
-              { k: "From", v: "Boondock Walker · The Lab" },
+              { k: "What it is", v: "An AI assistant trained on your brand foundation" },
+              { k: "Who it's for", v: "Marketing teams whose brand guide is praised at launch, then never used" },
+              { k: "Availability", v: "Rolling early access, starting now" },
+              { k: "Built by", v: "Boondock Walker · The Lab" },
             ].map((s) => (
               <div key={s.k} style={{ padding: "18px 20px", borderRight: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}`, background: BW.chalk50 }}>
                 <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 6 }}>{s.k}</div>
@@ -223,8 +223,8 @@ function VesperPage() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 32, flexWrap: "wrap" }}>
             <span>§02</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>What Vesper does · Today</span>
           </div>
-          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 48px", color: BW.ink, maxWidth: "20ch" }}>
-            Three things, in <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>the ten minutes</em> your team actually has.
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 48px", color: BW.ink, maxWidth: "22ch" }}>
+            Three things your team can do <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>in seconds.</em>
           </h2>
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", border: `1.5px solid ${BW.ink}`, background: BW.chalk50 }}>
@@ -232,25 +232,25 @@ function VesperPage() {
               {
                 n: "01",
                 v: "Ask",
-                head: "Answer a brand question, mid-sentence.",
-                body: "A copywriter, mid-line, can ask 'would we say unlock or enable here?' and get an answer in the brand's voice — with a one-line reason rooted in the foundation.",
-                meta: "Cost of a brand decision: calendar invite → keystroke.",
+                head: "Ask a brand question. Get an answer in your voice.",
+                body: "A writer can ask \"do we say unlock or enable here?\" and get an answer that sounds like your brand — with one line of reasoning from the foundation. No pinging the brand lead. No guessing.",
+                meta: "Faster than asking a colleague.",
                 c: BW.clay,
               },
               {
                 n: "02",
                 v: "Score",
-                head: "Rate a draft against the foundation.",
-                body: "Paste an ad, a cold email, a paragraph. Vesper scores it on voice match, audience fit, decision shape, and one-thing clarity. Editors stop wasting passes.",
-                meta: "Stops drafts that aren't close yet — earlier.",
+                head: "Check a draft against your brand.",
+                body: "Paste an ad, a cold email, or a paragraph. Vesper rates it on voice, audience fit, persuasion, and focus — and shows you what to fix before it reaches the team lead.",
+                meta: "Catch off-brand work before it's reviewed.",
                 c: BW.brass,
               },
               {
                 n: "03",
                 v: "Embed",
-                head: "Live inside the team's tools.",
-                body: "Slack. Google Docs. The brief template. The cold-email tool. Vesper meets the practitioner inside the workflow, not in another tab they have to remember.",
-                meta: "Foundation as infrastructure, not artifact.",
+                head: "Live inside the tools your team already uses.",
+                body: "Slack, Google Docs, your brief templates, your outbound tool. Vesper meets your team inside the apps they're already in — no new logins, no extra tabs.",
+                meta: "No new software to learn.",
                 c: BW.forest,
               },
             ].map((c, i) => (
@@ -274,7 +274,7 @@ function VesperPage() {
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", textAlign: "center" }}>
           <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 28 }}>★ The thesis</div>
           <blockquote style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.6vw, 56px)", lineHeight: 1.08, letterSpacing: "-0.022em", margin: 0, color: BW.chalk50 }}>
-            "The foundation isn't the deliverable. The foundation in the writer's hands at 2pm is."
+            "A brand foundation only matters when your team is actually using it."
           </blockquote>
           <div style={{ marginTop: 32, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>— Field Notes № 22</div>
         </div>
@@ -291,18 +291,18 @@ function VesperPage() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.05fr 1fr", gap: isMobile ? 40 : 64, alignItems: "start" }}>
             <div>
               <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 6.5vw, 64px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 24px", color: BW.chalk50 }}>
-                Small capabilities, <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>not platform releases.</em>
+                Releasing <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>one tool at a time.</em>
               </h2>
-              <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, margin: "0 0 24px", color: "rgba(251,247,238,0.82)", maxWidth: "44ch" }}>
-                Each one ships when it answers a moment a practitioner has stood in alone. Each one ships when it works — not when the roadmap says.
+              <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, margin: "0 0 24px", color: "rgba(251,247,238,0.82)", maxWidth: "48ch" }}>
+                We release each tool when it actually works — not on a marketing schedule. Each one solves a specific problem marketing teams run into every week.
               </p>
 
               <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column" }}>
                 {[
-                  { n: "i.",   t: "Brief composer.",      d: "Drafts campaign briefs in the foundation's voice, with the decisions surfaced rather than assumed." },
-                  { n: "ii.",  t: "Sales-enablement layer.", d: "Fields rep questions in the brand's words — so the deck and the discovery call stop telling two different stories." },
-                  { n: "iii.", t: "Voice-trained outbound.",  d: "Produces the first version of cold outreach in your voice, then learns from what reps actually send." },
-                  { n: "iv.",  t: "Partner draft reviewer.",  d: "Freelancers and partners can ship something that sounds like you on the first try." },
+                  { n: "i.",   t: "Brief composer.",   d: "Drafts campaign briefs in your brand's voice, and surfaces the choices your team needs to make." },
+                  { n: "ii.",  t: "Sales answer engine.", d: "Lets your sales team ask brand and product questions, and get answers in your voice — so the deck and the sales call tell the same story." },
+                  { n: "iii.", t: "Outbound writer.",   d: "Drafts cold outreach in your voice, and learns over time from what your sales team actually sends." },
+                  { n: "iv.",  t: "Partner reviewer.",  d: "Lets freelancers, agencies, and outside partners check their work against your brand before sending it back to you." },
                 ].map((it) => (
                   <li key={it.n} style={{ display: "grid", gridTemplateColumns: isNarrow ? "auto 1fr" : "44px 1fr", gap: isNarrow ? 12 : 18, padding: "14px 0", borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
                     <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, paddingTop: 4 }}>{it.n}</span>
@@ -318,7 +318,7 @@ function VesperPage() {
             <div style={{ position: isMobile ? "static" : "sticky", top: 100 }}>
               <VesperSignup />
               <div style={{ marginTop: 18, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,247,238,0.6)", fontWeight: 600, lineHeight: 1.6 }}>
-                Three rings: bureau clients first, past collaborators second, the public list third. Filing now lands you in ring three.
+                Three waves of access: current Boondock Walker clients first, past clients second, the public early-access list third. Signing up now puts you in the third wave.
               </div>
             </div>
           </div>
@@ -339,7 +339,7 @@ function VesperPage() {
                   Introducing Vesper. A brand foundation that gets used.
                 </h3>
                 <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.55, color: BW.ink2, margin: "0 0 20px" }}>
-                  Eighteen months in the workshop. The thing we promised on a Tuesday. The full story — why we built it, what it does today, what we're shipping next, and the small rules we set for ourselves on the way.
+                  Eighteen months in development. The full story: why we built Vesper, what it does today, what's coming next, and the principles we set for ourselves along the way.
                 </p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: `1px solid ${BW.ruleL}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
                   <span>M. Nead · 6 min walk</span>
@@ -357,7 +357,7 @@ function VesperPage() {
               <a href="note.html?slug=seven-years-unagency" style={{ display: "block", padding: "16px 0", borderBottom: `1px solid ${BW.ruleL}`, textDecoration: "none", color: BW.ink }}>
                 <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.sky, fontWeight: 700, marginBottom: 6 }}>№ 19 · Voice</div>
                 <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 20, lineHeight: 1.18, color: BW.ink }}>Seven years unagency. What we learned, what's next.</div>
-                <div style={{ marginTop: 8, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>The bigger bet Vesper sits inside.</div>
+                <div style={{ marginTop: 8, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>The strategic shift behind Vesper.</div>
               </a>
             </div>
           </div>
