@@ -406,7 +406,7 @@
       <button class="btn btn-primary" onclick="BrandTriage.downloadPDF()">Download PDF</button>
       <a class="btn btn-secondary" href="index.html#contact" style="text-decoration:none">Schedule a call →</a>
     </div>
-    <p class="email-confirm">A copy has been sent to <span id="resultsEmail"></span></p>
+    <p class="email-confirm" id="emailConfirm" style="display:none;">A copy has been sent to <span id="resultsEmail"></span></p>
   </div>
 
 </div>
@@ -629,15 +629,22 @@
     loadingOverlay.innerHTML = '<div class="loading-spinner"></div><div class="loading-text">We\'re working on it…</div><div class="loading-subtext">Generating your personalized guidance</div>';
     document.getElementById('brandTriageApp').appendChild(loadingOverlay);
 
+    // Cloudflare Worker endpoint — see worker/README.md for the one-time deploy.
+    // Replace this URL with the URL `wrangler deploy` prints for you.
+    var TRIAGE_API = 'https://bw-brand-triage.YOUR-CLOUDFLARE-ACCOUNT.workers.dev/';
+
     var guidance = '';
+    var emailed = false;
     try {
-      var response = await fetch('https://boondockwalker.com/wp-content/themes/hello-elementor/brand-triage-api.php', {
+      var response = await fetch(TRIAGE_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: name, email: email, company: company, industry: industry, phone: phone, challenges: ranked, customConcern: customConcern })
       });
+      if (!response.ok) throw new Error('Triage API returned ' + response.status);
       var data = await response.json();
       guidance = data.guidance;
+      emailed = !!data.emailed;
     } catch (error) {
       var cats = [];
       ranked.forEach(function(r) {
@@ -651,6 +658,7 @@
 
     document.getElementById('resultsCompany').textContent = company;
     document.getElementById('resultsEmail').textContent = email;
+    document.getElementById('emailConfirm').style.display = emailed ? '' : 'none';
 
     var challengesHtml = '';
     ranked.forEach(function(p, i) {
