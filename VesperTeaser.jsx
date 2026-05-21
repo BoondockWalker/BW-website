@@ -393,7 +393,7 @@ function VesperPage() {
                 Vesper is rolling out in waves. Current Boondock Walker clients first, past clients second, then the public early-access list. Add your email and we'll be in touch when your wave opens.
               </p>
               <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, margin: 0, color: "rgba(251,247,238,0.82)", maxWidth: "48ch" }}>
-                For the full product story, visit <a href="https://vesper1.wpenginepowered.com/" style={{ color: BW.brass, textDecoration: "none", borderBottom: `1px solid ${BW.brass}` }}>the Vesper site</a>.
+                For the full product story, visit <a href="https://vesper.build/" style={{ color: BW.brass, textDecoration: "none", borderBottom: `1px solid ${BW.brass}` }}>the Vesper site</a>.
               </p>
             </div>
 
@@ -412,8 +412,8 @@ function VesperPage() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 28 : 56, alignItems: "start" }}>
             <div>
-              {/* Vesper marketing site — swap href to the production Vesper URL at launch */}
-              <a href="https://vesper1.wpenginepowered.com/" target="_blank" rel="noopener noreferrer" style={{ display: "block", border: `1.5px solid ${BW.ink}`, padding: "32px clamp(22px, 4vw, 36px) 28px", background: BW.chalk50, textDecoration: "none", color: BW.ink }}>
+              {/* Vesper marketing site — vesper.build */}
+              <a href="https://vesper.build/" target="_blank" rel="noopener noreferrer" style={{ display: "block", border: `1.5px solid ${BW.ink}`, padding: "32px clamp(22px, 4vw, 36px) 28px", background: BW.chalk50, textDecoration: "none", color: BW.ink }}>
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 14 }}>The Vesper site · Full product</div>
                 <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, lineHeight: 1.05, letterSpacing: "-0.025em", margin: "0 0 16px", color: BW.ink }}>
                   Visit Vesper for the full story.
@@ -422,7 +422,7 @@ function VesperPage() {
                   The complete walkthrough of the GUIDE methodology, what's in the deliverable, who Vesper is for, and how to get on the waitlist directly with the product team.
                 </p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: `1px solid ${BW.ruleL}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
-                  <span>vesper.com</span>
+                  <span>vesper.build</span>
                   <span style={{ color: BW.ink, fontWeight: 700, borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 2 }}>Visit the site →</span>
                 </div>
               </a>
