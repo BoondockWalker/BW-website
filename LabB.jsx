@@ -236,7 +236,7 @@ function LabCTA() {
           <span style={{ width: 28, height: 1, background: BW.clay300 }} />
           <span>{d.eyebrow.split(" / ")[1]}</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(48px, 9vw, 124px)", lineHeight: 0.92, letterSpacing: "-0.04em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
+        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(48px, 9vw, 124px)", lineHeight: 0.92, letterSpacing: "-0.025em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
           {d.title} <em style={{ color: BW.clay300, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
         </h2>
         <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? 32 : 64, alignItems: "end" }}>

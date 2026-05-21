@@ -160,7 +160,7 @@ function BMMasthead() {
         </div>
 
         {/* Wordmark */}
-        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(64px, 14vw, 184px)", lineHeight: 0.86, letterSpacing: "-0.04em", margin: "clamp(28px,4vw,44px) 0 clamp(20px,3vw,32px)", color: BW.ink }}>
+        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(64px, 14vw, 184px)", lineHeight: 0.86, letterSpacing: "-0.025em", margin: "clamp(28px,4vw,44px) 0 clamp(20px,3vw,32px)", color: BW.ink }}>
           BenchMarks.
         </h1>
 

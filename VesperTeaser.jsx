@@ -1,121 +1,6 @@
 /* global React, BW */
-/* Vesper — early-access teaser. Editorial landing page that announces the app
-   and captures emails for the early-access list. Single component, single
-   surface; easy to retire post-launch.
-
-   The signup form POSTs to a placeholder Formspree endpoint. To wire the live
-   list, replace VESPER_FORM_ENDPOINT below with your real endpoint URL.
-   The mailto: fallback is always present so a denied/blocked submission still
-   reaches the bureau. */
-
-const VESPER_FORM_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_FORM_ID";
-const VESPER_MAILTO = "mailto:vesper@boondockwalker.com?subject=Vesper%20%E2%80%94%20early%20access";
-
-function VesperSignup() {
-  const [email, setEmail] = React.useState("");
-  const [role, setRole] = React.useState("");
-  const [status, setStatus] = React.useState("idle"); // idle | sending | done | error
-  const [err, setErr] = React.useState("");
-  const live = VESPER_FORM_ENDPOINT.indexOf("REPLACE_WITH_FORM_ID") === -1;
-
-  const submit = async (e) => {
-    e.preventDefault();
-    if (!email || email.indexOf("@") === -1) {
-      setErr("That email looks incomplete.");
-      return;
-    }
-    setErr("");
-    setStatus("sending");
-    try {
-      if (live) {
-        const res = await fetch(VESPER_FORM_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ email, role, source: "vesper-teaser" }),
-        });
-        if (!res.ok) throw new Error("network");
-      } else {
-        // No live endpoint configured yet — pretend-send so the UI confirms,
-        // but also offer the mailto: as a verifiable channel.
-        await new Promise(r => setTimeout(r, 400));
-      }
-      setStatus("done");
-    } catch (_e) {
-      setStatus("error");
-      setErr("That didn't go through. Try the email link below.");
-    }
-  };
-
-  if (status === "done") {
-    return (
-      <div style={{ background: BW.chalk50, border: `1.5px solid ${BW.ink}`, padding: "28px 28px 28px", display: "flex", flexDirection: "column", gap: 14 }}>
-        <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.forest, fontWeight: 700 }}>● You're on the list</div>
-        <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 24, lineHeight: 1.2, color: BW.ink, margin: 0, fontWeight: 400, letterSpacing: "-0.01em" }}>
-          Thanks. We'll send <em style={{ fontStyle: "italic" }}>one</em> short email when Vesper is ready for you. No drip campaign, no countdown.
-        </p>
-        <p style={{ fontFamily: BW.ffSerif, fontSize: 15, lineHeight: 1.55, color: BW.ink2, margin: 0 }}>
-          If we wrote your brand foundation, you're in the first wave. If we've worked together before, you're in the second. Either way, we'll be in touch soon.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={submit} style={{ background: BW.chalk50, border: `1.5px solid ${BW.ink}`, display: "flex", flexDirection: "column" }}>
-      <div style={{ padding: "12px 22px", borderBottom: `1px solid ${BW.ruleL}`, display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700 }}>
-        <span>Early access signup</span>
-        <span style={{ display: "flex", alignItems: "center", gap: 8, color: BW.clay }}>
-          <span style={{ width: 7, height: 7, background: BW.clay, borderRadius: "50%" }} />
-          rolling
-        </span>
-      </div>
-
-      <div style={{ padding: "22px 22px 8px", display: "flex", flexDirection: "column", gap: 14 }}>
-        <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>Your email</span>
-          <input
-            type="email"
-            required
-            placeholder="you@company.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={{ fontFamily: BW.ffG, fontSize: 17, padding: "12px 14px", border: `1.5px solid ${BW.ink}`, borderRadius: 4, background: BW.chalk, color: BW.ink, outline: "none" }}
-          />
-        </label>
-        <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>Your role <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0 }}>(optional)</span></span>
-          <input
-            type="text"
-            placeholder="Marketing lead · Founder · Writer · Sales · Other"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            style={{ fontFamily: BW.ffG, fontSize: 15, padding: "12px 14px", border: `1.5px solid ${BW.ruleL}`, borderRadius: 4, background: BW.chalk, color: BW.ink, outline: "none" }}
-          />
-        </label>
-      </div>
-
-      {err && (
-        <div style={{ padding: "0 22px 8px", fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>
-          {err}
-        </div>
-      )}
-
-      <div style={{ padding: "14px 22px 22px", display: "flex", flexDirection: "column", gap: 12 }}>
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          style={{ background: BW.ink, color: BW.chalk50, padding: "14px 22px", borderRadius: 4, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: status === "sending" ? "wait" : "pointer", border: "none", textAlign: "center", opacity: status === "sending" ? 0.7 : 1 }}
-        >
-          {status === "sending" ? "Filing…" : "Put me on the list →"}
-        </button>
-        <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600, lineHeight: 1.6 }}>
-          One short email when Vesper is ready for you. No drip campaign, no countdown. <br/>
-          Prefer to write us directly? <a href={VESPER_MAILTO} style={{ color: BW.ink, textDecoration: "none", borderBottom: `1px solid ${BW.ink}` }}>vesper@boondockwalker.com</a>
-        </div>
-      </div>
-    </form>
-  );
-}
+/* Vesper — teaser page on the Boondock Walker site. Announces Vesper and
+   routes all signups to the canonical waitlist at vesper.build. */
 
 function VesperMark({ size = 96 }) {
   // Editorial mark for the masthead — paired stars / dusk glyph
@@ -186,7 +71,7 @@ function VesperPage() {
           </div>
 
           {/* Title */}
-          <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "normal", fontSize: "clamp(72px, 18vw, 220px)", lineHeight: 0.84, letterSpacing: "-0.045em", margin: "clamp(36px, 5vw, 56px) 0 clamp(28px, 4vw, 40px)", color: BW.ink }}>
+          <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "normal", fontSize: "clamp(72px, 18vw, 220px)", lineHeight: 0.84, letterSpacing: "-0.03em", margin: "clamp(36px, 5vw, 56px) 0 clamp(28px, 4vw, 40px)", color: BW.ink }}>
             Vesper.
           </h1>
 
@@ -376,30 +261,28 @@ function VesperPage() {
         </div>
       </section>
 
-      {/* §05 — Early access · Signup */}
-      <section style={{ background: BW.plum, color: BW.chalk50, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
+      {/* §05 — Early access · Single CTA to vesper.build */}
+      <section style={{ background: BW.plum, color: BW.chalk50, padding: "clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk50} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk50} 1px, transparent 1px)`, backgroundSize: "60px 60px", opacity: 0.04, pointerEvents: "none" }} />
         <div style={{ maxWidth: 1240, margin: "0 auto", position: "relative" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 32, flexWrap: "wrap" }}>
-            <span>§05</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>Early access</span>
+            <span>§05</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>Join the waitlist</span>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.05fr 1fr", gap: isMobile ? 40 : 64, alignItems: "start" }}>
-            <div>
-              <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 6.5vw, 64px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 24px", color: BW.chalk50 }}>
-                Be among the first to <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>use Vesper.</em>
-              </h2>
-              <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, margin: "0 0 20px", color: "rgba(251,247,238,0.82)", maxWidth: "48ch" }}>
-                Vesper is rolling out in waves. Current Boondock Walker clients first, past clients second, then the public early-access list. Add your email and we'll be in touch when your wave opens.
-              </p>
-              <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, margin: 0, color: "rgba(251,247,238,0.82)", maxWidth: "48ch" }}>
-                For the full product story, visit <a href="https://vesper.build/" style={{ color: BW.brass, textDecoration: "none", borderBottom: `1px solid ${BW.brass}` }}>the Vesper site</a>.
-              </p>
-            </div>
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(44px, 8vw, 88px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: "0 0 28px", color: BW.chalk50, maxWidth: "22ch" }}>
+            Be among the first to <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>use Vesper.</em>
+          </h2>
+          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 21px)", lineHeight: 1.55, margin: "0 0 36px", color: "rgba(251,247,238,0.85)", maxWidth: "56ch" }}>
+            The Vesper waitlist is open. Add your email at <strong style={{ color: BW.chalk50, fontWeight: 600 }}>vesper.build</strong> to be in line when access opens for your wave.
+          </p>
 
-            <div style={{ position: isMobile ? "static" : "sticky", top: 100 }}>
-              <VesperSignup />
-            </div>
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
+            <a href="https://vesper.build/" target="_blank" rel="noopener noreferrer" style={{ background: BW.brass, color: BW.ink, padding: "16px 26px", borderRadius: 4, fontFamily: BW.ffG, fontSize: 13, letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}>
+              Join the waitlist at vesper.build →
+            </a>
+            <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,247,238,0.6)", fontWeight: 600 }}>
+              Opens in a new tab
+            </span>
           </div>
         </div>
       </section>
@@ -450,5 +333,4 @@ function VesperPage() {
 }
 
 window.VesperPage = VesperPage;
-window.VesperSignup = VesperSignup;
 window.VesperMark = VesperMark;

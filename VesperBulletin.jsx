@@ -31,11 +31,11 @@ function V3VesperBulletin() {
         {/* message */}
         <div style={{ display: "flex", flexDirection: isNarrow ? "column" : "row", alignItems: isNarrow ? "flex-start" : "baseline", gap: isNarrow ? 4 : 14, color: BW.chalk50, fontFamily: BW.ffD, fontStyle: "italic", fontSize: isMobile ? 18 : 22, lineHeight: 1.2, letterSpacing: "-0.015em", fontWeight: 400 }}>
           <span>
-            Introducing <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>Vesper</em> — a brand foundation, made to be used.
+            Introducing <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>Vesper</em> — a brand foundation for founders and small businesses.
           </span>
           {!isNarrow && (
             <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.6)", fontWeight: 600 }}>
-              Early access · rolling
+              Waitlist open
             </span>
           )}
         </div>
@@ -43,7 +43,7 @@ function V3VesperBulletin() {
         {/* cta */}
         <div style={{ display: "flex", alignItems: "center", gap: 14, justifySelf: isMobile ? "flex-start" : "flex-end" }}>
           <span style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700, borderBottom: `1.5px solid ${BW.chalk50}`, paddingBottom: 3 }}>
-            Read & sign up →
+            Read the announcement →
           </span>
         </div>
       </div>

@@ -126,7 +126,7 @@ function BMArchiveMasthead({ totalCount, filteredCount }) {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end" }}>
-          <h1 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 144px)", lineHeight: 0.9, letterSpacing: "-0.04em", margin: 0, color: BW.ink }}>
+          <h1 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 144px)", lineHeight: 0.9, letterSpacing: "-0.025em", margin: 0, color: BW.ink }}>
             Everything<br/>on the desk.
           </h1>
           <div style={{ paddingBottom: isMobile ? 0 : 16 }}>

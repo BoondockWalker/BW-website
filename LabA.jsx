@@ -21,7 +21,7 @@ function LabHero() {
           <span>{d.eyebrow.split(" / ")[1]} · A bureau within the bureau</span>
         </div>
 
-        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.04em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
+        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.025em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
           {d.title}<br />
           <em style={{ color: BW.clay300, fontWeight: 400, fontStyle: "italic" }}>{d.titleItalic}</em>
         </h1>

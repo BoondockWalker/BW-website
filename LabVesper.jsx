@@ -40,7 +40,7 @@ function LabVesperFeature() {
             </p>
 
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", paddingTop: 8 }}>
-              <a href="vesper.html" style={{ background: BW.ink, color: BW.chalk50, padding: "14px 22px", borderRadius: 4, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>Get early access →</a>
+              <a href="https://vesper.build/" target="_blank" rel="noopener noreferrer" style={{ background: BW.ink, color: BW.chalk50, padding: "14px 22px", borderRadius: 4, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>Join the waitlist at vesper.build →</a>
               <a href="note.html?slug=introducing-vesper" style={{ background: "transparent", color: BW.ink, padding: "14px 22px", borderRadius: 4, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", border: `1.5px solid ${BW.ink}` }}>Read the announcement →</a>
             </div>
 
