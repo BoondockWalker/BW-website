@@ -5,6 +5,42 @@
    <NoteBlock> renders. Margin notes live in the parallel marginalia map.
    To add a new post: register both maps under the same slug. */
 const NOTE_BODIES = {
+  "introducing-vesper": [
+    { kind: "lede", text: "A copywriter on a client team opened the Vesper preview last Tuesday afternoon. She also had the brand foundation we'd built her — a sixty-four-page PDF — open in another window. We asked her to write a paid social ad." },
+    { kind: "p", text: "Within a minute, she closed the PDF. She didn't open it again for the rest of the afternoon." },
+    { kind: "p", text: "That was the test. That was the point." },
+    { kind: "p", text: "For most of our twenty years in this work, we have written brand foundations. Many of them have been good. A few have been very good. None of them have been used as often as the strategy inside them deserved. We wrote about that gap a Tuesday or two ago, and ended the note with a sentence we knew we'd have to back up — more on that soon." },
+    { kind: "p", text: "Vesper is the soon." },
+    { kind: "h2", text: "What Vesper is." },
+    { kind: "p", text: "Vesper is a working surface for your brand foundation. The strategy we already wrote with you — positioning, voice, audiences, messaging — gets ingested, indexed, and made queryable. Your team works against it, inside the tools they already use, in the ten minutes they actually have." },
+    { kind: "p", text: "It is not a chatbot strapped to a PDF. It is not a generic AI brand generator. It is a small, opinionated system that only knows your brand, only answers the questions your team is actually asking, and only sounds like you." },
+    { kind: "h2", text: "What it does today." },
+    { kind: "p", text: "The early-access preview ships with three capabilities. Each one solves a moment we have personally watched practitioners get stuck in, hundreds of times, on hundreds of projects." },
+    { kind: "ol", items: [
+      "Ask. A copywriter, mid-sentence, can ask 'would we say unlock or enable here?' and get an answer in the brand's voice, with a one-line reason rooted in the foundation. The cost of a brand decision drops from a calendar invite to a keystroke.",
+      "Score. Paste a draft — an ad, a cold email, a paragraph from the website — and Vesper rates it against the foundation on four axes: voice match, audience fit, decision shape, and one-thing clarity. Editors stop wasting passes on drafts that aren't close yet.",
+      "Embed. Vesper lives where the work happens — Slack, Google Docs, the brief template, the cold-email tool. The team meets it inside their workflow, not in another tab they have to remember to open.",
+    ]},
+    { kind: "h2", text: "What's coming." },
+    { kind: "p", text: "We are shipping in small capabilities, not platform releases. Each one is the answer to a moment a marketer or operator has stood in front of, alone, with the brand book on a shelf in a different room. Already in build or pilot:" },
+    { kind: "ol", items: [
+      "A brief composer that drafts campaign briefs in the foundation's voice, with the decisions surfaced rather than assumed.",
+      "A sales-enablement layer that fields rep questions in the brand's words — so the deck and the discovery call stop telling two different stories.",
+      "A voice-trained outbound writer that produces the first version of cold outreach in your voice, then learns from what reps actually send.",
+      "An on-brand draft reviewer for partners and freelancers — so the copywriter you've never met can ship something that sounds like you on the first try.",
+    ]},
+    { kind: "p", text: "We will ship them when they work, not when the roadmap says." },
+    { kind: "pullquote", text: "The foundation isn't the deliverable. The foundation in the writer's hands at 2pm is.", attr: "Field Notes No 22" },
+    { kind: "h2", text: "Who it's for." },
+    { kind: "p", text: "Vesper is built for the team a brand foundation always promised to serve and rarely actually reached — the practitioners doing the daily work. Copywriters on deadline. Sales leaders writing a follow-up that has to sound like the company, not like them. Junior designers laying out a one-pager on a Tuesday at 2pm." },
+    { kind: "p", text: "It is not built to impress the boardroom. It is built to be used by the people the boardroom hires." },
+    { kind: "h2", text: "How early access works." },
+    { kind: "p", text: "We are rolling out in three rings. Bureau clients first — they are already in. Operators we have worked with before, second. Then a small early-access list, opened today." },
+    { kind: "p", text: "Here is what you should expect from us if you put your email on the list: an honest preview when we have something to show, an invitation to break it when we have something to test, and a feedback loop tight enough that the things you point at on Monday show up in the build by the end of the week." },
+    { kind: "p", text: "No drip campaign. No 'we're excited to announce.' When Vesper is ready for you, you will know because we will send you one short email saying so." },
+    { kind: "p", text: "The signup lives at vesper.html on this site. We will see you there." },
+    { kind: "endnote", text: "Mark is the principal at Boondock Walker. Eighteen months ago he wrote Vesper on the back of a notebook. The notebook is on its third refill, and the name still feels right." },
+  ],
   "brand-foundations-fail-tuesday": [
     { kind: "lede", text: "The brand foundation arrives bound. Or designed, or presented, or all three. Pages on purpose, audience, voice, pillars, archetype. The CMO nods. The deck gets shared in a company-wide email with the subject line \"exciting.\" A few people open it. Most don't." },
     { kind: "p", text: "Three months later, it's a file path nobody can find." },
@@ -94,6 +130,12 @@ const NOTE_BODIES = {
 };
 
 const NOTE_MARGINALIAS = {
+  "introducing-vesper": [
+    { after: 2, text: "She is still drafting the ad. As of this filing, the PDF is still closed." },
+    { after: 8, text: "Specificity is the lever. A model that knows your foundation, your audiences, and your house style — and only those — outperforms a model that knows all of the internet, every time." },
+    { after: 14, text: "We have been on Vesper ourselves for nine months. The bureau's editor approval rate is up. Brief turnaround halved. We ate our own tasting menu first." },
+    { after: 23, text: "We do not yet know exactly when this lands for you. We know it will, and that the wait will be short. We are not in the business of artificial scarcity." },
+  ],
   "brand-foundations-fail-tuesday": [
     { after: 2, text: "Pick a brand foundation you commissioned in the last three years. Ask three people on your team to find it without looking at email. Time them." },
     { after: 6, text: "The Tuesday test isn't a thought experiment. Sit next to a copywriter and watch them write an ad. Note every time they reach for the brand doc and every time they don't. The ratio is the foundation's real adoption rate." },
