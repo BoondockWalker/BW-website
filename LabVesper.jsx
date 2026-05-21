@@ -32,11 +32,11 @@ function LabVesperFeature() {
 
             <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(36px, 6vw, 64px)", lineHeight: 0.98, letterSpacing: "-0.03em", margin: 0, color: BW.ink }}>
               Introducing <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>Vesper.</em>
-              <br />A complete brand foundation. <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>Built in days. Used every day.</em>
+              <br />A living brand foundation, <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>built for founders and small businesses.</em>
             </h2>
 
             <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "60ch" }}>
-              The first Lab project we're releasing as a product, not a client tool. Vesper builds you a comprehensive brand foundation — positioning, voice, audiences, messaging, narrative — in days, at a fraction of agency cost. Then it lives inside the tools your team already uses, so the foundation earns its keep every day.
+              The first Lab project we're releasing as a product, not a client tool. Vesper is an AI-guided brand strategy platform that extends Boondock Walker's expertise to the founders and small business owners who aren't ready for a full agency engagement — but are ready to build something that lasts.
             </p>
 
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", paddingTop: 8 }}>
@@ -47,8 +47,8 @@ function LabVesperFeature() {
             {/* Tiny facts strip */}
             <div style={{ marginTop: 4, display: "grid", gridTemplateColumns: isNarrow ? "1fr 1fr" : "repeat(3, 1fr)", borderTop: `1px solid ${BW.ruleL}`, paddingTop: 18 }}>
               {[
-                { k: "What", v: "A complete brand foundation, built by AI" },
-                { k: "Built for", v: "Companies that need to build a brand foundation — or finally use the one they have" },
+                { k: "What", v: "An AI-guided brand strategy platform" },
+                { k: "Built for", v: "Founders and small businesses without a defined brand" },
                 { k: "Time and cost", v: "Days, not months. Fraction of agency cost." },
               ].map((s, i) => (
                 <div key={s.k} style={{ paddingRight: i < 2 ? 14 : 0, paddingLeft: i > 0 && !isNarrow ? 14 : 0 }}>
