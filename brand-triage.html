@@ -707,11 +707,13 @@
   }
 
   function loadLogoAndGenerate() {
+    // jsPDF.addImage() only accepts raster formats (PNG/JPEG). Load the PNG
+    // crest, or skip the logo entirely if it fails for any reason — never
+    // let the logo load block PDF generation.
     var img = new Image();
-    img.crossOrigin = 'Anonymous';
     img.onload = function() { generatePDF(img); };
     img.onerror = function() { generatePDF(null); };
-    img.src = 'assets/BW-crest.svg';
+    img.src = 'assets/BW-crest.png';
   }
 
   function generatePDF(logoImg) {
