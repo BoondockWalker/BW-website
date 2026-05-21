@@ -1,0 +1,17 @@
+{
+  "name": "bw-brand-triage-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cloudflare Worker that backs /brand-triage.html — calls Anthropic, generates a PDF, emails it via Resend.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1"
+  },
+  "devDependencies": {
+    "wrangler": "^3.78.0"
+  }
+}
