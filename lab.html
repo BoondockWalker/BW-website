@@ -26,6 +26,8 @@
 <script type="text/babel" src="LabData.jsx"></script>
 <script type="text/babel" src="LabA.jsx"></script>
 <script type="text/babel" src="LabB.jsx"></script>
+<script type="text/babel" src="VesperTeaser.jsx"></script>
+<script type="text/babel" src="LabVesper.jsx"></script>
 <script type="text/babel">
 const LAB_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showThesis": true,
@@ -42,6 +44,7 @@ function LabApp() {
     <div>
       <SiteHeader current="The Lab" sticky={true} bisect={false} tone="dark" />
       <LabHero />
+      <LabVesperFeature />
       {tweaks.showThesis && <LabThesis />}
       {tweaks.showRules && <LabRules />}
       {tweaks.showProduction && <LabProduction />}
