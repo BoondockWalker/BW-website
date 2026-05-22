@@ -108,14 +108,14 @@ function V3Lab() {
   const issueNo = String(idx + 1).padStart(2, "0");
   const cur = prompts[idx];
   return (
-    <section id="the-lab" style={{ background: BW.plum, color: BW.chalk50, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
+    <section id="the-lab" style={{ background: BW.plum, color: BW.chalk50, padding: isMobile ? "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)" : "clamp(56px, 8vw, 100px) 0 clamp(40px, 6vw, 80px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", clipPath: isMobile ? undefined : "inset(0 0 -200% 0)" }}>
       {/* faint grid */}
-      <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk50} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk50} 1px, transparent 1px)`, backgroundSize: "60px 60px", opacity: 0.04 }} />
+      <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk50} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk50} 1px, transparent 1px)`, backgroundSize: "60px 60px", opacity: 0.04, pointerEvents: "none" }} />
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
           <span>§05</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>The Lab · Applied AI</span>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1fr", gap: isMobile ? 40 : 64, alignItems: "center" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1fr", gap: isMobile ? 40 : 64, alignItems: "start" }}>
           <div>
             <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(44px, 8.5vw, 80px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 28px", color: BW.chalk50 }}>
               Tools that move <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>the brand</em> — and the <em style={{ color: BW.chalk50, fontStyle: "italic", fontWeight: 400 }}>demand</em> for it.
@@ -129,42 +129,44 @@ function V3Lab() {
             </div>
           </div>
 
-          {/* Lab Journal — paper scaled up, allowed to bleed off bottom + right */}
-          <div style={{ position: "relative", overflow: "hidden", minHeight: isMobile ? 540 : 680 }}>
-            <div style={{ position: "absolute", top: isMobile ? 0 : -20, left: isMobile ? "2%" : "-2%", width: isMobile ? "96%" : "150%", aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", transformOrigin: "top left", filter: "drop-shadow(0 28px 38px rgba(8,4,4,0.40))" }}>
-              {/* paper */}
-              <img src="assets/paper.png" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center center" }} />
-              {/* content — sits inside the paper's ruled writing area.
-                  On desktop the paper bleeds off the bottom, so content
-                  is constrained to the top half of the sheet. */}
-              <div style={{ position: "absolute", top: isMobile ? "7%" : "4%", right: "6%", bottom: isMobile ? "7%" : "46%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
-                  <span>Lab Journal · No {issueNo}</span>
-                  <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
-                </div>
-                <div style={{ opacity: fade, transition: "opacity 0.45s ease", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "clamp(16px, 4%, 28px) 0" }}>
-                  <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(22px, 3.2vw, 28px)", lineHeight: 1.2, letterSpacing: "-0.015em", color: BW.ink, fontWeight: 400, margin: 0 }}>
-                    {cur.q}
-                  </p>
-                  <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.55, margin: "18px 0 0", color: "rgba(20,16,12,0.7)" }}>
-                    A short note on what we've been wondering this week — and what a working version might look like by Friday.
-                  </p>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>
-                  <span style={{ opacity: fade, transition: "opacity 0.45s ease" }}>{cur.initials} · Lab</span>
-                  <a href="lab.html" style={{ color: BW.plum, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: `1px solid ${BW.plum}`, paddingBottom: 2 }}>
-                    Read this issue →
-                  </a>
-                </div>
-              </div>
-            </div>
-            {/* prompt index dots */}
-            <div style={{ position: "absolute", bottom: 14, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 5 }}>
-              {prompts.map((_, i) => (
-                <span key={i} style={{ width: i === idx ? 18 : 6, height: 6, background: i === idx ? BW.brass : "rgba(244,236,218,0.35)", borderRadius: 3, transition: "all 0.35s ease" }} />
-              ))}
-            </div>
+          {/* Spacer cell — reserves horizontal room in the grid so the
+              left column reads at 1.1fr width. The paper sits outside
+              the grid, positioned absolutely on the section. */}
+          <div aria-hidden="true" style={{ minHeight: isMobile ? 460 : 360 }} />
+        </div>
+      </div>
+
+      {/* Lab Journal page — anchored to the section's bottom-right corner,
+          allowed to drift past the bottom border so the page reads as if
+          set down across the edge of the desk. */}
+      <div style={{ position: "absolute", right: isMobile ? "4%" : 0, bottom: isMobile ? 28 : -72, width: isMobile ? "84%" : "clamp(440px, 48vw, 660px)", aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-3deg)", transformOrigin: "bottom right", zIndex: 3 }}>
+        <img src="assets/paper.png" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(-3px 5px 4px rgba(8,4,4,0.45)) drop-shadow(0 18px 32px rgba(8,4,4,0.30))" }} />
+        {/* journal content — sits inside the paper's ruled writing area */}
+        <div style={{ position: "absolute", top: "7%", right: "6%", bottom: "7%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
+            <span>Lab Journal · No {issueNo}</span>
+            <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
           </div>
+          <div style={{ opacity: fade, transition: "opacity 0.45s ease", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "clamp(16px, 4%, 28px) 0" }}>
+            <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(20px, 2.4vw, 26px)", lineHeight: 1.22, letterSpacing: "-0.015em", color: BW.ink, fontWeight: 400, margin: 0 }}>
+              {cur.q}
+            </p>
+            <p style={{ fontFamily: BW.ffSerif, fontSize: 13, lineHeight: 1.55, margin: "16px 0 0", color: "rgba(20,16,12,0.7)" }}>
+              A short note on what we've been wondering this week — and what a working version might look like by Friday.
+            </p>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>
+            <span style={{ opacity: fade, transition: "opacity 0.45s ease" }}>{cur.initials} · Lab</span>
+            <a href="lab.html" style={{ color: BW.plum, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: `1px solid ${BW.plum}`, paddingBottom: 2 }}>
+              Read this issue →
+            </a>
+          </div>
+        </div>
+        {/* prompt index dots — tucked at the bottom of the page, riding the rotation */}
+        <div style={{ position: "absolute", bottom: "3%", left: "55%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 5 }}>
+          {prompts.map((_, i) => (
+            <span key={i} style={{ width: i === idx ? 18 : 6, height: 6, background: i === idx ? BW.brass : "rgba(20,16,12,0.25)", borderRadius: 3, transition: "all 0.35s ease" }} />
+          ))}
         </div>
       </div>
     </section>
