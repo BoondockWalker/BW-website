@@ -139,7 +139,7 @@ function V3Lab() {
       {/* Lab Journal page — anchored to the section's bottom-right corner,
           allowed to drift past the bottom border so the page reads as if
           set down across the edge of the desk. */}
-      <div style={{ position: "absolute", right: isMobile ? "4%" : 0, bottom: isMobile ? 28 : "clamp(-310px, calc(-16vw - 50px), -210px)", width: isMobile ? "84%" : "clamp(440px, 48vw, 660px)", aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-3deg)", transformOrigin: "bottom right", zIndex: 3 }}>
+      <div style={{ position: "absolute", right: isMobile ? "4%" : 0, top: isMobile ? "auto" : "clamp(220px, 17vw, 260px)", bottom: isMobile ? 28 : "auto", width: isMobile ? "84%" : "clamp(440px, 48vw, 660px)", aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-3deg)", transformOrigin: isMobile ? "bottom right" : "top right", zIndex: 3 }}>
         <img src="assets/paper.png" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(-3px 5px 4px rgba(8,4,4,0.45)) drop-shadow(0 18px 32px rgba(8,4,4,0.30))" }} />
         {/* journal content — sits inside the paper's ruled writing area.
             The page bleeds heavily into the next section, so on desktop
