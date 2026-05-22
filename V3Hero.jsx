@@ -27,7 +27,7 @@ function V3Hero() {
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.6fr 1fr 1fr 1fr 220px", borderTop: `1px solid rgba(244,236,218,0.35)`, background: "rgba(20,16,12,0.18)", backdropFilter: "blur(6px)", position: "relative", zIndex: 5, marginTop: "auto" }}>
         <div style={{ padding: "18px clamp(18px, 4vw, 28px)", borderRight: isMobile ? "none" : `1px solid rgba(244,236,218,0.25)`, borderBottom: isMobile ? `1px solid rgba(244,236,218,0.25)` : "none" }}>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.45, margin: 0, color: BW.chalk50, maxWidth: 380 }}>
-            We don't run sprints. We walk operators across the long territory between a story you're proud of and a pipeline you can predict.
+            We don't run sprints. We work with you for the long haul — long enough to turn the story you're proud of into pipeline you can count on.
           </p>
         </div>
         {isMobile ? (
