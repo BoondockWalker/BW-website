@@ -77,7 +77,7 @@ function VesperPage() {
 
           {/* Tagline */}
           <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.8vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.025em", margin: "0 0 clamp(24px, 3vw, 32px)", color: BW.ink, maxWidth: "26ch" }}>
-            A living brand foundation, <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>built for founders and small businesses.</em>
+            Build a living brand foundation, AI-guided — <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>for founders and small businesses.</em>
           </p>
 
           {/* Standfirst */}
@@ -314,7 +314,7 @@ function VesperPage() {
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>From the Field Notes</div>
               <a href="note.html?slug=introducing-vesper" style={{ display: "block", padding: "16px 0", borderTop: `1px solid ${BW.ruleL}`, borderBottom: `1px solid ${BW.ruleL}`, textDecoration: "none", color: BW.ink }}>
                 <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 6 }}>№ 22 · Lab</div>
-                <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 20, lineHeight: 1.18, color: BW.ink }}>Introducing Vesper. A brand foundation for founders and small businesses.</div>
+                <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 20, lineHeight: 1.18, color: BW.ink }}>Introducing Vesper. An AI-guided brand foundation builder for founders and small businesses.</div>
                 <div style={{ marginTop: 8, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>Boondock Walker's announcement note.</div>
               </a>
               <a href="note.html?slug=seven-years-unagency" style={{ display: "block", padding: "16px 0", borderBottom: `1px solid ${BW.ruleL}`, textDecoration: "none", color: BW.ink }}>

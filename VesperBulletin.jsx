@@ -31,7 +31,7 @@ function V3VesperBulletin() {
         {/* message */}
         <div style={{ display: "flex", flexDirection: isNarrow ? "column" : "row", alignItems: isNarrow ? "flex-start" : "baseline", gap: isNarrow ? 4 : 14, color: BW.chalk50, fontFamily: BW.ffD, fontStyle: "italic", fontSize: isMobile ? 18 : 22, lineHeight: 1.2, letterSpacing: "-0.015em", fontWeight: 400 }}>
           <span>
-            Introducing <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>Vesper</em> — a brand foundation for founders and small businesses.
+            Introducing <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>Vesper</em> — an AI-guided brand foundation builder for founders and small businesses.
           </span>
           {!isNarrow && (
             <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.6)", fontWeight: 600 }}>
