@@ -82,57 +82,89 @@ function V3Cases() {
   );
 }
 
-/* §05 — The Lab. Plum surface with composer card on the right */
+/* §05 — The Lab. Plum surface. Left: headline + body + CTAs. Right: a
+   rotating "what if?" prompt typeset on a cropped field-journal page. */
 function V3Lab() {
   const isMobile = useMediaQuery("(max-width: 900px)");
+  const prompts = [
+    { q: "What if every sales call quietly seeded next month's content?", initials: "JO" },
+    { q: "What if the work nobody had time for got done overnight — in your voice?", initials: "MK" },
+    { q: "What if the pipeline could tell you which three accounts to call before you'd made coffee?", initials: "SR" },
+    { q: "What if the brand could draft, listen, and learn alongside the team?", initials: "JO" },
+    { q: "What if your demand engine knew what to try next, and quietly tried it?", initials: "MK" },
+  ];
+  const [idx, setIdx] = React.useState(0);
+  const [fade, setFade] = React.useState(1);
+  React.useEffect(() => {
+    const t = setInterval(() => {
+      setFade(0);
+      setTimeout(() => {
+        setIdx((i) => (i + 1) % prompts.length);
+        setFade(1);
+      }, 450);
+    }, 7000);
+    return () => clearInterval(t);
+  }, []);
+  const issueNo = String(idx + 1).padStart(2, "0");
+  const cur = prompts[idx];
   return (
     <section id="the-lab" style={{ background: BW.plum, color: BW.chalk50, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
       {/* faint grid */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk50} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk50} 1px, transparent 1px)`, backgroundSize: "60px 60px", opacity: 0.04 }} />
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
-          <span>§05</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>The Lab · AI Engagement</span>
+          <span>§05</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>The Lab · Applied AI</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1fr", gap: isMobile ? 40 : 64, alignItems: "center" }}>
           <div>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 10vw, 88px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 28px", color: BW.chalk50 }}>
-              AI <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>that sounds</em> like <em style={{ color: BW.chalk50, fontStyle: "italic", fontWeight: 400 }}>you.</em>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(44px, 8.5vw, 80px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 28px", color: BW.chalk50 }}>
+              Tools that move <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>the brand</em> — and the <em style={{ color: BW.chalk50, fontStyle: "italic", fontWeight: 400 }}>demand</em> for it.
             </h2>
-            <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 19px)", lineHeight: 1.55, margin: "0 0 32px", color: "rgba(251,247,238,0.82)", maxWidth: 540 }}>
-              We build custom desk-reps trained on your voice, your lifecycle, and your sales motion. They triage inbound, score intent, and write the first reply — so your team meets a warm pipeline, not a cold inbox.
+            <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 19px)", lineHeight: 1.6, margin: "0 0 32px", color: "rgba(251,247,238,0.85)", maxWidth: 560 }}>
+              The Lab is where we build the AI that's shaped to your work — a quiet assistant inside the CRM, a content engine that drafts in your voice, a model that watches the pipeline overnight and surfaces what you'd want to see first thing. We build each one around the brand you're trying to grow and the demand you're trying to earn, so both get sharper as they go.
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <a style={{ background: BW.brass, color: BW.ink, padding: "13px 22px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>View Lab projects →</a>
-              <a style={{ background: "transparent", color: BW.chalk50, padding: "13px 22px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", border: `1.5px solid rgba(244,236,218,0.4)` }}>Talk to engineering</a>
+              <a href="lab.html" style={{ background: BW.brass, color: BW.ink, padding: "13px 22px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>Tour the Lab →</a>
+              <a href="contact.html" style={{ background: "transparent", color: BW.chalk50, padding: "13px 22px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", border: `1.5px solid rgba(244,236,218,0.4)` }}>Bring us a hypothesis →</a>
             </div>
           </div>
 
-          {/* Composer */}
-          <div style={{ background: BW.chalk50, color: BW.ink, borderRadius: 12, boxShadow: "0 36px 80px -28px rgba(8,4,4,0.6)", overflow: "hidden", border: `1px solid rgba(20,16,12,0.12)` }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 18px", borderBottom: `1px solid ${BW.ruleL}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
-              <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ width: 8, height: 8, background: BW.forest, borderRadius: "50%", boxShadow: "0 0 0 4px rgba(46,70,38,0.18)" }} />
-                Voice model loaded
-              </span>
-              <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontSize: 12, color: "rgba(20,16,12,0.55)", fontWeight: 400 }}>v0.4</span>
-            </div>
-            <div style={{ padding: "20px 22px", display: "flex", gap: 14, alignItems: "flex-start" }}>
-              <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginTop: 4 }}>You</span>
-              <div style={{ flex: 1, fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.45, color: BW.ink }}>How do I sell a 70-year-old wholesale brand to a Gen-X operator?</div>
-            </div>
-            <div style={{ borderTop: `1px solid ${BW.ruleL}`, padding: "20px 22px", display: "flex", gap: 14, alignItems: "flex-start", background: "#FAEFD9" }}>
-              <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginTop: 4 }}>BDW</span>
-              <div style={{ flex: 1, fontFamily: BW.ffSerif, fontSize: 16, lineHeight: 1.55, color: BW.ink }}>
-                Stop calling it heritage. Operators don't buy heritage — they buy the receipts of having survived. Lead with the failure-rate of your category, then drop the year you were founded as a footnote.
+          {/* Lab Journal — what-if prompt typeset on a cropped field-journal page */}
+          <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: isMobile ? 380 : 460 }}>
+            <div style={{ position: "relative", width: "100%", maxWidth: 440, aspectRatio: "1 / 1.18", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 28px 50px rgba(8,4,4,0.45))" }}>
+              {/* paper */}
+              <img src="assets/field-journal.png" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%" }} />
+              {/* warm wash so text reads on the paper */}
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(244,236,218,0.55) 0%, rgba(244,236,218,0.72) 45%, rgba(244,236,218,0.55) 100%)", mixBlendMode: "lighten" }} />
+              {/* hand-rule notebook margin on the left */}
+              <div style={{ position: "absolute", top: "12%", bottom: "12%", left: "11%", width: 1, background: "rgba(94,38,56,0.35)" }} />
+              {/* content */}
+              <div style={{ position: "absolute", inset: 0, padding: "clamp(24px, 5%, 36px) clamp(24px, 7%, 44px) clamp(24px, 5%, 36px) clamp(50px, 14%, 80px)", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
+                  <span>Lab Journal · No {issueNo}</span>
+                  <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
+                </div>
+                <div style={{ opacity: fade, transition: "opacity 0.45s ease", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "clamp(16px, 4%, 28px) 0" }}>
+                  <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(22px, 3.2vw, 28px)", lineHeight: 1.2, letterSpacing: "-0.015em", color: BW.ink, fontWeight: 400, margin: 0 }}>
+                    {cur.q}
+                  </p>
+                  <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.55, margin: "18px 0 0", color: "rgba(20,16,12,0.7)" }}>
+                    A short note on what we've been wondering this week — and what a working version might look like by Friday.
+                  </p>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>
+                  <span style={{ opacity: fade, transition: "opacity 0.45s ease" }}>{cur.initials} · Lab</span>
+                  <a href="lab.html" style={{ color: BW.plum, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: `1px solid ${BW.plum}`, paddingBottom: 2 }}>
+                    Read this issue →
+                  </a>
+                </div>
               </div>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", borderTop: `1px solid ${BW.ruleL}`, background: BW.chalk }}>
-              <div style={{ display: "flex", gap: 6 }}>
-                {["Brand","Demand","Lab"].map((t) => (
-                  <span key={t} style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", padding: "4px 8px", border: `1px solid ${BW.ruleM}`, color: "rgba(20,16,12,0.6)", borderRadius: 3, fontWeight: 600 }}>{t}</span>
-                ))}
-              </div>
-              <a style={{ background: BW.ink, color: BW.chalk50, padding: "8px 14px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>Ask another →</a>
+            {/* prompt index dots */}
+            <div style={{ position: "absolute", bottom: -6, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8 }}>
+              {prompts.map((_, i) => (
+                <span key={i} style={{ width: i === idx ? 18 : 6, height: 6, background: i === idx ? BW.brass : "rgba(244,236,218,0.35)", borderRadius: 3, transition: "all 0.35s ease" }} />
+              ))}
             </div>
           </div>
         </div>
