@@ -6,9 +6,9 @@ function V3Thesis() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const tenets = [
     ["i.", "Story is infrastructure, not decoration."],
-    ["ii.", "Pipeline is the only honest metric."],
-    ["iii.", "We close our own deck. So should you."],
-    ["iv.", "AI shouldn't sound like AI."],
+    ["ii.", "Pipeline is the honest test of brand."],
+    ["iii.", "The senior people you meet are the people doing the work."],
+    ["iv.", "AI should disappear into the output."],
   ];
   return (
     <section id="thesis" style={{ background: BW.chalk50, color: BW.ink, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
