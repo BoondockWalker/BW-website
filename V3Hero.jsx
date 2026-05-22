@@ -19,7 +19,7 @@ function V3Hero() {
           <span>The Thesis · A field manual for closing</span>
         </div>
         <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(64px, 16vw, 196px)", lineHeight: 0.86, letterSpacing: "-0.025em", margin: 0, color: BW.chalk50, maxWidth: 1100 }}>
-          Take<br/>the&nbsp;<em style={{ color: BW.brass, fontWeight: 400, fontStyle: "italic" }}>long</em><br/>way <em style={{ color: BW.ink, fontWeight: 400, fontStyle: "italic" }}>home.</em>
+          Brands built<br/>for the <em style={{ color: BW.brass, fontWeight: 400, fontStyle: "italic" }}>long</em> <em style={{ color: BW.ink, fontWeight: 400, fontStyle: "italic" }}>road.</em>
         </h1>
       </div>
 
