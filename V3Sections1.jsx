@@ -21,10 +21,10 @@ function V3Thesis() {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 40 : 80, alignItems: "start" }}>
           <div>
             <p style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 6vw, 56px)", lineHeight: 1.08, fontStyle: "italic", margin: "0 0 32px", color: BW.ink, letterSpacing: "-0.025em", fontWeight: 400 }}>
-              We don't make ads. We're not your full-service agency on retainer.
+              Brand-led demand, built to <em style={{ fontStyle: "italic", color: BW.clay, fontWeight: 400 }}>compound.</em>
             </p>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 20px)", lineHeight: 1.55, margin: 0, color: BW.ink2, maxWidth: "44ch" }}>
-              We're a small team of brand strategists, marketers, and AI builders. We work with founders and revenue leaders who've already nailed the product — and now need someone to <em style={{ fontFamily: BW.ffD, fontStyle: "italic", color: BW.ink, fontWeight: 400 }}>sharpen the story and build the engine</em> that turns it into pipeline.
+              Most firms split brand and growth into separate disciplines, separate teams, separate invoices. We don't. Boondock Walker builds the brand foundation and the demand engine as <em style={{ fontFamily: BW.ffD, fontStyle: "italic", color: BW.ink, fontWeight: 400 }}>one connected system</em> — so the strategy that defines who you are is the same strategy generating pipeline. Senior principals lead the work. Our proprietary tools accelerate it. The outcomes carry forward.
             </p>
           </div>
           <div style={{ paddingTop: 8 }}>
