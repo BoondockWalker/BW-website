@@ -129,17 +129,15 @@ function V3Lab() {
             </div>
           </div>
 
-          {/* Lab Journal — what-if prompt typeset on a cropped field-journal page */}
-          <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: isMobile ? 380 : 460 }}>
-            <div style={{ position: "relative", width: "100%", maxWidth: 440, aspectRatio: "1 / 1.18", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 28px 50px rgba(8,4,4,0.45))" }}>
+          {/* Lab Journal — what-if prompt typeset on a page floating on the desk */}
+          <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", padding: isMobile ? "24px 8px 36px" : "32px 16px 56px", minHeight: isMobile ? 460 : 640 }}>
+            <div style={{ position: "relative", width: "100%", maxWidth: 360, aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 20px 30px rgba(8,4,4,0.35))" }}>
               {/* paper */}
-              <img src="assets/paper.svg" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
-              {/* warm wash so text reads on the paper */}
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(244,236,218,0.55) 0%, rgba(244,236,218,0.72) 45%, rgba(244,236,218,0.55) 100%)", mixBlendMode: "lighten" }} />
-              {/* hand-rule notebook margin on the left */}
-              <div style={{ position: "absolute", top: "12%", bottom: "12%", left: "11%", width: 1, background: "rgba(94,38,56,0.35)" }} />
-              {/* content */}
-              <div style={{ position: "absolute", inset: 0, padding: "clamp(24px, 5%, 36px) clamp(24px, 7%, 44px) clamp(24px, 5%, 36px) clamp(50px, 14%, 80px)", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
+              <img src="assets/paper.png" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center center" }} />
+              {/* content — sits inside the paper's ruled writing area
+                  (top/bottom ~7% match the first/last rule line; left 22%
+                  clears the paper's red margin rule at x≈18%) */}
+              <div style={{ position: "absolute", top: "7%", right: "6%", bottom: "7%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
                   <span>Lab Journal · No {issueNo}</span>
                   <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
