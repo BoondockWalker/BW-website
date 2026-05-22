@@ -32,7 +32,7 @@ function LabVesperFeature() {
 
             <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(36px, 6vw, 64px)", lineHeight: 0.98, letterSpacing: "-0.03em", margin: 0, color: BW.ink }}>
               Introducing <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>Vesper.</em>
-              <br />A living brand foundation, <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>built for founders and small businesses.</em>
+              <br />Build a living brand foundation, AI-guided — <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>for founders and small businesses.</em>
             </h2>
 
             <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "60ch" }}>
