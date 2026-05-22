@@ -131,7 +131,7 @@ function V3Lab() {
 
           {/* Lab Journal — what-if prompt typeset on a page floating on the desk */}
           <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", padding: isMobile ? "24px 8px 36px" : "32px 16px 56px", minHeight: isMobile ? 460 : 640 }}>
-            <div style={{ position: "relative", width: "100%", maxWidth: 360, aspectRatio: "159.61 / 226.29", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 18px 28px rgba(8,4,4,0.32))", background: BW.chalk50, border: `1px solid rgba(20,16,12,0.08)` }}>
+            <div style={{ position: "relative", width: "100%", maxWidth: 360, aspectRatio: "158.33 / 224.61", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 20px 30px rgba(8,4,4,0.35))" }}>
               {/* paper */}
               <img src="assets/paper.svg" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center center" }} />
               {/* content — sits inside the paper's ruled writing area
