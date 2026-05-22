@@ -10,6 +10,7 @@ The bureau's voice is **conversational and approachable**.
 - Confident but warm. Specific without sounding like a brochure.
 - We can be witty, but never hard-sell or dramatic.
 - When tempted to write a one-line zinger, ask whether a fuller sentence would land more honestly.
+- **Don't sell too hard.** No hype, no "transform your business," no closing-line pressure. The work speaks; we describe it plainly. If a sentence is trying to convince, soften it until it just informs.
 
 If a draft sounds like it could be on the back of a B2B brochure or in a startup manifesto, rewrite it.
 
