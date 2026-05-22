@@ -129,13 +129,11 @@ function V3Lab() {
             </div>
           </div>
 
-          {/* Lab Journal — what-if prompt typeset on a cropped field-journal page */}
-          <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: isMobile ? 380 : 460 }}>
-            <div style={{ position: "relative", width: "100%", maxWidth: 440, aspectRatio: "1 / 1.18", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 28px 50px rgba(8,4,4,0.45))" }}>
+          {/* Lab Journal — what-if prompt typeset on a page floating on the desk */}
+          <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: isMobile ? 420 : 540 }}>
+            <div style={{ position: "relative", width: "100%", maxWidth: 380, aspectRatio: "159.61 / 226.29", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 18px 28px rgba(8,4,4,0.32))" }}>
               {/* paper */}
-              <img src="assets/paper.svg" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
-              {/* warm wash so text reads on the paper */}
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(244,236,218,0.55) 0%, rgba(244,236,218,0.72) 45%, rgba(244,236,218,0.55) 100%)", mixBlendMode: "lighten" }} />
+              <img src="assets/paper.svg" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center center" }} />
               {/* hand-rule notebook margin on the left */}
               <div style={{ position: "absolute", top: "12%", bottom: "12%", left: "11%", width: 1, background: "rgba(94,38,56,0.35)" }} />
               {/* content */}
