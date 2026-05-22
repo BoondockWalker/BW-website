@@ -141,8 +141,11 @@ function V3Lab() {
           set down across the edge of the desk. */}
       <div style={{ position: "absolute", right: isMobile ? "4%" : 0, bottom: isMobile ? 28 : "clamp(-610px, calc(-16vw - 350px), -510px)", width: isMobile ? "84%" : "clamp(440px, 48vw, 660px)", aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-3deg)", transformOrigin: "bottom right", zIndex: 3 }}>
         <img src="assets/paper.png" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(-3px 5px 4px rgba(8,4,4,0.45)) drop-shadow(0 18px 32px rgba(8,4,4,0.30))" }} />
-        {/* journal content — sits inside the paper's ruled writing area */}
-        <div style={{ position: "absolute", top: "7%", right: "6%", bottom: "7%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
+        {/* journal content — sits inside the paper's ruled writing area.
+            The page bleeds heavily into the next section, so on desktop
+            we push the content up into the top third of the sheet so it
+            stays visible above the section border. */}
+        <div style={{ position: "absolute", top: "5%", right: "6%", bottom: isMobile ? "7%" : "62%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
             <span>Lab Journal · No {issueNo}</span>
             <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
