@@ -151,7 +151,7 @@ function V3Lab() {
             <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
           </div>
           <div style={{ opacity: fade, transition: "opacity 0.45s ease", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "clamp(16px, 4%, 28px) 0" }}>
-            <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(20px, 2.4vw, 26px)", lineHeight: 1.22, letterSpacing: "-0.015em", color: BW.ink, fontWeight: 400, margin: 0 }}>
+            <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(26px, 3vw, 34px)", lineHeight: 1.2, letterSpacing: "-0.015em", color: BW.ink, fontWeight: 400, margin: 0 }}>
               {cur.q}
             </p>
             <p style={{ fontFamily: BW.ffSerif, fontSize: 13, lineHeight: 1.55, margin: "16px 0 0", color: "rgba(20,16,12,0.7)" }}>
