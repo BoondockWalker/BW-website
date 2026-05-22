@@ -130,8 +130,8 @@ function V3Lab() {
           </div>
 
           {/* Lab Journal — what-if prompt typeset on a page floating on the desk */}
-          <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: isMobile ? 420 : 540 }}>
-            <div style={{ position: "relative", width: "100%", maxWidth: 380, aspectRatio: "159.61 / 226.29", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 18px 28px rgba(8,4,4,0.32))" }}>
+          <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", padding: isMobile ? "24px 8px 36px" : "32px 16px 56px", minHeight: isMobile ? 460 : 640 }}>
+            <div style={{ position: "relative", width: "100%", maxWidth: 360, aspectRatio: "159.61 / 226.29", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 18px 28px rgba(8,4,4,0.32))" }}>
               {/* paper */}
               <img src="assets/paper.svg" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center center" }} />
               {/* hand-rule notebook margin on the left */}
