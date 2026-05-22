@@ -133,7 +133,7 @@ function V3Lab() {
           <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: isMobile ? 380 : 460 }}>
             <div style={{ position: "relative", width: "100%", maxWidth: 440, aspectRatio: "1 / 1.18", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 28px 50px rgba(8,4,4,0.45))" }}>
               {/* paper */}
-              <img src="assets/field-journal.png" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%" }} />
+              <img src="assets/paper.svg" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
               {/* warm wash so text reads on the paper */}
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(244,236,218,0.55) 0%, rgba(244,236,218,0.72) 45%, rgba(244,236,218,0.55) 100%)", mixBlendMode: "lighten" }} />
               {/* hand-rule notebook margin on the left */}
