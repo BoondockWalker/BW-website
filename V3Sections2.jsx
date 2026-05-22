@@ -134,10 +134,10 @@ function V3Lab() {
             <div style={{ position: "relative", width: "100%", maxWidth: 360, aspectRatio: "159.61 / 226.29", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 18px 28px rgba(8,4,4,0.32))" }}>
               {/* paper */}
               <img src="assets/paper.svg" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center center" }} />
-              {/* hand-rule notebook margin on the left */}
-              <div style={{ position: "absolute", top: "12%", bottom: "12%", left: "11%", width: 1, background: "rgba(94,38,56,0.35)" }} />
-              {/* content */}
-              <div style={{ position: "absolute", inset: 0, padding: "clamp(24px, 5%, 36px) clamp(24px, 7%, 44px) clamp(24px, 5%, 36px) clamp(50px, 14%, 80px)", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
+              {/* content — sits inside the paper's ruled writing area
+                  (top/bottom ~7% match the first/last rule line; left 22%
+                  clears the paper's red margin rule at x≈18%) */}
+              <div style={{ position: "absolute", top: "7%", right: "6%", bottom: "7%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
                   <span>Lab Journal · No {issueNo}</span>
                   <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
