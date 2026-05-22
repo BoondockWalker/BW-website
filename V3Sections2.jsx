@@ -129,15 +129,15 @@ function V3Lab() {
             </div>
           </div>
 
-          {/* Lab Journal — what-if prompt typeset on a page floating on the desk */}
-          <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", padding: isMobile ? "24px 8px 36px" : "32px 16px 56px", minHeight: isMobile ? 460 : 640 }}>
-            <div style={{ position: "relative", width: "100%", maxWidth: 360, aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", filter: "drop-shadow(0 20px 30px rgba(8,4,4,0.35))" }}>
+          {/* Lab Journal — paper scaled up, allowed to bleed off bottom + right */}
+          <div style={{ position: "relative", overflow: "hidden", minHeight: isMobile ? 540 : 680 }}>
+            <div style={{ position: "absolute", top: isMobile ? 0 : -20, left: isMobile ? "2%" : "-2%", width: isMobile ? "96%" : "150%", aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-1.5deg)", transformOrigin: "top left", filter: "drop-shadow(0 28px 38px rgba(8,4,4,0.40))" }}>
               {/* paper */}
               <img src="assets/paper.png" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center center" }} />
-              {/* content — sits inside the paper's ruled writing area
-                  (top/bottom ~7% match the first/last rule line; left 22%
-                  clears the paper's red margin rule at x≈18%) */}
-              <div style={{ position: "absolute", top: "7%", right: "6%", bottom: "7%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
+              {/* content — sits inside the paper's ruled writing area.
+                  On desktop the paper bleeds off the bottom, so content
+                  is constrained to the top half of the sheet. */}
+              <div style={{ position: "absolute", top: isMobile ? "7%" : "4%", right: "6%", bottom: isMobile ? "7%" : "46%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
                   <span>Lab Journal · No {issueNo}</span>
                   <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
@@ -159,7 +159,7 @@ function V3Lab() {
               </div>
             </div>
             {/* prompt index dots */}
-            <div style={{ position: "absolute", bottom: -6, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8 }}>
+            <div style={{ position: "absolute", bottom: 14, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 5 }}>
               {prompts.map((_, i) => (
                 <span key={i} style={{ width: i === idx ? 18 : 6, height: 6, background: i === idx ? BW.brass : "rgba(244,236,218,0.35)", borderRadius: 3, transition: "all 0.35s ease" }} />
               ))}
