@@ -10,7 +10,7 @@
 function NotesNav({ current }) {
   const tabs = [
     { label: "Blog",       href: "field-notes.html", note: "Long-form" },
-    { label: "BenchMarks", href: "benchmarks.html",  note: "Daily" },
+    { label: "BenchMarks", href: "benchmarks.html",  note: "Almost daily" },
   ];
   return (
     <div style={{ background: BW.chalk, borderBottom: `1px solid ${BW.ruleL}`, fontFamily: BW.ffG }}>

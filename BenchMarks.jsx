@@ -157,7 +157,7 @@ function BMMasthead() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 14, borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700, flexWrap: "wrap", gap: 12 }}>
           <span>From the desk · Vol. XII</span>
           <span>{months[today.getMonth()]} {today.getDate()} · {today.getFullYear()}</span>
-          <span>Refreshed daily</span>
+          <span>Refreshed most days</span>
         </div>
 
         {/* Wordmark */}
@@ -168,10 +168,10 @@ function BMMasthead() {
         {/* Standfirst */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 24 : 80, paddingTop: 24, borderTop: `1.5px solid ${BW.ink}`, alignItems: "start" }}>
           <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.45, margin: 0, color: BW.ink, maxWidth: "48ch" }}>
-            One thing on the desk, every day. A photograph, a quote, a link, a recording — whatever the operator pinned to the wall this morning, with a note on why it matters.
+            One thing on the desk, most days. A photograph, a quote, a link, a recording — whatever the operator pinned to the wall this morning, with a note on why it matters.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-            <span>— One thing from the desk, every day.</span>
+            <span>— One thing from the desk, most days.</span>
             <span>— Same one all day</span>
             <span>— New one tomorrow</span>
           </div>
@@ -227,7 +227,7 @@ function BMCuratorStrip({ curator }) {
             fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase",
             color: BW.ink3, fontWeight: 700,
           }}>
-            One thing from the desk, every day.
+            One thing from the desk, most days.
           </span>
         </div>
       </div>
