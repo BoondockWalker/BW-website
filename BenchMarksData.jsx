@@ -20,6 +20,28 @@ const BW_BENCHMARKS = {
   // Commentary below is placeholder — refine artifact-by-artifact.
   artifacts: [
     {
+      id: "2026-05-26-admitting-wrong",
+      mediaType: "image",
+      src: SPEC + "2026-05-26-admitting-wrong.png",
+      alt: "Artifact — \"I was wrong.\" Three of the Hardest Words.",
+      title: "Three of the Hardest Words",
+      commentary: {
+        hook: "I was wrong.",
+        body: [
+          "The people I respect most aren't right more often than anyone else. They can just say those three words without flinching.",
+          "Everybody else does the math. Ego cost of admitting it vs. ego cost of doubling down. Doubling down wins. Then we burn the thing we thought we were protecting.",
+          "Wrote about this on the Brave & Boundless blog this week. Short read.",
+          "[braveandboundless.com/the-power-of-admitting-wrong](https://braveandboundless.com/the-power-of-admitting-wrong)",
+        ],
+        signoff: "— MN",
+      },
+      tags: ["brave-and-boundless", "character"],
+      relatedSlug: null,
+      publishedAt: "2026-05-26",
+      social: { igCaption: null, igCardSrc: null },
+    },
+
+    {
       id: "2026-05-17-cavs",
       mediaType: "image",
       src: SPEC + "2026-05-17-cavs.png",
