@@ -171,7 +171,6 @@ function BMMasthead() {
             One thing on the desk, most days. A photograph, a quote, a link, a recording — whatever the operator pinned to the wall this morning, with a note on why it matters.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-            <span>— One thing from the desk, most days.</span>
             <span>— Same one all day</span>
             <span>— New one tomorrow</span>
           </div>
@@ -223,12 +222,6 @@ function BMCuratorStrip({ curator }) {
             )}
           </span>
           <span style={{ flex: 1, minWidth: 24, height: 1, background: BW.ruleL }} />
-          <span style={{
-            fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase",
-            color: BW.ink3, fontWeight: 700,
-          }}>
-            One thing from the desk, most days.
-          </span>
         </div>
       </div>
     </section>
