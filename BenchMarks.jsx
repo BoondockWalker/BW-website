@@ -24,12 +24,13 @@ function getTodayISO() {
   return `${y}-${m}-${day}`;
 }
 
-/* ───── Selection logic — pick today's artifact by publishedAt match.
+/* ───── Selection logic — pick today's artifact.
    `publishedPool` drives the day-of pick (so today's artifact can never
    be unpublished). `fullPool` is consulted only for the pin override, so
    Mark can pin an unpublished artifact to preview it before its launch
-   day. If no artifact is dated today, fall back to a deterministic
-   day-indexed rotation through the published pool. ───── */
+   day. If no artifact is dated today, fall back to the most recent
+   published artifact instead of a rotation — that's what the "Today
+   from the desk" eyebrow implies. ───── */
 function pickToday(publishedPool, fullPool, pinnedId) {
   if (pinnedId) {
     const pinned = (fullPool || []).find(s => s.id === pinnedId);
@@ -39,8 +40,8 @@ function pickToday(publishedPool, fullPool, pinnedId) {
   const today = getTodayISO();
   const exact = publishedPool.find(s => s.publishedAt === today);
   if (exact) return exact;
-  const day = Math.floor(Date.now() / 86400000);
-  return publishedPool[day % publishedPool.length];
+  // No artifact dated today — surface the most recent published one.
+  return [...publishedPool].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))[0];
 }
 
 /* ───── Read URL ?id= override on first paint ───── */
