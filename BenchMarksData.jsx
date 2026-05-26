@@ -10,7 +10,7 @@ const BW_BENCHMARKS = {
     name: "Mark Nead",
     role: "Curator",
     photo: "assets/benchmarks/curator/Mark-Nead-headshot.jpg",
-    bio: "I keep the bench. One artifact a day, three things on the desk, and a running log of edits to my own thinking. If something here lands, it earned the spot.",
+    bio: "I keep the bench. One artifact most days, three things on the desk, and a running log of edits to my own thinking. If something here lands, it earned the spot.",
   },
 
   // Optional override for today's artifact. When null, the page picks by date.
