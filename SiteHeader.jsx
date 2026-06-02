@@ -207,7 +207,7 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
 
       {/* Optional breadcrumb rail beneath the pill */}
       {breadcrumb && (
-        <div style={{ position: "relative", padding: "20px clamp(16px, 4vw, 36px) 22px", zIndex: 5, display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: subText, fontWeight: 600 }}>
+        <div style={{ position: "relative", padding: "20px clamp(16px, 4vw, 36px) 32px", zIndex: 5, display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: subText, fontWeight: 600, background: isDark ? BW.ink : BW.chalk, borderBottom: `0.75px solid ${isDark ? "rgba(244,236,218,0.18)" : BW.ruleL}` }}>
           <span style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <a href="index.html" style={{ color: subText, textDecoration: "none" }}>Boondock Walker</a>
             {breadcrumb.parent && (
