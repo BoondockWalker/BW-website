@@ -148,7 +148,7 @@ function FNNewsletterRail() {
         <div style={{ padding: "16px 14px", border: `1px dashed ${BW.brass}`, color: BW.brass, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700 }}>✓ On the list. First note ships in two weeks.</div>
       )}
       <div style={{ paddingTop: 16, borderTop: `1px solid rgba(244,236,218,0.18)`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 600, lineHeight: 1.6 }}>
-          ~600 operators on the list<br />Unsubscribe with one click<br />No course funnels, ever
+          Unsubscribe with one click<br />No course funnels, ever
       </div>
     </aside>
   );
