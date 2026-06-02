@@ -118,12 +118,12 @@ function V3Pillars() {
           <div key={p.n} style={{ borderRight: !isMobile && i < 2 ? `1px solid rgba(244,236,218,0.18)` : "none", borderBottom: isMobile && i < 2 ? `1px solid rgba(244,236,218,0.18)` : "none", padding: "44px clamp(20px, 5vw, 36px) 40px", display: "flex", flexDirection: "column", gap: 20, position: "relative", overflow: "hidden" }}>
             <div style={{ position: "relative", height: pillarImgSize - 40, marginTop: -64, marginBottom: 0 }}>
               <div style={{ position: "absolute", left: 0, top: 64, zIndex: 2 }}>
-                <span style={{ fontFamily: BW.ffG, fontSize: "clamp(72px, 14vw, 96px)", fontWeight: 700, color: p.numColor, lineHeight: 0.85, letterSpacing: "-0.05em", display: "block" }}>{p.n}</span>
-                <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: p.c, fontWeight: 700, marginTop: 14 }}>{p.k}</div>
+                <span style={{ fontFamily: BW.ffG, fontSize: "clamp(48px, 8vw, 64px)", fontWeight: 700, color: p.numColor, lineHeight: 0.85, letterSpacing: "-0.05em", display: "block", opacity: 0.5 }}>{p.n}</span>
               </div>
               <img src={p.img} alt="" style={{ position: "absolute", right: isMobile ? -16 : -36, top: -20, width: pillarImgSize, height: pillarImgSize, objectFit: "contain", pointerEvents: "none", zIndex: 1, filter: p.tint }} />
             </div>
-            <h3 style={{ fontFamily: BW.ffD, fontSize: 32, fontWeight: 400, letterSpacing: "-0.02em", margin: 0, color: BW.chalk, lineHeight: 1.1, fontStyle: "italic" }}>{p.t}</h3>
+            <h3 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 5.4vw, 56px)", fontWeight: 400, letterSpacing: "-0.02em", margin: 0, color: p.c, lineHeight: 1, fontStyle: "italic" }}>{p.k}.</h3>
+            <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 20, fontWeight: 400, color: BW.chalk, lineHeight: 1.2, letterSpacing: "-0.01em", marginTop: -6 }}>{p.t}.</div>
             <p style={{ fontFamily: BW.ffSerif, fontSize: 16, lineHeight: 1.6, margin: 0, color: "rgba(244,236,218,0.78)" }}>{p.body}</p>
             <div style={{ marginTop: "auto", display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 18, borderTop: `1px solid rgba(244,236,218,0.18)`, gap: 12, flexWrap: "wrap" }}>
               <span style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.5)", fontWeight: 600 }}>{p.cap}</span>

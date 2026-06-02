@@ -92,13 +92,15 @@ function CapPillarSection({ pillar, idx }) {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : reverse ? "1fr 1.4fr" : "1.4fr 1fr", gap: isMobile ? 48 : 80, alignItems: "start" }}>
           {/* COPY COLUMN */}
           <div style={{ order: isMobile ? 2 : reverse ? 2 : 1 }}>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginBottom: 20, flexWrap: "wrap" }}>
-              <span style={{ fontFamily: BW.ffG, fontSize: "clamp(96px, 14vw, 180px)", fontWeight: 700, color: s.numCol, letterSpacing: "-0.05em", lineHeight: 0.85 }}>{pillar.n}</span>
-              <span style={{ fontFamily: BW.ffM, fontSize: 12, letterSpacing: "0.3em", textTransform: "uppercase", color: s.text, fontWeight: 700 }}>{pillar.tag}</span>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 24, marginBottom: 8, flexWrap: "wrap" }}>
+              <span style={{ fontFamily: BW.ffG, fontSize: "clamp(56px, 8vw, 96px)", fontWeight: 700, color: s.numCol, letterSpacing: "-0.05em", lineHeight: 0.85, opacity: 0.5 }}>{pillar.n}</span>
+              <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(64px, 10vw, 124px)", lineHeight: 0.95, letterSpacing: "-0.03em", margin: 0, color: s.numCol }}>
+                {pillar.tag}.
+              </h2>
             </div>
-            <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(40px, 6vw, 72px)", lineHeight: 1.02, letterSpacing: "-0.03em", margin: "0 0 28px", color: s.text }}>
+            <div style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(28px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.02em", margin: "0 0 28px", color: s.text }}>
               {pillar.title}.
-            </h2>
+            </div>
             <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(22px, 2.8vw, 30px)", lineHeight: 1.25, letterSpacing: "-0.015em", margin: "0 0 24px", color: s.text, maxWidth: "32ch" }}>
               {pillar.lede}
             </p>
@@ -142,7 +144,7 @@ function CapPillarSection({ pillar, idx }) {
               </div>
 
               {/* Object */}
-              <img src={pillar.objectImg} alt={pillar.objectCap} style={{ position: "absolute", inset: "12% 6% 20%", width: "88%", height: "68%", objectFit: "contain", filter: pillar.surface === "forest" ? "sepia(0.55) saturate(0.5) hue-rotate(-10deg) brightness(1.18) contrast(0.92)" : "none", mixBlendMode: pillar.surface === "clay" ? "multiply" : "normal" }} />
+              <img src={pillar.objectImg} alt={pillar.objectCap} style={{ position: "absolute", inset: "12% 6% 20%", width: "88%", height: "68%", objectFit: "contain", filter: pillar.surface === "forest" ? "sepia(0.55) saturate(0.5) hue-rotate(-10deg) brightness(1.18) contrast(0.92)" : "none", mixBlendMode: "normal" }} />
 
               {/* Annotation marks (corner tickmarks) */}
               {[ ["top", "left"], ["top", "right"], ["bottom", "left"], ["bottom", "right"] ].map(([y, x]) => (
