@@ -54,7 +54,7 @@ function FNMasthead({ filterCount, totalCount }) {
           <span>{filterCount} of {totalCount} notes filed</span>
         </div>
         {/* Wordmark */}
-        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(72px, 16vw, 220px)", lineHeight: 0.84, letterSpacing: "-0.03em", margin: "clamp(28px,4vw,44px) 0 clamp(20px,3vw,32px)", color: BW.ink }}>
+        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.03em", margin: "clamp(28px,4vw,44px) 0 clamp(20px,3vw,32px)", color: BW.ink }}>
           Field <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>Notes.</em>
         </h1>
         {/* Standfirst */}
