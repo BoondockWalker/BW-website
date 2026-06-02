@@ -57,10 +57,10 @@ function V3Triage() {
           </h2>
           <div>
             <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.55, margin: "0 0 18px", color: BW.ink2 }}>
-              Most founders feel the symptom long before they can name it. <em style={{ fontFamily: BW.ffD, color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>Brand Triage</em> is a two-minute intake we built to put a clinical name on the discomfort — and tell you whether to watch it, treat it, or rebuild.
+              Most founders feel the symptom long before they can name it. The quick check below maps ten common patterns to a single response — <em style={{ fontFamily: BW.ffD, color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>watch</em>, <em style={{ fontFamily: BW.ffD, color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>treat</em>, or <em style={{ fontFamily: BW.ffD, color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>rebuild</em>. A useful starting point, not a diagnosis.
             </p>
             <p style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.5, margin: 0, color: "rgba(20,16,12,0.65)" }}>
-              Try a preliminary read below. Tap the symptoms you recognize — the chart sketches itself in real time. The full tool produces a personalized PDF.
+              For the diagnosis, run the <em style={{ fontFamily: BW.ffD, color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>Brand Triage</em> — a deeper, guided intake that returns a personalized written report on what's driving the discomfort and a recommended path forward.
             </p>
           </div>
         </div>
@@ -172,9 +172,9 @@ function V3Triage() {
             <>
               <div style={{ background: BW.clay, height: 6 }} />
               <div style={{ padding: "20px 22px 12px" }}>
-                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 6 }}>Want the full chart?</div>
+                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 6 }}>Beyond the quick check</div>
                 <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 19, lineHeight: 1.3, margin: "0 0 14px", color: BW.ink, fontWeight: 400, letterSpacing: "-0.01em" }}>
-                  Run the complete <em style={{ fontWeight: 700, fontStyle: "italic" }}>Brand Triage</em> — prioritize 5 symptoms, get a personalized PDF report in 2 minutes.
+                  The <em style={{ fontWeight: 700, fontStyle: "italic" }}>Brand Triage</em> is a guided intake that returns a personalized written report — naming the specific pain points and a recommended path to address them.
                 </p>
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>Free · No call required</div>
               </div>
@@ -186,9 +186,9 @@ function V3Triage() {
             <>
               <div style={{ background: BW.clay, alignSelf: "stretch" }} />
               <div style={{ padding: "20px 22px" }}>
-                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 6 }}>Want the full chart?</div>
+                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 6 }}>Beyond the quick check</div>
                 <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 19, lineHeight: 1.3, margin: 0, color: BW.ink, fontWeight: 400, letterSpacing: "-0.01em" }}>
-                  Run the complete <em style={{ fontWeight: 700, fontStyle: "italic" }}>Brand Triage</em> — prioritize 5 symptoms, get a personalized PDF report in 2 minutes.
+                  The <em style={{ fontWeight: 700, fontStyle: "italic" }}>Brand Triage</em> is a guided intake that returns a personalized written report — naming the specific pain points and a recommended path to address them.
                 </p>
               </div>
               <div style={{ padding: "20px 22px", textAlign: "right", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600, lineHeight: 1.6 }}>
