@@ -212,12 +212,6 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, marginTop: 2 }}>{a.role || "Bureau"}</div>
               </div>
             </div>
-            <div style={{ display: "flex", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, flexWrap: "wrap" }}>
-              <span>Filed in {note.tag.toLowerCase()}</span>
-              <span>·</span>
-              <a href="#" style={{ color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>Plain text</a>
-              <a href="#" style={{ color: BW.ink, textDecoration: "none", borderBottom: `0.75px solid ${BW.ink}` }}>Print</a>
-            </div>
           </div>
         </div>
       </section>
