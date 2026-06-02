@@ -62,10 +62,6 @@ function FNMasthead({ filterCount, totalCount }) {
           <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.45, margin: 0, color: BW.ink, maxWidth: "44ch" }}>
             A bulletin from the field. Twice-monthly notes on brand, demand, and the lab — written by the team that does the work. No email gate, no growth-hack gloss.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-            <span>— ~600 operators on the list</span>
-            <span>— Index updates weekly</span>
-          </div>
         </div>
       </div>
     </section>
