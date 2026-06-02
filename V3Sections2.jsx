@@ -67,7 +67,7 @@ function V3Cases() {
               <div style={{ padding: "26px 26px 28px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 24 }}>
                 <div>
                   <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", marginBottom: 12, fontWeight: 600 }}>{c.tag}</div>
-                  <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 24, lineHeight: 1.2, color: BW.ink, margin: 0, fontWeight: 400, letterSpacing: "-0.015em" }}>"{c.pull}"</p>
+                  <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 24, lineHeight: 1.2, color: BW.ink, margin: 0, fontWeight: 400, letterSpacing: "-0.015em" }}>{c.pull}</p>
                 </div>
                 <div style={{ display: "flex", gap: 32, paddingTop: 18, borderTop: `1px solid ${BW.ruleL}` }}>
                   <div><div style={{ fontFamily: BW.ffG, fontWeight: 700, fontSize: 22, color: c.c, letterSpacing: "-0.01em", marginBottom: 2 }}>{c.m1}</div><div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>{c.m1k}</div></div>
