@@ -23,7 +23,7 @@ function WorkMasthead({ count, filterCount }) {
           <span>The Archive · Selected Receipts, 2015–2026</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end" }}>
-          <h1 style={{ fontFamily: BW.ffD, fontSize: "clamp(80px, 18vw, 168px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 0.86, margin: 0, color: BW.ink }}>
+          <h1 style={{ fontFamily: BW.ffD, fontSize: "clamp(80px, 18vw, 168px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 0.88, margin: 0, color: BW.ink }}>
             The<br/><em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>receipts.</em>
           </h1>
           <div style={{ paddingBottom: isMobile ? 0 : 24 }}>

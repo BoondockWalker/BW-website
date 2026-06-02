@@ -172,7 +172,7 @@ function WorkClosing() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
             <span>§04</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Add a case</span>
           </div>
-          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 10vw, 96px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 32px", color: BW.chalk50 }}>
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 10vw, 96px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 32px", color: BW.chalk50 }}>
             Want your <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>name</em> in this archive?
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 19, lineHeight: 1.55, margin: 0, color: "rgba(251,247,238,0.85)", maxWidth: "44ch" }}>
