@@ -193,7 +193,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "clamp(36px, 5vw, 72px) clamp(20px, 5vw, 56px) clamp(32px, 4vw, 48px)" }}>
           {/* kicker rail */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 14, borderBottom: `0.75px solid ${BW.ink}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700, flexWrap: "wrap", gap: 10 }}>
-            <span style={{ color: c }}>{note.tag} · {note.kicker}</span>
+            <span style={{ color: c }}>{note.kicker}</span>
             <span>{note.issue} · {note.date}</span>
             <span>{note.minutes} min walk</span>
           </div>
@@ -229,8 +229,7 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
             <div style={{ aspectRatio: "16/7", position: "relative", overflow: "hidden", borderBottom: `0.75px solid ${BW.ink}` }}>
               <FNArt kind={note.art} color={c} caption={`fig. 01 · ${note.kicker.toLowerCase()}`} label={`${note.issue} · ${note.date}`} image={note.image} alt={note.imageAlt} />
             </div>
-            <figcaption style={{ padding: "12px 18px", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-              <span>fig. 01 · Lead illustration</span>
+            <figcaption style={{ padding: "12px 18px", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, display: "flex", justifyContent: "flex-end", flexWrap: "wrap", gap: 10 }}>
               <span>BDW Lab · 2026</span>
             </figcaption>
           </figure>
