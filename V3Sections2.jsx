@@ -148,17 +148,15 @@ function V3Lab() {
               push the content up into the top of the sheet so it stays
               visible above the section border. */}
           <div style={{ position: "absolute", top: "5%", right: "6%", bottom: isMobile ? "7%" : "62%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
-              <span>Lab Journal · No {issueNo}</span>
-              <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
+            <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
+              Lab Journal · No {issueNo}
             </div>
             <div style={{ opacity: fade, transition: "opacity 0.45s ease", flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-start", padding: "clamp(60px, 9%, 100px) 0 clamp(16px, 4%, 28px) 0" }}>
               <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(26px, 3vw, 34px)", lineHeight: 1.2, letterSpacing: "-0.015em", color: BW.ink, fontWeight: 400, margin: 0 }}>
                 {cur.q}
               </p>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>
-              <span style={{ opacity: fade, transition: "opacity 0.45s ease" }}>{cur.initials} · Lab</span>
+            <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>
               <a href="lab.html" style={{ color: BW.plum, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: `1px solid ${BW.plum}`, paddingBottom: 2 }}>
                 Read this issue →
               </a>
