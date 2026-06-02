@@ -135,12 +135,9 @@ function CapPillarSection({ pillar, idx }) {
           {/* FIG. COLUMN — annotated object */}
           <div style={{ order: isMobile ? 1 : reverse ? 1 : 2, position: "relative", minHeight: isMobile ? 360 : 540 }}>
             <div style={{ position: "relative", aspectRatio: "1 / 1", maxWidth: isMobile ? 420 : "100%", margin: "0 auto" }}>
-              {/* Fig. frame label */}
-              <div style={{ position: "absolute", top: 0, left: 0, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: s.body, fontWeight: 600, lineHeight: 1.5 }}>
-                Fig.<br />№{pillar.n}
-              </div>
+              {/* Bureau attribution — top right */}
               <div style={{ position: "absolute", top: 0, right: 0, textAlign: "right", fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: s.body, fontWeight: 600, lineHeight: 1.5 }}>
-                BDW · 2026<br />fig. 03.{pillar.n}
+                BDW · 2026
               </div>
 
               {/* Object */}
@@ -152,7 +149,7 @@ function CapPillarSection({ pillar, idx }) {
               ))}
 
               {/* Bottom caption */}
-              <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", textAlign: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: s.body, fontWeight: 600, paddingTop: 10, borderTop: `1px solid ${s.subtle}`, width: "60%" }}>
+              <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", textAlign: "center", fontFamily: BW.ffD, fontStyle: "italic", fontSize: 15, color: s.body, fontWeight: 400, letterSpacing: "-0.005em", paddingTop: 10, borderTop: `1px solid ${s.subtle}`, width: "60%" }}>
                 {pillar.objectCap}
               </div>
             </div>
