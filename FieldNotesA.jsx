@@ -121,7 +121,7 @@ function FNFeatured({ note, themed }) {
             </div>
           </div>
         <div style={{ aspectRatio: isMobile ? "16/10" : "auto", minHeight: isMobile ? 0 : 440, position: "relative", overflow: "hidden" }}>
-          <FNArt kind={note.art} color={c} caption={`fig. 00 · featured`} label={`${note.issue} · ${note.date}`} image={note.image} alt={note.imageAlt} />
+          <FNArt kind={note.art} color={c} caption={`fig. 00 · featured`} image={note.image} alt={note.imageAlt} />
           <div style={{ position: "absolute", left: 0, bottom: 0, padding: "8px 14px", background: BW.ink, color: BW.chalk50, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700 }}>{note.tag} · {note.kicker}</div>
         </div>
       </a>
