@@ -802,7 +802,7 @@ function CaseAdjacent({ prev, next }) {
           </div>
           <div style={{ position: "relative" }}>
             <div style={{ fontFamily: BW.ffG, fontSize: 18, fontWeight: 700, letterSpacing: "0.04em", textTransform: "uppercase", color: BW.chalk50, marginBottom: 10 }}>{c.client}</div>
-            <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 28, lineHeight: 1.15, margin: "0 0 24px", color: BW.chalk50, fontWeight: 400, letterSpacing: "-0.015em", maxWidth: "22ch" }}>"{c.pull}"</p>
+            <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 28, lineHeight: 1.15, margin: "0 0 24px", color: BW.chalk50, fontWeight: 400, letterSpacing: "-0.015em", maxWidth: "22ch" }}>{c.pull}</p>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, paddingBottom: 4, borderBottom: `1.5px solid ${BW.brass}` }}>
               {side === "left" ? "← Read previous" : "Read next →"}
             </div>
