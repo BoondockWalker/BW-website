@@ -166,14 +166,10 @@ function BMMasthead() {
         </h1>
 
         {/* Standfirst */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 24 : 80, paddingTop: 24, borderTop: `1.5px solid ${BW.ink}`, alignItems: "start" }}>
+        <div style={{ paddingTop: 24, borderTop: `1.5px solid ${BW.ink}` }}>
           <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.45, margin: 0, color: BW.ink, maxWidth: "48ch" }}>
             One thing on the desk, most days. A photograph, a quote, a link, a recording — whatever the operator pinned to the wall this morning, with a note on why it matters.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>
-            <span>— Same one all day</span>
-            <span>— New one tomorrow</span>
-          </div>
         </div>
       </div>
     </section>
@@ -359,7 +355,6 @@ function BMToday({ artifact, isArchive, onPrev, onNext, onShare, sharing, shareT
               color: BW.ink3, fontWeight: 700,
             }}>
               <span>Artifact · {(artifact.mediaType || "").toUpperCase()}</span>
-              <span>1080 × 1080</span>
             </div>
           </div>
           )}
@@ -458,7 +453,6 @@ function BMToday({ artifact, isArchive, onPrev, onNext, onShare, sharing, shareT
                   color: BW.ink3, fontWeight: 700,
                 }}>
                   <span>Artifact · {(artifact.mediaType || "").toUpperCase()}</span>
-                  <span>1080 × 1080</span>
                 </div>
               </div>
             )}
