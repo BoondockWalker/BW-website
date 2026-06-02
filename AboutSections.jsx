@@ -13,7 +13,7 @@ function AboutHero({ showDiagram }) {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? 32 : 80, paddingTop: "clamp(28px, 4vw, 48px)", alignItems: "end" }}>
           <div>
-            <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 11vw, 168px)", lineHeight: 0.88, letterSpacing: "-0.03em", margin: 0, color: BW.ink }}>
+            <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.03em", margin: 0, color: BW.ink }}>
               A bureau,<br /><em style={{ fontStyle: "italic", fontWeight: 400, color: BW.clay }}>not an agency.</em>
             </h1>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(18px, 2vw, 24px)", lineHeight: 1.45, margin: "clamp(28px, 3vw, 40px) 0 0", color: BW.ink2, maxWidth: "44ch" }}>
