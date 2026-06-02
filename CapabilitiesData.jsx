@@ -148,7 +148,7 @@ const BW_CAPABILITIES = {
     ],
     // TODO: replace anonymized attribution with a real client quote + named attribution.
     pull: {
-      quote: "They don't think like an agency. They think like a revenue team that happens to write well.",
+      quote: "They don't think like an agency. They think like a revenue team that happens to have exceptional conceptual thinkers, writers and designers.",
       attrib: "TODO — real client name + title",
     },
   },
