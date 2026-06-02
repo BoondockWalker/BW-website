@@ -141,7 +141,7 @@ function V3Lab() {
             content wrapper so it doesn't shift around when the screen
             width changes. Vertical anchor stays at row 2 of the
             headline; the bottom still rides into §06. */}
-        <div style={{ position: "absolute", left: isMobile ? "auto" : "50%", right: isMobile ? "4%" : "auto", top: isMobile ? "auto" : "clamp(145px, calc(17vw - 75px), 185px)", bottom: isMobile ? 28 : "auto", width: isMobile ? "84%" : "clamp(420px, 38vw, 580px)", aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-3deg)", transformOrigin: isMobile ? "bottom right" : "top left", zIndex: 3 }}>
+        <div style={{ position: "absolute", left: isMobile ? "auto" : "50%", right: isMobile ? "4%" : "auto", top: isMobile ? "auto" : "clamp(205px, calc(17vw - 15px), 245px)", bottom: isMobile ? 28 : "auto", width: isMobile ? "84%" : "clamp(420px, 38vw, 580px)", aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-3deg)", transformOrigin: isMobile ? "bottom right" : "top left", zIndex: 3 }}>
           <img src="assets/paper.png?v=2" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(-3px 5px 4px rgba(8,4,4,0.45)) drop-shadow(0 18px 32px rgba(8,4,4,0.30))" }} />
           {/* journal content — sits inside the paper's writing area. The
               page bleeds heavily into the next section, so on desktop we
@@ -152,12 +152,9 @@ function V3Lab() {
               <span>Lab Journal · No {issueNo}</span>
               <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontWeight: 400, fontSize: 12, color: "rgba(20,16,12,0.55)" }}>fig. {issueNo}</span>
             </div>
-            <div style={{ opacity: fade, transition: "opacity 0.45s ease", flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-start", padding: "25px 0 clamp(16px, 4%, 28px) 0" }}>
+            <div style={{ opacity: fade, transition: "opacity 0.45s ease", flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-start", padding: "clamp(60px, 9%, 100px) 0 clamp(16px, 4%, 28px) 0" }}>
               <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(26px, 3vw, 34px)", lineHeight: 1.2, letterSpacing: "-0.015em", color: BW.ink, fontWeight: 400, margin: 0 }}>
                 {cur.q}
-              </p>
-              <p style={{ fontFamily: BW.ffSerif, fontSize: 13, lineHeight: 1.55, margin: "16px 0 0", color: "rgba(20,16,12,0.7)" }}>
-                A short note on what we've been wondering this week — and what a working version might look like by Friday.
               </p>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>
