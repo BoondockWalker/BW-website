@@ -12,7 +12,7 @@ function FNCard({ note, size, themed }) {
     return (
       <a href={`note.html?slug=${note.slug}`} style={{ gridColumn: isMobile ? "auto" : "span 2", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", border: `0.75px solid ${BW.ink}`, background: BW.chalk50, color: BW.ink, textDecoration: "none", minHeight: 320 }}>
         <div style={{ position: "relative", borderRight: isMobile ? 0 : `0.75px solid ${BW.ink}`, borderBottom: isMobile ? `0.75px solid ${BW.ink}` : 0, minHeight: 240 }}>
-          <FNArt kind={note.art} color={c} caption={`fig. ${note.issue.replace("No ", "")}`} label={note.kicker} image={note.image} alt={note.imageAlt} />
+          <FNArt kind={note.art} color={c} caption={`fig. ${note.issue.replace("No ", "")}`} image={note.image} alt={note.imageAlt} />
         </div>
         <div style={{ padding: "26px 28px", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 18 }}>
           <div>
@@ -47,7 +47,7 @@ function FNCard({ note, size, themed }) {
   return (
     <a href={`note.html?slug=${note.slug}`} style={{ display: "flex", flexDirection: "column", border: `0.75px solid ${BW.ink}`, background: BW.chalk50, color: BW.ink, textDecoration: "none" }}>
       <div style={{ aspectRatio: "16/10", borderBottom: `0.75px solid ${BW.ink}`, position: "relative" }}>
-        <FNArt kind={note.art} color={c} caption={`fig. ${note.issue.replace("No ", "")}`} label={note.kicker} image={note.image} alt={note.imageAlt} />
+        <FNArt kind={note.art} color={c} caption={`fig. ${note.issue.replace("No ", "")}`} image={note.image} alt={note.imageAlt} />
       </div>
       <div style={{ padding: "22px 22px 18px", display: "flex", flexDirection: "column", gap: 14, flex: 1, justifyContent: "space-between" }}>
         <div>
