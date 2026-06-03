@@ -102,7 +102,7 @@ function CaseCard({ c }) {
 
 function CaseListRow({ c }) {
   return (
-    <a href={c.href || `case.html?id=${c.slug}`} style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 1fr 80px", borderTop: `1px solid ${BW.ruleL}`, padding: "22px 0", textDecoration: "none", color: BW.ink, alignItems: "center", gap: 18, cursor: "pointer" }}>
+    <a href={c.href || `case.html?id=${c.slug}`} style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 80px", borderTop: `1px solid ${BW.ruleL}`, padding: "22px 0", textDecoration: "none", color: BW.ink, alignItems: "center", gap: 18, cursor: "pointer" }}>
       <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", color: BW.clay, fontWeight: 700 }}>№{c.no}</span>
       <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>{c.year}</span>
       <div>
@@ -111,10 +111,6 @@ function CaseListRow({ c }) {
       </div>
       <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>{c.pillar}</span>
       <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink2, fontWeight: 600 }}>{c.industry}</span>
-      <div>
-        <div style={{ fontFamily: BW.ffG, fontWeight: 700, fontSize: 20, color: BW.clay, letterSpacing: "-0.01em" }}>{c.bigStat.v}</div>
-        <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>{c.bigStat.k}</div>
-      </div>
       <span style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700, textAlign: "right" }}>Read →</span>
     </a>
   );
@@ -130,8 +126,8 @@ function ArchiveGrid({ cases, view }) {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
             <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The Archive · Ledger View</span>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 1fr 80px", gap: 18, paddingBottom: 12, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 700 }}>
-            <span>№</span><span>Year</span><span>Client / Headline</span><span>Pillar</span><span>Industry</span><span>Headline metric</span><span></span>
+          <div style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 80px", gap: 18, paddingBottom: 12, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 700 }}>
+            <span>№</span><span>Year</span><span>Client / Headline</span><span>Pillar</span><span>Industry</span><span></span>
           </div>
           {cases.map(c => <CaseListRow key={c.slug} c={c} />)}
         </div>

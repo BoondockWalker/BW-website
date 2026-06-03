@@ -44,7 +44,7 @@ function WorkMasthead({ count, filterCount }) {
 
 /* ───── Filter row ───── */
 const PILLARS = ["All", "Brand", "Demand", "Lab"];
-const INDUSTRIES = ["All industries", "B2B SaaS", "Manufacturing", "Pro services", "DTC", "Fintech", "Healthcare"];
+const INDUSTRIES = ["All industries", "B2B", "B2C", "Faith/Non-Profit", "Manufacturing", "Pro services", "DTC", "Fintech", "Healthcare"];
 const OUTCOMES = ["All outcomes", "Pipeline", "Brand", "Retention", "Efficiency"];
 
 function FilterRow({ pillar, setPillar, industry, setIndustry, outcome, setOutcome, sort, setSort, view, setView }) {
