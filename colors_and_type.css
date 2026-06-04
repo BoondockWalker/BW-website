@@ -66,7 +66,15 @@ html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
    Fraunces italic at display sizes has a long swash f descender that
    crowds the next letter even with the fi ligature applied. Loosening
    only the em portions keeps the upright text and body copy untouched. */
-h1 em, h2 em, h3 em { letter-spacing: -0.005em; }
+h1 em, h2 em, h3 em {
+  letter-spacing: -0.005em;
+  /* Lock italic accents to a smaller optical-size value so Fraunces'
+     swash italic f at display sizes stops crowding the next letter.
+     The browser's auto opsz drags toward 144 at large font-size; we
+     pin it to 60 here so the italic renders with the more controlled
+     mid-size stroke design even when the headline is huge. */
+  font-variation-settings: "opsz" 60;
+}
 
   /* ---------- Color: Ink (deep warm-black foundation) ---------- */
   --bw-ink-900: #0C0907;        /* deepest */
