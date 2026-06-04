@@ -73,10 +73,12 @@ h1 em, h2 em, h3 em { font-variation-settings: "opsz" 60; }
    auto-apply across the variable axis range. */
 /* Display headlines: pin all relevant axes so the browser can't
    fall back to text-cut serifs. opsz at max (144) gives the display
-   stroke contrast; SOFT at min (30) keeps the slab serifs sharp;
-   wght 500 thickens the strokes against the dramatic display
-   contrast so hairlines don't disappear at large sizes. */
-h1, h2 { font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 500; }
+   stroke contrast; SOFT at min (30) keeps the slab serifs sharp.
+   font-weight: 500 !important is required to override JSX inline
+   styles that explicitly set fontWeight: 400 on every h1/h2 — the
+   variable font's wght axis follows font-weight, so without the
+   !important the strokes thin out against the display contrast. */
+h1, h2 { font-variation-settings: "opsz" 144, "SOFT" 30; font-weight: 500 !important; }
 
 :root {
   /* ---------- Color: Ink (deep warm-black foundation) ---------- */
