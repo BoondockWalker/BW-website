@@ -21,7 +21,7 @@ function LabHero() {
           <span>{d.eyebrow.split(" / ")[1]} · A bureau within the bureau</span>
         </div>
 
-        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.025em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
+        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.015em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
           {d.title}<br />
           <em style={{ color: BW.clay300, fontWeight: 400, fontStyle: "italic" }}>{d.titleItalic}</em>
         </h1>
@@ -79,7 +79,7 @@ function LabThesis() {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: 56 }}>
-          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.03em", margin: 0, color: BW.ink }}>
+          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
             {d.title} <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em>
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "44ch" }}>
@@ -91,7 +91,7 @@ function LabThesis() {
           {d.columns.map((c, i) => (
             <div key={c.n} style={{ borderRight: !isMobile && i < d.columns.length - 1 ? `1px solid ${BW.ruleL}` : "none", borderBottom: isMobile && i < d.columns.length - 1 ? `1px solid ${BW.ruleL}` : "none", padding: "36px clamp(16px, 3vw, 32px) 40px", display: "flex", flexDirection: "column", gap: 16 }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
-                <span style={{ fontFamily: BW.ffG, fontSize: 36, fontWeight: 700, color: BW.clay, letterSpacing: "-0.03em", lineHeight: 1 }}>{c.n}</span>
+                <span style={{ fontFamily: BW.ffG, fontSize: 36, fontWeight: 700, color: BW.clay, letterSpacing: "-0.02em", lineHeight: 1 }}>{c.n}</span>
                 <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700 }}>Reason {c.n}</span>
               </div>
               <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(24px, 2.8vw, 32px)", lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, color: BW.ink, maxWidth: "20ch" }}>
@@ -125,7 +125,7 @@ function LabRules() {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: 56 }}>
-          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.03em", margin: 0, color: BW.chalk50 }}>
+          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0, color: BW.chalk50 }}>
             {d.title} <em style={{ color: BW.clay300, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em>
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.chalk2, margin: 0, maxWidth: "44ch" }}>

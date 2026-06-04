@@ -60,7 +60,7 @@ function CaseThumb({ c, kind }) {
       <div style={{ position: "absolute", right: 22, top: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 14, color: "rgba(251,247,238,0.85)", fontWeight: 400 }}>{c.year}</div>
       {isAbstract && (
         <div style={{ position: "absolute", left: 22, bottom: 22, right: 22, display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-          <div style={{ fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.03em", lineHeight: 0.85, fontSize: 56, textTransform: "uppercase" }}>{c.bigStat.v}</div>
+          <div style={{ fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.02em", lineHeight: 0.85, fontSize: 56, textTransform: "uppercase" }}>{c.bigStat.v}</div>
           <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 600, textAlign: "right", maxWidth: 120 }}>{c.bigStat.k}</div>
         </div>
       )}
@@ -168,7 +168,7 @@ function WorkClosing() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
             <span>§04</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Add a case</span>
           </div>
-          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 10vw, 96px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 32px", color: BW.chalk50 }}>
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 10vw, 96px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.98, margin: "0 0 32px", color: BW.chalk50 }}>
             Want your <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>name</em> in this archive?
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 19, lineHeight: 1.55, margin: 0, color: "rgba(251,247,238,0.85)", maxWidth: "44ch" }}>

@@ -176,7 +176,7 @@ function CaseHeroFullBleed({ d }) {
             fontFamily: BW.ffD,
             fontSize: "clamp(64px, 9.5vw, 160px)",
             fontWeight: 400,
-            letterSpacing: "-0.03em",
+            letterSpacing: "-0.02em",
             lineHeight: 0.9,
             margin: "0 0 36px",
             color: h.titleColor || BW.chalk50,
@@ -272,7 +272,7 @@ function ProseBlock({ block }) {
         )}
         {title && (
           <Reveal kind="rise" delay={120}>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 4.4vw, 64px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: "0 0 48px", color: BW.ink, maxWidth: align === "center" ? "none" : "22ch", marginLeft: align === "center" ? "auto" : 0, marginRight: align === "center" ? "auto" : 0 }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 4.4vw, 64px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.05, margin: "0 0 48px", color: BW.ink, maxWidth: align === "center" ? "none" : "22ch", marginLeft: align === "center" ? "auto" : 0, marginRight: align === "center" ? "auto" : 0 }}>
               {title}
             </h2>
           </Reveal>
@@ -384,7 +384,7 @@ function FloatingImage({ block }) {
         )}
         {title && (
           <Reveal kind="rise" delay={120}>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: "0 0 40px", color: BW.ink }}>{title}</h2>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.05, margin: "0 0 40px", color: BW.ink }}>{title}</h2>
           </Reveal>
         )}
         {blend ? (
@@ -433,7 +433,7 @@ function ImageTextBlock({ block }) {
           )}
           {title && (
             <Reveal kind="rise" delay={120}>
-              <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.08, margin: "0 0 32px", color: BW.ink, maxWidth: "16ch" }}>
+              <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.08, margin: "0 0 32px", color: BW.ink, maxWidth: "16ch" }}>
                 {title}
               </h2>
             </Reveal>
@@ -473,7 +473,7 @@ function MultiImageBlock({ block }) {
             )}
             {title && (
               <Reveal kind="rise" delay={120}>
-                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: titleColor, maxWidth: "20ch" }}>{title}</h2>
+                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.05, margin: 0, color: titleColor, maxWidth: "20ch" }}>{title}</h2>
               </Reveal>
             )}
           </div>
@@ -553,7 +553,7 @@ function SliderBlock({ block }) {
           )}
           {title && (
             <Reveal kind="rise" delay={120}>
-              <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
+              <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
             </Reveal>
           )}
         </div>
@@ -675,7 +675,7 @@ function StatRowBlock({ block }) {
             )}
             {title && (
               <Reveal kind="rise" delay={120}>
-                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
+                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
               </Reveal>
             )}
           </div>
@@ -684,7 +684,7 @@ function StatRowBlock({ block }) {
           <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}` }}>
             {items.map((s, i, arr) => (
               <div key={i} style={{ padding: "28px clamp(16px, 4vw, 24px)", borderRight: (i + 1) % cols !== 0 && i < arr.length - 1 ? `1px solid ${BW.ruleL}` : "none", borderBottom: i + cols < arr.length ? `1px solid ${BW.ruleL}` : "none", display: "flex", flexDirection: "column", gap: 12, minHeight: 200 }}>
-                <div style={{ fontFamily: BW.ffG, fontWeight: 700, fontSize: s.placeholder ? 36 : 48, letterSpacing: "-0.025em", color: s.placeholder ? "rgba(20,16,12,0.32)" : (s.color || accent), lineHeight: 0.95, fontStyle: s.placeholder ? "italic" : "normal", fontFamily: s.placeholder ? BW.ffD : BW.ffG }}>
+                <div style={{ fontFamily: BW.ffG, fontWeight: 700, fontSize: s.placeholder ? 36 : 48, letterSpacing: "-0.015em", color: s.placeholder ? "rgba(20,16,12,0.32)" : (s.color || accent), lineHeight: 0.95, fontStyle: s.placeholder ? "italic" : "normal", fontFamily: s.placeholder ? BW.ffD : BW.ffG }}>
                   {s.placeholder ? "—" : (s.numeric != null ? <CountUp to={s.numeric} prefix={s.prefix || ""} suffix={s.suffix || ""} duration={1400} /> : s.v)}
                 </div>
                 <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700, lineHeight: 1.5, marginTop: "auto" }}>{s.k}</div>
@@ -909,7 +909,7 @@ function OverlapBlock({ block }) {
             )}
             {title && (
               <Reveal kind="rise" delay={120}>
-                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.025em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
+                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.05, margin: 0, color: BW.ink, maxWidth: "22ch" }}>{title}</h2>
               </Reveal>
             )}
           </div>

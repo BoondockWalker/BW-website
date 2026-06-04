@@ -13,7 +13,7 @@ function AboutHero({ showDiagram }) {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? 32 : 80, paddingTop: "clamp(28px, 4vw, 48px)", alignItems: "end" }}>
           <div>
-            <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.03em", margin: 0, color: BW.ink }}>
+            <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
               A bureau,<br /><em style={{ fontStyle: "italic", fontWeight: 400, color: BW.clay }}>not an agency.</em>
             </h1>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(18px, 2vw, 24px)", lineHeight: 1.45, margin: "clamp(28px, 3vw, 40px) 0 0", color: BW.ink2, maxWidth: "44ch" }}>
@@ -74,7 +74,7 @@ function AboutCodes({ codes }) {
           <Eyebrow color={BW.clay}>The codes we work by</Eyebrow>
           <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>{codes.length} principles · revised yearly</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(36px, 5.5vw, 72px)", lineHeight: 0.98, letterSpacing: "-0.025em", margin: "0 0 clamp(36px, 4vw, 56px)", color: BW.ink, maxWidth: "20ch" }}>
+        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(36px, 5.5vw, 72px)", lineHeight: 0.98, letterSpacing: "-0.015em", margin: "0 0 clamp(36px, 4vw, 56px)", color: BW.ink, maxWidth: "20ch" }}>
           Not a manifesto. Just the rules of the bench.
         </h2>
         <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 0, borderTop: `0.75px solid ${BW.ink}`, borderLeft: `0.75px solid ${BW.ink}` }}>
@@ -103,7 +103,7 @@ function AboutBuild({ panels }) {
           <Eyebrow color={BW.brass} light>How the bureau is built</Eyebrow>
           <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>The structural argument</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(36px, 5.5vw, 72px)", lineHeight: 0.98, letterSpacing: "-0.025em", margin: "0 0 clamp(40px, 5vw, 64px)", color: BW.chalk50, maxWidth: "22ch" }}>
+        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(36px, 5.5vw, 72px)", lineHeight: 0.98, letterSpacing: "-0.015em", margin: "0 0 clamp(40px, 5vw, 64px)", color: BW.chalk50, maxWidth: "22ch" }}>
           The shape of the team is the value of the team.
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 0, borderTop: `0.75px solid ${BW.ruleD}`, borderLeft: `0.75px solid ${BW.ruleD}` }}>
@@ -134,7 +134,7 @@ function AboutTeam({ team }) {
           <Eyebrow color={BW.clay}>The principals</Eyebrow>
           <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700 }}>3 of 3 — the people on every call</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(36px, 5.5vw, 72px)", lineHeight: 0.98, letterSpacing: "-0.025em", margin: "0 0 clamp(36px, 4vw, 56px)", color: BW.ink, maxWidth: "22ch" }}>
+        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(36px, 5.5vw, 72px)", lineHeight: 0.98, letterSpacing: "-0.015em", margin: "0 0 clamp(36px, 4vw, 56px)", color: BW.ink, maxWidth: "22ch" }}>
           The names on the proposal are the hands on the file.
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 0, borderTop: `0.75px solid ${BW.ink}`, borderLeft: `0.75px solid ${BW.ink}` }}>
@@ -171,7 +171,7 @@ function AboutShelfLedger({ shelf, ledger }) {
           <div style={{ paddingBottom: 14, borderBottom: `0.75px solid ${BW.ink}`, marginBottom: 32 }}>
             <Eyebrow color={BW.sky}>The shelf</Eyebrow>
           </div>
-          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(32px, 4.5vw, 56px)", lineHeight: 0.98, letterSpacing: "-0.025em", margin: "0 0 36px", color: BW.ink, maxWidth: "20ch" }}>
+          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(32px, 4.5vw, 56px)", lineHeight: 0.98, letterSpacing: "-0.015em", margin: "0 0 36px", color: BW.ink, maxWidth: "20ch" }}>
             What the bureau learns from.
           </h2>
           <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", borderTop: `0.75px solid ${BW.ruleL}` }}>
@@ -225,7 +225,7 @@ function AboutCTA() {
       <div style={{ maxWidth: 1240, margin: "0 auto", position: "relative", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: "clamp(36px, 4vw, 64px)", alignItems: "end" }}>
         <div>
           <Eyebrow color={BW.chalk50} light>Engagement</Eyebrow>
-          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(40px, 7vw, 96px)", lineHeight: 0.98, letterSpacing: "-0.03em", margin: "24px 0 clamp(20px, 3vw, 32px)", color: BW.chalk50, maxWidth: "16ch" }}>
+          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(40px, 7vw, 96px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: "24px 0 clamp(20px, 3vw, 32px)", color: BW.chalk50, maxWidth: "16ch" }}>
             We don't take projects.<br/>We take engagements.
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 1.8vw, 21px)", lineHeight: 1.5, margin: "0 0 32px", color: BW.chalk2, maxWidth: "52ch" }}>

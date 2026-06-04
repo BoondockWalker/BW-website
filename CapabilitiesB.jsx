@@ -17,7 +17,7 @@ function CapCatalog() {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: 56 }}>
-          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.03em", margin: 0, color: BW.ink }}>
+          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
             {d.title} Hire us for <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "40ch" }}>
@@ -66,7 +66,7 @@ function CapEvidence() {
           <span style={{ width: 28, height: 1, background: BW.clay300 }} />
           <span>{d.eyebrow.split(" / ")[1]}</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.03em", margin: "0 0 56px", color: BW.chalk, maxWidth: 1100 }}>
+        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: "0 0 56px", color: BW.chalk, maxWidth: 1100 }}>
           {d.title} <em style={{ color: BW.clay300, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em>
         </h2>
 
@@ -133,7 +133,7 @@ function CapProcess() {
 
         {/* HEADER + INTRO */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: isMobile ? 40 : 64 }}>
-          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.03em", margin: 0, color: BW.ink }}>
+          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
             {d.title} <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "44ch" }}>
@@ -178,7 +178,7 @@ function CapProcess() {
                   <span style={{ fontFamily: BW.ffM, fontSize: isMobile ? 9 : 10, letterSpacing: "0.22em", color: isActive ? BW.clay300 : BW.ink3, fontWeight: 600 }}>{st.n}</span>
                   <span style={{
                     fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic",
-                    fontSize: "clamp(56px, 12vw, 168px)", lineHeight: 0.85, letterSpacing: "-0.025em",
+                    fontSize: "clamp(56px, 12vw, 168px)", lineHeight: 0.85, letterSpacing: "-0.015em",
                     color: isActive ? BW.clay300 : BW.clay,
                     transform: isActive ? "translateY(-2px)" : "translateY(0)",
                     transition: "transform 240ms cubic-bezier(.2,.7,.2,1), color 240ms",
@@ -216,7 +216,7 @@ function CapProcess() {
 
             {/* Center — title + body */}
             <div style={{ padding: isMobile ? "20px 24px 28px" : "44px 36px", display: "flex", flexDirection: "column", gap: 18 }}>
-              <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(40px, 5.5vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.025em", margin: 0, color: BW.chalk50 }}>
+              <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(40px, 5.5vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.015em", margin: 0, color: BW.chalk50 }}>
                 {cur.t}.
               </h3>
               <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 1.6vw, 19px)", lineHeight: 1.6, margin: 0, color: BW.chalk2, maxWidth: "52ch" }}>
@@ -293,7 +293,7 @@ function CapCTA() {
           <span style={{ width: 28, height: 1, background: BW.ink }} />
           <span>{d.eyebrow.split(" / ")[1]}</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(48px, 9vw, 124px)", lineHeight: 0.92, letterSpacing: "-0.025em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
+        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(48px, 9vw, 124px)", lineHeight: 0.92, letterSpacing: "-0.015em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
           {d.title} <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
         </h2>
         <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? 32 : 64, alignItems: "end" }}>

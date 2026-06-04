@@ -22,7 +22,7 @@ function CapHero() {
           <span style={{ width: 28, height: 1, background: BW.brass }} />
           <span>Capabilities · A field manual</span>
         </div>
-        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.025em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
+        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.015em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
           {d.title}<br />
           <em style={{ color: BW.clay300, fontWeight: 400, fontStyle: "italic" }}>{d.titleItalic}</em>
         </h1>
@@ -94,7 +94,7 @@ function CapPillarSection({ pillar, idx }) {
           <div style={{ order: isMobile ? 2 : reverse ? 2 : 1 }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: 24, marginBottom: 8, flexWrap: "wrap" }}>
               <span style={{ fontFamily: BW.ffG, fontSize: "clamp(56px, 8vw, 96px)", fontWeight: 700, color: s.numCol, letterSpacing: "-0.05em", lineHeight: 0.85, opacity: 0.5 }}>{pillar.n}</span>
-              <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(64px, 10vw, 124px)", lineHeight: 0.95, letterSpacing: "-0.03em", margin: 0, color: s.numCol }}>
+              <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(64px, 10vw, 124px)", lineHeight: 0.95, letterSpacing: "-0.02em", margin: 0, color: s.numCol }}>
                 {pillar.tag}.
               </h2>
             </div>

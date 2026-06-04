@@ -55,7 +55,7 @@ function FNMasthead({ filterCount, totalCount }) {
           <span>{filterCount} of {totalCount} notes filed</span>
         </div>
         {/* Wordmark */}
-        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.03em", margin: "clamp(28px,4vw,44px) 0 clamp(20px,3vw,32px)", color: BW.ink }}>
+        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.02em", margin: "clamp(28px,4vw,44px) 0 clamp(20px,3vw,32px)", color: BW.ink }}>
           Field <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>Notes.</em>
         </h1>
         {/* Standfirst */}
@@ -108,7 +108,7 @@ function FNFeatured({ note, themed }) {
               <span style={{ width: 22, height: 1, background: c }} />
               <span>{note.issue} · {note.date}</span>
             </div>
-            <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(40px, 7vw, 88px)", lineHeight: 0.96, letterSpacing: "-0.03em", margin: "0 0 24px", color: BW.ink }}>
+            <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(40px, 7vw, 88px)", lineHeight: 0.96, letterSpacing: "-0.02em", margin: "0 0 24px", color: BW.ink }}>
               {note.title}
             </h2>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 1.8vw, 21px)", lineHeight: 1.5, margin: 0, color: BW.ink2, maxWidth: "52ch" }}>{note.dek}</p>

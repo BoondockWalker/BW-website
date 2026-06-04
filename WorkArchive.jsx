@@ -23,7 +23,7 @@ function WorkMasthead({ count, filterCount }) {
           <span>The Archive · Selected Receipts, 2015–2026</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end" }}>
-          <h1 style={{ fontFamily: BW.ffD, fontSize: "clamp(80px, 18vw, 168px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 0.88, margin: 0, color: BW.ink }}>
+          <h1 style={{ fontFamily: BW.ffD, fontSize: "clamp(80px, 18vw, 168px)", fontWeight: 400, letterSpacing: "-0.015em", lineHeight: 0.88, margin: 0, color: BW.ink }}>
             The<br/><em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>receipts.</em>
           </h1>
           <div style={{ paddingBottom: isMobile ? 0 : 24 }}>
@@ -114,7 +114,7 @@ function FeaturedCase({ c }) {
           <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.55)", fontWeight: 600, marginBottom: 16 }}>
             Case №{c.no} · {c.year} · {c.industry}
           </div>
-          <h2 style={{ fontFamily: BW.ffG, fontSize: "clamp(40px, 8vw, 56px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 0.92, margin: "0 0 14px", color: BW.chalk50, textTransform: "uppercase" }}>
+          <h2 style={{ fontFamily: BW.ffG, fontSize: "clamp(40px, 8vw, 56px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 0.92, margin: "0 0 14px", color: BW.chalk50, textTransform: "uppercase" }}>
             {c.client}
           </h2>
           <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(24px, 5vw, 36px)", lineHeight: 1.12, margin: "0 0 32px", color: BW.brass, letterSpacing: "-0.02em", fontWeight: 400 }}>
@@ -154,7 +154,7 @@ function FeaturedCase({ c }) {
             {c.clientLogo ? (
               <img src={c.clientLogo} alt={c.client} style={{ position: "absolute", right: 32, top: 32, height: c.clientLogoHeight || 36, maxWidth: "55%", objectFit: "contain", filter: c.clientLogoInvert ? "brightness(0) invert(1)" : "none", opacity: 0.95 }} />
             ) : (
-              <div style={{ position: "absolute", right: 32, top: 32, fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 96px)", color: "rgba(251,247,238,0.85)", letterSpacing: "-0.025em", lineHeight: 0.85 }}>{c.year}</div>
+              <div style={{ position: "absolute", right: 32, top: 32, fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(56px, 12vw, 96px)", color: "rgba(251,247,238,0.85)", letterSpacing: "-0.015em", lineHeight: 0.85 }}>{c.year}</div>
             )}
             {/* big stat */}
             <div style={{ position: "absolute", left: 28, bottom: 28, color: BW.chalk50 }}>
