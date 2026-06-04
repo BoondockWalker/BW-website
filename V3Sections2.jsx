@@ -48,7 +48,7 @@ function V3Cases() {
               <span>§04</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Selected Receipts</span>
             </div>
             <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.94, margin: 0, color: BW.ink, maxWidth: 900 }}>
-              Receipts, <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>not</em> case <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>studies.</em>
+              Case studies, <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>with</em> <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>receipts.</em>
             </h2>
           </div>
           <a href="work.html" style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, paddingBottom: 3, borderBottom: `1.5px solid ${BW.ink}`, cursor: "pointer", whiteSpace: "nowrap" }}>All cases →</a>
