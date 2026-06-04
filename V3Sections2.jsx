@@ -283,7 +283,7 @@ function V3Footer() {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", paddingTop: 24, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.55)", fontWeight: 600, flexDirection: isMobile ? "column" : "row", gap: isMobile ? 12 : 0 }}>
           <span>BDW · Vol XII · Est. 2015</span>
-          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontSize: 13, color: "rgba(244,236,218,0.7)", fontWeight: 400 }}>Take the long way home.</span>
+          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", textTransform: "none", letterSpacing: 0, fontSize: 13, color: "rgba(244,236,218,0.7)", fontWeight: 400 }}>Walk the Walk.</span>
           <span>© Boondock Walker · All rights reserved</span>
         </div>
       </div>

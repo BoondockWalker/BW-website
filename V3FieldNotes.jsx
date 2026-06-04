@@ -149,7 +149,7 @@ function V3FieldNotes() {
               <div style={{ marginTop: "auto", paddingTop: 20, borderTop: `1px solid ${BW.ruleM}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
                   <span style={{ width: 26, height: 26, borderRadius: "50%", background: BW.ink, color: BW.chalk50, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: BW.ffG, fontSize: 10, fontWeight: 700 }}>BW</span>
-                  <span>{featured.author}</span><span>·</span><span>{featured.minutes} min walk</span>
+                  <span>{featured.author}</span>
                 </div>
                 <span style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3, cursor: "pointer" }}>Read note →</span>
               </div>
@@ -173,7 +173,7 @@ function V3FieldNotes() {
                   </div>
                   <h4 style={{ fontFamily: BW.ffD, fontSize: 21, fontWeight: 400, letterSpacing: "-0.018em", lineHeight: 1.18, margin: 0, color: BW.ink, fontStyle: "italic" }}>{n.title}</h4>
                   <div style={{ marginTop: 8, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.5)", fontWeight: 600 }}>
-                    {n.author} · {n.minutes} min walk
+                    {n.author}
                   </div>
                 </div>
                 {!isNarrow && <span style={{ fontFamily: BW.ffG, fontSize: 18, color: BW.ink, alignSelf: "center" }}>→</span>}
@@ -183,8 +183,7 @@ function V3FieldNotes() {
         </div>
 
         {/* Footer rail */}
-        <div style={{ marginTop: 22, display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? 12 : 0, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
-          <span>All free, no email gate</span>
+        <div style={{ marginTop: 22, display: "flex", justifyContent: isMobile ? "flex-start" : "flex-end", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
           <a style={{ color: BW.ink, textDecoration: "none", borderBottom: `1.5px solid ${BW.ink}`, paddingBottom: 3, fontWeight: 700, cursor: "pointer" }}>Browse the full archive →</a>
         </div>
       </div>

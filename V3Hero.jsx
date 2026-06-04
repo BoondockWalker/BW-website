@@ -55,8 +55,8 @@ function V3Hero() {
                 <div style={{ fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, color: s.c, letterSpacing: "-0.005em" }}>{s.v}</div>
               </div>
             ))}
-            <div style={{ padding: "18px 22px", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700 }}>
-              ↓ §02 Thesis
+            <div style={{ padding: "18px 22px", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, letterSpacing: "-0.01em", color: BW.brass, fontWeight: 400 }}>
+              Walk the Walk
             </div>
           </>
         )}
