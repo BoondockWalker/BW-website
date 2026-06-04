@@ -63,11 +63,10 @@ html, body, *, *::before, *::after {
 }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-/* Italic <em> accents inside display headlines get extra breathing room.
-   Fraunces italic at display sizes has a long swash f descender that
-   crowds the next letter even with the fi ligature applied. Loosening
-   only the em portions keeps the upright text and body copy untouched. */
-h1 em, h2 em, h3 em { letter-spacing: -0.005em; font-variation-settings: "opsz" 60; }
+/* Italic <em> accents inside display headlines render at a controlled
+   mid-opsz cut so Fraunces' italic stays expressive without the most
+   extreme swashes. Letter-spacing inherits from the parent heading. */
+h1 em, h2 em, h3 em { font-variation-settings: "opsz" 60; }
 
 /* Pin upright display headlines to the high-opsz Fraunces cut — sharp
    serifs, full display contrast — which the browser was failing to
