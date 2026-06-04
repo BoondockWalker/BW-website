@@ -66,8 +66,14 @@ html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
    Fraunces italic at display sizes has a long swash f descender that
    crowds the next letter even with the fi ligature applied. Loosening
    only the em portions keeps the upright text and body copy untouched. */
-h1 em, h2 em, h3 em { letter-spacing: -0.005em; }
+h1 em, h2 em, h3 em { letter-spacing: -0.005em; font-variation-settings: "opsz" 60; }
 
+/* Pin upright display headlines to the high-opsz Fraunces cut — sharp
+   serifs, full display contrast — which the browser was failing to
+   auto-apply across the variable axis range. */
+h1, h2 { font-variation-settings: "opsz" 144; }
+
+:root {
   /* ---------- Color: Ink (deep warm-black foundation) ---------- */
   --bw-ink-900: #0C0907;        /* deepest */
   --bw-ink-800: #14100C;        /* canvas */
