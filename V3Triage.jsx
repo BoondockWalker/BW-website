@@ -46,8 +46,8 @@ function V3Triage() {
 
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
         {/* Eyebrow */}
-        <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28 }}>
-          Form 04-T · Patient intake
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
+          <span>§06</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Form 04-T · Brand Triage</span>
         </div>
 
         {/* Headline + intro side-by-side */}
