@@ -210,7 +210,7 @@ function V3Trust() {
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "baseline", gap: isMobile ? 12 : 0, marginBottom: 28 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
-            <span>§06</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Operators we've shipped for</span>
+            <span>§08</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Operators we've shipped for</span>
           </div>
           <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>12 selected cases</span>
         </div>
@@ -235,7 +235,7 @@ function V3CTA() {
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
-          <span>§07</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Start a project</span>
+          <span>§09</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Start a project</span>
         </div>
         <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(56px, 13vw, 124px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.9, margin: "0 0 40px", color: BW.chalk50, maxWidth: 1200 }}>
           If your story <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>isn't closing,</em> let's fix the story <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>and the close.</em>
