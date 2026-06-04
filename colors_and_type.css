@@ -34,23 +34,23 @@
 }
 
 /* Fraunces (display serif) — self-hosted via fontsource on jsdelivr.
-   Google Fonts was serving a subset whose italic font face wasn't
-   reaching the browser, so Chrome fell back to Georgia italic and the
-   "fi"/"fl" ligatures never had a chance to render. Fontsource ships
-   the complete variable WOFF2 with the full GSUB table intact. */
+   The "standard" file carries the full variable design space — weight
+   + optical-size axes — matching what Google Fonts CSS2 used to give
+   us, plus the complete GSUB substitution table so italic ligatures
+   actually render. */
 @font-face {
   font-family: "Fraunces";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("https://cdn.jsdelivr.net/fontsource/fonts/fraunces:vf@latest/latin-opsz-normal.woff2") format("woff2-variations");
+  src: url("https://cdn.jsdelivr.net/fontsource/fonts/fraunces:vf@latest/latin-standard-normal.woff2") format("woff2-variations");
 }
 @font-face {
   font-family: "Fraunces";
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url("https://cdn.jsdelivr.net/fontsource/fonts/fraunces:vf@latest/latin-opsz-italic.woff2") format("woff2-variations");
+  src: url("https://cdn.jsdelivr.net/fontsource/fonts/fraunces:vf@latest/latin-standard-italic.woff2") format("woff2-variations");
 }
 
 /* Space Grotesk + Inter + JetBrains Mono — still via Google Fonts. */
