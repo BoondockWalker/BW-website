@@ -78,7 +78,7 @@ h1 em, h2 em, h3 em { font-variation-settings: "opsz" 60; }
    styles that explicitly set fontWeight: 400 on every h1/h2 — the
    variable font's wght axis follows font-weight, so without the
    !important the strokes thin out against the display contrast. */
-h1, h2 { font-variation-settings: "opsz" 60, "SOFT" 30, "wght" 600 !important; font-weight: 600 !important; }
+h1, h2 { font-variation-settings: "opsz" 60, "SOFT" 30, "wght" 550 !important; font-weight: 550 !important; }
 
 :root {
   /* ---------- Color: Ink (deep warm-black foundation) ---------- */
