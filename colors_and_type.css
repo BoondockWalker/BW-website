@@ -71,7 +71,11 @@ h1 em, h2 em, h3 em { letter-spacing: -0.005em; font-variation-settings: "opsz" 
 /* Pin upright display headlines to the high-opsz Fraunces cut — sharp
    serifs, full display contrast — which the browser was failing to
    auto-apply across the variable axis range. */
-h1, h2 { font-variation-settings: "opsz" 144; }
+/* Display headlines: pin all relevant axes so the browser can't
+   fall back to text-cut serifs. opsz at max (144) gives the display
+   stroke contrast; SOFT at min (30) keeps the slab serifs sharp;
+   wght 400 matches the Regular weight every JSX call already sets. */
+h1, h2 { font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 400; }
 
 :root {
   /* ---------- Color: Ink (deep warm-black foundation) ---------- */
