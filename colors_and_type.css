@@ -7,6 +7,13 @@
    Motifs: bold color blocks, annotated specimens, subtle motion.
    ============================================================= */
 
+/* Google Fonts: Fraunces (variable) + Space Grotesk + Inter + JetBrains Mono.
+   @import MUST be the first declaration in the stylesheet (after @charset).
+   When @font-face declarations precede @import, browsers silently drop the
+   import — which is exactly what we'd been hitting: Fraunces wasn't loading
+   at all and Chrome was falling back to Georgia for every italic + upright. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
 /* ---------- Webfonts (real licensed files) ---------- */
 @font-face {
   font-family: "Copernicus";
@@ -32,12 +39,6 @@
   src: url("fonts/Copernicus-Semibold.otf") format("opentype");
   font-weight: 600; font-style: normal; font-display: swap;
 }
-
-/* Fraunces (display serif) + Space Grotesk + Inter + JetBrains Mono — Google Fonts.
-   Reverted to Google Fonts because fontsource's single-axis files (wght-only
-   or opsz-only) were stripping the optical-size + weight combination behavior
-   we'd been relying on for display headlines. */
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
 
 /* ---------- Responsive baseline ---------- */
 html { box-sizing: border-box; -webkit-text-size-adjust: 100%; }
