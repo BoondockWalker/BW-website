@@ -195,7 +195,6 @@ function NoteDetailPage({ note, themed, marginNotes, drop, related, recirc }) {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 14, borderBottom: `0.75px solid ${BW.ink}`, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.ink2, fontWeight: 700, flexWrap: "wrap", gap: 10 }}>
             <span style={{ color: c }}>{note.kicker}</span>
             <span>{note.issue} · {note.date}</span>
-            <span>{note.minutes} min walk</span>
           </div>
           {/* Title */}
           <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(42px, 7vw, 96px)", lineHeight: 0.96, letterSpacing: "-0.02em", margin: "clamp(28px, 4vw, 48px) 0 clamp(20px, 3vw, 28px)", color: BW.ink, maxWidth: "18ch" }}>
