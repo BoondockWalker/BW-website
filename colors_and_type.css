@@ -33,28 +33,11 @@
   font-weight: 600; font-style: normal; font-display: swap;
 }
 
-/* Fraunces (display serif) — self-hosted via fontsource on jsdelivr.
-   The "standard" file carries the full variable design space — weight
-   + optical-size axes — matching what Google Fonts CSS2 used to give
-   us, plus the complete GSUB substitution table so italic ligatures
-   actually render. */
-@font-face {
-  font-family: "Fraunces";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("https://cdn.jsdelivr.net/fontsource/fonts/fraunces:vf@latest/latin-standard-normal.woff2") format("woff2-variations");
-}
-@font-face {
-  font-family: "Fraunces";
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("https://cdn.jsdelivr.net/fontsource/fonts/fraunces:vf@latest/latin-standard-italic.woff2") format("woff2-variations");
-}
-
-/* Space Grotesk + Inter + JetBrains Mono — still via Google Fonts. */
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+/* Fraunces (display serif) + Space Grotesk + Inter + JetBrains Mono — Google Fonts.
+   Reverted to Google Fonts because fontsource's single-axis files (wght-only
+   or opsz-only) were stripping the optical-size + weight combination behavior
+   we'd been relying on for display headlines. */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,800;1,9..144,900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
 
 /* ---------- Responsive baseline ---------- */
 html { box-sizing: border-box; -webkit-text-size-adjust: 100%; }
