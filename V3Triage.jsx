@@ -52,7 +52,7 @@ function V3Triage() {
 
         {/* Headline + intro side-by-side */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 64, alignItems: "start", marginBottom: 44 }}>
-          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: 0, color: BW.ink, fontStyle: "italic" }}>
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.96, margin: 0, color: BW.ink, fontStyle: "italic" }}>
             What's actually <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>wrong</em> with the brand?
           </h2>
           <div>

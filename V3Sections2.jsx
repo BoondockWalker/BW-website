@@ -47,7 +47,7 @@ function V3Cases() {
             <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24, flexWrap: "wrap" }}>
               <span>§04</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Selected Receipts</span>
             </div>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.94, margin: 0, color: BW.ink, maxWidth: 900 }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.94, margin: 0, color: BW.ink, maxWidth: 900 }}>
               Case studies, <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>with</em> <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>receipts.</em>
             </h2>
           </div>
@@ -61,7 +61,7 @@ function V3Cases() {
                 <img src={c.image} alt={c.co} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,16,12,0) 45%, rgba(20,16,12,0.55) 100%)" }} />
                 <div style={{ position: "absolute", left: 22, top: 22, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk50, fontWeight: 700, textShadow: "0 1px 2px rgba(0,0,0,0.45)" }}>CASE 0{i+1}</div>
-                <div style={{ position: "absolute", left: 22, bottom: 22, fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.03em", lineHeight: 0.9, fontSize: "clamp(24px, 4.4vw, 34px)", textTransform: "uppercase", maxWidth: "calc(100% - 44px)", textShadow: "0 2px 6px rgba(0,0,0,0.5)" }}>{c.co}</div>
+                <div style={{ position: "absolute", left: 22, bottom: 22, fontFamily: BW.ffG, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.02em", lineHeight: 0.9, fontSize: "clamp(24px, 4.4vw, 34px)", textTransform: "uppercase", maxWidth: "calc(100% - 44px)", textShadow: "0 2px 6px rgba(0,0,0,0.5)" }}>{c.co}</div>
                 <div style={{ position: "absolute", right: 22, bottom: 22, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: "rgba(251,247,238,0.85)", fontWeight: 400, textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>fig. {i+1}.0</div>
               </div>
               <div style={{ padding: "26px 26px 28px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 24 }}>
@@ -117,7 +117,7 @@ function V3Lab() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1fr", gap: isMobile ? 40 : 64, alignItems: "start" }}>
           <div>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(44px, 8.5vw, 80px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 28px", color: BW.chalk50 }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(44px, 8.5vw, 80px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.98, margin: "0 0 28px", color: BW.chalk50 }}>
               Tools that move <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>the brand</em> — and the <em style={{ color: BW.chalk50, fontStyle: "italic", fontWeight: 400 }}>demand</em> for it.
             </h2>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 19px)", lineHeight: 1.6, margin: "0 0 32px", color: "rgba(251,247,238,0.85)", maxWidth: 560 }}>
@@ -237,7 +237,7 @@ function V3CTA() {
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
           <span>§09</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Start a project</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(56px, 13vw, 124px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.9, margin: "0 0 40px", color: BW.chalk50, maxWidth: 1200 }}>
+        <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(56px, 13vw, 124px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.9, margin: "0 0 40px", color: BW.chalk50, maxWidth: 1200 }}>
           If your story <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>isn't closing,</em> let's fix the story <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>and the close.</em>
         </h2>
         <div style={{ display: "flex", gap: 14, alignItems: isMobile ? "flex-start" : "center", flexWrap: "wrap", flexDirection: isMobile ? "column" : "row" }}>

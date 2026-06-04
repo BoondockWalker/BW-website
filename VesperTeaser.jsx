@@ -71,12 +71,12 @@ function VesperPage() {
           </div>
 
           {/* Title */}
-          <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "normal", fontSize: "clamp(72px, 18vw, 220px)", lineHeight: 0.84, letterSpacing: "-0.03em", margin: "clamp(36px, 5vw, 56px) 0 clamp(28px, 4vw, 40px)", color: BW.ink }}>
+          <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "normal", fontSize: "clamp(72px, 18vw, 220px)", lineHeight: 0.84, letterSpacing: "-0.02em", margin: "clamp(36px, 5vw, 56px) 0 clamp(28px, 4vw, 40px)", color: BW.ink }}>
             Vesper.
           </h1>
 
           {/* Tagline */}
-          <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.8vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.025em", margin: "0 0 clamp(24px, 3vw, 32px)", color: BW.ink, maxWidth: "26ch" }}>
+          <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.8vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.015em", margin: "0 0 clamp(24px, 3vw, 32px)", color: BW.ink, maxWidth: "26ch" }}>
             Build a living brand foundation, AI-guided — <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>for founders and small businesses.</em>
           </p>
 
@@ -109,7 +109,7 @@ function VesperPage() {
             <span>§02</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The methodology</span>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? 28 : 64, alignItems: "start", marginBottom: 40 }}>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: 0, color: BW.ink }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.98, margin: 0, color: BW.ink }}>
               Built on a proven framework. <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>The GUIDE methodology.</em>
             </h2>
             <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "44ch" }}>
@@ -132,7 +132,7 @@ function VesperPage() {
                 { letter: "E", k: "Execute",    v: "Everything comes together in your living brand foundation, ready from day one." },
               ].map((p, i) => (
                 <div key={p.letter} style={{ padding: "22px 22px", borderRight: !isMobile && i < 4 ? `1px solid ${BW.ruleL}` : "none", borderBottom: isMobile && i < 4 ? `1px solid ${BW.ruleL}` : "none", display: "flex", flexDirection: "column", gap: 10 }}>
-                  <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 48, lineHeight: 0.9, color: BW.clay, fontWeight: 400, letterSpacing: "-0.03em" }}>{p.letter}</div>
+                  <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 48, lineHeight: 0.9, color: BW.clay, fontWeight: 400, letterSpacing: "-0.02em" }}>{p.letter}</div>
                   <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 20, lineHeight: 1.15, color: BW.ink, fontWeight: 400, letterSpacing: "-0.015em" }}>{p.k}</div>
                   <div style={{ fontFamily: BW.ffSerif, fontSize: 14, lineHeight: 1.5, color: BW.ink2 }}>{p.v}</div>
                 </div>
@@ -155,7 +155,7 @@ function VesperPage() {
             <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The deliverable</span>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? 28 : 64, alignItems: "start", marginBottom: 40 }}>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: 0, color: BW.ink }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.98, margin: 0, color: BW.ink }}>
               Not a document. <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>A living foundation.</em>
             </h2>
             <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "44ch" }}>
@@ -196,7 +196,7 @@ function VesperPage() {
             ].map((b, i) => (
               <div key={b.n} style={{ borderRight: !isMobile && i % 2 === 0 ? `1px solid ${BW.ink}` : "none", borderBottom: (!isMobile && i < 2) || (isMobile && i < 3) ? `1px solid ${BW.ink}` : "none", padding: "32px 28px 28px", display: "flex", flexDirection: "column", gap: 14 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                  <div style={{ fontFamily: BW.ffG, fontSize: 32, fontWeight: 700, color: b.c, letterSpacing: "-0.03em", lineHeight: 0.9 }}>{b.n}</div>
+                  <div style={{ fontFamily: BW.ffG, fontSize: 32, fontWeight: 700, color: b.c, letterSpacing: "-0.02em", lineHeight: 0.9 }}>{b.n}</div>
                   <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: b.c, fontWeight: 700 }}>{b.eyebrow}</div>
                 </div>
                 <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: 28, lineHeight: 1.15, color: BW.ink, margin: 0, letterSpacing: "-0.02em" }}>{b.title}</h3>
@@ -219,7 +219,7 @@ function VesperPage() {
         <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk50} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk50} 1px, transparent 1px)`, backgroundSize: "60px 60px", opacity: 0.04, pointerEvents: "none" }} />
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", textAlign: "center" }}>
           <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 28 }}>★ The thesis</div>
-          <blockquote style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.6vw, 56px)", lineHeight: 1.08, letterSpacing: "-0.022em", margin: 0, color: BW.chalk50 }}>
+          <blockquote style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.6vw, 56px)", lineHeight: 1.08, letterSpacing: "-0.012em", margin: 0, color: BW.chalk50 }}>
             "It's not a design problem. It's not a marketing problem. It's a foundation problem."
           </blockquote>
           <div style={{ marginTop: 32, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>— Field Notes № 22</div>
@@ -232,7 +232,7 @@ function VesperPage() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 32, flexWrap: "wrap" }}>
             <span>§04</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Who it's for</span>
           </div>
-          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.98, margin: "0 0 48px", color: BW.ink, maxWidth: "26ch" }}>
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.98, margin: "0 0 48px", color: BW.ink, maxWidth: "26ch" }}>
             A rock-solid foundation. <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>Built for founders.</em>
           </h2>
 
@@ -269,7 +269,7 @@ function VesperPage() {
             <span>§05</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>Join the waitlist</span>
           </div>
 
-          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(44px, 8vw, 88px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: "0 0 28px", color: BW.chalk50, maxWidth: "22ch" }}>
+          <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(44px, 8vw, 88px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.96, margin: "0 0 28px", color: BW.chalk50, maxWidth: "22ch" }}>
             Be among the first to <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>use Vesper.</em>
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 21px)", lineHeight: 1.55, margin: "0 0 36px", color: "rgba(251,247,238,0.85)", maxWidth: "56ch" }}>
@@ -298,7 +298,7 @@ function VesperPage() {
               {/* Vesper marketing site — vesper.build */}
               <a href="https://vesper.build/" target="_blank" rel="noopener noreferrer" style={{ display: "block", border: `1.5px solid ${BW.ink}`, padding: "32px clamp(22px, 4vw, 36px) 28px", background: BW.chalk50, textDecoration: "none", color: BW.ink }}>
                 <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 14 }}>The Vesper site · Full product</div>
-                <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, lineHeight: 1.05, letterSpacing: "-0.025em", margin: "0 0 16px", color: BW.ink }}>
+                <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 400, lineHeight: 1.05, letterSpacing: "-0.015em", margin: "0 0 16px", color: BW.ink }}>
                   Visit Vesper for the full story.
                 </h3>
                 <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.55, color: BW.ink2, margin: "0 0 20px" }}>

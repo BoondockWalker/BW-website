@@ -345,7 +345,7 @@ function NoteBlock({ block, idx, drop }) {
     return (
       <p style={styleCommon}>
         {drop && (
-          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "5.4em", lineHeight: 0.85, float: "left", marginRight: 12, marginTop: 6, marginBottom: -6, color: BW.clay, letterSpacing: "-0.025em" }}>
+          <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "5.4em", lineHeight: 0.85, float: "left", marginRight: 12, marginTop: 6, marginBottom: -6, color: BW.clay, letterSpacing: "-0.015em" }}>
             {block.text.charAt(0)}
           </span>
         )}

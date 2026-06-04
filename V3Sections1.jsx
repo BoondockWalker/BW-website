@@ -21,7 +21,7 @@ function V3Thesis() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 40 : 80, alignItems: "start" }}>
           <div>
-            <p style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 6vw, 56px)", lineHeight: 1.08, fontStyle: "italic", margin: "0 0 32px", color: BW.ink, letterSpacing: "-0.025em", fontWeight: 400 }}>
+            <p style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 6vw, 56px)", lineHeight: 1.08, fontStyle: "italic", margin: "0 0 32px", color: BW.ink, letterSpacing: "-0.015em", fontWeight: 400 }}>
               Brand-led demand, built to <em style={{ fontStyle: "italic", color: BW.clay, fontWeight: 400 }}>compound.</em>
             </p>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 20px)", lineHeight: 1.55, margin: 0, color: BW.ink2, maxWidth: "44ch" }}>
@@ -45,7 +45,7 @@ function V3Thesis() {
       {/* TENET FIG. — replaces the old marquee */}
       <div style={{ background: BW.ink, color: BW.chalk, borderTop: `1.5px solid ${BW.ink}` }}>
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(40px, 6vw, 56px) clamp(20px, 5vw, 64px)", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 200px", alignItems: isMobile ? "start" : "center", gap: isMobile ? 24 : 40 }}>
-          <p style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 8vw, 64px)", lineHeight: 1.02, fontStyle: "italic", margin: 0, color: BW.chalk, letterSpacing: "-0.03em", fontWeight: 400 }}>
+          <p style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 8vw, 64px)", lineHeight: 1.02, fontStyle: "italic", margin: 0, color: BW.chalk, letterSpacing: "-0.02em", fontWeight: 400 }}>
             Pipeline, <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>not applause.</em>
           </p>
           <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.45)", fontWeight: 600, textAlign: isMobile ? "left" : "right", lineHeight: 1.5 }}>
@@ -106,7 +106,7 @@ function V3Pillars() {
           <span style={{ width: 28, height: 1, background: BW.clay300 }} />
           <span>Capabilities · Three Pillars / One Arc</span>
         </div>
-        <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 96px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.92, margin: 0, color: BW.chalk, maxWidth: 1180 }}>
+        <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 96px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.92, margin: 0, color: BW.chalk, maxWidth: 1180 }}>
           We do the <em style={{ color: BW.clay300, fontWeight: 400, fontStyle: "italic" }}>three things</em> most teams need from <em style={{ color: BW.brass, fontWeight: 400, fontStyle: "italic" }}>five</em> vendors.
         </h2>
       </div>

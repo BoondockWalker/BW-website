@@ -116,7 +116,7 @@ function V3FieldNotes() {
             <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24, flexWrap: "wrap" }}>
               <span>§07</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Field Notes · Bulletin from the field</span>
             </div>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 0.96, margin: 0, color: BW.ink }}>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.96, margin: 0, color: BW.ink }}>
               Notes from the <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>field,</em> filed by the <em style={{ color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>walkers.</em>
             </h2>
           </div>
@@ -143,7 +143,7 @@ function V3FieldNotes() {
             {/* body */}
             <div style={{ padding: "28px 32px 28px", flex: 1, display: "flex", flexDirection: "column", gap: 18 }}>
               <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: featured.color, fontWeight: 700 }}>{featured.kicker}</div>
-              <h3 style={{ fontFamily: BW.ffD, fontSize: "clamp(28px, 5.5vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.04, margin: 0, color: BW.ink, fontStyle: "italic" }}>{featured.title}</h3>
+              <h3 style={{ fontFamily: BW.ffD, fontSize: "clamp(28px, 5.5vw, 44px)", fontWeight: 400, letterSpacing: "-0.015em", lineHeight: 1.04, margin: 0, color: BW.ink, fontStyle: "italic" }}>{featured.title}</h3>
               <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.55, margin: 0, color: BW.ink2 }}>{featured.dek}</p>
               <div style={{ marginTop: "auto", paddingTop: 20, borderTop: `1px solid ${BW.ruleM}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
