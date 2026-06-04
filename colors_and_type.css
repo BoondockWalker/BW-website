@@ -47,7 +47,7 @@ img, svg, video { max-width: 100%; height: auto; }
    Fonts CSS2 occasionally skips the substitution, leaving italic "fi" / "fl"
    pairs colliding. Forcing the OpenType features keeps display headlines
    reading as proper typography, not raw glyph runs. */
-html { font-feature-settings: "liga" 1, "dlig" 1, "clig" 1, "calt" 1; font-variant-ligatures: common-ligatures discretionary-ligatures contextual; }
+html { font-feature-settings: "liga" 1, "dlig" 1, "clig" 1, "calt" 1, "kern" 1; font-variant-ligatures: common-ligatures discretionary-ligatures contextual; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-kerning: normal; }
 
 :root {
   /* ---------- Color: Ink (deep warm-black foundation) ---------- */
