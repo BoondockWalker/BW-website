@@ -480,20 +480,33 @@ function MultiImageBlock({ block }) {
         )}
         <Reveal kind="cascade" stagger={120}>
           <div style={{ display: "grid", gridTemplateColumns: `repeat(${responsiveCols}, 1fr)`, gap: isMobile ? Math.min(gap, 24) : gap, alignItems: "start" }}>
-            {items.map((it, i) => (
-              <figure key={i} style={{ margin: 0 }}>
-                {it.bg ? (
-                  <div style={{ width: "100%", aspectRatio: it.aspect || "1 / 1", overflow: "hidden", background: it.bg, display: "flex", alignItems: "center", justifyContent: "center", padding: it.tilePadding || 0, boxSizing: "border-box", boxShadow: it.shadow ? "0 18px 40px -12px rgba(20,16,12,0.28), 0 4px 12px -4px rgba(20,16,12,0.18)" : "none" }}>
-                    <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "100%", objectFit: it.fit || "cover", objectPosition: it.position || "center", display: "block" }} />
-                  </div>
-                ) : (
-                  <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "auto", display: "block", boxShadow: it.shadow ? "0 18px 40px -12px rgba(20,16,12,0.28), 0 4px 12px -4px rgba(20,16,12,0.18)" : "none" }} />
-                )}
-                {it.caption && (
-                  <figcaption style={{ marginTop: 16, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: capColor, fontWeight: 400, letterSpacing: "-0.005em" }}>{it.caption}</figcaption>
-                )}
-              </figure>
-            ))}
+            {items.map((it, i) => {
+              const isVideo = it.video || /\.(mp4|webm|mov)(\?|$)/i.test(it.src || "");
+              const shadowStyle = it.shadow ? "0 18px 40px -12px rgba(20,16,12,0.28), 0 4px 12px -4px rgba(20,16,12,0.18)" : "none";
+              return (
+                <figure key={i} style={{ margin: 0 }}>
+                  {isVideo ? (
+                    <video
+                      src={it.src}
+                      controls={it.controls !== false}
+                      playsInline
+                      preload="metadata"
+                      poster={it.poster}
+                      style={{ width: "100%", height: "auto", display: "block", aspectRatio: it.aspect || undefined, objectFit: it.fit || "cover", background: it.bg || "#000", boxShadow: shadowStyle }}
+                    />
+                  ) : it.bg ? (
+                    <div style={{ width: "100%", aspectRatio: it.aspect || "1 / 1", overflow: "hidden", background: it.bg, display: "flex", alignItems: "center", justifyContent: "center", padding: it.tilePadding || 0, boxSizing: "border-box", boxShadow: shadowStyle }}>
+                      <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "100%", objectFit: it.fit || "cover", objectPosition: it.position || "center", display: "block" }} />
+                    </div>
+                  ) : (
+                    <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "auto", display: "block", boxShadow: shadowStyle }} />
+                  )}
+                  {it.caption && (
+                    <figcaption style={{ marginTop: 16, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: capColor, fontWeight: 400, letterSpacing: "-0.005em" }}>{it.caption}</figcaption>
+                  )}
+                </figure>
+              );
+            })}
           </div>
         </Reveal>
       </div>
