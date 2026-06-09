@@ -191,8 +191,8 @@ window.BW_CASE_DETAIL = {
       gap: 32,
       maxWidth: 1280,
       items: [
-        { src: `${BASE}/oneil-next-chapter-1080x1080.mp4`, video: true, aspect: "1 / 1", caption: "Brand spot · The Next Chapter" },
-        { src: `${BASE}/oneil-next-chapter-healthcare-1080x1080.mp4`, video: true, aspect: "1 / 1", caption: "Healthcare cut · The Next Chapter" },
+        { src: `${BASE}/oneil-next-chapter-1080x1080.mp4?v=2`, video: true, aspect: "1 / 1", caption: "Financial Services cut · The Next Chapter" },
+        { src: `${BASE}/oneil-next-chapter-healthcare-1080x1080.mp4?v=2`, video: true, aspect: "1 / 1", caption: "Healthcare cut · The Next Chapter" },
       ],
     },
 
