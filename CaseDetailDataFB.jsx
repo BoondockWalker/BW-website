@@ -184,6 +184,24 @@ window.BW_CASE_DETAIL = {
       ],
     },
 
+    /* -- The Next Chapter — square brand spots, one general + one healthcare cut */
+    {
+      kind: "video",
+      src: `${BASE}/oneil-next-chapter-1080x1080.mp4`,
+      caption: { label: "fig. 08.5 · Brand spot", title: "The Next Chapter — brand spot" },
+      aspect: "1/1",
+      maxWidth: 600,
+      controls: true,
+    },
+    {
+      kind: "video",
+      src: `${BASE}/oneil-next-chapter-healthcare-1080x1080.mp4`,
+      caption: { label: "fig. 08.6 · Healthcare cut", title: "The Next Chapter — healthcare cut" },
+      aspect: "1/1",
+      maxWidth: 600,
+      controls: true,
+    },
+
     /* -- Brand video — ONEsuite financial-services flyover --------
        Demoted from the top of the case to sit just before Outcomes:
        acts as a closing-recap hero before the results section. */
