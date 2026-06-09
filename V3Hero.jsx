@@ -9,7 +9,7 @@ function V3Hero() {
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
 
       {/* FLOATING HIKING BOOTS — scales with viewport, sits behind copy on mobile */}
-      <img src="assets/hiking-boots.png" alt="" style={{ position: "absolute", right: isMobile ? "-20vw" : -40, top: isMobile ? 80 : 110, width: "min(720px, 92vw)", maxWidth: 720, mixBlendMode: "multiply", filter: "contrast(1.05) saturate(0.9)", transform: "rotate(-4deg)", pointerEvents: "none", zIndex: 1, opacity: isMobile ? 0.55 : 1 }} />
+      <img src="assets/hiking-boots-v2.png?v=1" alt="" style={{ position: "absolute", right: isMobile ? "-20vw" : -40, top: isMobile ? 80 : 110, width: "min(720px, 92vw)", maxWidth: 720, mixBlendMode: "multiply", filter: "contrast(1.05) saturate(0.9)", transform: "rotate(-4deg)", pointerEvents: "none", zIndex: 1, opacity: isMobile ? 0.55 : 1 }} />
 
       {/* MAIN PHRASE */}
       <div style={{ position: "relative", padding: "clamp(48px, 8vw, 80px) clamp(20px, 5vw, 64px)", zIndex: 3 }}>
