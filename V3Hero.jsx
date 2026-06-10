@@ -33,14 +33,14 @@ function V3Hero() {
         muted
         playsInline
         preload="auto"
-        poster="assets/boots-poster.jpg?v=1"
+        poster="assets/boots-poster.jpg?v=2"
         width="960"
         height="960"
         aria-hidden="true"
         style={{ position: "absolute", right: isMobile ? "-20vw" : -40, top: isMobile ? 180 : 210, width: "min(720px, 92vw)", maxWidth: 720, height: "auto", mixBlendMode: "multiply", filter: "contrast(1.05) saturate(0.9)", transform: "rotate(-4deg)", pointerEvents: "none", zIndex: 1, opacity: isMobile ? 0.55 : 1, maskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)" }}
       >
-        <source src="assets/boots-walk-loop.webm?v=1" type="video/webm" />
-        <source src="assets/boots-walk-loop.mp4?v=1" type="video/mp4" />
+        <source src="assets/boots-walk-loop.webm?v=2" type="video/webm" />
+        <source src="assets/boots-walk-loop.mp4?v=2" type="video/mp4" />
       </video>
 
       {/* MAIN PHRASE */}
