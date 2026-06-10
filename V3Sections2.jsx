@@ -112,11 +112,11 @@ function V3Lab() {
       {/* faint grid */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(${BW.chalk50} 1px, transparent 1px), linear-gradient(90deg, ${BW.chalk50} 1px, transparent 1px)`, backgroundSize: "60px 60px", opacity: 0.04, pointerEvents: "none" }} />
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
+        <Reveal kind="rise" style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
           <span>§05</span><span style={{ width: 28, height: 1, background: BW.clay300 }} /><span>The Lab · Applied AI</span>
-        </div>
+        </Reveal>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1fr", gap: isMobile ? 40 : 64, alignItems: "start" }}>
-          <div>
+          <Reveal kind="rise">
             <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(44px, 8.5vw, 80px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.98, margin: "0 0 28px", color: BW.chalk50 }}>
               Tools that move <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>the brand</em> — and the <em style={{ color: BW.chalk50, fontStyle: "italic", fontWeight: 400 }}>demand</em> for it.
             </h2>
@@ -127,7 +127,7 @@ function V3Lab() {
               <a href="lab.html" style={{ background: BW.brass, color: BW.ink, padding: "13px 22px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer" }}>Tour the Lab →</a>
               <a href="contact.html" style={{ background: "transparent", color: BW.chalk50, padding: "13px 22px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", border: `1.5px solid rgba(244,236,218,0.4)` }}>Bring us a hypothesis →</a>
             </div>
-          </div>
+          </Reveal>
 
           {/* Spacer cell — reserves horizontal room in the grid so the
               left column reads at 1.1fr width. The paper sits inside
@@ -208,20 +208,20 @@ function V3Trust() {
   return (
     <section style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 80px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "baseline", gap: isMobile ? 12 : 0, marginBottom: 28 }}>
+        <Reveal kind="rise" style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "baseline", gap: isMobile ? 12 : 0, marginBottom: 28 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
             <span>§08</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Operators we've shipped for</span>
           </div>
           <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>12 selected cases</span>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
+        </Reveal>
+        <Reveal kind="rise" delay={120} style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, borderTop: `1px solid ${BW.ink}`, borderLeft: `1px solid ${BW.ink}` }}>
           {operators.map(o => {
             const cellStyle = { padding: "26px 14px", borderRight: `1px solid ${BW.ink}`, borderBottom: `1px solid ${BW.ink}`, fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, letterSpacing: "-0.005em", textTransform: "uppercase", color: BW.ink, textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1.25 };
             return o.href
               ? <a key={o.name} href={o.href} style={{ ...cellStyle, textDecoration: "none", transition: "background 160ms ease" }} onMouseEnter={e => e.currentTarget.style.background = "rgba(20,16,12,0.06)"} onMouseLeave={e => e.currentTarget.style.background = "transparent"}>{o.name}</a>
               : <div key={o.name} style={cellStyle}>{o.name}</div>;
           })}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -233,7 +233,7 @@ function V3CTA() {
   return (
     <section id="contact" style={{ background: BW.clay, color: BW.chalk50, padding: "clamp(72px, 12vw, 140px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
-      <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
+      <Reveal kind="rise" style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
           <span>§09</span><span style={{ width: 28, height: 1, background: BW.chalk2 }} /><span>Start a project</span>
         </div>
@@ -245,7 +245,7 @@ function V3CTA() {
           <a style={{ background: "transparent", color: BW.chalk50, padding: "14px 24px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", cursor: "pointer", border: `1.5px solid rgba(244,236,218,0.45)` }}>Book a 30-min</a>
           <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,247,238,0.78)", marginLeft: isMobile ? 0 : 18 }}>· typically 2-3 day reply</span>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
