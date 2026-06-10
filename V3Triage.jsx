@@ -164,7 +164,7 @@ function V3Triage() {
               </div>
             )}
           </div>
-        </div>
+        </Reveal>
 
         {/* Footer CTA bar — clay accent left rule */}
         <div style={{ marginTop: 22, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "6px 1fr auto auto", alignItems: isMobile ? "stretch" : "center", border: `1px solid ${BW.ink}`, background: BW.chalk50 }}>
@@ -199,7 +199,7 @@ function V3Triage() {
               </div>
             </>
           )}
-        </Reveal>
+        </div>
       </div>
     </section>
   );
