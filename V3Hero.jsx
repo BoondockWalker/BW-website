@@ -6,10 +6,12 @@ function V3Hero() {
   const videoRef = React.useRef(null);
 
   /* Honor prefers-reduced-motion: pause the walk loop and leave the poster
-     frame visible. Re-apply if the user flips the preference at runtime. */
+     frame visible. Re-apply if the user flips the preference at runtime.
+     Also slow the playback rate slightly so each step lands with more weight. */
   React.useEffect(() => {
     const v = videoRef.current;
     if (!v || typeof window.matchMedia !== "function") return;
+    v.playbackRate = 0.85;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const apply = () => { if (mq.matches) v.pause(); else v.play().catch(() => {}); };
     apply();
@@ -37,7 +39,7 @@ function V3Hero() {
         width="960"
         height="960"
         aria-hidden="true"
-        style={{ position: "absolute", right: isMobile ? "-20vw" : -40, top: isMobile ? 180 : 210, width: "min(720px, 92vw)", maxWidth: 720, height: "auto", mixBlendMode: "multiply", filter: "contrast(1.05) saturate(0.9)", transform: "rotate(-4deg)", pointerEvents: "none", zIndex: 1, opacity: isMobile ? 0.55 : 1, maskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)" }}
+        style={{ position: "absolute", right: isMobile ? "-20vw" : -40, top: isMobile ? 180 : 210, width: "min(720px, 92vw)", maxWidth: 720, height: "auto", mixBlendMode: "multiply", filter: "contrast(1.05) saturate(0.9)", transform: "rotate(-4deg)", pointerEvents: "none", zIndex: 1, opacity: isMobile ? 0.55 : 1, maskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%), linear-gradient(to bottom, transparent 0%, black 8%, black 100%)", maskComposite: "intersect", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%), linear-gradient(to bottom, transparent 0%, black 8%, black 100%)", WebkitMaskComposite: "source-in" }}
       >
         <source src="assets/boots-walk-loop.webm?v=2" type="video/webm" />
         <source src="assets/boots-walk-loop.mp4?v=2" type="video/mp4" />
