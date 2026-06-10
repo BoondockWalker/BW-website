@@ -140,35 +140,39 @@ function V3Lab() {
         {/* Lab Journal page — anchored to the horizontal center of the
             content wrapper so it doesn't shift around when the screen
             width changes. Vertical anchor stays at row 2 of the
-            headline; the bottom still rides into §06. */}
-        <div style={{ position: "absolute", left: isMobile ? "auto" : "50%", right: isMobile ? "4%" : "auto", top: isMobile ? "auto" : "clamp(205px, calc(17vw - 15px), 245px)", bottom: isMobile ? 28 : "auto", width: isMobile ? "84%" : "clamp(420px, 38vw, 580px)", aspectRatio: "801 / 1136", transform: isMobile ? "rotate(-1deg)" : "rotate(-3deg)", transformOrigin: isMobile ? "bottom right" : "top left", zIndex: 3 }}>
-          <img src="assets/paper.png?v=2" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(-3px 5px 4px rgba(8,4,4,0.45)) drop-shadow(0 18px 32px rgba(8,4,4,0.30))" }} />
-          {/* journal content — sits inside the paper's writing area. The
-              page bleeds heavily into the next section, so on desktop we
-              push the content up into the top of the sheet so it stays
-              visible above the section border. */}
-          <div style={{ position: "absolute", top: "5%", right: "6%", bottom: isMobile ? "7%" : "62%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
-            <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
-              Lab Journal · No {issueNo}
+            headline; the bottom still rides into §06. Reveal slides
+            it up from below on scroll-in; the inner div holds the
+            rotation so the two transforms don't conflict. */}
+        <Reveal kind="rise" delay={200} style={{ position: "absolute", left: isMobile ? "auto" : "50%", right: isMobile ? "4%" : "auto", top: isMobile ? "auto" : "clamp(205px, calc(17vw - 15px), 245px)", bottom: isMobile ? 28 : "auto", width: isMobile ? "84%" : "clamp(420px, 38vw, 580px)", aspectRatio: "801 / 1136", zIndex: 3 }}>
+          <div style={{ position: "relative", width: "100%", height: "100%", transform: isMobile ? "rotate(-1deg)" : "rotate(-3deg)", transformOrigin: isMobile ? "bottom right" : "top left" }}>
+            <img src="assets/paper.png?v=2" alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(-3px 5px 4px rgba(8,4,4,0.45)) drop-shadow(0 18px 32px rgba(8,4,4,0.30))" }} />
+            {/* journal content — sits inside the paper's writing area. The
+                page bleeds heavily into the next section, so on desktop we
+                push the content up into the top of the sheet so it stays
+                visible above the section border. */}
+            <div style={{ position: "absolute", top: "5%", right: "6%", bottom: isMobile ? "7%" : "62%", left: "22%", display: "flex", flexDirection: "column", justifyContent: "space-between", color: BW.ink }}>
+              <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: BW.plum, fontWeight: 700 }}>
+                Lab Journal · No {issueNo}
+              </div>
+              <div style={{ opacity: fade, transition: "opacity 0.45s ease", flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-start", padding: "clamp(60px, 9%, 100px) 0 clamp(16px, 4%, 28px) 0" }}>
+                <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(26px, 3vw, 34px)", lineHeight: 1.2, letterSpacing: "-0.015em", color: BW.ink, fontWeight: 400, margin: 0 }}>
+                  {cur.q}
+                </p>
+              </div>
+              <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>
+                <a href="lab.html" style={{ color: BW.plum, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: `1px solid ${BW.plum}`, paddingBottom: 2 }}>
+                  Read this issue →
+                </a>
+              </div>
             </div>
-            <div style={{ opacity: fade, transition: "opacity 0.45s ease", flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-start", padding: "clamp(60px, 9%, 100px) 0 clamp(16px, 4%, 28px) 0" }}>
-              <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(26px, 3vw, 34px)", lineHeight: 1.2, letterSpacing: "-0.015em", color: BW.ink, fontWeight: 400, margin: 0 }}>
-                {cur.q}
-              </p>
-            </div>
-            <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 700 }}>
-              <a href="lab.html" style={{ color: BW.plum, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, borderBottom: `1px solid ${BW.plum}`, paddingBottom: 2 }}>
-                Read this issue →
-              </a>
+            {/* prompt index dots — tucked at the bottom of the page, riding the rotation */}
+            <div style={{ position: "absolute", bottom: "3%", left: "55%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 5 }}>
+              {prompts.map((_, i) => (
+                <span key={i} style={{ width: i === idx ? 18 : 6, height: 6, background: i === idx ? BW.brass : "rgba(20,16,12,0.25)", borderRadius: 3, transition: "all 0.35s ease" }} />
+              ))}
             </div>
           </div>
-          {/* prompt index dots — tucked at the bottom of the page, riding the rotation */}
-          <div style={{ position: "absolute", bottom: "3%", left: "55%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 5 }}>
-            {prompts.map((_, i) => (
-              <span key={i} style={{ width: i === idx ? 18 : 6, height: 6, background: i === idx ? BW.brass : "rgba(20,16,12,0.25)", borderRadius: 3, transition: "all 0.35s ease" }} />
-            ))}
-          </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
