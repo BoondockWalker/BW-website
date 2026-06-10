@@ -17,21 +17,23 @@ function CapHero() {
 
       {/* HERO BODY */}
       <div style={{ position: "relative", padding: "clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px) clamp(56px, 8vw, 96px)", maxWidth: 1440, margin: "0 auto", zIndex: 3 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
-          <span>§02</span>
-          <span style={{ width: 28, height: 1, background: BW.brass }} />
-          <span>Capabilities · A field manual</span>
-        </div>
-        <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.015em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
-          {d.title}<br />
-          <em style={{ color: BW.clay300, fontWeight: 400, fontStyle: "italic" }}>{d.titleItalic}</em>
-        </h1>
-        <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2.4vw, 22px)", lineHeight: 1.5, color: BW.chalk2, maxWidth: "52ch", margin: "44px 0 0" }}>
-          {d.standfirst}
-        </p>
+        <Reveal kind="rise">
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
+            <span>§02</span>
+            <span style={{ width: 28, height: 1, background: BW.brass }} />
+            <span>Capabilities · A field manual</span>
+          </div>
+          <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.015em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
+            {d.title}<br />
+            <em style={{ color: BW.clay300, fontWeight: 400, fontStyle: "italic" }}>{d.titleItalic}</em>
+          </h1>
+          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2.4vw, 22px)", lineHeight: 1.5, color: BW.chalk2, maxWidth: "52ch", margin: "44px 0 0" }}>
+            {d.standfirst}
+          </p>
+        </Reveal>
 
         {/* Three-pillar marker bar */}
-        <div style={{ marginTop: 56, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
+        <Reveal kind="rise" delay={180} style={{ marginTop: 56, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
           {[
             { n: "01", k: "Brand", c: BW.clay, t: "Story architecture" },
             { n: "02", k: "Demand", c: BW.brass, t: "Nurture & engagement" },
@@ -46,17 +48,17 @@ function CapHero() {
               <span style={{ marginLeft: "auto", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", color: BW.chalk3 }}>↓</span>
             </a>
           ))}
-        </div>
+        </Reveal>
 
         {/* Facts ledger */}
-        <div style={{ marginTop: 36, display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: 0, borderTop: `1px solid rgba(244,236,218,0.18)` }}>
+        <Reveal kind="rise" delay={300} style={{ marginTop: 36, display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: 0, borderTop: `1px solid rgba(244,236,218,0.18)` }}>
           {d.facts.map((f, i) => (
             <div key={f.k} style={{ padding: "20px 0 22px", borderRight: i < d.facts.length - 1 && !isMobile ? `1px solid rgba(244,236,218,0.18)` : "none", paddingLeft: i === 0 ? 0 : "clamp(16px, 2vw, 24px)", paddingRight: i < d.facts.length - 1 ? "clamp(16px, 2vw, 24px)" : 0, borderBottom: isMobile && i < 2 ? `1px solid rgba(244,236,218,0.18)` : "none" }}>
               <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 600, marginBottom: 6 }}>{f.k}</div>
               <div style={{ fontFamily: BW.ffG, fontSize: 14, fontWeight: 700, color: BW.chalk50, letterSpacing: "-0.005em" }}>{f.v}</div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -83,13 +85,13 @@ function CapPillarSection({ pillar, idx }) {
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.04) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
       <div style={{ position: "relative", maxWidth: 1440, margin: "0 auto", padding: "clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px)" }}>
         {/* Top label rail — pillar #N */}
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: s.accent, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
+        <Reveal kind="rise" style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: s.accent, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
           <span>§03 · {pillar.n}</span>
           <span style={{ width: 28, height: 1, background: s.accent }} />
           <span>Pillar {pillar.n} · {pillar.tag}</span>
-        </div>
+        </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : reverse ? "1fr 1.4fr" : "1.4fr 1fr", gap: isMobile ? 48 : 80, alignItems: "start" }}>
+        <Reveal kind="rise" delay={140} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : reverse ? "1fr 1.4fr" : "1.4fr 1fr", gap: isMobile ? 48 : 80, alignItems: "start" }}>
           {/* COPY COLUMN */}
           <div style={{ order: isMobile ? 2 : reverse ? 2 : 1 }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: 24, marginBottom: 8, flexWrap: "wrap" }}>
@@ -154,7 +156,7 @@ function CapPillarSection({ pillar, idx }) {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
