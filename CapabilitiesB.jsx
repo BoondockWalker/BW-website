@@ -10,22 +10,22 @@ function CapCatalog() {
   return (
     <section style={{ background: BW.chalk50, color: BW.ink, fontFamily: BW.ffG, borderBottom: `1.5px solid ${BW.ink}` }}>
       <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
+        <Reveal kind="rise" style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
           <span>{d.eyebrow.split(" / ")[0]}</span>
           <span style={{ width: 28, height: 1, background: BW.clay }} />
           <span>{d.eyebrow.split(" / ")[1]}</span>
-        </div>
+        </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: 56 }}>
+        <Reveal kind="rise" delay={120} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: 56 }}>
           <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
             {d.title} Hire us for <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "40ch" }}>
             {d.note}
           </p>
-        </div>
+        </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1.5px solid ${BW.ink}` }}>
+        <Reveal kind="rise" delay={240} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1.5px solid ${BW.ink}` }}>
           {d.columns.map((col, i) => {
             const c = colorByHead[col.head] || BW.clay;
             return (
@@ -45,7 +45,7 @@ function CapCatalog() {
               </div>
             );
           })}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -61,26 +61,28 @@ function CapEvidence() {
     <section style={{ background: BW.ink, color: BW.chalk, fontFamily: BW.ffG, borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(244,236,218,0.025) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "screen", pointerEvents: "none" }} />
       <div style={{ position: "relative", maxWidth: 1440, margin: "0 auto", padding: "clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
-          <span>{d.eyebrow.split(" / ")[0]}</span>
-          <span style={{ width: 28, height: 1, background: BW.clay300 }} />
-          <span>{d.eyebrow.split(" / ")[1]}</span>
-        </div>
-        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: "0 0 56px", color: BW.chalk, maxWidth: 1100 }}>
-          {d.title} <em style={{ color: BW.clay300, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em>
-        </h2>
+        <Reveal kind="rise">
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
+            <span>{d.eyebrow.split(" / ")[0]}</span>
+            <span style={{ width: 28, height: 1, background: BW.clay300 }} />
+            <span>{d.eyebrow.split(" / ")[1]}</span>
+          </div>
+          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: "0 0 56px", color: BW.chalk, maxWidth: 1100 }}>
+            {d.title} <em style={{ color: BW.clay300, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em>
+          </h2>
+        </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
+        <Reveal kind="rise" delay={140} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
           {d.stats.map((s, i) => (
             <div key={i} style={{ borderRight: !isMobile && i < d.stats.length - 1 ? `1px solid rgba(244,236,218,0.18)` : "none", borderBottom: isMobile && i < d.stats.length - 1 ? `1px solid rgba(244,236,218,0.18)` : "none", padding: "44px clamp(16px, 3vw, 28px)", display: "flex", flexDirection: "column", gap: 16 }}>
               <div style={{ fontFamily: BW.ffG, fontSize: "clamp(72px, 12vw, 144px)", fontWeight: 700, color: colors[s.c] || BW.clay300, letterSpacing: "-0.05em", lineHeight: 0.85 }}>{s.v}</div>
               <div style={{ fontFamily: BW.ffSerif, fontSize: 16, lineHeight: 1.5, color: BW.chalk2, maxWidth: "32ch" }}>{s.k}</div>
             </div>
           ))}
-        </div>
+        </Reveal>
 
         {/* Pull-quote */}
-        <div style={{ marginTop: 64, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "auto 1fr", gap: isMobile ? 24 : 56, alignItems: "start" }}>
+        <Reveal kind="rise" delay={260} style={{ marginTop: 64, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "auto 1fr", gap: isMobile ? 24 : 56, alignItems: "start" }}>
           <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 600, lineHeight: 1.5, paddingTop: 8 }}>
             From the<br />field<br />— 2025
           </div>
@@ -94,7 +96,7 @@ function CapEvidence() {
               — {d.pull.attrib}
             </footer>
           </blockquote>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -125,24 +127,26 @@ function CapProcess() {
       {/* paper grain */}
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.04) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
       <div style={{ position: "relative", maxWidth: 1440, margin: "0 auto", padding: "clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
-          <span>{d.eyebrow.split(" / ")[0]}</span>
-          <span style={{ width: 28, height: 1, background: BW.clay }} />
-          <span>{d.eyebrow.split(" / ")[1]}</span>
-        </div>
+        <Reveal kind="rise">
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
+            <span>{d.eyebrow.split(" / ")[0]}</span>
+            <span style={{ width: 28, height: 1, background: BW.clay }} />
+            <span>{d.eyebrow.split(" / ")[1]}</span>
+          </div>
 
-        {/* HEADER + INTRO */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: isMobile ? 40 : 64 }}>
-          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
-            {d.title} <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
-          </h2>
-          <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "44ch" }}>
-            {d.standfirst}
-          </p>
-        </div>
+          {/* HEADER + INTRO */}
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: isMobile ? 40 : 64 }}>
+            <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
+              {d.title} <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
+            </h2>
+            <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "44ch" }}>
+              {d.standfirst}
+            </p>
+          </div>
+        </Reveal>
 
         {/* INTERACTIVE TABLET — big letters as tabs, detail panel below */}
-        <div style={{ borderTop: `1.5px solid ${BW.ink}`, borderBottom: `1.5px solid ${BW.ink}` }}>
+        <Reveal kind="rise" delay={180} style={{ borderTop: `1.5px solid ${BW.ink}`, borderBottom: `1.5px solid ${BW.ink}` }}>
           {/* Letter tab row */}
           <div role="tablist" aria-label="GUIDE steps" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", borderBottom: `1px solid ${BW.ruleL}` }}>
             {d.steps.map((st, i) => {
@@ -255,15 +259,15 @@ function CapProcess() {
               </div>
             )}
           </div>
-        </div>
+        </Reveal>
 
         {/* Footnote */}
-        <div style={{ marginTop: 32, paddingTop: 18, borderTop: `1px solid ${BW.ruleL}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+        <Reveal kind="rise" delay={320} style={{ marginTop: 32, paddingTop: 18, borderTop: `1px solid ${BW.ruleL}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
           <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600 }}>BDW · Field manual · GUIDE.v2</span>
           <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.clay, fontWeight: 700 }}>
             {userTouched ? "fig. 06 · interactive — hover or tap a letter" : "fig. 06 · auto-cycling — interact to pause"}
           </span>
-        </div>
+        </Reveal>
       </div>
 
       <style>{`
@@ -287,7 +291,7 @@ function CapCTA() {
   return (
     <section style={{ background: BW.clay, color: BW.chalk50, fontFamily: BW.ffG, borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
-      <div style={{ position: "relative", maxWidth: 1440, margin: "0 auto", padding: "clamp(72px, 10vw, 140px) clamp(20px, 5vw, 64px)" }}>
+      <Reveal kind="rise" style={{ position: "relative", maxWidth: 1440, margin: "0 auto", padding: "clamp(72px, 10vw, 140px) clamp(20px, 5vw, 64px)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.ink, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
           <span>{d.eyebrow.split(" / ")[0]}</span>
           <span style={{ width: 28, height: 1, background: BW.ink }} />
@@ -305,7 +309,7 @@ function CapCTA() {
             <a href="work.html" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 22px", borderRadius: 999, background: "transparent", color: BW.chalk50, border: `1.5px solid ${BW.chalk50}`, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>See the work</a>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
