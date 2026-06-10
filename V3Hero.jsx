@@ -3,24 +3,45 @@
 
 function V3Hero() {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const videoRef = React.useRef(null);
+
+  /* Honor prefers-reduced-motion: pause the walk loop and leave the poster
+     frame visible. Re-apply if the user flips the preference at runtime. */
+  React.useEffect(() => {
+    const v = videoRef.current;
+    if (!v || typeof window.matchMedia !== "function") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => { if (mq.matches) v.pause(); else v.play().catch(() => {}); };
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
   return (
     <section style={{ position: "relative", background: BW.clay, color: BW.chalk50, minHeight: isMobile ? 640 : 920, fontFamily: BW.ffG, overflow: "hidden", borderBottom: `1.5px solid ${BW.ink}`, display: "flex", flexDirection: "column" }}>
       {/* paper texture — section hatch covers the area below the header */}
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
 
-      {/* FLOATING HIKING BOOTS — looping walk cycle. Multiply blends the white background out;
-          mask gradient softens the left edge; PNG poster keeps a still frame visible until autoplay starts. */}
+      {/* FLOATING HIKING BOOTS — 2s seamless walk loop, webm + mp4 sources.
+          Multiply blends the white background into the clay; left-edge mask
+          gradient feathers the image into the section. Reduced-motion pauses
+          the video via the useEffect above so the poster frame stays put. */}
       <video
-        src="assets/hiking-boots-walk.mp4?v=1"
-        poster="assets/hiking-boots-v2.png?v=3"
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
+        poster="assets/boots-poster.jpg?v=1"
+        width="960"
+        height="960"
         aria-hidden="true"
-        style={{ position: "absolute", right: isMobile ? "-20vw" : -40, top: isMobile ? 180 : 210, width: "min(720px, 92vw)", maxWidth: 720, mixBlendMode: "multiply", filter: "contrast(1.05) saturate(0.9)", transform: "rotate(-4deg)", pointerEvents: "none", zIndex: 1, opacity: isMobile ? 0.55 : 1, maskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)" }}
-      />
+        style={{ position: "absolute", right: isMobile ? "-20vw" : -40, top: isMobile ? 180 : 210, width: "min(720px, 92vw)", maxWidth: 720, height: "auto", mixBlendMode: "multiply", filter: "contrast(1.05) saturate(0.9)", transform: "rotate(-4deg)", pointerEvents: "none", zIndex: 1, opacity: isMobile ? 0.55 : 1, maskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)" }}
+      >
+        <source src="assets/boots-walk-loop.webm?v=1" type="video/webm" />
+        <source src="assets/boots-walk-loop.mp4?v=1" type="video/mp4" />
+      </video>
 
       {/* MAIN PHRASE */}
       <div style={{ position: "relative", padding: "clamp(48px, 8vw, 80px) clamp(20px, 5vw, 64px)", zIndex: 3 }}>
