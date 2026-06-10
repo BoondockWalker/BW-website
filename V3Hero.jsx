@@ -8,8 +8,21 @@ function V3Hero() {
       {/* paper texture — section hatch covers the area below the header */}
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
 
-      {/* FLOATING HIKING BOOTS — scales with viewport, sits behind copy on mobile */}
-      <img src="assets/hiking-boots-v2.png?v=3" alt="" style={{ position: "absolute", right: isMobile ? "-20vw" : -40, top: isMobile ? 180 : 210, width: "min(720px, 92vw)", maxWidth: 720, mixBlendMode: "multiply", filter: "contrast(1.05) saturate(0.9)", transform: "rotate(-4deg)", pointerEvents: "none", zIndex: 1, opacity: isMobile ? 0.55 : 1, maskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)" }} />
+      {/* FLOATING HIKING BOOTS — scales with viewport, sits behind copy on mobile.
+          Gentle "stepping" loop: vertical bob + small rotate around the -4° resting tilt. */}
+      <style>{`
+        @keyframes bw-hero-boots-step {
+          0%   { transform: translateY(0)     rotate(-4deg); }
+          25%  { transform: translateY(-7px)  rotate(-2.5deg); }
+          50%  { transform: translateY(0)     rotate(-4deg); }
+          75%  { transform: translateY(-5px)  rotate(-5.5deg); }
+          100% { transform: translateY(0)     rotate(-4deg); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .bw-hero-boots { animation: none !important; }
+        }
+      `}</style>
+      <img src="assets/hiking-boots-v2.png?v=3" alt="" className="bw-hero-boots" style={{ position: "absolute", right: isMobile ? "-20vw" : -40, top: isMobile ? 180 : 210, width: "min(720px, 92vw)", maxWidth: 720, mixBlendMode: "multiply", filter: "contrast(1.05) saturate(0.9)", transform: "rotate(-4deg)", animation: "bw-hero-boots-step 1.4s ease-in-out infinite", transformOrigin: "55% 80%", pointerEvents: "none", zIndex: 1, opacity: isMobile ? 0.55 : 1, maskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%, black 100%)" }} />
 
       {/* MAIN PHRASE */}
       <div style={{ position: "relative", padding: "clamp(48px, 8vw, 80px) clamp(20px, 5vw, 64px)", zIndex: 3 }}>
