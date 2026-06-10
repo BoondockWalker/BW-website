@@ -20,15 +20,15 @@ function V3Thesis() {
           <span>The Thesis · Manifesto</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 40 : 80, alignItems: "start" }}>
-          <div>
+          <Reveal kind="rise">
             <p style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 6vw, 56px)", lineHeight: 1.08, fontStyle: "italic", margin: "0 0 32px", color: BW.ink, letterSpacing: "-0.015em", fontWeight: 400 }}>
               Brand-led demand, built to <em style={{ fontStyle: "italic", color: BW.clay, fontWeight: 400 }}>compound.</em>
             </p>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 20px)", lineHeight: 1.55, margin: 0, color: BW.ink2, maxWidth: "44ch" }}>
               Most firms split brand and growth into separate disciplines, separate teams, separate invoices. We don't. Boondock Walker builds the brand foundation and the demand engine as <em style={{ fontFamily: BW.ffD, fontStyle: "italic", color: BW.ink, fontWeight: 400 }}>one connected system</em> — so the strategy that defines who you are is the same strategy generating pipeline. Senior principals lead the work. Our proprietary tools accelerate it. The outcomes carry forward.
             </p>
-          </div>
-          <div style={{ paddingTop: 8 }}>
+          </Reveal>
+          <Reveal kind="rise" delay={160} style={{ paddingTop: 8 }}>
             <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", marginBottom: 18, fontWeight: 600 }}>Five tenets we work by.</div>
             <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "14px 22px", fontFamily: BW.ffSerif, fontSize: 17, color: BW.ink, lineHeight: 1.5 }}>
               {tenets.map(([n, t]) => (
@@ -38,20 +38,20 @@ function V3Thesis() {
                 </React.Fragment>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
 
       {/* TENET FIG. — replaces the old marquee */}
       <div style={{ background: BW.ink, color: BW.chalk, borderTop: `1.5px solid ${BW.ink}` }}>
-        <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(40px, 6vw, 56px) clamp(20px, 5vw, 64px)", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 200px", alignItems: isMobile ? "start" : "center", gap: isMobile ? 24 : 40 }}>
+        <Reveal kind="rise" style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(40px, 6vw, 56px) clamp(20px, 5vw, 64px)", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 200px", alignItems: isMobile ? "start" : "center", gap: isMobile ? 24 : 40 }}>
           <p style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 8vw, 64px)", lineHeight: 1.02, fontStyle: "italic", margin: 0, color: BW.chalk, letterSpacing: "-0.02em", fontWeight: 400 }}>
             Pipeline, <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>not applause.</em>
           </p>
           <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(244,236,218,0.45)", fontWeight: 600, textAlign: isMobile ? "left" : "right", lineHeight: 1.5 }}>
             fig. 02.ii<br/>BDW · 2026
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -100,7 +100,7 @@ function V3Pillars() {
   const pillarImgSize = isMobile ? 160 : 240;
   return (
     <section id="capabilities" style={{ background: BW.ink, color: BW.chalk, paddingTop: "clamp(56px, 8vw, 80px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
-      <div style={{ padding: "0 clamp(20px, 5vw, 64px) clamp(40px, 6vw, 56px)", maxWidth: 1440, margin: "0 auto" }}>
+      <Reveal kind="rise" style={{ padding: "0 clamp(20px, 5vw, 64px) clamp(40px, 6vw, 56px)", maxWidth: 1440, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay300, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
           <span>§03</span>
           <span style={{ width: 28, height: 1, background: BW.clay300 }} />
@@ -109,8 +109,8 @@ function V3Pillars() {
         <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 96px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.92, margin: 0, color: BW.chalk, maxWidth: 1180 }}>
           We do the <em style={{ color: BW.clay300, fontWeight: 400, fontStyle: "italic" }}>three things</em> most teams need from <em style={{ color: BW.brass, fontWeight: 400, fontStyle: "italic" }}>five</em> vendors.
         </h2>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)` }}>
+      </Reveal>
+      <Reveal kind="cascade" stagger={140} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)` }}>
         {pillars.map((p, i) => (
           <div key={p.n} style={{ borderRight: !isMobile && i < 2 ? `1px solid rgba(244,236,218,0.18)` : "none", borderBottom: isMobile && i < 2 ? `1px solid rgba(244,236,218,0.18)` : "none", padding: "44px clamp(20px, 5vw, 36px) 40px", display: "flex", flexDirection: "column", gap: 20, position: "relative", overflow: "hidden" }}>
             <div style={{ position: "relative", height: pillarImgSize - 40, marginTop: -64, marginBottom: 0 }}>
@@ -128,7 +128,7 @@ function V3Pillars() {
             </div>
           </div>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }
