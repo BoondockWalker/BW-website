@@ -46,12 +46,12 @@ function V3Triage() {
 
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
         {/* Eyebrow */}
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
+        <Reveal kind="rise" style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
           <span>§06</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Form 04-T · Brand Triage</span>
-        </div>
+        </Reveal>
 
         {/* Headline + intro side-by-side */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 64, alignItems: "start", marginBottom: 44 }}>
+        <Reveal kind="rise" style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 64, alignItems: "start", marginBottom: 44 }}>
           <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(48px, 9vw, 84px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 0.96, margin: 0, color: BW.ink, fontStyle: "italic" }}>
             What's actually <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>wrong</em> with the brand?
           </h2>
@@ -63,10 +63,10 @@ function V3Triage() {
               For the diagnosis, run the <em style={{ fontFamily: BW.ffD, color: BW.ink, fontStyle: "italic", fontWeight: 400 }}>Brand Triage</em> — a deeper, guided intake that returns a personalized written report on what's driving the discomfort and a recommended path forward.
             </p>
           </div>
-        </div>
+        </Reveal>
 
         {/* Tool */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", border: `1.5px solid ${BW.ink}`, boxShadow: "0 30px 60px -28px rgba(20,16,12,0.25)" }}>
+        <Reveal kind="rise" delay={120} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", border: `1.5px solid ${BW.ink}`, boxShadow: "0 30px 60px -28px rgba(20,16,12,0.25)" }}>
           {/* LEFT — checklist */}
           <div style={{ background: BW.chalk50, borderRight: !isMobile ? `1.5px solid ${BW.ink}` : "none", borderBottom: isMobile ? `1.5px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column" }}>
             <div style={{ padding: "12px 22px", borderBottom: `1px solid ${BW.ruleM}`, display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, fontWeight: 700 }}>
@@ -199,7 +199,7 @@ function V3Triage() {
               </div>
             </>
           )}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

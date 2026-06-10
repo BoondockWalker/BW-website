@@ -8,8 +8,7 @@ function V3VesperBulletin() {
   const isNarrow = useMediaQuery("(max-width: 560px)");
 
   return (
-    <a
-      href="vesper.html"
+    <Reveal kind="rise" as="a" href="vesper.html"
       style={{
         display: "block",
         textDecoration: "none",
@@ -47,7 +46,7 @@ function V3VesperBulletin() {
           </span>
         </div>
       </div>
-    </a>
+    </Reveal>
   );
 }
 

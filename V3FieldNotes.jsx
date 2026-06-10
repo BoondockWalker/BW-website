@@ -111,7 +111,7 @@ function V3FieldNotes() {
     <section id="field-notes" style={{ background: BW.chalk, color: BW.ink, padding: "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
         {/* Eyebrow + headline */}
-        <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "flex-end", gap: isMobile ? 24 : 0, marginBottom: 48 }}>
+        <Reveal kind="rise" style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "flex-end", gap: isMobile ? 24 : 0, marginBottom: 48 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24, flexWrap: "wrap" }}>
               <span>§07</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Field Notes · Bulletin from the field</span>
@@ -123,10 +123,10 @@ function V3FieldNotes() {
           <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "flex-start" : "flex-end", gap: 12 }}>
             <a style={{ fontFamily: BW.ffG, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink, textDecoration: "none", fontWeight: 700, paddingBottom: 3, borderBottom: `1.5px solid ${BW.ink}`, cursor: "pointer", whiteSpace: "nowrap" }}>Subscribe to Field Notes →</a>
           </div>
-        </div>
+        </Reveal>
 
         {/* Bulletin grid */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", border: `1.5px solid ${BW.ink}`, background: BW.chalk50 }}>
+        <Reveal kind="rise" delay={120} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", border: `1.5px solid ${BW.ink}`, background: BW.chalk50 }}>
           {/* FEATURED */}
           <a href={featured.href} style={{ borderRight: !isMobile ? `1.5px solid ${BW.ink}` : "none", borderBottom: isMobile ? `1.5px solid ${BW.ink}` : "none", display: "flex", flexDirection: "column", textDecoration: "none", color: "inherit" }}>
             {/* hero image — falls back to NoteArt glyph when no lead artwork */}
@@ -179,7 +179,7 @@ function V3FieldNotes() {
               </a>
             ))}
           </div>
-        </div>
+        </Reveal>
 
         {/* Footer rail */}
         <div style={{ marginTop: 22, display: "flex", justifyContent: isMobile ? "flex-start" : "flex-end", alignItems: "center", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.6)", fontWeight: 600 }}>
