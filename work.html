@@ -90,7 +90,7 @@ function WorkApp() {
       <WorkMasthead count={all.length} filterCount={sorted.length + (isMobile ? 0 : 1)} />
       {!isMobile && <FeaturedCase c={featured} />}
       <FilterRow {...{ pillar, setPillar, industry, setIndustry, outcome, setOutcome, sort, setSort, view, setView }} />
-      <ArchiveGrid cases={sorted} view={view} />
+      <ArchiveGrid cases={sorted} view={view} pillar={pillar} />
       <WorkClosing />
       <V3Footer />
     </div>
