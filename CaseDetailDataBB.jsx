@@ -32,9 +32,13 @@ window.BW_CASE_DETAIL = {
     variant: "fullbleed",
     eyebrow: "Client Success Story · Case №13",
     title: "Break the cycle. Build what's next.",
-    image: `${BASE}/BB-web-forge%20hero.png`,
-    imageAlt: "Brave & Boundless — The Forge hero, from the live site",
-    imagePosition: "center center",
+    /* Books-first hero — the flagship publications, not a site screenshot.
+       Using a site screenshot as the hero brought B&B's own nav rail into
+       the top of the page, which fought with our SiteHeader overlay. */
+    image: `${BASE}/BB-books-set1.png`,
+    imageAlt: "Brave & Boundless — the fifteen rules, in print",
+    imageSize: "contain",
+    imagePosition: "center 62%",
     imageBg: "#14100C",
     scrim: "bottomOnly",
     clientLogo: `${BASE}/BraveBoundless%20logo-wht.svg`,
@@ -141,10 +145,10 @@ window.BW_CASE_DETAIL = {
       surface: "#FBF7EE",
       padding: "80px 40px 120px",
       items: [
-        { src: `${BASE}/BB-web-forge%20hero.png`,    alt: "The Forge — hero section",              caption: "The Forge · flagship program",             shadow: true },
-        { src: `${BASE}/BB-web-book.png`,            alt: "The Book — product page",               caption: "The Book · fifteen rules in print",         shadow: true },
-        { src: `${BASE}/BB-web-Ask%20Mark.png`,      alt: "Ask Mark — AI-assisted advice",         caption: "Ask Mark · AI-assisted advice",             shadow: true },
-        { src: `${BASE}/BB-web-fire%20blog.png`,     alt: "Fire — essays and long-form",           caption: "Fire · essays and long-form",               shadow: true },
+        { src: `${BASE}/BB-web-forge%20hero.png`,    alt: "The Forge — hero section",              caption: "The Forge · flagship program",             frame: "laptop", aspect: "16 / 10", fit: "cover", position: "top" },
+        { src: `${BASE}/BB-web-book.png`,            alt: "The Book — product page",               caption: "The Book · fifteen rules in print",         frame: "laptop", aspect: "16 / 10", fit: "cover", position: "top" },
+        { src: `${BASE}/BB-web-Ask%20Mark.png`,      alt: "Ask Mark — AI-assisted advice",         caption: "Ask Mark · AI-assisted advice",             frame: "laptop", aspect: "16 / 10", fit: "cover", position: "top" },
+        { src: `${BASE}/BB-web-fire%20blog.png`,     alt: "Fire — essays and long-form",           caption: "Fire · essays and long-form",               frame: "laptop", aspect: "16 / 10", fit: "cover", position: "top" },
       ],
     },
 
