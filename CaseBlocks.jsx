@@ -683,6 +683,74 @@ function StatCalloutBlock({ block }) {
 }
 
 /* =========================================================================
+   STAGES — colored cards for a book/program's phased framework.
+   Used to visualize how a set of rules or chapters splits into named stages
+   (e.g. Fire · Forge · Foundation · Field). Each stage carries its own
+   surface color, a part number, a big title, a subtitle, a body paragraph,
+   and a rules-range label. 2-up on mobile, up to 4-up on desktop.
+   ========================================================================= */
+function StagesBlock({ block }) {
+  const { eyebrow, title, standfirst, stages = [], surface = BW.chalk50, accent = BW.clay, maxWidth = MAX_W } = block;
+  const isMobile = useMediaQuery("(max-width: 700px)");
+  const isTablet = useMediaQuery("(max-width: 1100px)");
+  const cols = isMobile ? 1 : isTablet ? 2 : Math.min(4, stages.length);
+  return (
+    <section style={{ background: surface, color: BW.ink, padding: SECTION_PAD, fontFamily: BW.ffG }}>
+      <div style={{ maxWidth, margin: "0 auto" }}>
+        {(eyebrow || title || standfirst) && (
+          <div style={{ textAlign: "center", marginBottom: 56 }}>
+            {eyebrow && (
+              <Reveal kind="rise">
+                <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: accent, fontWeight: 700, marginBottom: 18 }}>{eyebrow}</div>
+              </Reveal>
+            )}
+            {title && (
+              <Reveal kind="rise" delay={120}>
+                <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(36px, 5.5vw, 56px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.05, margin: 0, color: BW.ink }}>{title}</h2>
+              </Reveal>
+            )}
+            {standfirst && (
+              <Reveal kind="rise" delay={240}>
+                <p style={{ fontFamily: BW.ffSerif, fontSize: 18, lineHeight: 1.55, color: BW.ink2, margin: "20px auto 0", maxWidth: 720 }}>{standfirst}</p>
+              </Reveal>
+            )}
+          </div>
+        )}
+        <Reveal kind="cascade" stagger={120}>
+          <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: isMobile ? 20 : 24 }}>
+            {stages.map((s, i) => (
+              <div key={i} style={{ background: s.color, color: BW.chalk50, padding: "36px 28px 32px", display: "flex", flexDirection: "column", gap: 14, borderRadius: 4, minHeight: 380 }}>
+                <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(251,247,238,0.7)", fontWeight: 700 }}>
+                  Part {s.n}
+                </div>
+                <div style={{ fontFamily: BW.ffG, fontSize: "clamp(32px, 3.4vw, 44px)", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1, textTransform: "uppercase", color: BW.chalk50 }}>
+                  {s.title}
+                </div>
+                {s.subtitle && (
+                  <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", color: "rgba(251,247,238,0.78)", fontWeight: 600, marginTop: -6 }}>
+                    {s.subtitle}
+                  </div>
+                )}
+                {s.body && (
+                  <p style={{ fontFamily: BW.ffSerif, fontSize: 15, lineHeight: 1.55, color: "rgba(251,247,238,0.86)", margin: "8px 0 0" }}>
+                    {s.body}
+                  </p>
+                )}
+                {s.rules && (
+                  <div style={{ marginTop: "auto", paddingTop: 20, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,247,238,0.85)", fontWeight: 700, borderTop: `1px solid rgba(251,247,238,0.28)` }}>
+                    {s.rules}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================================
    STAT ROW — small horizontal row of secondary metrics. Placeholders OK.
    ========================================================================= */
 function StatRowBlock({ block }) {
@@ -994,6 +1062,7 @@ const CASE_BLOCKS = {
   multi:        MultiImageBlock,
   slider:       SliderBlock,
   stat:         StatCalloutBlock,
+  stages:       StagesBlock,
   statrow:      StatRowBlock,
   pullquote:    PullquoteBlock,
   video:        VideoBlock,

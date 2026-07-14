@@ -92,19 +92,24 @@ window.BW_CASE_DETAIL = {
       imagePadding: "32px 28px",
     },
 
-    /* -- Big stat callout — the framework ------------------------ */
+    /* -- The Framework — four stages carrying the fifteen rules -- */
     {
-      kind: "stat",
-      eyebrow: "The Framework",
-      numeric: 15,
-      suffix: " rules",
-      label: "Rules for breaking the cycle and building what's next. Sequenced, not a checklist.",
+      kind: "stages",
+      eyebrow: "§04 · The Framework",
+      title: "Fifteen rules. Four stages.",
+      standfirst: "The rules move in sequence — from lighting the fire, to forging the skills, to laying the foundation, to expanding into the field. Each stage carries its own colour, its own weather, and its own set of rules.",
+      stages: [
+        { n: "One",   title: "Fire",       subtitle: "Origin & First Breaks", rules: "Rules 1 – 4",   color: "#7A1E22", body: "Ignition. Where the cycle breaks and the work begins — the first four rules for finding your spark and refusing to put it back down." },
+        { n: "Two",   title: "Forge",      subtitle: "Skills & Systems",       rules: "Rules 5 – 8",   color: "#C64A1E", body: "The habits, disciplines, and systems that turn intent into output — how the work gets made when the mood does not cooperate." },
+        { n: "Three", title: "Foundation", subtitle: "Life's Core Pillars",    rules: "Rules 9 – 12",  color: "#4F5B61", body: "The load-bearing pillars — health, relationships, money, meaning — that hold a life together long enough for the rest of the work to compound." },
+        { n: "Four",  title: "Field",      subtitle: "Impact & Legacy",        rules: "Rules 13 – 15", color: "#4F5B2A", body: "Where the work leaves the room. Legacy, community, and the quiet arithmetic of what you leave behind for the people coming up after you." },
+      ],
     },
 
     /* -- Brand system — color, icons, imagery, 3-up ------------- */
     {
       kind: "multi",
-      eyebrow: "§04 · The System",
+      eyebrow: "§05 · The System",
       title: "Color, icons, imagery — the visual language.",
       cols: 3,
       gap: 20,
@@ -114,7 +119,7 @@ window.BW_CASE_DETAIL = {
       items: [
         { src: `${BASE}/BB-color.png`,   alt: "Brave & Boundless — color palette",   caption: "01 · Palette",  bg: "#FBF7EE", aspect: "1 / 1", fit: "contain", tilePadding: "8px", shadow: true },
         { src: `${BASE}/BB-icons.png`,   alt: "Brave & Boundless — icon system",     caption: "02 · Icons",    bg: "#FBF7EE", aspect: "1 / 1", fit: "contain", tilePadding: "8px", shadow: true },
-        { src: `${BASE}/BB-imagery.png`, alt: "Brave & Boundless — imagery direction", caption: "03 · Imagery",  bg: "#FBF7EE", aspect: "1 / 1", fit: "cover",   tilePadding: "0",   shadow: true },
+        { src: `${BASE}/BB-imagery.png`, alt: "Brave & Boundless — imagery direction", caption: "03 · Imagery",  bg: "#FBF7EE", aspect: "1 / 1", fit: "contain", tilePadding: "8px", shadow: true },
       ],
     },
 
@@ -125,7 +130,7 @@ window.BW_CASE_DETAIL = {
       src: `${BASE}/BB-web-home.png`,
       alt: "braveandboundless.com — homepage",
       imageBg: "#FBF7EE",
-      eyebrow: "§05 · Digital Home",
+      eyebrow: "§06 · Digital Home",
       title: "braveandboundless.com — the home the framework lives in.",
       body: [
         "The full experience lives at braveandboundless.com. The site is the home for the rules, the essays, the community, and the ongoing content programs — a place where readers move from browsing to subscribed to invested.",
@@ -136,7 +141,7 @@ window.BW_CASE_DETAIL = {
     /* -- The site in detail — 4-up screen grid ------------------- */
     {
       kind: "multi",
-      eyebrow: "§06 · The Site, in Detail",
+      eyebrow: "§07 · The Site, in Detail",
       title: "Sections of the experience.",
       cols: 2,
       gap: 24,
@@ -158,7 +163,7 @@ window.BW_CASE_DETAIL = {
       src: `${BASE}/BB-web-soundtrack.png`,
       alt: "The Soundtrack — every rule has a sound",
       imageBg: "#14100C",
-      eyebrow: "§07 · Bonus Feature",
+      eyebrow: "§08 · Bonus Feature",
       title: "The book has a soundtrack.",
       body: [
         "Every rule in Brave & Boundless has a sound. Five curated playlists — Grit & Resilience, Discipline & Ambition, Roots & Identity, Love & Loyalty, Humble & Kind — pair to the themes that drive the book.",
@@ -169,7 +174,7 @@ window.BW_CASE_DETAIL = {
     /* -- Merch — horizontal slider, all six shirts --------------- */
     {
       kind: "slider",
-      eyebrow: "§08 · Merch",
+      eyebrow: "§09 · Merch",
       title: "The brand, worn.",
       slideHeight: 560,
       gap: 24,
@@ -186,7 +191,7 @@ window.BW_CASE_DETAIL = {
     /* -- Outcomes prose ------------------------------------------- */
     {
       kind: "prose",
-      eyebrow: "§09 · Outcomes",
+      eyebrow: "§10 · Outcomes",
       title: "Foundation shipped. Engine running.",
       body: [
         "The brand foundation and the fifteen rules are live at braveandboundless.com. The book is published, the content engine is running, the lifecycle programs are seeded, and the AI tooling behind the CMS is drafting in the author's voice. Receipts from the year-one engagement will be published here as they clear approval.",
@@ -198,7 +203,7 @@ window.BW_CASE_DETAIL = {
     /* -- Receipts grid (placeholder-heavy) ----------------------- */
     {
       kind: "statrow",
-      eyebrow: "§10 · Receipts",
+      eyebrow: "§11 · Receipts",
       title: "What we can show. What we will.",
       items: [
         { v: "15", k: "Rules in the framework", color: "#C44A2A" },
