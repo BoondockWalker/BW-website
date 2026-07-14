@@ -364,7 +364,7 @@ window.BW_CASES = [
     duration: "2026 — present",
     team: ["Strategy", "Brand", "Lifecycle", "Lab"],
     imagery: "photo",
-    heroImage: "assets/cases/brave-boundless/BB-books-set1.png",
+    heroImage: "assets/cases/brave-boundless/Mark_Nead_stylize_--chaos_10_--ar_169_--sref_httpss.mj.run_VL6__2deb3fc3-dbfe-4e98-ba3c-8e75bbb27b87.png",
     clientLogo: "assets/cases/brave-boundless/BraveBoundless%20logo-wht.svg",
     clientLogoInvert: false,
     clientLogoHeight: 60,
