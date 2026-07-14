@@ -6,7 +6,7 @@ const BW_CAPABILITIES = {
     eyebrow: "§02 / Capabilities",
     title: "Three practices.",
     titleItalic: "One story arc.",
-    standfirst: "Brand alone gets nods. Pipeline alone gets discounted. We build them as one system — so the story earns belief and the belief turns into pipeline.",
+    standfirst: "Brand alone gets nods. Pipeline alone gets discounted. We build them as one system — so the story earns belief and the belief turns into qualified buyers.",
     facts: [
       { k: "Practices", v: "Brand · Demand · Lab" },
       { k: "Capabilities engaged on a typical retainer", v: "8 — 10" },
