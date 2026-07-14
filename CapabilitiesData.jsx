@@ -141,8 +141,8 @@ const BW_CAPABILITIES = {
 
   evidence: {
     eyebrow: "§05 / Receipts",
-    title: "Some receipts.",
-    italic: "Numbers we can name.",
+    title: "The outcomes.",
+    italic: "A few numbers we can share.",
     stats: [
       { v: "3×", k: "Typical return on annual retainer", c: "clay" },
       { v: "+180%", k: "Qualified pipeline growth in year one", c: "plum" },
