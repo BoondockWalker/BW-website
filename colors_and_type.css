@@ -77,8 +77,14 @@ h1 em, h2 em, h3 em { font-variation-settings: "opsz" 60; }
    font-weight: 500 !important is required to override JSX inline
    styles that explicitly set fontWeight: 400 on every h1/h2 — the
    variable font's wght axis follows font-weight, so without the
-   !important the strokes thin out against the display contrast. */
-h1, h2 { font-variation-settings: "opsz" 60, "SOFT" 30, "wght" 550 !important; font-weight: 550 !important; }
+   !important the strokes thin out against the display contrast.
+
+   Scoped via [style*="Fraunces"] so the rule only lands on headlines
+   that actually use Fraunces. A blanket h1, h2 selector was leaking
+   these axes (and the wght: 550 !important) onto sans-serif headlines
+   too — e.g. WorkArchive's Space Grotesk h2s were being interpolated
+   down to Light 226 instead of rendering the intended 700. */
+h1[style*="Fraunces"], h2[style*="Fraunces"] { font-variation-settings: "opsz" 60, "SOFT" 30, "wght" 550 !important; font-weight: 550 !important; }
 
 :root {
   /* ---------- Color: Ink (deep warm-black foundation) ---------- */
