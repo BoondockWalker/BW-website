@@ -63,9 +63,12 @@ function WorkApp() {
 
   const all = window.BW_CASES;
   const featured = React.useMemo(() => pickRotatedFeatured(all), [all]);
-  // On mobile, the featured editorial row is dropped — the featured case is
-  // shown as a regular tile in the grid alongside the others.
-  const rest = isMobile ? all : all.filter(c => c.slug !== featured.slug);
+  // Ledger below shows every case, including whichever one is currently
+  // featured up top. Duplication (once as feature, once as row) is the
+  // right tradeoff for a portfolio archive — every client should be
+  // findable in one predictable list regardless of which case is
+  // rotating through the featured slot this session.
+  const rest = all;
 
   const filtered = rest.filter(c => {
     if (pillar !== "All" && !(c.pillars || []).includes(pillar)) return false;
