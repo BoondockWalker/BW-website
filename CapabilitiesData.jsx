@@ -144,8 +144,8 @@ const BW_CAPABILITIES = {
     title: "Some receipts.",
     italic: "Numbers we can name.",
     stats: [
-      { v: "5B+", k: "Digital document pages delivered for a single client in 2024", c: "clay" },
-      { v: "4×", k: "Aspire leaderboard recognition, consecutive years", c: "plum" },
+      { v: "3×", k: "Typical return on annual retainer", c: "clay" },
+      { v: "+180%", k: "Qualified pipeline growth in year one", c: "plum" },
       { v: "10", k: "Capabilities typically engaged across a retainer", c: "forest" },
     ],
     // TODO: replace anonymized attribution with a real client quote + named attribution.
