@@ -16,13 +16,15 @@ function CapCatalog() {
           <span>{d.eyebrow.split(" / ")[1]}</span>
         </Reveal>
 
-        <Reveal kind="rise" delay={120} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: 56 }}>
+        <Reveal kind="rise" delay={120} style={{ display: "grid", gridTemplateColumns: isMobile || !d.note ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: 56 }}>
           <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
             {d.title} Hire us for <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
           </h2>
-          <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "40ch" }}>
-            {d.note}
-          </p>
+          {d.note && (
+            <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "40ch" }}>
+              {d.note}
+            </p>
+          )}
         </Reveal>
 
         <Reveal kind="rise" delay={240} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1.5px solid ${BW.ink}` }}>

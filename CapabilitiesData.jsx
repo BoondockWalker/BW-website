@@ -81,11 +81,11 @@ const BW_CAPABILITIES = {
   ],
 
   catalog: {
-    eyebrow: "§04 / Service catalog",
+    eyebrow: "§04 / Services",
     title: "What you can hire us for.",
     italic: "all of it,",
     after: "or any one piece.",
-    note: "A typical engagement uses six to ten of these. Some clients buy one. The list is honest — if it's not here, we don't do it.",
+    note: "",
     columns: [
       {
         head: "Brand",
