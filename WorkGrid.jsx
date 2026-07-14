@@ -120,16 +120,51 @@ function ArchiveGrid({ cases, view }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const isNarrow = useMediaQuery("(max-width: 600px)");
   if (view === "list" && !isMobile) {
+    /* Group the ledger by pillar. Split each case's "Brand · Demand" string
+       and include it in every pillar it lists — so a Brand+Demand client
+       shows up under both sections. Pillars with no cases still render a
+       group heading with a placeholder so the reader sees the full
+       three-pillar frame. Sort order within each group inherits from the
+       already-sorted `cases` array. */
+    const pillars = [
+      { key: "Brand",  color: BW.clay },
+      { key: "Demand", color: BW.plum },
+      { key: "Lab",    color: BW.forest },
+    ];
+    const bucketOf = (c) => (c.pillar || "").split(/\s*·\s*/).map(s => s.trim()).filter(Boolean);
     return (
       <section style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(56px, 8vw, 72px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
         <div style={{ maxWidth: 1440, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
             <span>§03</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>The Archive · Ledger View</span>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 80px", gap: 18, paddingBottom: 12, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 700 }}>
-            <span>№</span><span>Year</span><span>Client / Headline</span><span>Pillar</span><span>Industry</span><span></span>
-          </div>
-          {cases.map(c => <CaseListRow key={c.slug} c={c} />)}
+          {pillars.map(p => {
+            const rows = cases.filter(c => bucketOf(c).includes(p.key));
+            return (
+              <div key={p.key} style={{ marginBottom: 56 }}>
+                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 18, paddingBottom: 14, borderBottom: `1.5px solid ${BW.ink}`, marginBottom: 14, flexWrap: "wrap" }}>
+                  <h2 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1, margin: 0, color: p.color }}>
+                    {p.key}.
+                  </h2>
+                  <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 600 }}>
+                    {rows.length === 1 ? "1 case" : `${rows.length} cases`}
+                  </span>
+                </div>
+                {rows.length > 0 ? (
+                  <>
+                    <div style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 80px", gap: 18, paddingBottom: 12, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 700 }}>
+                      <span>№</span><span>Year</span><span>Client / Headline</span><span>Pillar</span><span>Industry</span><span></span>
+                    </div>
+                    {rows.map(c => <CaseListRow key={c.slug} c={c} />)}
+                  </>
+                ) : (
+                  <div style={{ padding: "24px 0 8px", fontFamily: BW.ffD, fontStyle: "italic", fontSize: 20, color: "rgba(20,16,12,0.55)", letterSpacing: "-0.01em" }}>
+                    Case studies from the {p.key} pillar are in the field — the receipts arrive as we publish.
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
     );
