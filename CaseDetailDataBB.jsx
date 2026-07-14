@@ -152,20 +152,20 @@ window.BW_CASE_DETAIL = {
       ],
     },
 
-    /* -- Merch — 3-up t-shirt collection ------------------------- */
+    /* -- Merch — horizontal slider, all six shirts --------------- */
     {
-      kind: "multi",
+      kind: "slider",
       eyebrow: "§07 · Merch",
       title: "The brand, worn.",
-      cols: 3,
-      gap: 20,
-      maxWidth: 1300,
-      surface: "#FBF7EE",
-      padding: "80px 40px 120px",
+      slideHeight: 560,
+      gap: 24,
       items: [
-        { src: `${BASE}/unisex-garment-dyed-heavyweight-t-shirt-blossom-front-6a413efe677ce.jpg`, alt: "Heavyweight tee — Blossom",  caption: "Heavyweight tee · Blossom",  bg: "#F3E9D9", aspect: "3 / 4", fit: "contain", tilePadding: "16px" },
-        { src: `${BASE}/unisex-garment-dyed-heavyweight-t-shirt-ivory-front-6a413efe699e8.jpg`,   alt: "Heavyweight tee — Ivory",    caption: "Heavyweight tee · Ivory",    bg: "#F3E9D9", aspect: "3 / 4", fit: "contain", tilePadding: "16px" },
-        { src: `${BASE}/unisex-garment-dyed-heavyweight-t-shirt-pepper-back-6a56339facf57.jpg`,   alt: "Heavyweight tee — Pepper",   caption: "Heavyweight tee · Pepper",   bg: "#F3E9D9", aspect: "3 / 4", fit: "contain", tilePadding: "16px" },
+        { src: `${BASE}/unisex-garment-dyed-heavyweight-t-shirt-blossom-front-6a413efe677ce.jpg`, alt: "Heavyweight tee — Blossom, front",  caption: "Heavyweight tee · Blossom, front",  width: 440 },
+        { src: `${BASE}/unisex-garment-dyed-heavyweight-t-shirt-ivory-front-6a413efe699e8.jpg`,   alt: "Heavyweight tee — Ivory, front",    caption: "Heavyweight tee · Ivory, front",    width: 440 },
+        { src: `${BASE}/unisex-garment-dyed-heavyweight-t-shirt-brick-back-6a56339fae29b.jpg`,   alt: "Heavyweight tee — Brick, back",     caption: "Heavyweight tee · Brick, back",     width: 440 },
+        { src: `${BASE}/unisex-garment-dyed-heavyweight-t-shirt-midnight-back-6a4140472fba3.jpg`, alt: "Heavyweight tee — Midnight, back",  caption: "Heavyweight tee · Midnight, back",  width: 440 },
+        { src: `${BASE}/unisex-garment-dyed-heavyweight-t-shirt-pepper-back-6a56339facf57.jpg`,   alt: "Heavyweight tee — Pepper, back",    caption: "Heavyweight tee · Pepper, back",    width: 440 },
+        { src: `${BASE}/unisex-long-sleeve-tee-storm-back-6a4a9db325163.jpg`,                    alt: "Long-sleeve tee — Storm, back",     caption: "Long-sleeve tee · Storm, back",     width: 440 },
       ],
     },
 
