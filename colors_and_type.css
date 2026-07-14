@@ -185,10 +185,10 @@ h1[style*="Fraunces"], h2[style*="Fraunces"] { font-variation-settings: "opsz" 6
   --bw-ff-serif:   "Copernicus", "Fraunces", Georgia, serif;
   --bw-ff-sans:    "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, sans-serif;
   --bw-ff-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  /* Hand: Caveat (Google Fonts) — restrained marker used ONLY on
-     marginalia (fig labels, grid annotations, part numbers). Never
-     for headlines or body copy. Gives the site a handbook / field-guide
-     texture without tipping into craft-y. */
+  /* Hand: Caveat (Google Fonts) — used ONLY on fig-label prefixes over
+     case-study images (e.g. "fig. 02 · The Book"). Rendered in soft
+     gray so it reads as a marginal note next to the Fraunces italic
+     caption title, not as a competing signal against clay eyebrows. */
   --bw-ff-hand:    "Caveat", "Comic Sans MS", cursive;
 
   /* ---------- Type scale ---------- */
