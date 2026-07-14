@@ -32,13 +32,12 @@ window.BW_CASE_DETAIL = {
     variant: "fullbleed",
     eyebrow: "Client Success Story · Case №13",
     title: "Break the cycle. Build what's next.",
-    /* Books-first hero — the flagship publications, not a site screenshot.
-       Using a site screenshot as the hero brought B&B's own nav rail into
-       the top of the page, which fought with our SiteHeader overlay. */
-    image: `${BASE}/BB-books-set1.png`,
-    imageAlt: "Brave & Boundless — the fifteen rules, in print",
-    imageSize: "contain",
-    imagePosition: "center 62%",
+    /* Nature-scene hero — retro-illustrated seascape from the brand's
+       imagery direction. Editorial, no site nav to conflict with the
+       SiteHeader overlay pinned above. */
+    image: `${BASE}/Mark_Nead_stylize_--chaos_10_--ar_169_--sref_httpss.mj.run_VL6__2deb3fc3-dbfe-4e98-ba3c-8e75bbb27b87.png`,
+    imageAlt: "Brave & Boundless — retro-illustrated seascape with radiating sun",
+    imagePosition: "center center",
     imageBg: "#14100C",
     scrim: "bottomOnly",
     clientLogo: `${BASE}/BraveBoundless%20logo-wht.svg`,
@@ -152,10 +151,25 @@ window.BW_CASE_DETAIL = {
       ],
     },
 
+    /* -- The Soundtrack — bonus feature, imagetext -------------- */
+    {
+      kind: "imagetext",
+      side: "left",
+      src: `${BASE}/BB-web-soundtrack.png`,
+      alt: "The Soundtrack — every rule has a sound",
+      imageBg: "#14100C",
+      eyebrow: "§07 · Bonus Feature",
+      title: "The book has a soundtrack.",
+      body: [
+        "Every rule in Brave & Boundless has a sound. Five curated playlists — Grit & Resilience, Discipline & Ambition, Roots & Identity, Love & Loyalty, Humble & Kind — pair to the themes that drive the book.",
+        "The Soundtrack is a bonus feature stitched into the site: hero page, per-theme playlist detail, and a cross-site CTA that surfaces the whole thing from the book page.",
+      ],
+    },
+
     /* -- Merch — horizontal slider, all six shirts --------------- */
     {
       kind: "slider",
-      eyebrow: "§07 · Merch",
+      eyebrow: "§08 · Merch",
       title: "The brand, worn.",
       slideHeight: 560,
       gap: 24,
@@ -172,7 +186,7 @@ window.BW_CASE_DETAIL = {
     /* -- Outcomes prose ------------------------------------------- */
     {
       kind: "prose",
-      eyebrow: "§08 · Outcomes",
+      eyebrow: "§09 · Outcomes",
       title: "Foundation shipped. Engine running.",
       body: [
         "The brand foundation and the fifteen rules are live at braveandboundless.com. The book is published, the content engine is running, the lifecycle programs are seeded, and the AI tooling behind the CMS is drafting in the author's voice. Receipts from the year-one engagement will be published here as they clear approval.",
@@ -184,7 +198,7 @@ window.BW_CASE_DETAIL = {
     /* -- Receipts grid (placeholder-heavy) ----------------------- */
     {
       kind: "statrow",
-      eyebrow: "§09 · Receipts",
+      eyebrow: "§10 · Receipts",
       title: "What we can show. What we will.",
       items: [
         { v: "15", k: "Rules in the framework", color: "#C44A2A" },
