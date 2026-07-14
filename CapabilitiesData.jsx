@@ -21,8 +21,8 @@ const BW_CAPABILITIES = {
       key: "Brand",
       title: "Story architecture",
       tag: "Brand",
-      lede: "Voice, narrative, messaging that survives a Tuesday-afternoon sales call.",
-      body: "We build positioning that ships. Brand foundation, identity systems, naming, voice & messaging — codified into the actual artefacts your team uses every day. Decks, one-pagers, sales playbooks, the website. Built to close, not to win awards.",
+      lede: "Positioning, identity, and messaging that hold up on a real sales call.",
+      body: "We build positioning that ships. Brand foundation, identity systems, naming, voice & messaging — codified into the actual tools your team uses every day. Decks, one-pagers, sales playbooks, the website. Built to close, not to win awards.",
       services: [
         "Brand Foundation + Strategy",
         "Brand Identity",
@@ -41,7 +41,7 @@ const BW_CAPABILITIES = {
       key: "Demand",
       title: "Nurture & engagement",
       tag: "Demand",
-      lede: "Lifecycle as choreography. Stage-by-stage motion that turns cold lists into warm conversations.",
+      lede: "Nurture programs, lead scoring, and content that turn cold contacts into real conversations.",
       body: "We operate the engine. Lifecycle programs, lead scoring, nurture choreography, sales-enablement, and the content that actually fuels them — editorial, campaign, social, paid creative. HubSpot is under the hood for most of it; the work is the motion, not the tool.",
       services: [
         "Lifecycle & Nurture",
@@ -63,7 +63,7 @@ const BW_CAPABILITIES = {
       key: "Lab",
       title: "Applied AI",
       tag: "Lab",
-      lede: "AI woven through the marketing motion — not a product. A substrate.",
+      lede: "AI built into the way your marketing team already works — not bolted on the side.",
       body: "Desk-reps that triage inbound. Voice-trained content engines that don't sound like AI. Intent scoring trained on your actual won deals, not vibes. Custom internal tooling. We build for use, not for show — and we hand off ownership.",
       services: [
         "Inbound Triage Agents",
