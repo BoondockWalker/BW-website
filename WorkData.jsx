@@ -364,7 +364,7 @@ window.BW_CASES = [
     duration: "2026 — present",
     team: ["Strategy", "Brand", "Lifecycle", "Lab"],
     imagery: "photo",
-    heroImage: "assets/cases/brave-boundless/BB-web-forge%20hero.png",
+    heroImage: "assets/cases/brave-boundless/BB-books-set1.png",
     clientLogo: "assets/cases/brave-boundless/BraveBoundless%20logo-wht.svg",
     clientLogoInvert: false,
     clientLogoHeight: 60,
