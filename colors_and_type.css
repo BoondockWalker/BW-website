@@ -12,7 +12,7 @@
    When @font-face declarations precede @import, browsers silently drop the
    import — which is exactly what we'd been hitting: Fraunces wasn't loading
    at all and Chrome was falling back to Georgia for every italic + upright. */
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@400;500;600;700&display=swap");
 
 /* ---------- Webfonts (real licensed files) ---------- */
 @font-face {
@@ -185,6 +185,11 @@ h1[style*="Fraunces"], h2[style*="Fraunces"] { font-variation-settings: "opsz" 6
   --bw-ff-serif:   "Copernicus", "Fraunces", Georgia, serif;
   --bw-ff-sans:    "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, sans-serif;
   --bw-ff-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Hand: Caveat (Google Fonts) — restrained marker used ONLY on
+     marginalia (fig labels, grid annotations, part numbers). Never
+     for headlines or body copy. Gives the site a handbook / field-guide
+     texture without tipping into craft-y. */
+  --bw-ff-hand:    "Caveat", "Comic Sans MS", cursive;
 
   /* ---------- Type scale ---------- */
   --bw-fs-xs:   11px;
