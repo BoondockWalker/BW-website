@@ -23,6 +23,7 @@ const BW = {
   ffS:     "'Inter', system-ui, sans-serif",
   ffM:     "'JetBrains Mono', ui-monospace, monospace",
   ffSerif: "'Copernicus', Georgia, serif",
+  ffHand:  "'Caveat', 'Comic Sans MS', cursive",
 };
 
 function Eyebrow({ children, color, dot = true, end, light }) {
