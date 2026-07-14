@@ -98,6 +98,23 @@ window.BW_CASE_DETAIL = {
       label: "Rules for breaking the cycle and building what's next. Sequenced, not a checklist.",
     },
 
+    /* -- Brand system — color, icons, imagery, 3-up ------------- */
+    {
+      kind: "multi",
+      eyebrow: "§04 · The System",
+      title: "Color, icons, imagery — the visual language.",
+      cols: 3,
+      gap: 20,
+      maxWidth: 1440,
+      surface: "#FBF7EE",
+      padding: "80px 40px 120px",
+      items: [
+        { src: `${BASE}/BB-color.png`,   alt: "Brave & Boundless — color palette",   caption: "01 · Palette",  bg: "#FBF7EE", aspect: "1 / 1", fit: "contain", tilePadding: "8px", shadow: true },
+        { src: `${BASE}/BB-icons.png`,   alt: "Brave & Boundless — icon system",     caption: "02 · Icons",    bg: "#FBF7EE", aspect: "1 / 1", fit: "contain", tilePadding: "8px", shadow: true },
+        { src: `${BASE}/BB-imagery.png`, alt: "Brave & Boundless — imagery direction", caption: "03 · Imagery",  bg: "#FBF7EE", aspect: "1 / 1", fit: "cover",   tilePadding: "0",   shadow: true },
+      ],
+    },
+
     /* -- Digital home — imagetext split with the homepage ------- */
     {
       kind: "imagetext",
@@ -105,7 +122,7 @@ window.BW_CASE_DETAIL = {
       src: `${BASE}/BB-web-home.png`,
       alt: "braveandboundless.com — homepage",
       imageBg: "#FBF7EE",
-      eyebrow: "§04 · Digital Home",
+      eyebrow: "§05 · Digital Home",
       title: "braveandboundless.com — the home the framework lives in.",
       body: [
         "The full experience lives at braveandboundless.com. The site is the home for the rules, the essays, the community, and the ongoing content programs — a place where readers move from browsing to subscribed to invested.",
@@ -116,7 +133,7 @@ window.BW_CASE_DETAIL = {
     /* -- The site in detail — 4-up screen grid ------------------- */
     {
       kind: "multi",
-      eyebrow: "§05 · The Site, in Detail",
+      eyebrow: "§06 · The Site, in Detail",
       title: "Sections of the experience.",
       cols: 2,
       gap: 24,
@@ -134,7 +151,7 @@ window.BW_CASE_DETAIL = {
     /* -- Merch — 3-up t-shirt collection ------------------------- */
     {
       kind: "multi",
-      eyebrow: "§06 · Merch",
+      eyebrow: "§07 · Merch",
       title: "The brand, worn.",
       cols: 3,
       gap: 20,
@@ -151,7 +168,7 @@ window.BW_CASE_DETAIL = {
     /* -- Outcomes prose ------------------------------------------- */
     {
       kind: "prose",
-      eyebrow: "§07 · Outcomes",
+      eyebrow: "§08 · Outcomes",
       title: "Foundation shipped. Engine running.",
       body: [
         "The brand foundation and the fifteen rules are live at braveandboundless.com. The book is published, the content engine is running, the lifecycle programs are seeded, and the AI tooling behind the CMS is drafting in the author's voice. Receipts from the year-one engagement will be published here as they clear approval.",
@@ -163,7 +180,7 @@ window.BW_CASE_DETAIL = {
     /* -- Receipts grid (placeholder-heavy) ----------------------- */
     {
       kind: "statrow",
-      eyebrow: "§08 · Receipts",
+      eyebrow: "§09 · Receipts",
       title: "What we can show. What we will.",
       items: [
         { v: "15", k: "Rules in the framework", color: "#C44A2A" },
