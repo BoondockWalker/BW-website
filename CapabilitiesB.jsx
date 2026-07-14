@@ -16,13 +16,15 @@ function CapCatalog() {
           <span>{d.eyebrow.split(" / ")[1]}</span>
         </Reveal>
 
-        <Reveal kind="rise" delay={120} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: 56 }}>
+        <Reveal kind="rise" delay={120} style={{ display: "grid", gridTemplateColumns: isMobile || !d.note ? "1fr" : "1.4fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end", marginBottom: 56 }}>
           <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 80px)", lineHeight: 0.98, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
             {d.title} Hire us for <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>{d.italic}</em> {d.after}
           </h2>
-          <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "40ch" }}>
-            {d.note}
-          </p>
+          {d.note && (
+            <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "40ch" }}>
+              {d.note}
+            </p>
+          )}
         </Reveal>
 
         <Reveal kind="rise" delay={240} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1.5px solid ${BW.ink}` }}>
@@ -86,11 +88,11 @@ function CapEvidence() {
           <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 600, lineHeight: 1.5, paddingTop: 8 }}>
             From the<br />field<br />— 2025
           </div>
-          <blockquote style={{ margin: 0, padding: 0 }}>
-            <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.18, letterSpacing: "-0.02em", color: BW.chalk, margin: 0, maxWidth: "30ch" }}>
-              <span style={{ color: BW.clay300, paddingRight: 8 }}>“</span>
+          <blockquote style={{ margin: 0, padding: 0, position: "relative" }}>
+            <span aria-hidden="true" style={{ position: "absolute", right: "100%", top: 0, marginRight: "0.15em", fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.18, color: BW.clay300 }}>“</span>
+            <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.18, letterSpacing: "-0.02em", color: BW.chalk, margin: 0, maxWidth: "30ch", textAlign: "left" }}>
               {d.pull.quote}
-              <span style={{ color: BW.clay300, paddingLeft: 8 }}>”</span>
+              <span style={{ color: BW.clay300, marginLeft: "0.15em" }}>”</span>
             </p>
             <footer style={{ marginTop: 24, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>
               — {d.pull.attrib}

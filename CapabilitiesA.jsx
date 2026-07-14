@@ -21,7 +21,7 @@ function CapHero() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
             <span>§02</span>
             <span style={{ width: 28, height: 1, background: BW.brass }} />
-            <span>Capabilities · A field manual</span>
+            <span>Capabilities</span>
           </div>
           <h1 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(56px, 12vw, 156px)", lineHeight: 0.88, letterSpacing: "-0.015em", margin: 0, color: BW.chalk50, maxWidth: 1180 }}>
             {d.title}<br />

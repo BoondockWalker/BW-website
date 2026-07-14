@@ -6,7 +6,7 @@ const BW_CAPABILITIES = {
     eyebrow: "§02 / Capabilities",
     title: "Three practices.",
     titleItalic: "One story arc.",
-    standfirst: "Brand without pipeline is applause. Pipeline without story is noise. We do both — then we operate the system that turns belief into qualified meetings.",
+    standfirst: "Brand alone gets nods. Pipeline alone gets discounted. We build them as one system — so the story earns belief and the belief turns into pipeline.",
     facts: [
       { k: "Practices", v: "Brand · Demand · Lab" },
       { k: "Capabilities engaged on a typical retainer", v: "8 — 10" },
@@ -21,8 +21,8 @@ const BW_CAPABILITIES = {
       key: "Brand",
       title: "Story architecture",
       tag: "Brand",
-      lede: "Voice, narrative, messaging that survives a Tuesday-afternoon sales call.",
-      body: "We build positioning that ships. Brand foundation, identity systems, naming, voice & messaging — codified into the actual artefacts your team uses every day. Decks, one-pagers, sales playbooks, the website. Built to close, not to win awards.",
+      lede: "Positioning, identity, and messaging that hold up on a real sales call.",
+      body: "We build positioning that ships. Brand foundation, identity systems, naming, voice & messaging — codified into the actual tools your team uses every day. Decks, one-pagers, sales playbooks, the website. Built to close, not to win awards.",
       services: [
         "Brand Foundation + Strategy",
         "Brand Identity",
@@ -41,7 +41,7 @@ const BW_CAPABILITIES = {
       key: "Demand",
       title: "Nurture & engagement",
       tag: "Demand",
-      lede: "Lifecycle as choreography. Stage-by-stage motion that turns cold lists into warm conversations.",
+      lede: "Nurture programs, lead scoring, and content that turn cold contacts into real conversations.",
       body: "We operate the engine. Lifecycle programs, lead scoring, nurture choreography, sales-enablement, and the content that actually fuels them — editorial, campaign, social, paid creative. HubSpot is under the hood for most of it; the work is the motion, not the tool.",
       services: [
         "Lifecycle & Nurture",
@@ -63,13 +63,14 @@ const BW_CAPABILITIES = {
       key: "Lab",
       title: "Applied AI",
       tag: "Lab",
-      lede: "AI woven through the marketing motion — not a product. A substrate.",
+      lede: "Custom AI that plugs into your marketing team — trained on your voice, your data, and your deals.",
       body: "Desk-reps that triage inbound. Voice-trained content engines that don't sound like AI. Intent scoring trained on your actual won deals, not vibes. Custom internal tooling. We build for use, not for show — and we hand off ownership.",
       services: [
         "Inbound Triage Agents",
         "Voice-Cloned Content Engines",
         "Intent & Fit Scoring",
-        "Custom Internal Tooling",
+        "Custom Applications",
+        "Lead Gen Tools",
         "AI Operations Playbooks",
         "Model Selection & Eval",
       ],
@@ -81,11 +82,11 @@ const BW_CAPABILITIES = {
   ],
 
   catalog: {
-    eyebrow: "§04 / Service catalog",
+    eyebrow: "§04 / Services",
     title: "What you can hire us for.",
     italic: "all of it,",
     after: "or any one piece.",
-    note: "A typical engagement uses six to ten of these. Some clients buy one. The list is honest — if it's not here, we don't do it.",
+    note: "",
     columns: [
       {
         head: "Brand",
@@ -126,7 +127,8 @@ const BW_CAPABILITIES = {
           "Inbound Triage Agents",
           "Voice-Cloned Content",
           "Intent & Fit Scoring",
-          "Custom Tooling",
+          "Custom Applications",
+          "Lead Gen Tools",
           "AI Ops Playbooks",
           "Model Selection & Eval",
           "Internal AI Training",
@@ -142,8 +144,8 @@ const BW_CAPABILITIES = {
     title: "Some receipts.",
     italic: "Numbers we can name.",
     stats: [
-      { v: "5B+", k: "Digital document pages delivered for a single client in 2024", c: "clay" },
-      { v: "4×", k: "Aspire leaderboard recognition, consecutive years", c: "plum" },
+      { v: "3×", k: "Typical return on annual retainer", c: "clay" },
+      { v: "+180%", k: "Qualified pipeline growth in year one", c: "plum" },
       { v: "10", k: "Capabilities typically engaged across a retainer", c: "forest" },
     ],
     // TODO: replace anonymized attribution with a real client quote + named attribution.

@@ -207,11 +207,11 @@ function LabReceipts() {
           <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 600, lineHeight: 1.5, paddingTop: 8 }}>
             From the<br />field<br />— 2026
           </div>
-          <blockquote style={{ margin: 0, padding: 0 }}>
-            <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.18, letterSpacing: "-0.02em", color: BW.chalk, margin: 0, maxWidth: "30ch" }}>
-              <span style={{ color: BW.clay300, paddingRight: 8 }}>“</span>
+          <blockquote style={{ margin: 0, padding: 0, position: "relative" }}>
+            <span aria-hidden="true" style={{ position: "absolute", right: "100%", top: 0, marginRight: "0.15em", fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.18, color: BW.clay300 }}>“</span>
+            <p style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(28px, 4.5vw, 48px)", lineHeight: 1.18, letterSpacing: "-0.02em", color: BW.chalk, margin: 0, maxWidth: "30ch", textAlign: "left" }}>
               {d.pull.quote}
-              <span style={{ color: BW.clay300, paddingLeft: 8 }}>”</span>
+              <span style={{ color: BW.clay300, marginLeft: "0.15em" }}>”</span>
             </p>
             <footer style={{ marginTop: 24, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700 }}>
               — {d.pull.attrib}
