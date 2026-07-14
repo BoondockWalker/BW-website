@@ -175,7 +175,7 @@ const BW_CAPABILITIES = {
     title: "If your story isn't closing,",
     italic: "let's fix the story",
     after: "and the close.",
-    body: "Two-week diagnostic. Fixed fee. We come back with a written read of your funnel, your story, and where the leak is — yours to keep, regardless of whether we work together.",
+    body: "A written brand assessment in two weeks. Fixed fee. We map your story, your funnel, and where the leak is — a foundation to build from, with us or on your own.",
   },
 };
 
