@@ -35,7 +35,7 @@ function CaseApp() {
   const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : (all.length ? all[0] : null);
   return (
     <div>
-      <SiteHeader current="Work" sticky={true} />
+      <SiteHeader current="Work" sticky={true} compact={true} />
       <CaseHero d={d} />
       <CaseBlocks blocks={d.blocks} />
       <CaseAdjacent prev={prev} next={next} />
