@@ -116,21 +116,25 @@ function CaseListRow({ c }) {
   );
 }
 
-function ArchiveGrid({ cases, view }) {
+function ArchiveGrid({ cases, view, pillar = "All" }) {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const isNarrow = useMediaQuery("(max-width: 600px)");
   if (view === "list" && !isMobile) {
     /* Group the ledger by pillar. Split each case's "Brand · Demand" string
        and include it in every pillar it lists — so a Brand+Demand client
-       shows up under both sections. Pillars with no cases still render a
-       group heading with a placeholder so the reader sees the full
-       three-pillar frame. Sort order within each group inherits from the
-       already-sorted `cases` array. */
-    const pillars = [
+       shows up under both sections. When the reader has filtered the pillar
+       chips to a single pillar (Brand / Demand / Lab), only render that
+       one section — no empty placeholders for the other two, no re-listing
+       of the same case under pillars they filtered away from. When the
+       chip is "All", render all three sections (default behavior). Sort
+       order within each group inherits from the already-sorted `cases`
+       array. */
+    const allPillars = [
       { key: "Brand",  color: BW.clay },
       { key: "Demand", color: BW.plum },
       { key: "Lab",    color: BW.forest },
     ];
+    const pillars = pillar === "All" ? allPillars : allPillars.filter(p => p.key === pillar);
     const bucketOf = (c) => (c.pillar || "").split(/\s*·\s*/).map(s => s.trim()).filter(Boolean);
     return (
       <section style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(56px, 8vw, 72px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
