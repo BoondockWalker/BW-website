@@ -214,7 +214,7 @@ function V3Trust() {
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
         <Reveal kind="rise" style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "baseline", gap: isMobile ? 12 : 0, marginBottom: 28 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, flexWrap: "wrap" }}>
-            <span>§08</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Operators we've shipped for</span>
+            <span>§08</span><span style={{ width: 28, height: 1, background: BW.clay }} /><span>Teams we've shipped for</span>
           </div>
           <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 16, color: "rgba(20,16,12,0.55)" }}>12 selected cases</span>
         </Reveal>
@@ -266,7 +266,7 @@ function V3Footer() {
               <img src="assets/BW-lockup-color.svg?v=8" alt="Boondock Walker" style={{ height: 39 }} />
             </div>
             <p style={{ fontFamily: BW.ffSerif, fontSize: 15, lineHeight: 1.55, color: "rgba(244,236,218,0.78)", margin: 0, maxWidth: 380 }}>
-              A brand &amp; demand bureau for operators who measure work in pipeline, not applause.
+              A brand &amp; demand bureau for teams who measure work in pipeline, not applause.
             </p>
             <div style={{ marginTop: 22, display: "flex", gap: 18, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700 }}>
               <span>41.49°N</span><span>·</span><span>81.69°W</span><span>·</span><span>Cleveland, OH</span>

@@ -207,7 +207,7 @@ function WorkClosing() {
             Want your <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>name</em> in this archive?
           </h2>
           <p style={{ fontFamily: BW.ffSerif, fontSize: 19, lineHeight: 1.55, margin: 0, color: "rgba(251,247,238,0.85)", maxWidth: "44ch" }}>
-            We take three new operators a quarter. The next opening is Q3 2026.
+            We take three new teams a quarter. The next opening is Q3 2026.
           </p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
