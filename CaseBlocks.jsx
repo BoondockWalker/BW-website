@@ -360,7 +360,7 @@ function FullBleedImage({ block }) {
       {caption && (
         <Reveal kind="rise" delay={200}>
           <div style={{ maxWidth: MAX_W, margin: "0 auto", padding: "18px clamp(20px, 5vw, 56px) 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
-            <span style={{ fontFamily: BW.ffHand, fontSize: 22, color: BW.clay, fontWeight: 500, letterSpacing: "0.005em", lineHeight: 1 }}>{caption.label || "fig."}</span>
+            <span style={{ fontFamily: BW.ffHand, fontSize: 18, color: BW.ink3, fontWeight: 500, letterSpacing: "0.01em", lineHeight: 1 }}>{caption.label || "fig."}</span>
             <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
           </div>
         </Reveal>
@@ -516,7 +516,7 @@ function MultiImageBlock({ block }) {
                     <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "auto", display: "block", boxShadow: shadowStyle }} />
                   )}
                   {it.caption && (
-                    <figcaption style={{ marginTop: 14, fontFamily: BW.ffHand, fontSize: 20, color: capColor, fontWeight: 500, letterSpacing: "0.005em", lineHeight: 1.2 }}>{it.caption}</figcaption>
+                    <figcaption style={{ marginTop: 16, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: capColor, fontWeight: 400, letterSpacing: "-0.005em" }}>{it.caption}</figcaption>
                   )}
                 </figure>
               );
@@ -625,7 +625,7 @@ function SliderBlock({ block }) {
               <img src={it.src} alt={it.alt || ""} style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: it.fit || "contain", display: "block" }} />
             </div>
             {it.caption && (
-              <figcaption style={{ marginTop: captionGap, fontFamily: BW.ffHand, fontSize: 20, color: BW.ink2, fontWeight: 500, letterSpacing: "0.005em", lineHeight: 1.2 }}>{it.caption}</figcaption>
+              <figcaption style={{ marginTop: captionGap, fontFamily: BW.ffD, fontStyle: "italic", fontSize: 13, color: BW.ink2, fontWeight: 400, letterSpacing: "-0.005em" }}>{it.caption}</figcaption>
             )}
           </figure>
         ))}
@@ -964,7 +964,7 @@ function VideoBlock({ block }) {
       {caption && (
         <Reveal kind="rise" delay={200}>
           <div style={{ maxWidth: MAX_W, margin: "0 auto", padding: "18px clamp(20px, 5vw, 56px) 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
-            <span style={{ fontFamily: BW.ffHand, fontSize: 22, color: BW.clay, fontWeight: 500, letterSpacing: "0.005em", lineHeight: 1 }}>{caption.label || "fig."}</span>
+            <span style={{ fontFamily: BW.ffHand, fontSize: 18, color: BW.ink3, fontWeight: 500, letterSpacing: "0.01em", lineHeight: 1 }}>{caption.label || "fig."}</span>
             <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
           </div>
         </Reveal>
@@ -1040,7 +1040,7 @@ function OverlapBlock({ block }) {
         {caption && (
           <Reveal kind="rise" delay={200}>
             <div style={{ padding: "26px 0 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
-              <span style={{ fontFamily: BW.ffHand, fontSize: 22, color: BW.clay, fontWeight: 500, letterSpacing: "0.005em", lineHeight: 1 }}>{caption.label || "fig."}</span>
+              <span style={{ fontFamily: BW.ffHand, fontSize: 18, color: BW.ink3, fontWeight: 500, letterSpacing: "0.01em", lineHeight: 1 }}>{caption.label || "fig."}</span>
               <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
             </div>
           </Reveal>
