@@ -495,17 +495,20 @@ function MultiImageBlock({ block }) {
                       style={{ width: "100%", height: "auto", display: "block", aspectRatio: it.aspect || undefined, objectFit: it.fit || "cover", background: it.bg || "#000", boxShadow: shadowStyle }}
                     />
                   ) : it.frame === "laptop" ? (
-                    /* Laptop mockup: dark bezel with rounded lid + a wider deck
-                       below with a trackpad-style notch. The image sits inside
-                       the lid at the caller's aspect ratio (default 16/10). */
+                    /* Laptop mockup: brushed-silver aluminum bezel with rounded
+                       lid + a wider deck below with a trackpad-style notch. The
+                       image sits inside the lid at the caller's aspect ratio
+                       (default 16/10). Bezel uses a subtle top-to-bottom silver
+                       gradient for a machined-metal read; deck echoes the same
+                       gradient a shade deeper for a lit-from-above effect. */
                     <div style={{ width: "100%" }}>
-                      <div style={{ background: "#14100C", borderRadius: "10px 10px 4px 4px", padding: "12px 12px 8px", boxShadow: shadowStyle }}>
+                      <div style={{ background: "linear-gradient(180deg, #D4D1CB 0%, #B4B0A9 55%, #928E88 100%)", borderRadius: "10px 10px 4px 4px", padding: "12px 12px 8px", boxShadow: shadowStyle }}>
                         <div style={{ width: "100%", aspectRatio: it.aspect || "16 / 10", overflow: "hidden", background: it.bg || "#FBF7EE", borderRadius: 2 }}>
                           <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "100%", objectFit: it.fit || "cover", objectPosition: it.position || "top", display: "block" }} />
                         </div>
                       </div>
-                      <div style={{ marginLeft: "-4%", marginRight: "-4%", height: 14, background: "linear-gradient(180deg, #14100C 0%, #2a2420 100%)", borderRadius: "0 0 18px 18px", position: "relative", boxShadow: "0 12px 20px -8px rgba(0,0,0,0.35)" }}>
-                        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 84, height: 4, background: "#2a2420", borderRadius: "0 0 8px 8px" }} />
+                      <div style={{ marginLeft: "-4%", marginRight: "-4%", height: 14, background: "linear-gradient(180deg, #B4B0A9 0%, #7E7A74 100%)", borderRadius: "0 0 18px 18px", position: "relative", boxShadow: "0 12px 20px -8px rgba(0,0,0,0.22)" }}>
+                        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 84, height: 4, background: "#6E6A64", borderRadius: "0 0 8px 8px" }} />
                       </div>
                     </div>
                   ) : it.bg ? (
