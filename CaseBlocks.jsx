@@ -373,7 +373,7 @@ function FullBleedImage({ block }) {
    FLOATING IMAGE — single image centered on chalk, generous margin.
    ========================================================================= */
 function FloatingImage({ block }) {
-  const { src, alt, caption, eyebrow, title, maxHeight = 580, maxWidth = 1100, surface = BW.chalk50, padding = "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)", shadow = false, blend } = block;
+  const { src, alt, caption, eyebrow, title, standfirst, maxHeight = 580, maxWidth = 1100, surface = BW.chalk50, padding = "clamp(56px, 8vw, 100px) clamp(20px, 5vw, 56px)", shadow = false, blend } = block;
   return (
     <section style={{ background: surface, padding, fontFamily: BW.ffG }}>
       <div style={{ maxWidth, margin: "0 auto", textAlign: "center" }}>
@@ -384,7 +384,12 @@ function FloatingImage({ block }) {
         )}
         {title && (
           <Reveal kind="rise" delay={120}>
-            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.05, margin: "0 0 40px", color: BW.ink }}>{title}</h2>
+            <h2 style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.015em", lineHeight: 1.05, margin: standfirst ? "0 0 20px" : "0 0 40px", color: BW.ink }}>{title}</h2>
+          </Reveal>
+        )}
+        {standfirst && (
+          <Reveal kind="rise" delay={240}>
+            <p style={{ fontFamily: BW.ffSerif, fontSize: 18, lineHeight: 1.55, color: BW.ink2, margin: "0 auto 40px", maxWidth: 720 }}>{standfirst}</p>
           </Reveal>
         )}
         {blend ? (
