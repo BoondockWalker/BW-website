@@ -92,18 +92,21 @@ window.BW_CASE_DETAIL = {
       imagePadding: "32px 28px",
     },
 
-    /* -- The Framework — four stages carrying the fifteen rules -- */
+    /* -- The Framework — screen capture from the live B&B site.
+       Renders the four-stages card row (Fire · Forge · Foundation · Field)
+       as an artifact rather than reproducing the interactive component. The
+       image is a lossless PNG grab from braveandboundless.com/the-book/. */
     {
-      kind: "stages",
+      kind: "floating",
       eyebrow: "§04 · The Framework",
       title: "Fifteen rules. Four stages.",
-      standfirst: "The rules move in sequence — from lighting the fire, to forging the skills, to laying the foundation, to expanding into the field. Each stage carries its own colour, its own weather, and its own set of rules.",
-      stages: [
-        { n: "One",   title: "Fire",       subtitle: "Origin & First Breaks", rules: "Rules 1 – 4",   color: "#7A1E22", body: "Ignition. Where the cycle breaks and the work begins — the first four rules for finding your spark and refusing to put it back down." },
-        { n: "Two",   title: "Forge",      subtitle: "Skills & Systems",       rules: "Rules 5 – 8",   color: "#C64A1E", body: "The habits, disciplines, and systems that turn intent into output — how the work gets made when the mood does not cooperate." },
-        { n: "Three", title: "Foundation", subtitle: "Life's Core Pillars",    rules: "Rules 9 – 12",  color: "#4F5B61", body: "The load-bearing pillars — health, relationships, money, meaning — that hold a life together long enough for the rest of the work to compound." },
-        { n: "Four",  title: "Field",      subtitle: "Impact & Legacy",        rules: "Rules 13 – 15", color: "#4F5B2A", body: "Where the work leaves the room. Legacy, community, and the quiet arithmetic of what you leave behind for the people coming up after you." },
-      ],
+      src: `${BASE}/BB-web-book-4-stages.png`,
+      alt: "Brave & Boundless — the framework: Fire, Forge, Foundation, Field",
+      caption: "Fire · Forge · Foundation · Field — the four stages carrying the fifteen rules.",
+      surface: "#FBF7EE",
+      maxWidth: 1240,
+      maxHeight: 720,
+      shadow: true,
     },
 
     /* -- Brand system — color, icons, imagery, 3-up ------------- */
