@@ -92,18 +92,18 @@ window.BW_CASE_DETAIL = {
       imagePadding: "32px 28px",
     },
 
-    /* -- The Framework — screen capture from the live B&B site.
+    /* -- The Framework — cards-only crop from the live B&B site.
        Renders the four-stages card row (Fire · Forge · Foundation · Field)
        as an artifact rather than reproducing the interactive component. The
-       image is a lossless PNG grab from braveandboundless.com/the-book/.
-       Standfirst restored from the pre-screenshot draft — carries the
-       description below the title. */
+       PNG is cropped from braveandboundless.com/the-book/ with the page's
+       cream background flood-filled to alpha 0, so the cards float on the
+       case surface without a competing rectangle behind them. */
     {
       kind: "floating",
       eyebrow: "§04 · The Framework",
       title: "Fifteen rules. Four stages.",
       standfirst: "The rules move in sequence — from lighting the fire, to forging the skills, to laying the foundation, to expanding into the field. Each stage carries its own colour, its own weather, and its own set of rules.",
-      src: `${BASE}/BB-web-book-4-stages.png`,
+      src: `${BASE}/BB-book-cards-only.png`,
       alt: "Brave & Boundless — the framework: Fire, Forge, Foundation, Field",
       surface: "#FBF7EE",
       maxWidth: 1240,
