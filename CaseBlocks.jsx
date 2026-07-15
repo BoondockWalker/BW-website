@@ -360,7 +360,7 @@ function FullBleedImage({ block }) {
       {caption && (
         <Reveal kind="rise" delay={200}>
           <div style={{ maxWidth: MAX_W, margin: "0 auto", padding: "18px clamp(20px, 5vw, 56px) 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
-            <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 14, color: BW.clay, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.label || "fig."}</span>
+            <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 14, color: BW.ink3, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.label || "fig."}</span>
             <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
           </div>
         </Reveal>
@@ -967,7 +967,7 @@ function VideoBlock({ block }) {
       {caption && (
         <Reveal kind="rise" delay={200}>
           <div style={{ maxWidth: MAX_W, margin: "0 auto", padding: "18px clamp(20px, 5vw, 56px) 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
-            <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 14, color: BW.clay, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.label || "fig."}</span>
+            <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 14, color: BW.ink3, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.label || "fig."}</span>
             <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
           </div>
         </Reveal>
@@ -1043,7 +1043,7 @@ function OverlapBlock({ block }) {
         {caption && (
           <Reveal kind="rise" delay={200}>
             <div style={{ padding: "26px 0 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
-              <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 14, color: BW.clay, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.label || "fig."}</span>
+              <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 14, color: BW.ink3, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.label || "fig."}</span>
               <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
             </div>
           </Reveal>
