@@ -126,13 +126,21 @@ window.BW_CASE_DETAIL = {
       ],
     },
 
-    /* -- Digital home — imagetext split with the homepage ------- */
+    /* -- Digital home — imagetext split with the homepage --------
+       Homepage screenshot framed in the same brushed-silver laptop
+       chassis used on the §07 site-detail grid — keeps the two
+       screenshot sections visually of a piece. */
     {
       kind: "imagetext",
       side: "right",
       src: `${BASE}/BB-web-home.png`,
       alt: "braveandboundless.com — homepage",
-      imageBg: "#FBF7EE",
+      frame: "laptop",
+      aspect: "16 / 10",
+      fit: "cover",
+      position: "top",
+      imageBg: "#14100C",
+      imageRatio: 1.4,
       eyebrow: "§06 · Digital Home",
       title: "braveandboundless.com — the home the framework lives in.",
       body: [
