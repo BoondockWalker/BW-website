@@ -413,7 +413,7 @@ function FloatingImage({ block }) {
    IMAGE + TEXT — split: floating image one side, prose other side.
    ========================================================================= */
 function ImageTextBlock({ block }) {
-  const { side = "left", src, alt, eyebrow, title, body = [], surface = BW.chalk50, imageBg, imageRatio = 1.15, imageMaxHeight = 640 } = block;
+  const { side = "left", src, alt, eyebrow, title, body = [], surface = BW.chalk50, imageBg, imageRatio = 1.15, imageMaxHeight = 640, frame, aspect, fit, position } = block;
   const flip = side === "right";
   const isMobile = useMediaQuery("(max-width: 900px)");
   const imgCol = `${imageRatio}fr`;
@@ -421,9 +421,13 @@ function ImageTextBlock({ block }) {
     <section style={{ background: surface, color: BW.ink, padding: SECTION_PAD, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: MAX_W, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : `${imgCol} 1fr`, gap: isMobile ? 40 : 64, alignItems: "center" }}>
         <Reveal kind={flip && !isMobile ? "slideR" : "slideL"} threshold={0.2} style={{ order: !isMobile && flip ? 2 : 1 }}>
-          <div style={{ background: imageBg || "#FFFFFF", padding: "clamp(12px, 3vw, 28px)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: isMobile ? 320 : 560 }}>
-            <img src={src} alt={alt} style={{ maxWidth: "100%", maxHeight: isMobile ? 420 : imageMaxHeight, width: "auto", height: "auto", objectFit: "contain", display: "block" }} />
-          </div>
+          {frame === "laptop" ? (
+            <LaptopFrame src={src} alt={alt} aspect={aspect || "16 / 10"} fit={fit || "cover"} position={position || "top"} bg={imageBg || "#FBF7EE"} shadow="0 30px 60px -30px rgba(20,16,12,0.35)" />
+          ) : (
+            <div style={{ background: imageBg || "#FFFFFF", padding: "clamp(12px, 3vw, 28px)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: isMobile ? 320 : 560 }}>
+              <img src={src} alt={alt} style={{ maxWidth: "100%", maxHeight: isMobile ? 420 : imageMaxHeight, width: "auto", height: "auto", objectFit: "contain", display: "block" }} />
+            </div>
+          )}
         </Reveal>
         <div style={{ order: !isMobile && flip ? 1 : 2 }}>
           {eyebrow && (
@@ -446,6 +450,28 @@ function ImageTextBlock({ block }) {
         </div>
       </div>
     </section>
+  );
+}
+
+/* =========================================================================
+   LAPTOP FRAME — brushed-silver aluminum chassis around a screenshot.
+   Shared between MultiImageBlock (grid tiles with frame: "laptop") and
+   ImageTextBlock (single screenshot column with frame: "laptop"). Bezel:
+   subtle top-to-bottom silver gradient. Deck below: same gradient a shade
+   deeper for a lit-from-above read, plus a trackpad-style notch.
+   ========================================================================= */
+function LaptopFrame({ src, alt, aspect = "16 / 10", fit = "cover", position = "top", bg = "#FBF7EE", shadow }) {
+  return (
+    <div style={{ width: "100%" }}>
+      <div style={{ background: "linear-gradient(180deg, #D4D1CB 0%, #B4B0A9 55%, #928E88 100%)", borderRadius: "10px 10px 4px 4px", padding: "12px 12px 8px", boxShadow: shadow }}>
+        <div style={{ width: "100%", aspectRatio: aspect, overflow: "hidden", background: bg, borderRadius: 2 }}>
+          <img src={src} alt={alt || ""} style={{ width: "100%", height: "100%", objectFit: fit, objectPosition: position, display: "block" }} />
+        </div>
+      </div>
+      <div style={{ marginLeft: "-4%", marginRight: "-4%", height: 14, background: "linear-gradient(180deg, #B4B0A9 0%, #7E7A74 100%)", borderRadius: "0 0 18px 18px", position: "relative", boxShadow: "0 12px 20px -8px rgba(0,0,0,0.22)" }}>
+        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 84, height: 4, background: "#6E6A64", borderRadius: "0 0 8px 8px" }} />
+      </div>
+    </div>
   );
 }
 
@@ -495,22 +521,7 @@ function MultiImageBlock({ block }) {
                       style={{ width: "100%", height: "auto", display: "block", aspectRatio: it.aspect || undefined, objectFit: it.fit || "cover", background: it.bg || "#000", boxShadow: shadowStyle }}
                     />
                   ) : it.frame === "laptop" ? (
-                    /* Laptop mockup: brushed-silver aluminum bezel with rounded
-                       lid + a wider deck below with a trackpad-style notch. The
-                       image sits inside the lid at the caller's aspect ratio
-                       (default 16/10). Bezel uses a subtle top-to-bottom silver
-                       gradient for a machined-metal read; deck echoes the same
-                       gradient a shade deeper for a lit-from-above effect. */
-                    <div style={{ width: "100%" }}>
-                      <div style={{ background: "linear-gradient(180deg, #D4D1CB 0%, #B4B0A9 55%, #928E88 100%)", borderRadius: "10px 10px 4px 4px", padding: "12px 12px 8px", boxShadow: shadowStyle }}>
-                        <div style={{ width: "100%", aspectRatio: it.aspect || "16 / 10", overflow: "hidden", background: it.bg || "#FBF7EE", borderRadius: 2 }}>
-                          <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "100%", objectFit: it.fit || "cover", objectPosition: it.position || "top", display: "block" }} />
-                        </div>
-                      </div>
-                      <div style={{ marginLeft: "-4%", marginRight: "-4%", height: 14, background: "linear-gradient(180deg, #B4B0A9 0%, #7E7A74 100%)", borderRadius: "0 0 18px 18px", position: "relative", boxShadow: "0 12px 20px -8px rgba(0,0,0,0.22)" }}>
-                        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 84, height: 4, background: "#6E6A64", borderRadius: "0 0 8px 8px" }} />
-                      </div>
-                    </div>
+                    <LaptopFrame src={it.src} alt={it.alt} aspect={it.aspect || "16 / 10"} fit={it.fit || "cover"} position={it.position || "top"} bg={it.bg || "#FBF7EE"} shadow={shadowStyle} />
                   ) : it.bg ? (
                     <div style={{ width: "100%", aspectRatio: it.aspect || "1 / 1", overflow: "hidden", background: it.bg, display: "flex", alignItems: "center", justifyContent: "center", padding: it.tilePadding || 0, boxSizing: "border-box", boxShadow: shadowStyle }}>
                       <img src={it.src} alt={it.alt || ""} style={{ width: "100%", height: "100%", objectFit: it.fit || "cover", objectPosition: it.position || "center", display: "block" }} />
