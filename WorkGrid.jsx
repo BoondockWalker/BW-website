@@ -154,17 +154,13 @@ function ArchiveGrid({ cases, view, pillar = "All" }) {
                     {rows.length === 1 ? "1 case" : `${rows.length} cases`}
                   </span>
                 </div>
-                {rows.length > 0 ? (
+                {rows.length > 0 && (
                   <>
                     <div style={{ display: "grid", gridTemplateColumns: "60px 80px 1.6fr 1fr 1fr 80px", gap: 18, paddingBottom: 12, fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(20,16,12,0.55)", fontWeight: 700 }}>
                       <span>№</span><span>Year</span><span>Client / Headline</span><span>Pillar</span><span>Industry</span><span></span>
                     </div>
                     {rows.map(c => <CaseListRow key={c.slug} c={c} />)}
                   </>
-                ) : (
-                  <div style={{ padding: "24px 0 8px", fontFamily: BW.ffD, fontStyle: "italic", fontSize: 20, color: "rgba(20,16,12,0.55)", letterSpacing: "-0.01em" }}>
-                    Case studies from the {p.key} pillar are in the field — the receipts arrive as we publish.
-                  </div>
                 )}
               </div>
             );
