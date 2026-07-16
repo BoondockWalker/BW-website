@@ -34,6 +34,7 @@ const SITE_NAV_ITEMS = [
   { label: "The Lab",      href: "lab.html" },
   { label: "Field Notes",  href: "field-notes.html" },
   { label: "About",        href: "about.html" },
+  { label: "Contact",      href: "contact.html" },
 ];
 
 function SiteHeader({ current, breadcrumb, tone = "light", compact = false, sticky = false, bisect: bisectProp }) {
