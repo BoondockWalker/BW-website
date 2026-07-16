@@ -24,11 +24,11 @@ function WorkMasthead({ count, filterCount }) {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? 32 : 80, alignItems: "end" }}>
           <h1 style={{ fontFamily: BW.ffD, fontSize: "clamp(80px, 18vw, 168px)", fontWeight: 400, letterSpacing: "-0.015em", lineHeight: 0.88, margin: 0, color: BW.ink }}>
-            The<br/><em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>receipts.</em>
+            Success<br/><em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>stories.</em>
           </h1>
           <div style={{ paddingBottom: isMobile ? 0 : 24 }}>
             <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2vw, 19px)", lineHeight: 1.55, margin: "0 0 28px", color: BW.ink2, maxWidth: "44ch" }}>
-              Twelve selected cases — each one a story we walked an operator through, from the day the brief landed to the quarter the pipeline finally hit the number.
+              Twelve selected cases from the last decade. Each one is a story about the work — the brief that landed on our desk, the client we walked it through with, and where it eventually landed.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700, color: "rgba(20,16,12,0.55)" }}>
               <div><div style={{ fontFamily: BW.ffG, fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 700, color: BW.ink, letterSpacing: "-0.02em", marginBottom: 4 }}>{count}</div><div>Featured</div></div>
