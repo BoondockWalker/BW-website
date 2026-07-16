@@ -72,7 +72,7 @@ function WorkApp() {
 
   const filtered = rest.filter(c => {
     if (pillar !== "All" && !(c.pillars || []).includes(pillar)) return false;
-    if (industry !== "All industries" && c.industry !== industry) return false;
+    if (industry !== "All industries" && !(c.industries || []).includes(industry)) return false;
     if (outcome !== "All outcomes" && c.outcome !== outcome) return false;
     return true;
   });
