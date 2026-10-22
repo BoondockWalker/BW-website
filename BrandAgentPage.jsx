@@ -139,7 +139,7 @@ function BAContinuity() {
   return (
     <section style={{ background: BW.plum, color: BW.chalk50, padding: "clamp(72px, 10vw, 120px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, position: "relative", overflow: "hidden" }}>
       <div aria-hidden style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.08) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
-      <div style={{ maxWidth: 980, margin: "0 auto", position: "relative" }}>
+      <div style={{ maxWidth: 1180, margin: "0 auto", position: "relative" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 28 }}>
           <span>§03</span>
           <span style={{ width: 28, height: 1, background: BW.brass }} />
@@ -148,7 +148,7 @@ function BAContinuity() {
         <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.03em", margin: "0 0 32px", color: BW.chalk50, maxWidth: 920 }}>
           A brand agent is only as good <em style={{ color: BW.brass, fontStyle: "italic", fontWeight: 400 }}>as its last update.</em>
         </h2>
-        <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(18px, 2.3vw, 22px)", lineHeight: 1.55, color: BW.chalk2, margin: 0 }}>
+        <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(18px, 2.3vw, 22px)", lineHeight: 1.55, color: BW.chalk2, margin: 0, maxWidth: 820 }}>
           Brand Agent is maintained on a retainer, not shipped and forgotten. Quarterly refreshes, new knowledge ingestion as products and messaging change, platform updates, and a usage review so we can see what your team actually asks it and sharpen the answers. If the agent stops being maintained, it keeps working — it just stops learning.
         </p>
       </div>
@@ -239,7 +239,7 @@ function BAFit() {
             <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 14, fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.5, color: BW.ink }}>
               {["You don’t have a brand foundation yet — start with Brand.",
                 "You want a generic chatbot.",
-                "You’re looking for a self-serve tool (that’s Vesper’s job, when it’s ready)."
+                "You’re looking for a self-serve tool — that’s what Vesper is for."
               ].map((t) => (
                 <li key={t} style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
                   <span style={{ fontFamily: BW.ffM, fontSize: 11, color: BW.clay, fontWeight: 700, paddingTop: 2 }}>−</span>
