@@ -95,7 +95,7 @@ function BAProblem() {
    §03 · WHAT'S IN THE BUILD (5 cards)
    ──────────────────────────────────────────────────────────────────── */
 const BA_BUILD = [
-  { n: "01", t: "Foundation, encoded",   body: "Your brand foundation is run through Vesper to generate the agent’s core: voice, story, tenets, positioning, audience, and product language." },
+  { n: "01", t: "Foundation, encoded",   body: (<>We run your brand foundation through <a href="vesper.html" style={{ color: "inherit", textDecoration: "none", borderBottom: `1px solid currentColor` }}>Vesper</a> — our AI-guided brand foundation builder — to generate the agent’s core: voice, story, tenets, positioning, audience, and product language.</>) },
   { n: "02", t: "Knowledge curation",    body: "We add what the foundation doesn’t capture: product detail, proof points, case language, objections, competitive framing, the things only your team knows." },
   { n: "03", t: "Voice calibration",     body: "Senior principals test and tune the agent against real tasks until it sounds like you on a good day, not a template." },
   { n: "04", t: "Deployment",            body: "Set up and configured on up to two platforms your team already uses." },
