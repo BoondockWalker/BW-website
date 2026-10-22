@@ -23,6 +23,7 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 <script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="V3Sections2.jsx"></script>
 <script type="text/babel" src="SiteHeader.jsx"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="AboutData.jsx"></script>
@@ -38,23 +39,6 @@ const ABOUT_TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 
 function AboutPage() {
   const [tweaks, setTweak] = useTweaks(ABOUT_TWEAK_DEFAULTS);
-  const Foot = () => (
-    <footer style={{ background: BW.ink, color: BW.chalk50, fontFamily: BW.ffG, padding: "44px clamp(20px, 5vw, 64px)" }}>
-      <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 32, alignItems: "start" }}>
-        <div>
-          <img src="assets/BW-lockup-color.svg?v=8" alt="Boondock Walker" style={{ height: 39, display: "block" }} />
-          <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, marginTop: 14 }}>The bureau · est. 2015 · Cleveland</div>
-        </div>
-        <div style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.chalk2, lineHeight: 2 }}>
-          <a href="work.html" style={{ display: "block", color: BW.chalk2, textDecoration: "none" }}>Work</a>
-          <a href="capabilities.html" style={{ display: "block", color: BW.chalk2, textDecoration: "none" }}>Capabilities</a>
-          <a href="field-notes.html" style={{ display: "block", color: BW.chalk2, textDecoration: "none" }}>Field Notes</a>
-          <a href="about.html" style={{ display: "block", color: BW.brass, textDecoration: "none" }}>About</a>
-        </div>
-        <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, lineHeight: 1.8 }}>© 2026 BDW Bureau<br/>hello@boondockwalker.com<br/>833-997-8574</div>
-      </div>
-    </footer>
-  );
 
   return (
     <div style={{ background: BW.chalk, minHeight: "100vh" }}>
@@ -65,7 +49,7 @@ function AboutPage() {
       <AboutTeam team={AB_TEAM} />
       {(tweaks.showShelf || tweaks.showLedger) && <AboutShelfLedger shelf={tweaks.showShelf ? AB_SHELF : []} ledger={tweaks.showLedger ? AB_LEDGER : []} />}
       <AboutCTA />
-      <Foot />
+      <V3Footer />
 
       <TweaksPanel title="Tweaks · About">
         <TweakSection label="Sections">
