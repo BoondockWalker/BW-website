@@ -135,3 +135,42 @@ function V3Pillars() {
 
 window.V3Thesis = V3Thesis;
 window.V3Pillars = V3Pillars;
+
+/* ────────────────────────────────────────────────────────────────────
+   HOME FEATURE · Brand Agent
+   Dropped into index.html between <V3Pillars /> and <V3Cases />.
+   Reads as a sibling of the pillar cards — ink surface, paper-grain
+   overlay, brass accent, serif-italic break on the headline. The
+   eyebrow "New under Brand" signals category without adding a nav item.
+   ──────────────────────────────────────────────────────────────────── */
+function V3BrandAgentFeature() {
+  const isMobile = useMediaQuery("(max-width: 900px)");
+  return (
+    <section id="brand-agent-feature" style={{ position: "relative", background: BW.ink, color: BW.chalk50, padding: "clamp(72px, 10vw, 120px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG, overflow: "hidden" }}>
+      <div aria-hidden style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(244,236,218,0.025) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "screen", pointerEvents: "none" }} />
+      <div style={{ position: "relative", maxWidth: 1440, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.3fr 1fr", gap: isMobile ? 32 : 72, alignItems: "end" }}>
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 28, flexWrap: "wrap" }}>
+            <span>New under Brand</span>
+            <span style={{ width: 28, height: 1, background: BW.brass }} />
+            <span>Brand Agent</span>
+          </div>
+          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(48px, 10vw, 112px)", lineHeight: 0.9, letterSpacing: "-0.03em", margin: 0, color: BW.chalk50 }}>
+            Your brand,<br />
+            <em style={{ color: BW.clay300, fontStyle: "italic", fontWeight: 400 }}>on call.</em>
+          </h2>
+        </div>
+        <div style={{ paddingBottom: isMobile ? 0 : 16 }}>
+          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 20px)", lineHeight: 1.55, color: BW.chalk2, margin: "0 0 28px", maxWidth: "44ch" }}>
+            An AI agent that knows your brand — built from your foundation, calibrated by senior principals, and maintained as your brand evolves.
+          </p>
+          <a href="brand-agent.html" style={{ display: "inline-flex", alignItems: "center", gap: 10, background: BW.brass, color: BW.ink, padding: "14px 22px", borderRadius: 999, fontFamily: BW.ffG, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>
+            Learn more →
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+window.V3BrandAgentFeature = V3BrandAgentFeature;

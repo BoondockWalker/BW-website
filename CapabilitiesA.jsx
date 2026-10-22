@@ -114,12 +114,28 @@ function CapPillarSection({ pillar, idx }) {
             <div style={{ marginTop: 40, paddingTop: 28, borderTop: `1px solid ${s.subtle}` }}>
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: s.body, fontWeight: 600, marginBottom: 18 }}>What we ship</div>
               <ul style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "10px 28px", margin: 0, padding: 0, listStyle: "none" }}>
-                {pillar.services.map((sv) => (
-                  <li key={sv} style={{ display: "flex", alignItems: "baseline", gap: 12, fontFamily: BW.ffSerif, fontSize: 16, color: s.text, paddingBottom: 10, borderBottom: `1px solid ${s.subtle}` }}>
-                    <span style={{ fontFamily: BW.ffM, fontSize: 10, color: s.accent, letterSpacing: "0.18em", fontWeight: 700, paddingTop: 2 }}>—</span>
-                    <span>{sv}</span>
-                  </li>
-                ))}
+                {pillar.services.map((sv) => {
+                  // Backwards-compatible item shape: plain string renders
+                  // label-only; { label, href, note } renders as a link
+                  // with an optional italic serif note below.
+                  const isObj = typeof sv === "object" && sv !== null;
+                  const label = isObj ? sv.label : sv;
+                  const href  = isObj ? sv.href  : null;
+                  const note  = isObj ? sv.note  : null;
+                  return (
+                    <li key={label} style={{ display: "flex", alignItems: "baseline", gap: 12, fontFamily: BW.ffSerif, fontSize: 16, color: s.text, paddingBottom: 10, borderBottom: `1px solid ${s.subtle}` }}>
+                      <span style={{ fontFamily: BW.ffM, fontSize: 10, color: s.accent, letterSpacing: "0.18em", fontWeight: 700, paddingTop: 2 }}>—</span>
+                      <span>
+                        {href ? (
+                          <a href={href} style={{ color: s.text, textDecoration: "none", borderBottom: `1px solid ${s.accent}`, paddingBottom: 1 }}>{label}</a>
+                        ) : label}
+                        {note && (
+                          <div style={{ fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 14, color: s.body, marginTop: 4, lineHeight: 1.45 }}>{note}</div>
+                        )}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 

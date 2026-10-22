@@ -36,7 +36,7 @@ function LabVesperFeature() {
             </h2>
 
             <p style={{ fontFamily: BW.ffSerif, fontSize: 17, lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "60ch" }}>
-              The first Lab project we're releasing as a product, not a client tool. Vesper is an AI-guided brand strategy platform that extends Boondock Walker's expertise to the founders and small business owners who aren't ready for a full agency engagement — but are ready to build something that lasts.
+              The first Lab project we're releasing as a product, not a client tool. Vesper is an AI-guided brand strategy platform that extends Boondock Walker's expertise to the founders and small business owners who aren't ready for a full agency engagement — but are ready to build something that lasts. The same engine encodes an existing brand foundation into <a href="brand-agent.html" style={{ color: BW.ink, borderBottom: `1px solid ${BW.clay}`, textDecoration: "none" }}>Brand Agent</a>, our on-call AI agent for established teams.
             </p>
 
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", paddingTop: 8 }}>

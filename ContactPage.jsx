@@ -84,6 +84,21 @@ function ContactForm() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const [state, setState] = React.useState("idle"); // idle | submitting | success | error
   const [error, setError] = React.useState(null);
+  // Which reason/service the visitor arrived under — read from `?reason=…`
+  // on first mount so page CTAs (e.g. Brand Agent's "Start an inquiry")
+  // land on the right option. Known mapping: `brand-agent` tag preselects
+  // the Brand practice and adds a hidden `reason` field for Formspree
+  // routing. Unknown values are kept as-is on the hidden field but don't
+  // preselect anything.
+  const [reason, setReason] = React.useState(null);
+  const [brandPrechecked, setBrandPrechecked] = React.useState(false);
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const r = new URLSearchParams(window.location.search).get("reason");
+    if (!r) return;
+    setReason(r);
+    if (r === "brand-agent") setBrandPrechecked(true);
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -193,7 +208,7 @@ function ContactForm() {
                   {PRACTICES.map(p => (
                     <label key={p.key} htmlFor={`practice_${p.key}`} style={{ display: "flex", flexDirection: "column", gap: 6, padding: "16px 18px", background: "#FFFFFF", border: `1px solid ${BW.ruleL}`, borderRadius: 4, cursor: "pointer", transition: "border-color 0.15s, background 0.15s" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <input id={`practice_${p.key}`} name={`practice_${p.key}`} value="yes" type="checkbox" style={{ width: 16, height: 16, accentColor: BW.clay, cursor: "pointer" }} />
+                        <input id={`practice_${p.key}`} name={`practice_${p.key}`} value="yes" type="checkbox" defaultChecked={p.key === "brand" && brandPrechecked} style={{ width: 16, height: 16, accentColor: BW.clay, cursor: "pointer" }} />
                         <span style={{ fontFamily: BW.ffG, fontSize: 15, fontWeight: 600, color: BW.ink, letterSpacing: "-0.005em" }}>{p.label}</span>
                       </div>
                       <div style={{ fontFamily: BW.ffSerif, fontSize: 13, lineHeight: 1.4, color: BW.ink3, paddingLeft: 26 }}>{p.hint}</div>
@@ -229,7 +244,8 @@ function ContactForm() {
               {/* Honeypot — Formspree drops any submission where this is filled. */}
               <input type="text" name="_gotcha" tabIndex="-1" autoComplete="off" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }} />
               {/* Formspree convenience fields — customize the reply-to and subject line of the notification email. */}
-              <input type="hidden" name="_subject" value="New lead — boondockwalker.com contact form" />
+              <input type="hidden" name="_subject" value={reason === "brand-agent" ? "Brand Agent inquiry — boondockwalker.com contact form" : "New lead — boondockwalker.com contact form"} />
+              {reason && <input type="hidden" name="reason" value={reason} />}
 
               {error && (
                 <div role="alert" style={{ padding: "12px 16px", background: "rgba(196,74,42,0.08)", border: `1px solid ${BW.clay}`, borderRadius: 4, color: BW.clay, fontFamily: BW.ffG, fontSize: 14, marginBottom: 22 }}>
