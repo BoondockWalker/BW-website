@@ -37,12 +37,21 @@ function CapCatalog() {
                   <span style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", color: BW.ink3, fontWeight: 600 }}>{String(col.items.length).padStart(2, "0")} services</span>
                 </div>
                 <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-                  {col.items.map((it, j) => (
-                    <li key={it} style={{ display: "flex", alignItems: "baseline", gap: 14, padding: "12px 0", borderBottom: j < col.items.length - 1 ? `1px solid ${BW.ruleL}` : "none" }}>
-                      <span style={{ fontFamily: BW.ffM, fontSize: 10, color: c, letterSpacing: "0.18em", fontWeight: 700, minWidth: 20 }}>{String(j + 1).padStart(2, "0")}</span>
-                      <span style={{ fontFamily: BW.ffSerif, fontSize: 17, color: BW.ink, lineHeight: 1.4 }}>{it}</span>
-                    </li>
-                  ))}
+                  {col.items.map((it, j) => {
+                    const isObj = typeof it === "object" && it !== null;
+                    const label = isObj ? it.label : it;
+                    const href  = isObj ? it.href  : null;
+                    return (
+                      <li key={label} style={{ display: "flex", alignItems: "baseline", gap: 14, padding: "12px 0", borderBottom: j < col.items.length - 1 ? `1px solid ${BW.ruleL}` : "none" }}>
+                        <span style={{ fontFamily: BW.ffM, fontSize: 10, color: c, letterSpacing: "0.18em", fontWeight: 700, minWidth: 20 }}>{String(j + 1).padStart(2, "0")}</span>
+                        <span style={{ fontFamily: BW.ffSerif, fontSize: 17, color: BW.ink, lineHeight: 1.4 }}>
+                          {href ? (
+                            <a href={href} style={{ color: BW.ink, textDecoration: "none", borderBottom: `1px solid ${c}`, paddingBottom: 1 }}>{label}</a>
+                          ) : label}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             );
