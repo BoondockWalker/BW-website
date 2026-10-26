@@ -273,14 +273,45 @@ function V3Footer() {
             </div>
           </div>
           {[
-            ["Practice", ["Brand", "Demand", "The Lab", "Field Notes"]],
-            ["Bureau", ["Cleveland", "Remote", "Careers", "Press"]],
-            ["Contact", ["hello@boondockwalker.com", "Book a 30-min", "Substack", "LinkedIn"]],
+            // Each column: [heading, [{ label, href, external? }]].
+            // external → renders with target=_blank + rel=noopener noreferrer.
+            ["Practice", [
+              { label: "Brand",       href: "capabilities.html" },
+              { label: "Demand",      href: "capabilities.html" },
+              { label: "The Lab",     href: "lab.html" },
+              { label: "Field Notes", href: "field-notes.html" },
+            ]],
+            ["Bureau", [
+              { label: "About",    href: "about.html" },
+              { label: "Cleveland", href: "about.html" },
+              // No dedicated Careers or Press page yet — route to hello@ with
+              // a pre-filled subject line so inquiries land in the right thread.
+              { label: "Careers",  href: "mailto:hello@boondockwalker.com?subject=Careers%20inquiry" },
+              { label: "Press",    href: "mailto:hello@boondockwalker.com?subject=Press%20inquiry" },
+            ]],
+            ["Contact", [
+              { label: "hello@boondockwalker.com", href: "mailto:hello@boondockwalker.com" },
+              { label: "Send a message",           href: "contact.html" },
+              // ⚠ Confirm these URLs before we cut DNS — best-guess handles;
+              // swap if the real Substack / LinkedIn presences differ.
+              { label: "Substack", href: "https://boondockwalker.substack.com/",              external: true },
+              { label: "LinkedIn", href: "https://www.linkedin.com/company/boondock-walker/", external: true },
+            ]],
           ].map(([h, items]) => (
             <div key={h}>
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk2, marginBottom: 14, fontWeight: 700 }}>{h}</div>
               <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 10, fontFamily: BW.ffG, fontSize: 14, color: BW.chalk }}>
-                {items.map(i => <li key={i}><a style={{ color: BW.chalk, textDecoration: "none", cursor: "pointer" }}>{i}</a></li>)}
+                {items.map(({ label, href, external }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      style={{ color: BW.chalk, textDecoration: "none", cursor: "pointer" }}
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
