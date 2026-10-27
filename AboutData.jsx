@@ -6,7 +6,7 @@ const AB_CODES = [
   { num: "02", title: "Receipts over decks.", body: "A meeting that ends in a screenshot of last quarter's pipeline beats a meeting that ends in a 60-slide PDF. The work is the work; the document is the document." },
   { num: "03", title: "Deep before broad.", body: "We turn down the third logo refresh when the homepage hasn't been touched in five years. The job is to find the leverage point and break it open — not to redecorate around it." },
   { num: "04", title: "Listen for the sentence the founder won't say.", body: "The most useful brand work is articulating the thing the leadership team already feels and hasn't named. We spend hours listening before we write a single line of copy." },
-  { num: "05", title: "Outcomes over awards.", body: "The shelf is dusty for a reason. Work that closes business is the only work that matters — and we'd rather earn the next engagement than the next trophy." },
+  { num: "05", title: "Outcomes over awards.", body: "Most agency awards are either paid-entry or judged on how the work looks, not what it did. We'd rather make you the hero — the brand that holds up in a sales call, the campaign that moves the quarterly number, the story your market tells back to you. The shelf stays dusty on purpose." },
   { num: "06", title: "A small, fluid bench.", body: "No org chart drawn for prestige. We assemble a cross-functional team for each engagement and dissolve it when the work is done. The right specialist is the one who's done it eight times — wherever they live." },
   { num: "07", title: "Earn the next call.", body: "We're selective. The clients we keep are the ones who push back, and we expect the same. Mutual respect is a precondition, not an outcome." },
 ];
