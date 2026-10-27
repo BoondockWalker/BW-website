@@ -24,8 +24,11 @@ function V3Thesis() {
             <p style={{ fontFamily: BW.ffD, fontSize: "clamp(32px, 6vw, 56px)", lineHeight: 1.08, fontStyle: "italic", margin: "0 0 32px", color: BW.ink, letterSpacing: "-0.015em", fontWeight: 400 }}>
               Brand-led demand, built to <em style={{ fontStyle: "italic", color: BW.clay, fontWeight: 400 }}>compound.</em>
             </p>
-            <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 20px)", lineHeight: 1.55, margin: 0, color: BW.ink2, maxWidth: "44ch" }}>
+            <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 20px)", lineHeight: 1.55, margin: "0 0 24px", color: BW.ink2, maxWidth: "44ch" }}>
               Most firms split brand and growth into separate disciplines, separate teams, separate invoices. We don't. Boondock Walker builds the brand foundation and the demand engine as <em style={{ fontFamily: BW.ffD, fontStyle: "italic", color: BW.ink, fontWeight: 400 }}>one connected system</em> — so the strategy that defines who you are is the same strategy generating pipeline. Senior principals lead the work. Our proprietary tools accelerate it. The outcomes carry forward.
+            </p>
+            <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 2.4vw, 20px)", lineHeight: 1.55, margin: 0, color: BW.ink2, maxWidth: "44ch" }}>
+              We don't chase industry awards — most are either paid-entry or judged on how the work looks, not what it did. We'd rather <em style={{ fontFamily: BW.ffD, fontStyle: "italic", color: BW.ink, fontWeight: 400 }}>make you the hero</em>: branding, design, and marketing that hold up in the market, in a sales call, and in the quarterly numbers.
             </p>
           </Reveal>
           <Reveal kind="rise" delay={160} style={{ paddingTop: 8 }}>
