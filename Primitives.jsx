@@ -18,6 +18,7 @@ const BW = {
   forest:  "#2E4626",
   brass:   "#C8962B",
   sky:     "#3F6976",
+  sky300:  "#8FBFCE",
   ffG:     "'Space Grotesk', 'Inter', system-ui, sans-serif",
   ffD:     "'Fraunces', Georgia, serif",
   ffS:     "'Inter', system-ui, sans-serif",

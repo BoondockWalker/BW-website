@@ -63,7 +63,7 @@ function LabProduction() {
         </div>
 
         <div style={{ marginTop: 28, fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 16, color: BW.ink2, maxWidth: "60ch" }}>
-          Some of these started as a Specimen. Others came in as full engagements. All of them are live.
+          Each of these started as a Specimen.
         </div>
       </div>
     </section>
@@ -135,6 +135,7 @@ function LabSpecimens() {
                 display: "flex", flexDirection: "column", gap: 16,
                 opacity: parked ? 0.78 : 1,
                 position: "relative",
+                background: i % 2 === 1 ? "rgba(244,236,218,0.035)" : "transparent",
               }}>
                 {/* Top accent rule — gives each specimen its own identity colour */}
                 <span aria-hidden style={{ position: "absolute", top: 0, left: 0, width: 56, height: 3, background: accentColor }} />
