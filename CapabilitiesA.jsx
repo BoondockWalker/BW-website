@@ -95,10 +95,10 @@ function CapHero() {
              at rest, full on hover. */
           .cap-pillar .cap-icon {
             align-self: center;
-            height: 36px;
+            height: 90px;
             width: auto;
             display: block;
-            opacity: 0.45;
+            opacity: 0.5;
             transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.2,1);
           }
           .cap-pillar:hover .cap-icon,
