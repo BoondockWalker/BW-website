@@ -176,7 +176,8 @@ function AboutShelfLedger({ shelf, ledger }) {
           </h2>
           <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", borderTop: `0.75px solid ${BW.ruleL}` }}>
             {shelf.map((b, i) => (
-              <li key={b.title} style={{ display: "grid", gridTemplateColumns: "32px 1fr", gap: 18, padding: "18px 0", borderBottom: `0.75px solid ${BW.ruleL}`, alignItems: "start" }}>
+              <li key={b.title} style={{ display: "grid", gridTemplateColumns: "18px 32px 1fr", gap: 14, padding: "18px 0", borderBottom: `0.75px solid ${BW.ruleL}`, alignItems: "start" }}>
+                <span aria-hidden="true" title={b.title} style={{ display: "inline-block", width: 10, height: b.spineH || 50, background: b.spine || BW.ink, borderRadius: 1.5, marginTop: 2, boxShadow: `inset -1px 0 0 rgba(0,0,0,0.22), inset 1px 0 0 rgba(255,255,255,0.08), 0 1px 1.5px rgba(20,16,12,0.18)` }} />
                 <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", color: BW.sky, fontWeight: 700, paddingTop: 4 }}>{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 16, marginBottom: 4, flexWrap: "wrap" }}>

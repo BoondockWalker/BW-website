@@ -75,11 +75,12 @@ const AB_LEDGER = [
 ];
 
 const AB_SHELF = [
-  { title: "Building Strong Brands",                 author: "David Aaker",                   why: "The architecture people still reach for when a brand has to carry a whole portfolio, not just a logo." },
-  { title: "Storytelling: Branding in Practice",     author: "Fog, Budtz & Yakaboylu",        why: "A clear case that the story a company tells itself usually matters more than the one it tells customers." },
-  { title: "The Brand Gap",                          author: "Marty Neumeier",                why: "The pocket-sized primer we hand to a client who hasn't been walked through the brand conversation before." },
-  { title: "Mental Models",                          author: "Indi Young",                    why: "Teaches you to listen for the thinking behind what a customer says — which is where real positioning actually sits." },
-  { title: "The Hero and the Outlaw",                author: "Mark & Pearson",                why: "Archetypes without the mysticism. Useful when a client's voice feels cloudy and you need a frame to clear it." },
+  { title: "Building Strong Brands",                 author: "David Aaker",                   why: "The architecture people still reach for when a brand has to carry a whole portfolio, not just a logo.",                     spine: "#C44A2A", spineH: 58 },
+  { title: "Storytelling: Branding in Practice",     author: "Fog, Budtz & Yakaboylu",        why: "A clear case that the story a company tells itself usually matters more than the one it tells customers.",                     spine: "#2E4626", spineH: 50 },
+  { title: "The Brand Gap",                          author: "Marty Neumeier",                why: "The pocket-sized primer we hand to a client who hasn't been walked through the brand conversation before.",                 spine: "#14100C", spineH: 46 },
+  { title: "Mental Models",                          author: "Indi Young",                    why: "Teaches you to listen for the thinking behind what a customer says — which is where real positioning actually sits.",         spine: "#C8962B", spineH: 54 },
+  { title: "The Hero and the Outlaw",                author: "Mark & Pearson",                why: "Archetypes without the mysticism. Useful when a client's voice feels cloudy and you need a frame to clear it.",               spine: "#5E2638", spineH: 60 },
+  { title: "This Is Marketing",                      author: "Seth Godin",                    why: "A good reminder that the smallest viable audience, served well, usually beats the broad one chased loudly.",                    spine: "#3F6976", spineH: 52 },
 ];
 
 window.AB_CODES = AB_CODES;
