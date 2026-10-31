@@ -53,6 +53,20 @@ in git history prior to this file.
   design"; body expanded to name the identity and day-to-day surfaces
   alongside the voice/narrative/messaging side. ([#313](https://github.com/BoondockWalker/BW-website/pull/313))
 
+### Capabilities
+
+- **Hero pillar bar — service colours + hover flood.** Each of the
+  three pillar cells on the Capabilities hero now wears its
+  destination section's actual surface colour. Numbers and eyebrows
+  pick up the matching service colour too — 01 clay (Brand), 02 plum
+  (Demand), 03 forest (Lab) — and the cells carry a subtle wash of
+  that colour at rest. On hover (and keyboard focus), the cell floods
+  with the full section colour, a 2px chalk accent rule sweeps in
+  along the top, the ↓ cue slides down 4px, and the text flips to
+  chalk so it stays legible on the flood. Suppressed under
+  `prefers-reduced-motion`. ([#323](https://github.com/BoondockWalker/BW-website/pull/323),
+  [#324](https://github.com/BoondockWalker/BW-website/pull/324))
+
 ### About
 
 - **The Shelf — refreshed with Mark's actual books.** Six titles
