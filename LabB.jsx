@@ -63,7 +63,7 @@ function LabProduction() {
         </div>
 
         <div style={{ marginTop: 28, fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 16, color: BW.ink2, maxWidth: "60ch" }}>
-          Each of these started as a Specimen.
+          Some of these started as a Specimen. Others came in as full engagements. All of them are live.
         </div>
       </div>
     </section>
@@ -124,6 +124,9 @@ function LabSpecimens() {
             const isRightCol = !isMobile && i % 2 === 1;
             const isLastRow = !isMobile && i >= d.items.length - 2;
             const parked = it.status === "parked";
+            const accentKey = it.accent || "brass";
+            const accentColor = BW[accentKey] || BW.brass;
+            const statusDot = statusColor(it.status);
             return (
               <article key={it.n} style={{
                 padding: "32px clamp(16px, 3vw, 36px) 36px",
@@ -131,14 +134,18 @@ function LabSpecimens() {
                 borderBottom: isLastRow ? "none" : `1px solid rgba(244,236,218,0.18)`,
                 display: "flex", flexDirection: "column", gap: 16,
                 opacity: parked ? 0.78 : 1,
+                position: "relative",
               }}>
+                {/* Top accent rule — gives each specimen its own identity colour */}
+                <span aria-hidden style={{ position: "absolute", top: 0, left: 0, width: 56, height: 3, background: accentColor }} />
+
                 <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
-                    <span style={{ fontFamily: BW.ffG, fontSize: 24, fontWeight: 700, color: BW.brass, letterSpacing: "-0.02em", lineHeight: 1 }}>{it.n}</span>
+                    <span style={{ fontFamily: BW.ffG, fontSize: 24, fontWeight: 700, color: accentColor, letterSpacing: "-0.02em", lineHeight: 1 }}>{it.n}</span>
                     <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.chalk3, fontWeight: 700 }}>Spec. {it.n}</span>
                   </div>
-                  <span style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: statusColor(it.status), fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
-                    <span aria-hidden style={{ width: 8, height: 8, borderRadius: 999, background: statusColor(it.status), display: "inline-block" }} />
+                  <span style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: statusDot, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                    <span aria-hidden style={{ width: 8, height: 8, borderRadius: 999, background: statusDot, display: "inline-block" }} />
                     {statusLabel(it.status)}
                   </span>
                 </div>
@@ -148,17 +155,17 @@ function LabSpecimens() {
                 </h3>
 
                 <div>
-                  <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 6 }}>Hypothesis</div>
+                  <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: accentColor, fontWeight: 700, marginBottom: 6 }}>Hypothesis</div>
                   <p style={{ fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 16, lineHeight: 1.55, color: BW.chalk, margin: 0 }}>{it.hypothesis}</p>
                 </div>
 
                 <div>
-                  <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 6 }}>Build</div>
+                  <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: accentColor, fontWeight: 700, marginBottom: 6 }}>Build</div>
                   <p style={{ fontFamily: BW.ffSerif, fontSize: 15, lineHeight: 1.55, color: BW.chalk2, margin: 0 }}>{it.build}</p>
                 </div>
 
                 <div style={{ marginTop: "auto", paddingTop: 14, borderTop: `1px solid rgba(244,236,218,0.18)` }}>
-                  <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 6 }}>Result</div>
+                  <div style={{ fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: accentColor, fontWeight: 700, marginBottom: 6 }}>Result</div>
                   <p style={{ fontFamily: BW.ffSerif, fontSize: 15, lineHeight: 1.55, color: BW.chalk2, margin: 0 }}>{it.result}</p>
                 </div>
               </article>
