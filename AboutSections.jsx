@@ -172,7 +172,7 @@ function AboutShelfLedger({ shelf, ledger }) {
             <Eyebrow color={BW.sky}>The shelf</Eyebrow>
           </div>
           <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(32px, 4.5vw, 56px)", lineHeight: 0.98, letterSpacing: "-0.015em", margin: "0 0 36px", color: BW.ink, maxWidth: "20ch" }}>
-            What the bureau learns from.
+            What we learn from.
           </h2>
           <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", borderTop: `0.75px solid ${BW.ruleL}` }}>
             {shelf.map((b, i) => (
