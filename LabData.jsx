@@ -59,7 +59,7 @@ const BW_LAB = {
     eyebrow: "§04 / In production",
     title: "What's running today.",
     italic: "Quietly, for clients.",
-    standfirst: "A portfolio of the AI tools we've shipped for clients. Some started as two-week Lab specimens that graduated into production; others came in as full engagements from day one. All of them are live — quietly running inside the operations we built them for.",
+    standfirst: "Successful outputs of the Lab. Each one started as a hypothesis, cleared its kill criteria, and shipped into the client operation it was built for — where it's been running quietly ever since.",
     items: [
       {
         n: "01",
@@ -121,7 +121,7 @@ const BW_LAB = {
         build: "Reads the previous day's CRM motion, proposes sequence edits, sends a morning brief to the lifecycle lead. Nothing fires without a human approval.",
         result: "First client deployment lifts mid-funnel velocity. Still measuring at 60 days.",
         status: "trial",
-        accent: "sky",
+        accent: "sky300",
       },
       {
         n: "03",
@@ -148,7 +148,7 @@ const BW_LAB = {
         build: "Reads multi-touch attribution + spend data, writes a Monday summary in the client's voice, highlights anomalies, proposes a redirect.",
         result: "Three clients reading it weekly. Not yet measurably moving spend allocation.",
         status: "trial",
-        accent: "sky",
+        accent: "sky300",
       },
       {
         n: "06",
