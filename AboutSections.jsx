@@ -181,7 +181,11 @@ function AboutShelfLedger({ shelf, ledger }) {
                 <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", color: BW.sky, fontWeight: 700, paddingTop: 4 }}>{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 16, marginBottom: 4, flexWrap: "wrap" }}>
-                    <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, lineHeight: 1.1, color: BW.ink }}>{b.title}</span>
+                    {b.href ? (
+                      <a href={b.href} target="_blank" rel="noopener noreferrer" style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, lineHeight: 1.1, color: BW.ink, textDecoration: "none", borderBottom: `1px solid ${BW.ruleL}` }}>{b.title}</a>
+                    ) : (
+                      <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, lineHeight: 1.1, color: BW.ink }}>{b.title}</span>
+                    )}
                     <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600 }}>— {b.author}</span>
                   </div>
                   <div style={{ fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 14, lineHeight: 1.55, color: BW.ink2 }}>{b.why}</div>
