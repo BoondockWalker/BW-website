@@ -69,13 +69,15 @@ function CapHero() {
           .cap-pillar--lab:hover,    .cap-pillar--lab:focus-visible    { background: #2E4626; }
 
           /* Number + eyebrow pick up the pillar colour at rest, flip
-             to chalk on hover so they still read on the flooded cell. */
+             to chalk on hover so they still read on the flooded cell.
+             The resting colour is set via inline React style, so the
+             hover flip needs !important to win the specificity race. */
           .cap-pillar .cap-num,
           .cap-pillar .cap-label { transition: color .3s ease; }
           .cap-pillar:hover .cap-num,
           .cap-pillar:focus-visible .cap-num,
           .cap-pillar:hover .cap-label,
-          .cap-pillar:focus-visible .cap-label { color: #FBF7EE; }
+          .cap-pillar:focus-visible .cap-label { color: #FBF7EE !important; }
 
           .cap-pillar .cap-arrow {
             display: inline-block;
@@ -84,13 +86,36 @@ function CapHero() {
           .cap-pillar:hover .cap-arrow,
           .cap-pillar:focus-visible .cap-arrow {
             transform: translateY(4px);
-            color: #FBF7EE;
+            color: #FBF7EE !important;
+          }
+
+          /* Pillar motif — small version of the fig image from the
+             homepage pillar (field journal / coffee napkin / brain).
+             Sits beside the ↓ at the right of the cell, half-opacity
+             at rest, full on hover. */
+          .cap-pillar .cap-icon {
+            align-self: center;
+            height: 36px;
+            width: auto;
+            display: block;
+            opacity: 0.45;
+            transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.2,1);
+          }
+          .cap-pillar:hover .cap-icon,
+          .cap-pillar:focus-visible .cap-icon {
+            opacity: 1;
+            transform: translateY(2px);
+          }
+          .cap-pillar--lab .cap-icon {
+            /* Warm the brain graphic the way V3Pillars does so it reads on dark. */
+            filter: sepia(0.55) saturate(0.55) hue-rotate(-10deg) brightness(1.18) contrast(0.92);
           }
 
           @media (prefers-reduced-motion: reduce) {
             .cap-pillar,
             .cap-pillar::before,
             .cap-pillar .cap-arrow,
+            .cap-pillar .cap-icon,
             .cap-pillar .cap-num,
             .cap-pillar .cap-label { transition: none; }
           }
@@ -98,9 +123,9 @@ function CapHero() {
 
         <Reveal kind="rise" delay={180} style={{ marginTop: 56, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
           {[
-            { n: "01", k: "Brand",  slug: "brand",  c: BW.clay,   t: "Story architecture" },
-            { n: "02", k: "Demand", slug: "demand", c: BW.plum,   t: "Nurture & engagement" },
-            { n: "03", k: "Lab",    slug: "lab",    c: BW.forest, t: "Applied AI" },
+            { n: "01", k: "Brand",  slug: "brand",  c: BW.clay,   t: "Story architecture",    img: "assets/field-journal.png?v=3",    imgAlt: "Field journal" },
+            { n: "02", k: "Demand", slug: "demand", c: BW.plum,   t: "Nurture & engagement",  img: "assets/coffee-napkin-burg.png?v=3", imgAlt: "Coffee & napkin" },
+            { n: "03", k: "Lab",    slug: "lab",    c: BW.forest, t: "Applied AI",             img: "assets/brain.png",                 imgAlt: "Cortex" },
           ].map((p, i) => (
             <a
               key={p.n}
@@ -119,7 +144,8 @@ function CapHero() {
                 <span className="cap-label" style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: p.c, fontWeight: 700 }}>{p.k}</span>
                 <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, color: BW.chalk50, letterSpacing: "-0.02em" }}>{p.t}</span>
               </div>
-              <span className="cap-arrow" style={{ marginLeft: "auto", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", color: BW.chalk3 }}>↓</span>
+              <img className="cap-icon" src={p.img} alt="" aria-hidden="true" style={{ marginLeft: "auto" }} />
+              <span className="cap-arrow" style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", color: BW.chalk3 }}>↓</span>
             </a>
           ))}
         </Reveal>
