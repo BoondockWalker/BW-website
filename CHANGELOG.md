@@ -66,6 +66,15 @@ in git history prior to this file.
   chalk so it stays legible on the flood. Suppressed under
   `prefers-reduced-motion`. ([#323](https://github.com/BoondockWalker/BW-website/pull/323),
   [#324](https://github.com/BoondockWalker/BW-website/pull/324))
+- **Pillar motifs + hover text fix.** Each pillar cell now carries a
+  36px version of its homepage fig image — field journal for Brand,
+  coffee napkin for Demand, cortex for Lab (with the same sepia
+  filter V3Pillars uses so it reads warm on the dark surface) — at
+  about 45% opacity at rest, going to full opacity and nudging down
+  2px on hover alongside the ↓. Also fixes a specificity bug where
+  the hover colour flip was being beaten by the inline resting
+  colour, so the number + eyebrow were disappearing on the flooded
+  background. ([#326](https://github.com/BoondockWalker/BW-website/pull/326))
 
 ### About
 
