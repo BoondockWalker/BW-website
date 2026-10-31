@@ -1012,7 +1012,7 @@ function OverlapBlock({ block }) {
   const { items = [], eyebrow, title, caption, cta, id, surface = BW.chalk50, aspect = "16/11", maxWidth = 1100, padding = SECTION_PAD } = block;
   const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <section id={id} style={{ background: surface, color: BW.ink, padding, fontFamily: BW.ffG }}>
+    <section id={id} style={{ background: surface, color: BW.ink, padding, fontFamily: BW.ffG, scrollMarginTop: id ? 100 : undefined }}>
       <div style={{ maxWidth, margin: "0 auto" }}>
         {(eyebrow || title) && (
           <div style={{ marginBottom: 48 }}>
@@ -1169,12 +1169,131 @@ const CASE_BLOCKS = {
   aitools:      AiToolsBlock,
 };
 
+/* =========================================================================
+   CASE INDEX / TOC — sticky right-rail list of §-marked sections.
+   Pulled from each block's `eyebrow` field. Clicking an item jumps to
+   the section. The item for whichever section is most visible gets
+   highlighted via an IntersectionObserver on the real section anchors.
+   Hidden on narrow screens so the content never has to fight it.
+   ========================================================================= */
+function slugifyEyebrow(s) {
+  return (s || "")
+    .toLowerCase()
+    .replace(/§/g, "sec")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function parseEyebrow(eyebrow) {
+  // "§07 · AI-Powered Assessment" → { num: "§07", label: "AI-Powered Assessment" }
+  const parts = (eyebrow || "").split(/\s*·\s*/);
+  if (parts.length <= 1) return { num: "", label: eyebrow || "" };
+  return { num: parts[0].trim(), label: parts.slice(1).join(" · ").trim() };
+}
+
+function CaseToc({ blocks }) {
+  const [activeId, setActiveId] = React.useState(null);
+  const isNarrow = useMediaQuery("(max-width: 1200px)");
+
+  const items = React.useMemo(() => (blocks || [])
+    .filter((b) => b.eyebrow)
+    .map((b) => {
+      const id = b.id || slugifyEyebrow(b.eyebrow);
+      const { num, label } = parseEyebrow(b.eyebrow);
+      return { id, num, label };
+    }), [blocks]);
+
+  React.useEffect(() => {
+    if (!items.length || isNarrow) return undefined;
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible.length) setActiveId(visible[0].target.id);
+    }, { rootMargin: "-120px 0px -55% 0px", threshold: 0 });
+    const observed = [];
+    items.forEach((it) => {
+      const el = document.getElementById(it.id);
+      if (el) {
+        observer.observe(el);
+        observed.push(el);
+      }
+    });
+    return () => observer.disconnect();
+  }, [items, isNarrow]);
+
+  if (isNarrow || !items.length) return null;
+
+  return (
+    <nav aria-label="Case sections" style={{
+      position: "fixed",
+      top: 128,
+      right: 20,
+      zIndex: 40,
+      maxHeight: "calc(100vh - 180px)",
+      width: 208,
+      overflow: "auto",
+      padding: "16px 14px 18px",
+      background: "rgba(251,247,238,0.92)",
+      border: `1px solid ${BW.ruleL}`,
+      backdropFilter: "blur(6px)",
+      WebkitBackdropFilter: "blur(6px)",
+      fontFamily: BW.ffG,
+    }}>
+      <div style={{
+        fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.26em", textTransform: "uppercase",
+        color: BW.ink3, fontWeight: 700,
+        paddingBottom: 10, marginBottom: 10, borderBottom: `1px solid ${BW.ruleL}`,
+      }}>Case index</div>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 2 }}>
+        {items.map((it) => {
+          const active = it.id === activeId;
+          return (
+            <li key={it.id}>
+              <a href={`#${it.id}`} style={{
+                display: "grid",
+                gridTemplateColumns: "32px 1fr",
+                gap: 8,
+                alignItems: "baseline",
+                textDecoration: "none",
+                padding: "6px 0 6px 8px",
+                borderLeft: `2px solid ${active ? BW.clay : "transparent"}`,
+                transition: "border-color .14s ease",
+              }}>
+                <span style={{
+                  fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.18em", fontWeight: 700,
+                  color: active ? BW.clay : BW.ink3,
+                }}>{it.num}</span>
+                <span style={{
+                  fontFamily: BW.ffG, fontSize: 12, lineHeight: 1.35,
+                  fontWeight: active ? 600 : 500,
+                  color: active ? BW.ink : BW.ink2,
+                }}>{it.label}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
 function CaseBlocks({ blocks }) {
   return (
     <>
+      <CaseToc blocks={blocks} />
       {blocks.map((b, i) => {
         const Comp = CASE_BLOCKS[b.kind];
         if (!Comp) return null;
+        // If the block renders its own id (e.g. OverlapBlock), let it; otherwise
+        // wrap the block so the TOC still has an anchor to jump to.
+        if (!b.id && b.eyebrow) {
+          return (
+            <div key={i} id={slugifyEyebrow(b.eyebrow)} style={{ scrollMarginTop: 100 }}>
+              <Comp block={b} />
+            </div>
+          );
+        }
         return <Comp key={i} block={b} />;
       })}
     </>
@@ -1184,5 +1303,5 @@ function CaseBlocks({ blocks }) {
 Object.assign(window, {
   CaseHero, CaseHeroFullBleed, ProseBlock, ServicesBlock, FullBleedImage, FloatingImage,
   ImageTextBlock, MultiImageBlock, SliderBlock, StatCalloutBlock, StatRowBlock,
-  PullquoteBlock, VideoBlock, OverlapBlock, AiToolsBlock, CaseAdjacent, CaseBlocks,
+  PullquoteBlock, VideoBlock, OverlapBlock, AiToolsBlock, CaseAdjacent, CaseBlocks, CaseToc,
 });
