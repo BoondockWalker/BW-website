@@ -96,7 +96,7 @@ function PillarIcon({ kind, c }) {
 function V3Pillars() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const pillars = [
-    { n: "01", k: "Brand", t: "Story architecture", body: "Voice, narrative, messaging that survives sales calls. Built to close, not to win awards.", c: BW.clay, img: "assets/field-journal.png?v=3", cap: "Fig. A · Field journal", numColor: BW.clay, tint: "none" },
+    { n: "01", k: "Brand", t: "Positioning & design", body: "Voice, narrative, and messaging that survive a sales call — plus the identity, design, and day-to-day surfaces that carry them, from the deck in a prospect's inbox to the page they land on next. Built to close rather than win agency awards.", c: BW.clay, img: "assets/field-journal.png?v=3", cap: "Fig. A · Field journal", numColor: BW.clay, tint: "none" },
     { n: "02", k: "Demand", t: "Nurture & engagement", body: "Lifecycle as choreography. Stage-by-stage nurture, attribution, and sales-enablement that turn cold lists into warm conversations. (HubSpot under the hood — but the work is the motion, not the tool.)", c: BW.plum, img: "assets/coffee-napkin-burg.png?v=3", cap: "Fig. B · Coffee & napkin", numColor: BW.plum, tint: "none" },
     { n: "03", k: "Lab", t: "Applied AI", body: "AI woven through the marketing motion — not a product, a substrate. Desk-reps that triage inbound, voice-trained content engines, intent scoring, custom tooling. Built for use, not for show.", c: BW.brass, img: "assets/brain.png", cap: "Fig. C · Cortex", numColor: BW.chalk2, tint: "sepia(0.55) saturate(0.55) hue-rotate(-10deg) brightness(1.18) contrast(0.92)" },
   ];
