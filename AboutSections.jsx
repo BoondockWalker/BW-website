@@ -172,15 +172,20 @@ function AboutShelfLedger({ shelf, ledger }) {
             <Eyebrow color={BW.sky}>The shelf</Eyebrow>
           </div>
           <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontStyle: "italic", fontSize: "clamp(32px, 4.5vw, 56px)", lineHeight: 0.98, letterSpacing: "-0.015em", margin: "0 0 36px", color: BW.ink, maxWidth: "20ch" }}>
-            What the bureau learns from.
+            What we learn from.
           </h2>
           <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", borderTop: `0.75px solid ${BW.ruleL}` }}>
             {shelf.map((b, i) => (
-              <li key={b.title} style={{ display: "grid", gridTemplateColumns: "32px 1fr", gap: 18, padding: "18px 0", borderBottom: `0.75px solid ${BW.ruleL}`, alignItems: "start" }}>
+              <li key={b.title} style={{ display: "grid", gridTemplateColumns: "18px 32px 1fr", gap: 14, padding: "18px 0", borderBottom: `0.75px solid ${BW.ruleL}`, alignItems: "start" }}>
+                <span aria-hidden="true" title={b.title} style={{ display: "inline-block", width: 10, height: b.spineH || 50, background: b.spine || BW.ink, borderRadius: 1.5, marginTop: 2, boxShadow: `inset -1px 0 0 rgba(0,0,0,0.22), inset 1px 0 0 rgba(255,255,255,0.08), 0 1px 1.5px rgba(20,16,12,0.18)` }} />
                 <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", color: BW.sky, fontWeight: 700, paddingTop: 4 }}>{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 16, marginBottom: 4, flexWrap: "wrap" }}>
-                    <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, lineHeight: 1.1, color: BW.ink }}>{b.title}</span>
+                    {b.href ? (
+                      <a href={b.href} target="_blank" rel="noopener noreferrer" style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, lineHeight: 1.1, color: BW.ink, textDecoration: "none", borderBottom: `1px solid ${BW.ruleL}` }}>{b.title}</a>
+                    ) : (
+                      <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, lineHeight: 1.1, color: BW.ink }}>{b.title}</span>
+                    )}
                     <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600 }}>— {b.author}</span>
                   </div>
                   <div style={{ fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 14, lineHeight: 1.55, color: BW.ink2 }}>{b.why}</div>

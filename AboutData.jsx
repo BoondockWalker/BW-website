@@ -75,12 +75,12 @@ const AB_LEDGER = [
 ];
 
 const AB_SHELF = [
-  { title: "Positioning",        author: "Trout & Ries",        why: "Still the only book on category and mind-share that holds up at 40." },
-  { title: "Obviously Awesome",  author: "April Dunford",       why: "The framework we run every positioning audit through. Page-flagged copy on the shelf." },
-  { title: "Made to Stick",      author: "Chip & Dan Heath",    why: "Why some sentences survive the conference room and most don't." },
-  { title: "The Mom Test",       author: "Rob Fitzpatrick",     why: "How to listen to a customer interview without contaminating the data with your own hopes." },
-  { title: "This Is Marketing",  author: "Seth Godin",          why: "Permission as the ground floor — useful when a client wants to chase a list they don't own." },
-  { title: "Influence",          author: "Robert Cialdini",     why: "Read once a year. Underline more each time." },
+  { title: "Building Strong Brands",                 author: "David Aaker",                   why: "The architecture people still reach for when a brand has to carry a whole portfolio, not just a logo.",                     spine: "#C44A2A", spineH: 58, href: "https://www.amazon.com/s?k=Building+Strong+Brands+David+Aaker" },
+  { title: "Storytelling: Branding in Practice",     author: "Fog, Budtz & Yakaboylu",        why: "A clear case that the story a company tells itself usually matters more than the one it tells customers.",                     spine: "#2E4626", spineH: 50, href: "https://www.amazon.com/s?k=Storytelling+Branding+in+Practice+Klaus+Fog" },
+  { title: "The Brand Gap",                          author: "Marty Neumeier",                why: "The pocket-sized primer we hand to a client who hasn't been walked through the brand conversation before.",                 spine: "#14100C", spineH: 46, href: "https://www.amazon.com/s?k=The+Brand+Gap+Marty+Neumeier" },
+  { title: "Mental Models",                          author: "Indi Young",                    why: "Teaches you to listen for the thinking behind what a customer says — which is where real positioning actually sits.",         spine: "#C8962B", spineH: 54, href: "https://www.amazon.com/s?k=Mental+Models+Indi+Young" },
+  { title: "The Hero and the Outlaw",                author: "Mark & Pearson",                why: "Archetypes without the mysticism. Useful when a client's voice feels cloudy and you need a frame to clear it.",               spine: "#5E2638", spineH: 60, href: "https://www.amazon.com/s?k=The+Hero+and+the+Outlaw+Margaret+Mark+Pearson" },
+  { title: "This Is Marketing",                      author: "Seth Godin",                    why: "A good reminder that the smallest viable audience, served well, usually beats the broad one chased loudly.",                    spine: "#3F6976", spineH: 52, href: "https://www.amazon.com/s?k=This+Is+Marketing+Seth+Godin" },
 ];
 
 window.AB_CODES = AB_CODES;
