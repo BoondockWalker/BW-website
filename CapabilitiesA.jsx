@@ -69,13 +69,15 @@ function CapHero() {
           .cap-pillar--lab:hover,    .cap-pillar--lab:focus-visible    { background: #2E4626; }
 
           /* Number + eyebrow pick up the pillar colour at rest, flip
-             to chalk on hover so they still read on the flooded cell. */
+             to chalk on hover so they still read on the flooded cell.
+             The resting colour is set via inline React style, so the
+             hover flip needs !important to win the specificity race. */
           .cap-pillar .cap-num,
           .cap-pillar .cap-label { transition: color .3s ease; }
           .cap-pillar:hover .cap-num,
           .cap-pillar:focus-visible .cap-num,
           .cap-pillar:hover .cap-label,
-          .cap-pillar:focus-visible .cap-label { color: #FBF7EE; }
+          .cap-pillar:focus-visible .cap-label { color: #FBF7EE !important; }
 
           .cap-pillar .cap-arrow {
             display: inline-block;
@@ -84,7 +86,7 @@ function CapHero() {
           .cap-pillar:hover .cap-arrow,
           .cap-pillar:focus-visible .cap-arrow {
             transform: translateY(4px);
-            color: #FBF7EE;
+            color: #FBF7EE !important;
           }
 
           @media (prefers-reduced-motion: reduce) {
