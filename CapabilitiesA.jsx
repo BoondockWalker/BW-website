@@ -32,20 +32,74 @@ function CapHero() {
           </p>
         </Reveal>
 
-        {/* Three-pillar marker bar */}
+        {/* Three-pillar marker bar — each cell carries a subtle wash
+            in its pillar colour, with a top accent rule + arrow nudge
+            + brighter tint on hover. */}
+        <style>{`
+          .cap-pillar {
+            position: relative;
+            transition: background-color .3s ease;
+          }
+          .cap-pillar::before {
+            content: "";
+            position: absolute;
+            top: -1px; left: 0; right: 0;
+            height: 2px;
+            background: var(--p-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s cubic-bezier(.2,.7,.2,1);
+            pointer-events: none;
+          }
+          .cap-pillar:hover::before,
+          .cap-pillar:focus-visible::before { transform: scaleX(1); }
+          .cap-pillar--brand  { background: rgba(196, 74, 42, 0.07); }
+          .cap-pillar--demand { background: rgba(200, 150, 43, 0.07); }
+          .cap-pillar--lab    { background: rgba(232, 137, 106, 0.07); }
+          .cap-pillar--brand:hover,  .cap-pillar--brand:focus-visible  { background: rgba(196, 74, 42, 0.15); }
+          .cap-pillar--demand:hover, .cap-pillar--demand:focus-visible { background: rgba(200, 150, 43, 0.15); }
+          .cap-pillar--lab:hover,    .cap-pillar--lab:focus-visible    { background: rgba(232, 137, 106, 0.15); }
+          .cap-pillar .cap-arrow {
+            display: inline-block;
+            transition: transform .3s cubic-bezier(.2,.7,.2,1), color .3s ease;
+          }
+          .cap-pillar:hover .cap-arrow,
+          .cap-pillar:focus-visible .cap-arrow {
+            transform: translateY(4px);
+            color: var(--p-color);
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .cap-pillar,
+            .cap-pillar::before,
+            .cap-pillar .cap-arrow { transition: none; }
+          }
+        `}</style>
+
         <Reveal kind="rise" delay={180} style={{ marginTop: 56, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
           {[
-            { n: "01", k: "Brand", c: BW.clay, t: "Story architecture" },
-            { n: "02", k: "Demand", c: BW.brass, t: "Nurture & engagement" },
-            { n: "03", k: "Lab", c: BW.clay300, t: "Applied AI" },
+            { n: "01", k: "Brand",  slug: "brand",  c: BW.clay,    t: "Story architecture" },
+            { n: "02", k: "Demand", slug: "demand", c: BW.brass,   t: "Nurture & engagement" },
+            { n: "03", k: "Lab",    slug: "lab",    c: BW.clay300, t: "Applied AI" },
           ].map((p, i) => (
-            <a key={p.n} href={`#${p.k.toLowerCase()}`} style={{ padding: "22px clamp(16px, 3vw, 28px)", borderRight: !isMobile && i < 2 ? `1px solid rgba(244,236,218,0.18)` : "none", borderBottom: isMobile && i < 2 ? `1px solid rgba(244,236,218,0.18)` : "none", display: "flex", alignItems: "baseline", gap: 18, textDecoration: "none", color: BW.chalk50 }}>
+            <a
+              key={p.n}
+              href={`#${p.k.toLowerCase()}`}
+              className={`cap-pillar cap-pillar--${p.slug}`}
+              style={{
+                padding: "22px clamp(16px, 3vw, 28px)",
+                borderRight: !isMobile && i < 2 ? `1px solid rgba(244,236,218,0.18)` : "none",
+                borderBottom: isMobile && i < 2 ? `1px solid rgba(244,236,218,0.18)` : "none",
+                display: "flex", alignItems: "baseline", gap: 18,
+                textDecoration: "none", color: BW.chalk50,
+                "--p-color": p.c,
+              }}
+            >
               <span style={{ fontFamily: BW.ffG, fontSize: 28, fontWeight: 700, color: p.c, letterSpacing: "-0.02em", lineHeight: 1 }}>{p.n}</span>
               <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
                 <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: p.c, fontWeight: 700 }}>{p.k}</span>
                 <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, color: BW.chalk50, letterSpacing: "-0.02em" }}>{p.t}</span>
               </div>
-              <span style={{ marginLeft: "auto", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", color: BW.chalk3 }}>↓</span>
+              <span className="cap-arrow" style={{ marginLeft: "auto", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", color: BW.chalk3 }}>↓</span>
             </a>
           ))}
         </Reveal>
