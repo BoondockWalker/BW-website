@@ -58,10 +58,15 @@ function CapHero() {
           .cap-pillar:hover::before,
           .cap-pillar:focus-visible::before { transform: scaleX(1); }
 
-          /* Resting — subtle wash of the pillar's section colour */
-          .cap-pillar--brand  { background: rgba(196, 74, 42, 0.10); }   /* clay */
-          .cap-pillar--demand { background: rgba(94, 38, 56, 0.20); }    /* plum */
-          .cap-pillar--lab    { background: rgba(46, 70, 38, 0.22); }    /* forest */
+          /* Resting — wash of the pillar's section colour. Clay is
+             bright enough to read at low alpha, but plum and forest
+             are dark hues that lose chroma against ink, so we "cheat"
+             their resting state with a lifted / more saturated variant
+             of the hue at a higher alpha. Hover state still uses the
+             exact section colour. */
+          .cap-pillar--brand  { background: rgba(196,  74, 42, 0.14); }   /* clay */
+          .cap-pillar--demand { background: rgba(150,  58, 88, 0.34); }   /* lifted plum */
+          .cap-pillar--lab    { background: rgba( 78, 118, 62, 0.32); }   /* lifted forest */
 
           /* Hover — full flood with the section's own background */
           .cap-pillar--brand:hover,  .cap-pillar--brand:focus-visible  { background: #C44A2A; }
