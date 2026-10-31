@@ -155,6 +155,7 @@ window.BW_CASE_DETAIL = {
        to read as an editorial portfolio piece, not a screenshot grid. */
     {
       kind: "overlap",
+      id: "tool-comms-audit",
       eyebrow: "§07 · AI-Powered Assessment",
       title: "An AI intake tool that gives health plans an honest diagnosis.",
       aspect: "16/11",
@@ -167,6 +168,26 @@ window.BW_CASE_DETAIL = {
         { src: `${BASE}/assessment-cta.webp`, alt: "Healthcare Communication Assessment — landing CTA", top: "8%", right: "4%", width: "34%", z: 3 },
       ],
       caption: { label: "fig. 07 · AI Assessment", title: "Healthcare Communication Assessment — AI-powered intake tool" },
+      cta: { href: "lab.html#tool-comms-audit", label: "See the full demo →" },
+    },
+
+    /* -- AI tool spotlight: USPS Postage Optimizer -------------------
+       Same cascade pattern as §07 Comms Audit. Primary: the tier
+       solver with qualified / failed tiers. Secondary: the campaign
+       savings view. Accent: the job-spec intake. */
+    {
+      kind: "overlap",
+      id: "tool-postage-optimizer",
+      eyebrow: "§07.5 · AI · USPS Postage Optimizer",
+      title: "A postage router that catches every tier shortcut buried in the regs.",
+      aspect: "16/11",
+      items: [
+        { src: `${BASE}/postage-optimizer-tiers.webp`, alt: "USPS Postage Optimizer — tier solver, qualified and failed tiers", top: "0%", left: "0%", width: "54%", z: 1 },
+        { src: `${BASE}/postage-optimizer-savings.webp`, alt: "USPS Postage Optimizer — campaign savings view across a quarter of drops", bottom: "0%", right: "0%", width: "54%", z: 2 },
+        { src: `${BASE}/postage-optimizer-spec.webp`, alt: "USPS Postage Optimizer — job-spec intake", top: "8%", right: "4%", width: "34%", z: 3 },
+      ],
+      caption: { label: "fig. 07.5 · Postage Optimizer", title: "USPS Postage Optimizer — AI-powered direct-mail router" },
+      cta: { href: "lab.html#tool-postage-optimizer", label: "See the full demo →" },
     },
 
     /* -- "The Next Chapter" Campaign — slider ---------------------- */
@@ -206,35 +227,6 @@ window.BW_CASE_DETAIL = {
       aspect: "16/9",
       maxWidth: 800,
       controls: true,
-    },
-
-    /* -- AI tools built inside the engagement --------------------- */
-    {
-      kind: "aitools",
-      id: "ai-tools",
-      eyebrow: "§08.5 · Lab inside the engagement",
-      title: { pre: "AI tools built ", italic: "for the operation.", post: "" },
-      lede: "A decade in, the engagement has produced more than brand and demand work. A handful of AI tools got built inside O'Neil's operation, each one framed as a hypothesis in the Lab and shipped once it cleared its kill criteria. They run quietly, every day, inside the parts of the business they were built for.",
-      items: [
-        {
-          slug: "budget-planner",
-          name: "Marketing Budget Planner",
-          body: "Reconciles finance's top-down marketing budget with marketing's bottom-up plan, against the client's real revenue model and spend history. The annual planning cycle collapses from weeks to days.",
-          href: "lab.html#tool-budget-planner",
-        },
-        {
-          slug: "postage-optimizer",
-          name: "USPS Postage Optimizer",
-          body: "Reads every direct-mail job spec and routes it to the cheapest USPS commercial-mail tier it qualifies for. Catches the shortcut rules the postal-regs manual buries three subsections deep.",
-          href: "lab.html#tool-postage-optimizer",
-        },
-        {
-          slug: "comms-audit",
-          name: "Communications Audit Tool",
-          body: "Audits a regulated client's customer-facing comms across every channel — email, SMS, in-app, policy letters — against voice, compliance, clarity, and readability. Delivers a scorecard and prioritised rewrites in days instead of weeks.",
-          href: "lab.html#tool-comms-audit",
-        },
-      ],
     },
 
     /* -- Outcomes prose ------------------------------------------- */
