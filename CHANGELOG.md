@@ -75,6 +75,13 @@ in git history prior to this file.
   the hover colour flip was being beaten by the inline resting
   colour, so the number + eyebrow were disappearing on the flooded
   background. ([#326](https://github.com/BoondockWalker/BW-website/pull/326))
+- **Motifs 2.5× + rebalanced rest-state colour.** Pillar fig images
+  bumped from 36px → 90px tall. Rest-state washes rebalanced so all
+  three cells read at equal visual weight — raw plum and forest were
+  losing chroma against ink, so their resting state uses lifted,
+  more-saturated variants of each hue at higher alphas while the
+  hover-state flood still uses the exact BW section colours. Clay
+  resting bumped slightly for parity. ([#328](https://github.com/BoondockWalker/BW-website/pull/328))
 
 ### About
 
