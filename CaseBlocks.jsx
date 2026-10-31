@@ -1070,6 +1070,73 @@ function OverlapBlock({ block }) {
 }
 
 /* =========================================================================
+   AI TOOLS BLOCK — a grid of Lab-born AI tools delivered inside the
+   engagement. Each tile links through to the Lab page's demo modal
+   via a hash deep-link (`lab.html#tool-<slug>`).
+   ========================================================================= */
+function AiToolsBlock({ block }) {
+  const b = block || {};
+  const items = b.items || [];
+  return (
+    <section id={b.id || "ai-tools"} style={{ background: BW.chalk, borderBottom: `1.5px solid ${BW.ink}`, color: BW.ink, fontFamily: BW.ffG }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(64px, 9vw, 112px) clamp(20px, 5vw, 64px)" }}>
+        {b.eyebrow && (
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.forest, fontWeight: 700, marginBottom: 24 }}>
+            <span>{b.eyebrow}</span>
+            <span style={{ flex: 1, height: 1, background: BW.ruleL, maxWidth: 48 }} />
+          </div>
+        )}
+        {b.title && (
+          <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(36px, 5.6vw, 64px)", lineHeight: 1.0, letterSpacing: "-0.02em", margin: "0 0 20px", color: BW.ink, maxWidth: 900 }}>
+            {b.title.pre}{b.title.italic && <em style={{ color: BW.forest, fontStyle: "italic", fontWeight: 400 }}>{b.title.italic}</em>}{b.title.post}
+          </h2>
+        )}
+        {b.lede && (
+          <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 20px)", lineHeight: 1.55, color: BW.ink2, margin: "0 0 48px", maxWidth: "66ch" }}>
+            {b.lede}
+          </p>
+        )}
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
+          {items.map((it, i) => (
+            <article key={it.slug || i} style={{
+              background: BW.chalk50,
+              border: `1px solid ${BW.ink}`,
+              padding: "28px 24px 26px",
+              display: "flex", flexDirection: "column", gap: 14,
+              minHeight: 240,
+            }}>
+              <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.forest, fontWeight: 700 }}>
+                Tool · 0{i + 1}
+              </div>
+              <h3 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(22px, 2.4vw, 28px)", lineHeight: 1.1, letterSpacing: "-0.015em", margin: 0, color: BW.ink }}>
+                {it.name}.
+              </h3>
+              <p style={{ fontFamily: BW.ffSerif, fontSize: 15, lineHeight: 1.55, color: BW.ink2, margin: 0, flex: 1 }}>
+                {it.body}
+              </p>
+              {it.href && (
+                <a href={it.href} style={{
+                  marginTop: 4,
+                  alignSelf: "flex-start",
+                  fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700,
+                  color: BW.ink, textDecoration: "none",
+                  padding: "9px 14px",
+                  border: `1px solid ${BW.ink}`,
+                  borderRadius: 999,
+                }}>
+                  See the demo →
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================================
    BLOCK ROUTER — renders the right component based on `kind`.
    ========================================================================= */
 const CASE_BLOCKS = {
@@ -1086,6 +1153,7 @@ const CASE_BLOCKS = {
   pullquote:    PullquoteBlock,
   video:        VideoBlock,
   overlap:      OverlapBlock,
+  aitools:      AiToolsBlock,
 };
 
 function CaseBlocks({ blocks }) {
@@ -1103,5 +1171,5 @@ function CaseBlocks({ blocks }) {
 Object.assign(window, {
   CaseHero, CaseHeroFullBleed, ProseBlock, ServicesBlock, FullBleedImage, FloatingImage,
   ImageTextBlock, MultiImageBlock, SliderBlock, StatCalloutBlock, StatRowBlock,
-  PullquoteBlock, VideoBlock, OverlapBlock, CaseAdjacent, CaseBlocks,
+  PullquoteBlock, VideoBlock, OverlapBlock, AiToolsBlock, CaseAdjacent, CaseBlocks,
 });

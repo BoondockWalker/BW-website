@@ -63,6 +63,7 @@ const BW_LAB = {
     items: [
       {
         n: "01",
+        slug: "budget-planner",
         name: "Marketing Budget Planner",
         client: "Mid-market services firm · anonymized",
         what: "Builds a comprehensive annual marketing budget from first principles — channel by channel, quarter by quarter — against the client's actual revenue model, CAC targets, and historical campaign spend. Reconciles finance's top-down ask with marketing's bottom-up plan, flags where the two assumptions collide, and outputs an edit-ready plan the CFO can walk straight into a board room.",
@@ -70,9 +71,18 @@ const BW_LAB = {
         metricValue: "Weeks → days",
         stack: "Claude · revenue model · spend archive · scenario modelling",
         status: "Live",
+        caseStudyHref: "case-oneil.html#ai-tools",
+        demo: {
+          overview: "Annual marketing planning used to eat weeks: a top-down number came down from finance, a bottom-up stack came up from marketing, and the gap between them got worked by hand in a spreadsheet. The Planner reads both at once — the revenue model, the CAC targets, last year's performance, and the current team's bottom-up draft — then produces an edit-ready plan with the gaps already flagged and defended. Finance and marketing walk into the review already agreeing on the shape of the conversation.",
+          screenshots: [
+            { src: "assets/lab/budget-planner-01.png", caption: "The channel-by-channel annual view, with finance's top-down target reconciled against the bottom-up build." },
+            { src: "assets/lab/budget-planner-02.png", caption: "A quarterly drill-down with scenarios running side by side — base case, a 15% cut, and a stretch." },
+          ],
+        },
       },
       {
         n: "02",
+        slug: "postage-optimizer",
         name: "USPS Postage Optimizer",
         client: "O'Neil Communications",
         what: "Reads a direct-mail job spec — paper weight, piece size, drop zone, carrier route — and finds the lowest-postage path through the USPS commercial-mail tiers. Catches the shortcut rules the postal-regs manual buries three subsections deep, and routes each job to the cheapest eligible tier before the mail house commits ink to paper.",
@@ -80,9 +90,18 @@ const BW_LAB = {
         metricValue: "Cheapest eligible",
         stack: "USPS commercial-mail rules · job-spec parser · tier solver",
         status: "Live",
+        caseStudyHref: "case-oneil.html#ai-tools",
+        demo: {
+          overview: "USPS commercial-mail pricing is a maze. Paper weight, piece size, drop zone, carrier route, and a dozen presort rules combine into tiers that save real money when you qualify — and cost real money when you don't. The Optimizer reads a job spec, runs it through the regs, and routes the piece to the cheapest tier it actually qualifies for. The shortcuts the regs manual buries three subsections deep are caught every time, not just when the operator remembers.",
+          screenshots: [
+            { src: "assets/lab/postage-optimizer-01.png", caption: "A job spec parsed and routed through the tier tree. Qualified tiers in green; disqualified with the specific rule that broke it." },
+            { src: "assets/lab/postage-optimizer-02.png", caption: "The campaign savings view across a quarter of drops." },
+          ],
+        },
       },
       {
         n: "03",
+        slug: "comms-audit",
         name: "Communications Audit Tool",
         client: "Healthcare & financial services",
         what: "Reads a client's customer-facing communications across every channel — emails, SMS, in-app, support macros, policy letters — and audits them against voice, compliance, clarity, and readability benchmarks. Delivers a scorecard, a flagged inventory, and prioritised rewrites in days instead of the weeks a manual audit would take.",
@@ -90,6 +109,14 @@ const BW_LAB = {
         metricValue: "Days → hours",
         stack: "Multi-channel ingest · compliance library · voice benchmarks · scorecard output",
         status: "Live",
+        caseStudyHref: "case-oneil.html#ai-tools",
+        demo: {
+          overview: "A regulated enterprise's customer communications sprawl across emails, SMS, in-app messages, support macros, and policy letters. Auditing them for voice, compliance, clarity, and readability by hand takes weeks and still misses things. The Audit Tool ingests every surface, scores each piece against the benchmarks the client's own standards define, flags the outliers, and proposes rewrites — so the audit ships in days with a scorecard the compliance team actually trusts.",
+          screenshots: [
+            { src: "assets/lab/comms-audit-01.png", caption: "The audit scorecard: voice, compliance, clarity, and readability scored channel by channel." },
+            { src: "assets/lab/comms-audit-02.png", caption: "A flagged piece with the specific finding, the rule it broke, and a suggested rewrite." },
+          ],
+        },
       },
     ],
   },

@@ -208,6 +208,35 @@ window.BW_CASE_DETAIL = {
       controls: true,
     },
 
+    /* -- AI tools built inside the engagement --------------------- */
+    {
+      kind: "aitools",
+      id: "ai-tools",
+      eyebrow: "§08.5 · Lab inside the engagement",
+      title: { pre: "AI tools built ", italic: "for the operation.", post: "" },
+      lede: "A decade in, the engagement has produced more than brand and demand work. A handful of AI tools got built inside O'Neil's operation, each one framed as a hypothesis in the Lab and shipped once it cleared its kill criteria. They run quietly, every day, inside the parts of the business they were built for.",
+      items: [
+        {
+          slug: "budget-planner",
+          name: "Marketing Budget Planner",
+          body: "Reconciles finance's top-down marketing budget with marketing's bottom-up plan, against the client's real revenue model and spend history. The annual planning cycle collapses from weeks to days.",
+          href: "lab.html#tool-budget-planner",
+        },
+        {
+          slug: "postage-optimizer",
+          name: "USPS Postage Optimizer",
+          body: "Reads every direct-mail job spec and routes it to the cheapest USPS commercial-mail tier it qualifies for. Catches the shortcut rules the postal-regs manual buries three subsections deep.",
+          href: "lab.html#tool-postage-optimizer",
+        },
+        {
+          slug: "comms-audit",
+          name: "Communications Audit Tool",
+          body: "Audits a regulated client's customer-facing comms across every channel — email, SMS, in-app, policy letters — against voice, compliance, clarity, and readability. Delivers a scorecard and prioritised rewrites in days instead of weeks.",
+          href: "lab.html#tool-comms-audit",
+        },
+      ],
+    },
+
     /* -- Outcomes prose ------------------------------------------- */
     {
       kind: "prose",

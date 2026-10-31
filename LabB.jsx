@@ -2,10 +2,37 @@
 /* Lab — In Production, Specimens, Receipts, CTA. */
 
 /* §04 — In Production. Chalk surface. The shipped tools.
-   Quiet, factual cards. One number per card. */
+   Quiet, factual cards. One number per card. Each tile has a
+   "See the demo" link that opens a lightbox-style modal with the
+   longer write-up and screenshots. The modal is hash-driven
+   (lab.html#tool-<slug>) so the parent case study can deep-link
+   straight into it. */
 function LabProduction() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const d = BW_LAB.production;
+  const [openSlug, setOpenSlug] = React.useState(null);
+  const openItem = openSlug ? d.items.find((it) => it.slug === openSlug) : null;
+
+  // Hash sync — open on load / hashchange, so a case-study link into
+  // lab.html#tool-postage-optimizer opens the matching modal.
+  React.useEffect(() => {
+    const read = () => {
+      const m = (window.location.hash || "").match(/^#tool-(.+)$/);
+      setOpenSlug(m ? decodeURIComponent(m[1]) : null);
+    };
+    read();
+    window.addEventListener("hashchange", read);
+    return () => window.removeEventListener("hashchange", read);
+  }, []);
+
+  const openTool = (slug) => {
+    history.pushState(null, "", `${window.location.pathname}${window.location.search}#tool-${slug}`);
+    setOpenSlug(slug);
+  };
+  const closeTool = () => {
+    history.pushState(null, "", `${window.location.pathname}${window.location.search}#production`);
+    setOpenSlug(null);
+  };
 
   return (
     <section id="production" style={{ background: BW.chalk50, color: BW.ink, fontFamily: BW.ffG, borderBottom: `1.5px solid ${BW.ink}`, position: "relative", overflow: "hidden" }}>
@@ -58,6 +85,26 @@ function LabProduction() {
               <div style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: BW.ink3, fontWeight: 600, lineHeight: 1.5 }}>
                 Stack — {it.stack}
               </div>
+
+              {it.demo && (
+                <button type="button" onClick={() => openTool(it.slug)} style={{
+                  marginTop: "auto",
+                  alignSelf: "flex-start",
+                  background: "transparent",
+                  border: `1px solid ${BW.ink}`,
+                  color: BW.ink,
+                  padding: "10px 16px",
+                  borderRadius: 999,
+                  fontFamily: BW.ffM,
+                  fontSize: 10,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                }}>
+                  See the demo →
+                </button>
+              )}
             </article>
           ))}
         </div>
@@ -66,7 +113,153 @@ function LabProduction() {
           Each of these started as a Specimen.
         </div>
       </div>
+
+      <LabProductionModal item={openItem} onClose={closeTool} />
     </section>
+  );
+}
+
+/* Lightbox-style modal shown over the Lab page when a production tile's
+   demo is opened — directly on the page, or via a hash deep-link from
+   the parent case study. */
+function LabProductionModal({ item, onClose }) {
+  React.useEffect(() => {
+    if (!item) return undefined;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [item, onClose]);
+
+  if (!item || !item.demo) return null;
+  const { demo } = item;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.name}
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 2000,
+        display: "flex", alignItems: "flex-start", justifyContent: "center",
+        padding: "clamp(16px, 4vw, 48px)",
+        overflowY: "auto",
+        background: "rgba(20,16,12,0.78)",
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          position: "relative",
+          background: BW.chalk50,
+          color: BW.ink,
+          maxWidth: 1040,
+          width: "100%",
+          border: `1.5px solid ${BW.ink}`,
+          padding: "clamp(28px, 4vw, 48px) clamp(24px, 4vw, 56px) clamp(32px, 5vw, 56px)",
+          display: "flex", flexDirection: "column", gap: 24,
+        }}
+      >
+        {/* Close */}
+        <button
+          type="button"
+          aria-label="Close"
+          onClick={onClose}
+          style={{
+            position: "absolute", top: 14, right: 14,
+            width: 36, height: 36,
+            background: "transparent",
+            border: `1px solid ${BW.ink}`,
+            color: BW.ink,
+            fontFamily: BW.ffM, fontSize: 16, fontWeight: 700,
+            cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}
+        >×</button>
+
+        {/* Header */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, paddingRight: 48 }}>
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, color: BW.ink3 }}>
+            <span>Tool {item.n}</span>
+            <span style={{ color: BW.clay }}>For · {item.client}</span>
+            <span style={{ color: BW.forest }}>● {item.status}</span>
+          </div>
+          <h2 style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(32px, 4.4vw, 56px)", lineHeight: 1, letterSpacing: "-0.02em", margin: 0, color: BW.ink }}>
+            {item.name}.
+          </h2>
+        </div>
+
+        {/* Overview */}
+        <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(16px, 1.6vw, 18px)", lineHeight: 1.6, color: BW.ink2, margin: 0, maxWidth: "66ch" }}>
+          {demo.overview}
+        </p>
+
+        {/* Screenshots — fall back to a labeled placeholder when the asset is missing */}
+        {demo.screenshots && demo.screenshots.length > 0 && (
+          <div style={{ display: "grid", gridTemplateColumns: demo.screenshots.length > 1 ? "repeat(auto-fit, minmax(260px, 1fr))" : "1fr", gap: 20 }}>
+            {demo.screenshots.map((s, i) => (
+              <figure key={i} style={{ margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                <div style={{
+                  position: "relative",
+                  aspectRatio: "16/10",
+                  background: BW.chalk,
+                  border: `1px solid ${BW.ruleL}`,
+                  overflow: "hidden",
+                }}>
+                  <img
+                    src={s.src}
+                    alt={s.caption || ""}
+                    loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                      const fallback = e.currentTarget.nextElementSibling;
+                      if (fallback) fallback.style.display = "flex";
+                    }}
+                  />
+                  <div style={{
+                    display: "none",
+                    position: "absolute", inset: 0,
+                    alignItems: "center", justifyContent: "center",
+                    fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase",
+                    color: BW.ink3, fontWeight: 700,
+                    background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.05) 0 1.5px, transparent 1.5px 8px)",
+                  }}>
+                    Screenshot slot · {s.src.split("/").pop()}
+                  </div>
+                </div>
+                <figcaption style={{ fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 14, lineHeight: 1.5, color: BW.ink2 }}>
+                  {s.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+
+        {/* Footer — link back to the case study */}
+        {item.caseStudyHref && (
+          <div style={{ borderTop: `1px solid ${BW.ruleL}`, paddingTop: 20, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+            <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700 }}>
+              Built inside the {item.client.split(" · ")[0]} engagement
+            </span>
+            <a href={item.caseStudyHref} style={{
+              fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase",
+              color: BW.ink, fontWeight: 700, textDecoration: "none",
+              borderBottom: `1px solid ${BW.ink}`, paddingBottom: 2,
+            }}>
+              See the case study →
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
