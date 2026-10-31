@@ -89,10 +89,33 @@ function CapHero() {
             color: #FBF7EE !important;
           }
 
+          /* Pillar motif — small version of the fig image from the
+             homepage pillar (field journal / coffee napkin / brain).
+             Sits beside the ↓ at the right of the cell, half-opacity
+             at rest, full on hover. */
+          .cap-pillar .cap-icon {
+            align-self: center;
+            height: 36px;
+            width: auto;
+            display: block;
+            opacity: 0.45;
+            transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.2,1);
+          }
+          .cap-pillar:hover .cap-icon,
+          .cap-pillar:focus-visible .cap-icon {
+            opacity: 1;
+            transform: translateY(2px);
+          }
+          .cap-pillar--lab .cap-icon {
+            /* Warm the brain graphic the way V3Pillars does so it reads on dark. */
+            filter: sepia(0.55) saturate(0.55) hue-rotate(-10deg) brightness(1.18) contrast(0.92);
+          }
+
           @media (prefers-reduced-motion: reduce) {
             .cap-pillar,
             .cap-pillar::before,
             .cap-pillar .cap-arrow,
+            .cap-pillar .cap-icon,
             .cap-pillar .cap-num,
             .cap-pillar .cap-label { transition: none; }
           }
@@ -100,9 +123,9 @@ function CapHero() {
 
         <Reveal kind="rise" delay={180} style={{ marginTop: 56, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
           {[
-            { n: "01", k: "Brand",  slug: "brand",  c: BW.clay,   t: "Story architecture" },
-            { n: "02", k: "Demand", slug: "demand", c: BW.plum,   t: "Nurture & engagement" },
-            { n: "03", k: "Lab",    slug: "lab",    c: BW.forest, t: "Applied AI" },
+            { n: "01", k: "Brand",  slug: "brand",  c: BW.clay,   t: "Story architecture",    img: "assets/field-journal.png?v=3",    imgAlt: "Field journal" },
+            { n: "02", k: "Demand", slug: "demand", c: BW.plum,   t: "Nurture & engagement",  img: "assets/coffee-napkin-burg.png?v=3", imgAlt: "Coffee & napkin" },
+            { n: "03", k: "Lab",    slug: "lab",    c: BW.forest, t: "Applied AI",             img: "assets/brain.png",                 imgAlt: "Cortex" },
           ].map((p, i) => (
             <a
               key={p.n}
@@ -121,7 +144,8 @@ function CapHero() {
                 <span className="cap-label" style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: p.c, fontWeight: 700 }}>{p.k}</span>
                 <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 22, color: BW.chalk50, letterSpacing: "-0.02em" }}>{p.t}</span>
               </div>
-              <span className="cap-arrow" style={{ marginLeft: "auto", fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", color: BW.chalk3 }}>↓</span>
+              <img className="cap-icon" src={p.img} alt="" aria-hidden="true" style={{ marginLeft: "auto" }} />
+              <span className="cap-arrow" style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", color: BW.chalk3 }}>↓</span>
             </a>
           ))}
         </Reveal>
