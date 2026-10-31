@@ -4,11 +4,12 @@
      §01 Hero (ink)
      §02 The problem (chalk50 — short two-paragraph prose)
      §03 What's in the build (chalk — 5 cards)
-     §04 It stays current (plum)
-     §05 Extend it · Lab (forest, id="extend")
-     §06 Fit / not fit (chalk50 — two columns)
-     §07 FAQ (chalk50 — <details> accordion)
-     §08 Closing CTA (clay — mailto)
+     §04 The team of agents (chalk50 — 8 role cards)
+     §05 It stays current (plum)
+     §06 Extend it · Lab (forest, id="extend")
+     §07 Fit / not fit (chalk50 — two columns)
+     §08 FAQ (chalk50 — <details> accordion)
+     §09 Closing CTA (clay — mailto)
 
    Reuses SiteHeader + V3Footer. Hero uses the ink + paper-grain treatment
    from CapHero so Brand Agent reads as a sibling of Capabilities, not a
@@ -133,7 +134,58 @@ function BABuild() {
 }
 
 /* ────────────────────────────────────────────────────────────────────
-   §04 · IT STAYS CURRENT
+   §04 · THE TEAM OF AGENTS
+   ──────────────────────────────────────────────────────────────────── */
+const BA_TEAM = [
+  { k: "01", role: "Brand strategist",            tag: "Brand",  body: "Keeps every output honest to your positioning, tenets, and audience. Flags the moments where a brief would quietly push the brand off-brief." },
+  { k: "02", role: "Research analyst",            tag: "Brand",  body: "Pulls competitive context, customer language, and category signals so the rest of the team isn't working from memory or guesswork." },
+  { k: "03", role: "Content manager & writer",    tag: "Brand",  body: "Drafts emails, posts, pages, and sales enablement in your voice. Owns the editorial pipeline so nothing ships without a careful pass." },
+  { k: "04", role: "Design director",             tag: "Brand",  body: "Holds the identity system — the way the brand looks, lays out, and sounds visually — so every surface the agent produces still reads as yours." },
+  { k: "05", role: "Advertising planner",         tag: "Demand", body: "Shapes paid campaigns from brief to copy to channel. Reads the brand, writes the ad, and picks a hook that lands with the audience it's for." },
+  { k: "06", role: "SEO & AI-search specialist",  tag: "Demand", body: "Writes for the searcher and the LLM at the same time. Keeps you findable where buyers actually look now — Google, ChatGPT, Perplexity, and the rest." },
+  { k: "07", role: "Nurture & lifecycle operator", tag: "Demand", body: "Owns the stage-by-stage choreography — triggers, sequences, segmentation — so leads warm toward a conversation instead of cooling off in silence." },
+  { k: "08", role: "Sales & ABM specialist",      tag: "Demand", body: "Preps account intel, outbound language, and talk tracks for named-account motions. Hands the rep what they need before the meeting, not after it." },
+];
+
+function BATeam() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isTablet = useMediaQuery("(max-width: 1100px)");
+  const cols = isMobile ? "1fr" : isTablet ? "1fr 1fr" : "repeat(4, 1fr)";
+  const tagColor = (t) => (t === "Brand" ? BW.clay : BW.plum);
+  return (
+    <section style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(72px, 10vw, 120px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24 }}>
+          <span>§03</span>
+          <span style={{ width: 28, height: 1, background: BW.clay }} />
+          <span>The team</span>
+        </div>
+        <h2 style={{ fontFamily: BW.ffD, fontWeight: 400, fontSize: "clamp(40px, 7vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.03em", margin: "0 0 24px", color: BW.ink, maxWidth: 1000 }}>
+          You&rsquo;re not hiring one agent. <em style={{ color: BW.clay, fontStyle: "italic", fontWeight: 400 }}>You&rsquo;re hiring a team.</em>
+        </h2>
+        <p style={{ fontFamily: BW.ffSerif, fontSize: "clamp(17px, 2vw, 20px)", lineHeight: 1.55, color: BW.ink2, margin: "0 0 48px", maxWidth: 820 }}>
+          A brand agent isn&rsquo;t a chatbot with a persona bolted on. Underneath, it&rsquo;s a small roster of specialist agents — one for each job a senior team would normally cover — talking to each other and to the humans who use them. One drafts; another checks it against positioning; a third keeps the SEO and AI-search angles in view; a fourth sanity-checks the campaign framing. You get senior output because senior work was done by each specialist in the stack.
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: cols, gap: 20 }}>
+          {BA_TEAM.map((m) => (
+            <div key={m.k} style={{ background: BW.chalk, border: `1px solid ${BW.ink}`, padding: "26px 22px 28px", display: "flex", flexDirection: "column", gap: 12, minHeight: 240 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+                <span style={{ fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: BW.ink3, fontWeight: 700 }}>{m.k}</span>
+                <span style={{ fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: tagColor(m.tag), fontWeight: 700, padding: "4px 10px", border: `1px solid ${tagColor(m.tag)}`, borderRadius: 999 }}>{m.tag}</span>
+              </div>
+              <div style={{ fontFamily: BW.ffD, fontStyle: "italic", fontWeight: 400, fontSize: "clamp(20px, 2vw, 24px)", lineHeight: 1.1, letterSpacing: "-0.015em", color: BW.ink }}>{m.role}</div>
+              <p style={{ fontFamily: BW.ffSerif, fontSize: 14.5, lineHeight: 1.55, color: BW.ink2, margin: 0 }}>{m.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   §05 · IT STAYS CURRENT
    ──────────────────────────────────────────────────────────────────── */
 function BAContinuity() {
   return (
@@ -141,7 +193,7 @@ function BAContinuity() {
       <div aria-hidden style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.08) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
       <div style={{ maxWidth: 1180, margin: "0 auto", position: "relative" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 28 }}>
-          <span>§03</span>
+          <span>§04</span>
           <span style={{ width: 28, height: 1, background: BW.brass }} />
           <span>Continuity</span>
         </div>
@@ -157,7 +209,7 @@ function BAContinuity() {
 }
 
 /* ────────────────────────────────────────────────────────────────────
-   §05 · EXTEND IT (Lab)
+   §06 · EXTEND IT (Lab)
    ──────────────────────────────────────────────────────────────────── */
 function BAExtend() {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -173,7 +225,7 @@ function BAExtend() {
       <div style={{ maxWidth: 1180, margin: "0 auto", position: "relative", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 1fr", gap: isMobile ? 40 : 72, alignItems: "start" }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.brass, fontWeight: 700, marginBottom: 28 }}>
-            <span>§04</span>
+            <span>§05</span>
             <span style={{ width: 28, height: 1, background: BW.brass }} />
             <span>Extend it · Lab</span>
           </div>
@@ -202,7 +254,7 @@ function BAExtend() {
 }
 
 /* ────────────────────────────────────────────────────────────────────
-   §06 · FIT / NOT FIT
+   §07 · FIT / NOT FIT
    ──────────────────────────────────────────────────────────────────── */
 function BAFit() {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -210,7 +262,7 @@ function BAFit() {
     <section style={{ background: BW.chalk50, color: BW.ink, padding: "clamp(72px, 10vw, 120px) clamp(20px, 5vw, 64px)", borderBottom: `1.5px solid ${BW.ink}`, fontFamily: BW.ffG }}>
       <div style={{ maxWidth: 1180, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24 }}>
-          <span>§05</span>
+          <span>§06</span>
           <span style={{ width: 28, height: 1, background: BW.clay }} />
           <span>Fit check</span>
         </div>
@@ -255,7 +307,7 @@ function BAFit() {
 }
 
 /* ────────────────────────────────────────────────────────────────────
-   §07 · FAQ (native accordion)
+   §08 · FAQ (native accordion)
    ──────────────────────────────────────────────────────────────────── */
 const BA_FAQ = [
   { q: "Is this a chatbot?", a: "No. It’s a working brand system in agent form. It knows your positioning, voice, and language, and it’s calibrated by senior people until it holds up on real tasks." },
@@ -283,7 +335,7 @@ function BAFaq() {
       `}</style>
       <div style={{ maxWidth: 880, margin: "0 auto" }} className="ba-faq">
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.clay, fontWeight: 700, marginBottom: 24 }}>
-          <span>§06</span>
+          <span>§07</span>
           <span style={{ width: 28, height: 1, background: BW.clay }} />
           <span>Common questions</span>
         </div>
@@ -306,7 +358,7 @@ function BAFaq() {
 }
 
 /* ────────────────────────────────────────────────────────────────────
-   §07.5 · RELATED READING
+   §08.5 · RELATED READING
    Thin strip between FAQ and closing CTA. Links the Field Notes post
    whose argument the whole page extends — "Most brand foundations
    fail on a Tuesday."
@@ -327,7 +379,7 @@ function BARelated() {
 }
 
 /* ────────────────────────────────────────────────────────────────────
-   §08 · CLOSING CTA
+   §09 · CLOSING CTA
    ──────────────────────────────────────────────────────────────────── */
 function BACTA() {
   return (
@@ -335,7 +387,7 @@ function BACTA() {
       <div aria-hidden style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg, rgba(20,16,12,0.06) 0 1.5px, transparent 1.5px 6px)", mixBlendMode: "multiply", pointerEvents: "none" }} />
       <div style={{ maxWidth: 1440, margin: "0 auto", position: "relative" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: BW.chalk2, fontWeight: 700, marginBottom: 36, flexWrap: "wrap" }}>
-          <span>§07</span>
+          <span>§08</span>
           <span style={{ width: 28, height: 1, background: BW.chalk2 }} />
           <span>Start</span>
         </div>
@@ -359,6 +411,7 @@ function BrandAgentPage() {
       <BAHero />
       <BAProblem />
       <BABuild />
+      <BATeam />
       <BAContinuity />
       <BAExtend />
       <BAFit />
