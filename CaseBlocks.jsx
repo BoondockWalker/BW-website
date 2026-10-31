@@ -1009,10 +1009,10 @@ function VideoBlock({ block }) {
      padding         — section padding
    ========================================================================= */
 function OverlapBlock({ block }) {
-  const { items = [], eyebrow, title, caption, surface = BW.chalk50, aspect = "16/11", maxWidth = 1100, padding = SECTION_PAD } = block;
+  const { items = [], eyebrow, title, caption, cta, id, surface = BW.chalk50, aspect = "16/11", maxWidth = 1100, padding = SECTION_PAD } = block;
   const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <section style={{ background: surface, color: BW.ink, padding, fontFamily: BW.ffG }}>
+    <section id={id} style={{ background: surface, color: BW.ink, padding, fontFamily: BW.ffG }}>
       <div style={{ maxWidth, margin: "0 auto" }}>
         {(eyebrow || title) && (
           <div style={{ marginBottom: 48 }}>
@@ -1061,6 +1061,19 @@ function OverlapBlock({ block }) {
             <div style={{ padding: "26px 0 0", display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "space-between", alignItems: "baseline" }}>
               <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 14, color: BW.ink3, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.label || "fig."}</span>
               <span style={{ fontFamily: BW.ffD, fontStyle: "italic", fontSize: 18, color: caption.fg || BW.ink, fontWeight: 400, letterSpacing: "-0.005em" }}>{caption.title || caption}</span>
+            </div>
+          </Reveal>
+        )}
+        {cta && cta.href && (
+          <Reveal kind="rise" delay={260}>
+            <div style={{ padding: "20px 0 0", display: "flex", justifyContent: "flex-end" }}>
+              <a href={cta.href} style={{
+                fontFamily: BW.ffM, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 700,
+                color: BW.ink, textDecoration: "none",
+                borderBottom: `1px solid ${BW.ink}`, paddingBottom: 2,
+              }}>
+                {cta.label || "See the full demo →"}
+              </a>
             </div>
           </Reveal>
         )}
