@@ -210,9 +210,6 @@ function AboutShelfLedger({ shelf, ledger }) {
               </div>
             ))}
           </div>
-          <div style={{ paddingTop: 14, borderTop: `0.75px solid ${BW.ruleD}`, fontFamily: BW.ffSerif, fontStyle: "italic", fontSize: 13.5, lineHeight: 1.55, color: BW.chalk2 }}>
-            We publish these because nobody else does. The receipts of having survived are an asset — not a thing to apologize for.
-          </div>
         </aside>
       </div>
     </section>
