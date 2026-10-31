@@ -74,7 +74,9 @@ function LabProduction() {
    Hypothesis / Build / Result / Status per card. */
 function LabSpecimens() {
   const isMobile = useMediaQuery("(max-width: 900px)");
+  const isTablet = useMediaQuery("(max-width: 1200px)");
   const d = BW_LAB.specimens;
+  const cols = isMobile ? 1 : isTablet ? 2 : 3;
 
   const statusColor = (k) => ({
     shipped: BW.clay300,
@@ -118,24 +120,29 @@ function LabSpecimens() {
           ))}
         </div>
 
-        {/* Specimens grid */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: 0, borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
+        {/* Specimens grid — 3 across on desktop, 2 on tablet, 1 on mobile.
+           Checkerboard tint on alternating cells, driven by (row + col) % 2. */}
+        <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 0, borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
           {d.items.map((it, i) => {
-            const isRightCol = !isMobile && i % 2 === 1;
-            const isLastRow = !isMobile && i >= d.items.length - 2;
+            const col = i % cols;
+            const row = Math.floor(i / cols);
+            const isRightEdge = col === cols - 1;
+            const lastRowStart = d.items.length - (d.items.length % cols || cols);
+            const isLastRow = i >= lastRowStart;
+            const checkerTint = (row + col) % 2 === 1;
             const parked = it.status === "parked";
             const accentKey = it.accent || "brass";
             const accentColor = BW[accentKey] || BW.brass;
             const statusDot = statusColor(it.status);
             return (
               <article key={it.n} style={{
-                padding: "32px clamp(16px, 3vw, 36px) 36px",
-                borderRight: isMobile ? "none" : isRightCol ? "none" : `1px solid rgba(244,236,218,0.18)`,
+                padding: "32px clamp(16px, 2.4vw, 32px) 36px",
+                borderRight: isRightEdge ? "none" : `1px solid rgba(244,236,218,0.18)`,
                 borderBottom: isLastRow ? "none" : `1px solid rgba(244,236,218,0.18)`,
                 display: "flex", flexDirection: "column", gap: 16,
                 opacity: parked ? 0.78 : 1,
                 position: "relative",
-                background: i % 2 === 1 ? "rgba(244,236,218,0.035)" : "transparent",
+                background: checkerTint ? "rgba(244,236,218,0.035)" : "transparent",
               }}>
                 {/* Top accent rule — gives each specimen its own identity colour */}
                 <span aria-hidden style={{ position: "absolute", top: 0, left: 0, width: 56, height: 3, background: accentColor }} />
