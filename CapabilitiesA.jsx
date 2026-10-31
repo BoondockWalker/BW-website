@@ -58,15 +58,10 @@ function CapHero() {
           .cap-pillar:hover::before,
           .cap-pillar:focus-visible::before { transform: scaleX(1); }
 
-          /* Resting — wash of the pillar's section colour. Clay is
-             bright enough to read at low alpha, but plum and forest
-             are dark hues that lose chroma against ink, so we "cheat"
-             their resting state with a lifted / more saturated variant
-             of the hue at a higher alpha. Hover state still uses the
-             exact section colour. */
-          .cap-pillar--brand  { background: rgba(196,  74, 42, 0.14); }   /* clay */
-          .cap-pillar--demand { background: rgba(150,  58, 88, 0.34); }   /* lifted plum */
-          .cap-pillar--lab    { background: rgba( 78, 118, 62, 0.32); }   /* lifted forest */
+          /* Resting — subtle wash of the pillar's section colour over ink */
+          .cap-pillar--brand  { background: rgba(196, 74, 42, 0.10); }   /* clay */
+          .cap-pillar--demand { background: rgba(94, 38, 56, 0.20); }    /* plum */
+          .cap-pillar--lab    { background: rgba(46, 70, 38, 0.22); }    /* forest */
 
           /* Hover — full flood with the section's own background */
           .cap-pillar--brand:hover,  .cap-pillar--brand:focus-visible  { background: #C44A2A; }
@@ -129,8 +124,8 @@ function CapHero() {
         <Reveal kind="rise" delay={180} style={{ marginTop: 56, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: `1px solid rgba(244,236,218,0.18)`, borderBottom: `1px solid rgba(244,236,218,0.18)` }}>
           {[
             { n: "01", k: "Brand",  slug: "brand",  c: BW.clay,   t: "Story architecture",    img: "assets/field-journal.png?v=3",    imgAlt: "Field journal" },
-            { n: "02", k: "Demand", slug: "demand", c: BW.plum,   t: "Nurture & engagement",  img: "assets/coffee-napkin-burg.png?v=3", imgAlt: "Coffee & napkin" },
-            { n: "03", k: "Lab",    slug: "lab",    c: BW.forest, t: "Applied AI",             img: "assets/brain.png",                 imgAlt: "Cortex" },
+            { n: "02", k: "Demand", slug: "demand", c: "#A74F6E", t: "Nurture & engagement",  img: "assets/coffee-napkin-burg.png?v=3", imgAlt: "Coffee & napkin" },
+            { n: "03", k: "Lab",    slug: "lab",    c: "#5F9148", t: "Applied AI",             img: "assets/brain.png",                 imgAlt: "Cortex" },
           ].map((p, i) => (
             <a
               key={p.n}
