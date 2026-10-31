@@ -171,34 +171,14 @@ window.BW_CASE_DETAIL = {
       cta: { href: "lab.html#tool-comms-audit", label: "See the full demo →" },
     },
 
-    /* -- AI tool spotlight: Marketing Budget Planner -----------------
-       Same cascade pattern as §07 Comms Audit. Three positioned screens:
-       the top-down vs. bottom-up reconciliation view, a scenario
-       drill-down, and the landing CTA. Images referenced here match
-       the expected asset paths — drop files to populate. */
-    {
-      kind: "overlap",
-      id: "tool-budget-planner",
-      eyebrow: "§07.5 · AI · Marketing Budget Planner",
-      title: "A planner that argues both sides of the budget — then settles it.",
-      aspect: "16/11",
-      items: [
-        { src: `${BASE}/budget-planner-annual.webp`, alt: "Marketing Budget Planner — annual plan reconciled top-down vs. bottom-up", top: "0%", left: "0%", width: "54%", z: 1 },
-        { src: `${BASE}/budget-planner-scenario.webp`, alt: "Marketing Budget Planner — scenario drill-down", bottom: "0%", right: "0%", width: "54%", z: 2 },
-        { src: `${BASE}/budget-planner-cta.webp`, alt: "Marketing Budget Planner — intake CTA", top: "8%", right: "4%", width: "34%", z: 3 },
-      ],
-      caption: { label: "fig. 07.5 · Budget Planner", title: "Marketing Budget Planner — AI-powered annual planning tool" },
-      cta: { href: "lab.html#tool-budget-planner", label: "See the full demo →" },
-    },
-
     /* -- AI tool spotlight: USPS Postage Optimizer -------------------
-       Same cascade. Primary: the tier solver with qualified / failed
-       tiers. Secondary: the campaign savings view. Accent: the job-spec
-       intake. */
+       Same cascade pattern as §07 Comms Audit. Primary: the tier
+       solver with qualified / failed tiers. Secondary: the campaign
+       savings view. Accent: the job-spec intake. */
     {
       kind: "overlap",
       id: "tool-postage-optimizer",
-      eyebrow: "§07.6 · AI · USPS Postage Optimizer",
+      eyebrow: "§07.5 · AI · USPS Postage Optimizer",
       title: "A postage router that catches every tier shortcut buried in the regs.",
       aspect: "16/11",
       items: [
@@ -206,7 +186,7 @@ window.BW_CASE_DETAIL = {
         { src: `${BASE}/postage-optimizer-savings.webp`, alt: "USPS Postage Optimizer — campaign savings view across a quarter of drops", bottom: "0%", right: "0%", width: "54%", z: 2 },
         { src: `${BASE}/postage-optimizer-spec.webp`, alt: "USPS Postage Optimizer — job-spec intake", top: "8%", right: "4%", width: "34%", z: 3 },
       ],
-      caption: { label: "fig. 07.6 · Postage Optimizer", title: "USPS Postage Optimizer — AI-powered direct-mail router" },
+      caption: { label: "fig. 07.5 · Postage Optimizer", title: "USPS Postage Optimizer — AI-powered direct-mail router" },
       cta: { href: "lab.html#tool-postage-optimizer", label: "See the full demo →" },
     },
 

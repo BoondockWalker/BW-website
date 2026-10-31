@@ -71,7 +71,6 @@ const BW_LAB = {
         metricValue: "Weeks → days",
         stack: "Claude · revenue model · spend archive · scenario modelling",
         status: "Live",
-        caseStudyHref: "case-oneil.html#tool-budget-planner",
         demo: {
           overview: "Annual marketing planning used to eat weeks: a top-down number came down from finance, a bottom-up stack came up from marketing, and the gap between them got worked by hand in a spreadsheet. The Planner reads both at once — the revenue model, the CAC targets, last year's performance, and the current team's bottom-up draft — then produces an edit-ready plan with the gaps already flagged and defended. Finance and marketing walk into the review already agreeing on the shape of the conversation.",
           screenshots: [
