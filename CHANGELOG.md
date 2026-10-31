@@ -9,6 +9,18 @@ in git history prior to this file.
 
 ### Lab
 
+- **§04 In production tiles — demo modal.** Each production tile now
+  has a "See the demo →" button that opens a lightbox-style modal
+  with a longer write-up, screenshot slots, and a link back to the
+  parent case study. Hash-driven, so `lab.html#tool-postage-optimizer`
+  deep-links straight into the matching modal.
+  ([#319](https://github.com/BoondockWalker/BW-website/pull/319))
+- **Specimens — 3-across grid with a true checkerboard tint.** The
+  §05 bench now lays out as two rows of three on desktop (two across
+  on tablet, one on mobile). Alternating tint switched from an index
+  stripe to a `(row + col) % 2` checkerboard driven by the live
+  column count, so adjacent cells never share a tint at any width.
+  ([#318](https://github.com/BoondockWalker/BW-website/pull/318))
 - **§04 In production — reframed as "successful outputs of the Lab".**
   Standfirst rewritten so the three completed tools read as Lab
   specimens that cleared their kill criteria and shipped into client
@@ -57,3 +69,34 @@ in git history prior to this file.
 - **Ledger tagline removed.** The italic "We publish these because
   nobody else does…" line below the tenure-ledger grid is gone.
   ([#312](https://github.com/BoondockWalker/BW-website/pull/312))
+
+### Case studies
+
+- **Right-rail "Case index" on every case page.** Small sticky
+  sidebar listing every §-marked section, auto-derived from the
+  block eyebrows. Click to jump; whichever section is most visible
+  gets a clay accent via `IntersectionObserver`. Hidden below
+  1200px. ([#321](https://github.com/BoondockWalker/BW-website/pull/321))
+- **O'Neil case — AI tool spotlights replace the 3-up grid.** The
+  short-lived §08.5 Lab-inside-the-engagement grid is gone. In its
+  place sits §07.5 USPS Postage Optimizer, built as an overlap-pattern
+  spotlight that matches the existing §07 Comms Audit (Healthcare
+  Communication Assessment). Each AI spotlight now also carries an
+  anchor id (`tool-comms-audit`, `tool-postage-optimizer`) and a
+  "See the full demo →" link into the Lab modal. Marketing Budget
+  Planner was pulled off the O'Neil page — it was built for an
+  anonymised client, so it only lives on the Lab page now.
+  ([#320](https://github.com/BoondockWalker/BW-website/pull/320))
+- **O'Neil case — new § AI tools built inside the engagement.** First
+  pass at wiring the Lab-born AI tools into the O'Neil case page as
+  a 3-up grid, superseded in the next PR by the per-tool spotlights
+  above. `OverlapBlock` picked up `id` and `cta` props so any case
+  spotlight can be anchored and linked. ([#319](https://github.com/BoondockWalker/BW-website/pull/319))
+
+### Meta
+
+- **`CHANGELOG.md` added.** This file. Captures site-level changes
+  per date, each entry linking back to the merged PR for the full
+  diff and rationale. Earlier work (go-live staging, Brand Agent
+  build, Contact page) is in git history prior to this file.
+  ([#317](https://github.com/BoondockWalker/BW-website/pull/317))
