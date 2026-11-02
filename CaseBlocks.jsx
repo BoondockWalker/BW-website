@@ -1193,6 +1193,7 @@ function parseEyebrow(eyebrow) {
 
 function CaseToc({ blocks }) {
   const [activeId, setActiveId] = React.useState(null);
+  const [sheetOpen, setSheetOpen] = React.useState(false);
   const isNarrow = useMediaQuery("(max-width: 1200px)");
 
   const items = React.useMemo(() => (blocks || [])
@@ -1203,78 +1204,203 @@ function CaseToc({ blocks }) {
       return { id, num, label };
     }), [blocks]);
 
+  // Keep IntersectionObserver running at every width so the active
+  // row is accurate on the mobile sheet when it opens.
   React.useEffect(() => {
-    if (!items.length || isNarrow) return undefined;
+    if (!items.length) return undefined;
     const observer = new IntersectionObserver((entries) => {
       const visible = entries
         .filter((e) => e.isIntersecting)
         .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
       if (visible.length) setActiveId(visible[0].target.id);
     }, { rootMargin: "-120px 0px -55% 0px", threshold: 0 });
-    const observed = [];
     items.forEach((it) => {
       const el = document.getElementById(it.id);
-      if (el) {
-        observer.observe(el);
-        observed.push(el);
-      }
+      if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, [items, isNarrow]);
+  }, [items]);
 
-  if (isNarrow || !items.length) return null;
+  // Body-scroll lock + Escape key while the sheet is open.
+  React.useEffect(() => {
+    if (!sheetOpen) return undefined;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => { if (e.key === "Escape") setSheetOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [sheetOpen]);
 
+  if (!items.length) return null;
+
+  // Shared row renderer — same for desktop sidebar and mobile sheet.
+  const renderRow = (it, { onNav } = {}) => {
+    const active = it.id === activeId;
+    return (
+      <li key={it.id}>
+        <a href={`#${it.id}`} onClick={onNav} style={{
+          display: "grid",
+          gridTemplateColumns: "36px 1fr",
+          gap: 10,
+          alignItems: "baseline",
+          textDecoration: "none",
+          padding: "8px 0 8px 10px",
+          borderLeft: `2px solid ${active ? BW.clay : "transparent"}`,
+          transition: "border-color .14s ease",
+        }}>
+          <span style={{
+            fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.18em", fontWeight: 700,
+            color: active ? BW.clay : BW.ink3,
+          }}>{it.num}</span>
+          <span style={{
+            fontFamily: BW.ffG, fontSize: 13, lineHeight: 1.35,
+            fontWeight: active ? 600 : 500,
+            color: active ? BW.ink : BW.ink2,
+          }}>{it.label}</span>
+        </a>
+      </li>
+    );
+  };
+
+  // Desktop: sticky right rail
+  if (!isNarrow) {
+    return (
+      <nav aria-label="Case sections" style={{
+        position: "fixed",
+        top: 128,
+        right: 20,
+        zIndex: 40,
+        maxHeight: "calc(100vh - 180px)",
+        width: 208,
+        overflow: "auto",
+        padding: "16px 14px 18px",
+        background: "rgba(251,247,238,0.92)",
+        border: `1px solid ${BW.ruleL}`,
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+        fontFamily: BW.ffG,
+      }}>
+        <div style={{
+          fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.26em", textTransform: "uppercase",
+          color: BW.ink3, fontWeight: 700,
+          paddingBottom: 10, marginBottom: 10, borderBottom: `1px solid ${BW.ruleL}`,
+        }}>Case index</div>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 2 }}>
+          {items.map((it) => renderRow(it))}
+        </ul>
+      </nav>
+    );
+  }
+
+  // Narrow (<= 1200px): floating "Index" button + bottom sheet
   return (
-    <nav aria-label="Case sections" style={{
-      position: "fixed",
-      top: 128,
-      right: 20,
-      zIndex: 40,
-      maxHeight: "calc(100vh - 180px)",
-      width: 208,
-      overflow: "auto",
-      padding: "16px 14px 18px",
-      background: "rgba(251,247,238,0.92)",
-      border: `1px solid ${BW.ruleL}`,
-      backdropFilter: "blur(6px)",
-      WebkitBackdropFilter: "blur(6px)",
-      fontFamily: BW.ffG,
-    }}>
-      <div style={{
-        fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.26em", textTransform: "uppercase",
-        color: BW.ink3, fontWeight: 700,
-        paddingBottom: 10, marginBottom: 10, borderBottom: `1px solid ${BW.ruleL}`,
-      }}>Case index</div>
-      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 2 }}>
-        {items.map((it) => {
-          const active = it.id === activeId;
-          return (
-            <li key={it.id}>
-              <a href={`#${it.id}`} style={{
-                display: "grid",
-                gridTemplateColumns: "32px 1fr",
-                gap: 8,
-                alignItems: "baseline",
-                textDecoration: "none",
-                padding: "6px 0 6px 8px",
-                borderLeft: `2px solid ${active ? BW.clay : "transparent"}`,
-                transition: "border-color .14s ease",
-              }}>
-                <span style={{
-                  fontFamily: BW.ffM, fontSize: 9, letterSpacing: "0.18em", fontWeight: 700,
-                  color: active ? BW.clay : BW.ink3,
-                }}>{it.num}</span>
-                <span style={{
-                  fontFamily: BW.ffG, fontSize: 12, lineHeight: 1.35,
-                  fontWeight: active ? 600 : 500,
-                  color: active ? BW.ink : BW.ink2,
-                }}>{it.label}</span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+    <>
+      <button
+        type="button"
+        onClick={() => setSheetOpen(true)}
+        aria-label="Open case index"
+        aria-expanded={sheetOpen}
+        style={{
+          position: "fixed",
+          right: 16,
+          bottom: `calc(16px + env(safe-area-inset-bottom, 0px))`,
+          zIndex: 55,
+          padding: "12px 18px",
+          background: BW.ink,
+          color: BW.chalk50,
+          border: `1px solid rgba(244,236,218,0.3)`,
+          borderRadius: 999,
+          fontFamily: BW.ffM,
+          fontSize: 10,
+          letterSpacing: "0.24em",
+          textTransform: "uppercase",
+          fontWeight: 700,
+          cursor: "pointer",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          boxShadow: "0 4px 16px rgba(20,16,12,0.28)",
+        }}
+      >
+        <span aria-hidden style={{ fontSize: 14, lineHeight: 1 }}>☰</span>
+        Index
+      </button>
+
+      {sheetOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Case index"
+          onClick={() => setSheetOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 60,
+            background: "rgba(20,16,12,0.6)",
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            display: "flex",
+            alignItems: "flex-end",
+          }}
+        >
+          <nav
+            aria-label="Case sections"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: BW.chalk50,
+              width: "100%",
+              maxHeight: "78vh",
+              overflowY: "auto",
+              borderTop: `1px solid ${BW.ink}`,
+              padding: `14px clamp(20px, 5vw, 32px) calc(28px + env(safe-area-inset-bottom, 0px))`,
+              borderTopLeftRadius: 14,
+              borderTopRightRadius: 14,
+              fontFamily: BW.ffG,
+            }}
+          >
+            {/* Grab handle */}
+            <div aria-hidden style={{
+              width: 44, height: 4,
+              background: BW.ruleL,
+              borderRadius: 999,
+              margin: "0 auto 14px",
+            }} />
+
+            <div style={{
+              display: "flex", justifyContent: "space-between", alignItems: "baseline",
+              paddingBottom: 10, marginBottom: 8,
+              borderBottom: `1px solid ${BW.ruleL}`,
+            }}>
+              <span style={{
+                fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.26em",
+                textTransform: "uppercase", color: BW.ink3, fontWeight: 700,
+              }}>Case index</span>
+              <button
+                type="button"
+                onClick={() => setSheetOpen(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: "4px 2px",
+                  fontFamily: BW.ffM, fontSize: 10, letterSpacing: "0.22em",
+                  textTransform: "uppercase", fontWeight: 700,
+                  color: BW.ink, cursor: "pointer",
+                }}
+              >Close</button>
+            </div>
+
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 2 }}>
+              {items.map((it) => renderRow(it, {
+                onNav: () => window.setTimeout(() => setSheetOpen(false), 60),
+              }))}
+            </ul>
+          </nav>
+        </div>
+      )}
+    </>
   );
 }
 
