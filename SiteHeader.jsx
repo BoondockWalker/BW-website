@@ -102,6 +102,56 @@ function SiteHeader({ current, breadcrumb, tone = "light", compact = false, stic
         to   { opacity: 1; transform: translateY(0); }
       }
       .bdw-nav-drop { animation: bdwNavDrop 160ms ease-out both; }
+
+      /* Nav link rollover — brass underline sweeps in left → right on
+         hover and keyboard focus. Doesn't fight the inline color, so
+         the active/inactive distinction is preserved. */
+      .bdw-nav-link {
+        position: relative;
+      }
+      .bdw-nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -3px;
+        height: 1.5px;
+        background: ${BW.brass};
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .32s cubic-bezier(.2,.7,.2,1);
+        pointer-events: none;
+      }
+      .bdw-nav-link:hover::after,
+      .bdw-nav-link:focus-visible::after { transform: scaleX(1); }
+
+      /* Brass CTA pill — subtle lift + glow on hover. */
+      .bdw-nav-cta {
+        transition: filter .22s ease, transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease;
+      }
+      .bdw-nav-cta:hover,
+      .bdw-nav-cta:focus-visible {
+        filter: brightness(1.08);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px -6px rgba(200,150,43,0.45);
+      }
+
+      /* Menu toggle — subtle chalk fill on hover. */
+      .bdw-nav-toggle {
+        transition: background-color .22s ease, border-color .22s ease;
+      }
+      .bdw-nav-toggle:hover,
+      .bdw-nav-toggle:focus-visible {
+        background: rgba(244,236,218,0.08);
+        border-color: rgba(244,236,218,0.55);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .bdw-nav-link,
+        .bdw-nav-link::after,
+        .bdw-nav-cta,
+        .bdw-nav-toggle { transition: none; }
+      }
     `}</style>
     <header style={{
       // Compact + sticky uses position:fixed so it goes out of flow and overlays
